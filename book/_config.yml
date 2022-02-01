@@ -32,4 +32,7 @@ html:
   use_repository_button: true
 
 launch_buttons:
-  jupyterhub_url: "https://gpu-epu.univ-savoie.fr:8000"  # The URL for your JupyterHub. (e.g., https://datahub.berkeley.edu)
+  jupyterhub_url: "https://gpu-epu.univ-savoie.fr:8000"  
+  colab_url: "https://colab.research.google.com"
+
+  
