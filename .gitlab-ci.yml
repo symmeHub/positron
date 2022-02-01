@@ -4,11 +4,12 @@ stages:
 
 jupyter-build:
   stage: build
-  image: python:slim
+  image: continuumio/miniconda3:latest
   script:
-    - pip install -U jupyter-book
-    - jupyter-book clean .
-    - jupyter-book build .
+    - conda env create -f environment.yml
+    - source activate jupyter_book
+    - jupyter-book clean book
+    - jupyter-book build book
   artifacts:
     paths:
       - _build/
