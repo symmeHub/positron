@@ -2,7 +2,10 @@
 
 Welcome to you in Positron. This repository is intended to gather documents, mainly Jupyter notebooks as teaching aids for digital methods. In order to keep the repository free of unnecessary files and hard-to-read commits, it is mandatory to follow the following guidelines:
 
-The associated book is available online here: https://symmehub.github.io/positron/intro.html
+The associated book is available online here: 
+
+- Github : https://symmehub.github.io/positron/intro.html
+- Gitlab : https://symmehub.gitlab.io/teaching/positron/intro.html
 
 ## Pre-commit
 Before playing, you need to activate **pre-commit** in your environment:
