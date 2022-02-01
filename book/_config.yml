@@ -37,3 +37,9 @@ parse:
     # don't forget to list any other extensions you want enabled,
     # including those that are enabled by default!
     - html_image
+    
+launch_buttons:
+  jupyterhub_url: "https://gpu-epu.univ-savoie.fr:8000"  
+  colab_url: "https://colab.research.google.com"
+
+  
