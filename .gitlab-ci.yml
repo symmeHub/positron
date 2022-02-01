@@ -8,17 +8,17 @@ jupyter-build:
   script:
     - conda env create -f environment.yml
     - source activate jupyter_book
-    - jupyter-book clean book
-    - jupyter-book build book
+    - jupyter-book clean ./book
+    - jupyter-book build ./book
   artifacts:
     paths:
-      - _build/
+      - ./book/_build/
 
 pages:
   stage: deploy
   image: busybox:latest
   script:
-    - mv _build/html public
+    - mv ./book/_build/html public
   artifacts:
     paths:
       - public
