@@ -11,7 +11,7 @@ Before playing, you need to activate **pre-commit** in your environment:
 pre-commit install
 ```
 
-## Book buuilding and publishing
+## Book building and publishing
 To build the book and test it locally, run the following command from the root folder:
 
 ``` bash
