@@ -13,7 +13,14 @@ jupyter-build:
   artifacts:
     paths:
       - ./book/_build/
-
+  rules:
+    - if: $CI_COMMIT_MESSAGE =~ /ci-run/
+      when: always
+    - if: '$CI_PIPELINE_SOURCE == "web"'
+      when: always
+    - when: never
+  tags:
+    - docker
 pages:
   stage: deploy
   image: busybox:latest
