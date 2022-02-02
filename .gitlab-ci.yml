@@ -4,10 +4,10 @@ stages:
 
 jupyter-build:
   stage: build
-  image: continuumio/miniconda3:latest
+  image: celmo/jupyter-book
   script:
-    - conda env create -f environment.yml
-    - source activate jupyter_book
+    # Source conda env from what found in bashrc
+    - source activate $(head -1 ~/.bashrc | cut -d' ' -f3)
     - jupyter-book clean ./book
     - jupyter-book build ./book
   artifacts:
