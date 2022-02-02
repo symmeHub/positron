@@ -4,7 +4,7 @@ stages:
 
 jupyter-build:
   stage: build
-  image: celmo/jupyter-book
+  image: registry.gitlab.com/symmehub/teaching/positron:latest
   script:
     # Source conda env from what found in bashrc
     - source activate $(head -1 ~/.bashrc | cut -d' ' -f3)
