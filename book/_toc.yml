@@ -17,6 +17,7 @@ parts :
       sections:     
       - file: image_processing/exercises/image_processing_tutorial.ipynb
       - file: image_processing/exercises/image_processing_practical_work.ipynb
+      - file: image_processing/exercises/image_processing_practical_work_bonus.ipynb
 
 
 
