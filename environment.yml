@@ -224,6 +224,7 @@ dependencies:
     - jedi==0.18.1
     - jupyter-core==4.9.1
     - jupyterlab-mathjax3==4.3.0
+    - kaleido==0.2.1
     - kiwisolver==1.3.2
     - markupsafe==2.0.1
     - matplotlib==3.5.1
