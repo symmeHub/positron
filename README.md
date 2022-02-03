@@ -33,7 +33,7 @@ jupyter-book clean book
 ghp-import -n -p -f book/_build/html
 ``` -->
 
-## Update Online Book
+## Update Online Book
 
 To update the online Book, you need to trigger de CI/CD. Two options are available here :
 
