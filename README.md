@@ -32,3 +32,17 @@ jupyter-book clean book
 ``` bash
 ghp-import -n -p -f book/_build/html
 ``` -->
+
+## Update Online Book
+
+To update the online Book, you need to trigger de CI/CD. Two options are available here :
+
+1. Add key **[ci-run]** to your commit message.
+
+    Example :
+
+            git commit -am "[ci-run] This is an example commit to trigger CI"
+
+2. Triggering from CI/CD from web. 
+
+Go to: https://gitlab.com/symmehub/teaching/positron >> CI/CD/ >> ***Run pipeline***
