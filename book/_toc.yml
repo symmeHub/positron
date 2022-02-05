@@ -18,6 +18,13 @@ parts :
       - file: image_processing/exercises/image_processing_tutorial.ipynb
       - file: image_processing/exercises/image_processing_practical_work.ipynb
       - file: image_processing/exercises/image_processing_practical_work_bonus.ipynb
+  - caption: Data Analysis
+    numbered: True
+    chapters: 
+    - file: data_analysis/support_material/support_material
+      sections: 
+      - file: data_analysis/support_material/00_Introduction_Panda.ipynb
+    - file:  data_analysis/exercises/exercises
 
 
 
