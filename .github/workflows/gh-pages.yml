@@ -15,9 +15,9 @@ jobs:
     runs-on: ubuntu-18.04
     container: 
       image: ghcr.io/symmehub/positron/positron:latest
-      # credentials:
-      #   username: elmokulc
-      #   password: ${{  secrets.DOCKER_CONTAINER_REGISTRY_TOKEN }}
+      credentials:
+        username: elmokulc
+        password: ${{  secrets.GITHUB_TOKEN }}
     # Tâches à effectuer, comme expliquées ci-dessus
     steps:
 
