@@ -54,7 +54,7 @@ If you want to check your work locally follow this.
 
 You may want to use the Gitlab container registry to store docker images and to use it for your repository instead of using DockerHub , see more explanantions [here](https://about.gitlab.com/blog/2016/05/23/gitlab-container-registry/).
 
-1. Log Gitlab registry with docker: 
+1. Log to Gitlab registry with docker: 
 
     if first time:
 
@@ -83,3 +83,34 @@ You may want to use the Gitlab container registry to store docker images and to 
         jupyter-build:
             stage: build
             image: registry.gitlab.com/symmehub/teaching/positron:latest
+
+
+# Use Github container registry 
+
+1. Log to Github registry with docker:
+
+    - Create personal access token for the command line see [here](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token-for-the-command-line)
+   
+    - Save your PAT as an environment variable.
+
+            export CR_PAT=YOUR_TOKEN
+
+    - Using the CLI for your container type, sign in to the Container registry service at ghcr.io.
+
+            echo $CR_PAT | docker login ghcr.io -u USERNAME -password-stdin
+            Login Succeeded
+
+2. Build your container image properly:
+    
+    Example:
+
+            docker build -t ghcr.io/symmehub/positron/positron:latest .
+
+
+3. Push container to GitHub registry:
+    
+            docker push ghcr.io/symmehub/positron/positron:latest
+
+4. Optionnal inspect:
+
+            docker inspect ghcr.io/symmehub/positron/positron:latest
