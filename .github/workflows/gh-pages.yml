@@ -11,6 +11,7 @@ jobs:
 
   # Notre job
   build-and-deploy:
+    if: "contains(github.event.commits[0].message, '[ci-run]')" # <- Déclenche des jobs sur message de commit 
     runs-on: ubuntu-18.04
     container: 
       image: ghcr.io/symmehub/positron/positron:latest
@@ -29,18 +30,15 @@ jobs:
 
       - name: "Build Book"
         run : |
-          source activate $(head -1 ~/.bashrc | cut -d' ' -f3)
+          # source activate $(head -1 ~/.bashrc | cut -d' ' -f3)
           jupyter-book clean ./book
           jupyter-book build ./book
 
-      - name: "Disable Jekill"
-        run : touch ./book/.nojekill
+      # # 3. Déploiement sur les Github Pages
 
-      # 3. Déploiement sur les Github Pages
-
-      - name: "Deploy Github Pages"
-        uses: JamesIves/github-pages-deploy-action@3.7.1
+      # Push the book's HTML to github-pages
+      - name: GitHub Pages action
+        uses: peaceiris/actions-gh-pages@v3.6.1
         with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          BRANCH: gh-pages     # <- Branche sur laquelle seront commités les fichiers
-          FOLDER: ./book/build/html/  # <- Dossier contenant notre documentation générée
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./book/_build/html

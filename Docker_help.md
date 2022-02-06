@@ -10,11 +10,14 @@ If you need to update the **environment.yml**. You can also create an associate 
     - Export a conda environment:
         
             conda activate "your_env_name"
-            conda env export > environment.yml
+            conda env export | sed 's/name: .*/name: base/' > environment.yml
+
+    
+      **Note**: We make sure that environment name is ***"base"***
 
 2. Build your docker image.
 
-        docker build -t <image_name>:<tag_name> <path_to_Dockerfile>
+        docker build -t <image_name>:<tag_name> <path_to_Dockerfile> <path_to_your_dockerfile>
    
     - Example with my DockerHub account. Current directory is **positron/**.
 
@@ -97,7 +100,7 @@ You may want to use the Gitlab container registry to store docker images and to 
 
     - Using the CLI for your container type, sign in to the Container registry service at ghcr.io.
 
-            echo $CR_PAT | docker login ghcr.io -u USERNAME -password-stdin
+            echo $CR_PAT | docker login ghcr.io -u USERNAME --password-stdin
             Login Succeeded
 
 2. Build your container image properly:

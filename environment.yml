@@ -1,4 +1,4 @@
-name: jupyter_book
+name: base
 channels:
   - plotly
   - conda-forge
