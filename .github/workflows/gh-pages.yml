@@ -11,7 +11,7 @@ jobs:
 
   # Notre job
   build-and-deploy:
-    runs-on: ghcr.io/symmehub/positron/positron:latest
+    runs-on: registry.gitlab.com/symmehub/teaching/positron:latest
 
     # Tâches à effectuer, comme expliquées ci-dessus
     steps:
