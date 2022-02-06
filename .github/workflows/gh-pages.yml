@@ -11,8 +11,9 @@ jobs:
 
   # Notre job
   build-and-deploy:
-    runs-on: ubuntu-latest
-
+    runs-on: ubuntu-18.04
+    container: 
+      image: ghcr.io/symmehub/positron/positron:latest
     # Tâches à effectuer, comme expliquées ci-dessus
     steps:
 
