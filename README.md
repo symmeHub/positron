@@ -45,4 +45,6 @@ To update the online Book, you need to trigger de CI/CD. Two options are availab
 
 2. Triggering from CI/CD from web. 
 
-Go to: https://gitlab.com/symmehub/teaching/positron >> CI/CD/ >> ***Run pipeline***
+- If  Gitlab :
+
+    - Go to: https://gitlab.com/symmehub/teaching/positron >> CI/CD/ >> ***Run pipeline***
