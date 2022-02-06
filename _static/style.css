@@ -1,0 +1,45 @@
+/* Text styles */
+p {
+    text-align: justify;
+}
+
+
+/* Images styles */
+
+cimg{
+    display: flex;
+    justify-content: center;
+}
+
+
+.rotateimg {
+    border-radius: 5px;
+    }
+.rot-45{
+    -webkit-transform:rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);    
+  }
+.rot-90{
+    -webkit-transform:rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    transform: rotate(90deg);    
+}
+.rot-135{
+    -webkit-transform:rotate(135deg);
+    -moz-transform: rotate(135deg);
+    -ms-transform: rotate(135deg);
+    -o-transform: rotate(135deg);
+    transform: rotate(135deg);    
+}
+.rot-180{
+    -webkit-transform:rotate(135deg);
+    -moz-transform: rotate(135deg);
+    -ms-transform: rotate(135deg);
+    -o-transform: rotate(135deg);
+    transform: rotate(135deg);    
+}

@@ -1,0 +1,3 @@
+# Exercices 
+
+Image processing exercises.
