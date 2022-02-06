@@ -1,0 +1,42 @@
+# Nom de notre workflow
+name: "Build and deploy Github pages"
+
+# Événements sur lesquels il doit être déclenché
+on:
+  push:         # <- Déclenché lorsque l'on pousse du code...
+    branches:
+      - main  # <- ... mais seulement sur la branche "master"
+
+jobs:
+
+  # Notre job
+  build-and-deploy:
+    runs-on: ghcr.io/symmehub/positron/positron:latest
+
+    # Tâches à effectuer, comme expliquées ci-dessus
+    steps:
+
+      # 1. On récupère le contenu du dépôt
+
+      - name: "Checkout"
+        uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+
+      - name: "Build Book"
+        run : |
+          source activate $(head -1 ~/.bashrc | cut -d' ' -f3)
+          jupyter-book clean ./book
+          jupyter-book build ./book
+
+      - name: "Disable Jekill"
+        run : touch ./book/.nojekill
+
+      # 3. Déploiement sur les Github Pages
+
+      - name: "Deploy Github Pages"
+        uses: JamesIves/github-pages-deploy-action@3.7.1
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: gh-pages     # <- Branche sur laquelle seront commités les fichiers
+          FOLDER: ./book/build/html/  # <- Dossier contenant notre documentation générée
