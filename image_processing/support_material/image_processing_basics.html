@@ -179,10 +179,22 @@
    </li>
   </ul>
  </li>
- <li class="toctree-l1">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../../data_analysis/exercises/exercises.html">
    4. Exercices
   </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../data_analysis/exercises/04_DATA_Practical_Work.html">
+     4.1. Practical work (TP) : Tensile test analysis
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -1459,7 +1471,7 @@ if (IPython.notebook.kernel !== null) {
         mpl.mpl_figure_comm
     );
 }
-</script><div class="output text_html"><div id='3209c9e9-26d7-4c08-99dd-6ce3f5e26dea'></div></div></div>
+</script><div class="output text_html"><div id='81adacc9-fea7-4f07-a7cc-5f0d88cb1da8'></div></div></div>
 </div>
 <p>At this stage, an image is no more than a matrix generally made up of unsigned 8-bit integers (<code class="docutils literal notranslate"><span class="pre">np.uint8</span></code>). A color image is therefore made up of 3 grayscale images corresponding to the 3 channels:</p>
 <div class="cell docutils container">
