@@ -25,6 +25,8 @@ parts :
       sections: 
       - file: data_analysis/support_material/00_Introduction_Panda.ipynb
     - file:  data_analysis/exercises/exercises
+      sections:
+      - file: data_analysis/exercises/04_DATA_Practical_Work.ipynb
 
 
 
