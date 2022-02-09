@@ -3,40 +3,50 @@
 
 format: jb-book
 root: intro
-options:  # The options key will be applied to all chapters, but not sub-sections
+options: # The options key will be applied to all chapters, but not sub-sections
   numbered: True
-parts :
+parts:
+  - caption: Python Basics
+    numbered: True
+    chapters:
+      - file: python_basics/python_basics.md
+        sections:
+          - file: python_basics/support_material/plotting.ipynb
+          - file: python_basics/support_material/scientific_python.ipynb
+      - file: python_basics/examples/examples.md
+        sections:
+          - file: python_basics/examples/game_of_life_full.ipynb
+      - file: python_basics/exercises/exercises.md
+        sections:
+          - file: python_basics/exercises/game_of_life_tutorial.ipynb
   - caption: Image Processing
     numbered: True
-    chapters: 
-    - file: image_processing/support_material/support_material
-      sections: 
-      - file: image_processing/support_material/image_processing_basics.ipynb
-      - file: image_processing/support_material/blob_orientation.ipynb
-    - file:  image_processing/exercises/exercises
-      sections:     
-      - file: image_processing/exercises/image_processing_tutorial.ipynb
-      - file: image_processing/exercises/image_processing_practical_work.ipynb
-      - file: image_processing/exercises/image_processing_practical_work_bonus.ipynb
+    chapters:
+      - file: image_processing/support_material/support_material
+        sections:
+          - file: image_processing/support_material/image_processing_basics.ipynb
+          - file: image_processing/support_material/blob_orientation.ipynb
+      - file: image_processing/exercises/exercises
+        sections:
+          - file: image_processing/exercises/image_processing_tutorial.ipynb
+          - file: image_processing/exercises/image_processing_practical_work.ipynb
+          - file: image_processing/exercises/image_processing_practical_work_bonus.ipynb
   - caption: Data Analysis
     numbered: True
-    chapters: 
-    - file: data_analysis/support_material/support_material
-      sections: 
-      - file: data_analysis/support_material/00_Introduction_Panda.ipynb
-    - file:  data_analysis/exercises/exercises
-      sections:
-      - file: data_analysis/exercises/04_DATA_Practical_Work.ipynb
-
-
-
+    chapters:
+      - file: data_analysis/support_material/support_material
+        sections:
+          - file: data_analysis/support_material/pandas_introduction.ipynb
+      - file: data_analysis/exercises/exercises
+        sections:
+          - file: data_analysis/exercises/data_practical_work.ipynb
 # format: jb-book
 # root: intro
 # options:  # The options key will be applied to all chapters, but not sub-sections
 #   numbered: True
-# chapters: 
+# chapters:
 # - file: image_processing/image_processing
-#   sections: 
+#   sections:
 #   - file: image_processing/support_material/image_processing_basics.ipynb
 #   - file: image_processing/exercises/image_processing_tutorial.ipynb
 #   - file: image_processing/exercises/image_processing_practical_work.ipynb
