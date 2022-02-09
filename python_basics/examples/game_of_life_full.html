@@ -1,0 +1,973 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>2.1. Game of Life and other cellular automatons &#8212; POSITRON: PythOn for Science In The Reblochon cOuNtry</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/style.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="3. Exercises" href="../exercises/exercises.html" />
+    <link rel="prev" title="2. Examples" href="examples.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">POSITRON: PythOn for Science In The Reblochon cOuNtry</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../intro.html">
+   Scientific Python
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Python Basics
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../python_basics.html">
+   1. Python basics
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../support_material/plotting.html">
+     1.1. Advanced plotting
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../support_material/scientific_python.html">
+     1.2. Scientific Python
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="examples.html">
+   2. Examples
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     2.1. Game of Life and other cellular automatons
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../exercises/exercises.html">
+   3. Exercises
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../exercises/game_of_life_tutorial.html">
+     3.1. Conway’s Game of Life
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Image Processing
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../image_processing/support_material/support_material.html">
+   4. Support material
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../image_processing/support_material/image_processing_basics.html">
+     4.1. Basics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../image_processing/support_material/blob_orientation.html">
+     4.2. Blob orientation and aspect ratio
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../image_processing/exercises/exercises.html">
+   5. Exercices
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../image_processing/exercises/image_processing_tutorial.html">
+     5.1. Tutorial: Counting objects using labeling
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../image_processing/exercises/image_processing_practical_work.html">
+     5.2. Practical Work: Steel microstructure
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../image_processing/exercises/image_processing_practical_work_bonus.html">
+     5.3. Practical Work Bonus: Play with dices
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Data Analysis
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../data_analysis/support_material/support_material.html">
+   6. Support material
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../data_analysis/support_material/pandas_introduction.html">
+     6.1. Introduction to the Pandas module
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../data_analysis/exercises/exercises.html">
+   7. Exercices
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../data_analysis/exercises/data_practical_work.html">
+     7.1. Practical work (TP) : Tensile test analysis
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/python_basics/examples/game_of_life_full.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/symmeHub/positron"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/symmeHub/positron/issues/new?title=Issue%20on%20page%20%2Fpython_basics/examples/game_of_life_full.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/symmeHub/positron/main?urlpath=tree/book/python_basics/examples/game_of_life_full.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        <a class="jupyterhub-button" href="https://gpu-epu.univ-savoie.fr:8000/hub/user-redirect/git-pull?repo=https://github.com/symmeHub/positron&urlpath=tree/positron/book/python_basics/examples/game_of_life_full.ipynb&branch=main"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch JupyterHub" data-toggle="tooltip"
+                data-placement="left"><img class="jupyterhub-button-logo"
+                    src="../../_static/images/logo_jupyterhub.svg"
+                    alt="Interact on JupyterHub">JupyterHub</button></a>
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/symmeHub/positron/blob/main/book/python_basics/examples/game_of_life_full.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="../../_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   2.1.1. Introduction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#a-generic-class-to-simulate-llcas">
+   2.1.2. A generic class to simulate LLCAs
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-orginal-game-of-life-rule-b3s23">
+   2.1.3. The orginal Game of Life  (rule B3S23)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#alternative-rule-day-and-night-b3678s34678">
+   2.1.4. Alternative rule:  Day and Night (B3678S34678)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#alternative-rule-fractal-like-b1s123">
+   2.1.5. Alternative rule: fractal-like B1S123
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#existing-structures-in-gol">
+   2.1.6. Existing structures in GoL
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Game of Life and other cellular automatons</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   2.1.1. Introduction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#a-generic-class-to-simulate-llcas">
+   2.1.2. A generic class to simulate LLCAs
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-orginal-game-of-life-rule-b3s23">
+   2.1.3. The orginal Game of Life  (rule B3S23)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#alternative-rule-day-and-night-b3678s34678">
+   2.1.4. Alternative rule:  Day and Night (B3678S34678)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#alternative-rule-fractal-like-b1s123">
+   2.1.5. Alternative rule: fractal-like B1S123
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#existing-structures-in-gol">
+   2.1.6. Existing structures in GoL
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="game-of-life-and-other-cellular-automatons">
+<h1><span class="section-number">2.1. </span>Game of Life and other cellular automatons<a class="headerlink" href="#game-of-life-and-other-cellular-automatons" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># UNCOMMENT FOR INTERACTIVE PLOTTING</span>
+<span class="c1">#%matplotlib notebook</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">animation</span><span class="p">,</span> <span class="n">rc</span><span class="p">,</span> <span class="n">cm</span>
+<span class="kn">import</span> <span class="nn">IPython</span><span class="o">,</span> <span class="nn">io</span><span class="o">,</span> <span class="nn">urllib</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="n">rc</span><span class="p">(</span><span class="s2">&quot;animation&quot;</span><span class="p">,</span> <span class="n">html</span><span class="o">=</span><span class="s2">&quot;html5&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="introduction">
+<h2><span class="section-number">2.1.1. </span>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>This notebook was inspired by the great video proposed by David Louapre available on his Youtube channel <em>“Science Etonnante”</em>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">IPython</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">YouTubeVideo</span><span class="p">(</span><span class="s2">&quot;S-W0NX97DB0&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+<iframe
+    width="400"
+    height="300"
+    src="https://www.youtube.com/embed/S-W0NX97DB0"
+    frameborder="0"
+    allowfullscreen
+
+></iframe>
+</div></div>
+</div>
+<p>The <strong>Game of Life (GoL)</strong> is a good way to learn about the use of object oriented programming, numpy and matplotlib. It is also a very interresting scientific and mathematical problem. The GoL belongs to the wider group of problems called <strong>Cellular Automatons</strong>. A lot of alternative sets of interresting rules have been created/discovered over time since the invention of the GoL. In this tutorial, we introduce a simple class that can solve all those problems called <strong>Life Like Cellular Automatons (LLCA)</strong>.</p>
+<p>Further readings:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Life-like_cellular_automaton">https://en.wikipedia.org/wiki/Life-like_cellular_automaton</a></p></li>
+</ul>
+</div>
+<div class="section" id="a-generic-class-to-simulate-llcas">
+<h2><span class="section-number">2.1.2. </span>A generic class to simulate LLCAs<a class="headerlink" href="#a-generic-class-to-simulate-llcas" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">LLCA</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A Life Like Cellular Automaton (LLCA)</span>
+
+<span class="sd">    Inputs:</span>
+<span class="sd">    * C: a binary matrix representing the cells where 1 stands for alive and 0 for dead.</span>
+<span class="sd">    * rule: the rule of the in the format &#39;BXSY&#39; where X and Y are the birth and survival conditions.</span>
+<span class="sd">            Example: GOL rule is &quot;B3S23&quot;.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">),</span> <span class="n">rule</span><span class="o">=</span><span class="s2">&quot;B3S23&quot;</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">C</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">C</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">bool</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rule</span> <span class="o">=</span> <span class="n">rule</span>
+
+    <span class="k">def</span> <span class="nf">parse_rule</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Parses the rule string</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rule</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;S&quot;</span><span class="p">)</span>
+        <span class="n">B</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="nb">int</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">:]])</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">)</span>
+        <span class="n">S</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="nb">int</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">r</span><span class="p">[</span><span class="mi">1</span><span class="p">]])</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">B</span><span class="p">,</span> <span class="n">S</span>
+
+    <span class="k">def</span> <span class="nf">neighbors</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the number of living neigbors of each cell.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">C</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">C</span>
+        <span class="n">N</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">C</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int8</span><span class="p">)</span>  <span class="c1"># Neighbors matrix</span>
+        <span class="n">N</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:]</span> <span class="o">+=</span> <span class="n">C</span><span class="p">[</span><span class="mi">1</span><span class="p">:,</span> <span class="p">:]</span>  <span class="c1"># Living cells south</span>
+        <span class="n">N</span><span class="p">[:,</span> <span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+=</span> <span class="n">C</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">:]</span>  <span class="c1"># Living cells east</span>
+        <span class="n">N</span><span class="p">[</span><span class="mi">1</span><span class="p">:,</span> <span class="p">:]</span> <span class="o">+=</span> <span class="n">C</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:]</span>  <span class="c1"># Living cells north</span>
+        <span class="n">N</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">:]</span> <span class="o">+=</span> <span class="n">C</span><span class="p">[:,</span> <span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>  <span class="c1"># Living cells west</span>
+        <span class="n">N</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+=</span> <span class="n">C</span><span class="p">[</span><span class="mi">1</span><span class="p">:,</span> <span class="mi">1</span><span class="p">:]</span>  <span class="c1"># Living cells south east</span>
+        <span class="n">N</span><span class="p">[</span><span class="mi">1</span><span class="p">:,</span> <span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+=</span> <span class="n">C</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">:]</span>  <span class="c1"># Living cells north east</span>
+        <span class="n">N</span><span class="p">[</span><span class="mi">1</span><span class="p">:,</span> <span class="mi">1</span><span class="p">:]</span> <span class="o">+=</span> <span class="n">C</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>  <span class="c1"># Living cells north west</span>
+        <span class="n">N</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">:]</span> <span class="o">+=</span> <span class="n">C</span><span class="p">[</span><span class="mi">1</span><span class="p">:,</span> <span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>  <span class="c1"># Living cells south west</span>
+        <span class="k">return</span> <span class="n">N</span>
+
+    <span class="k">def</span> <span class="nf">iterate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Iterates one time.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">B</span><span class="p">,</span> <span class="n">S</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parse_rule</span><span class="p">()</span>
+        <span class="n">N</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">neighbors</span><span class="p">()</span>
+        <span class="n">C</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">C</span>
+        <span class="n">C1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">C</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int8</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">B</span><span class="p">:</span>
+            <span class="n">C1</span> <span class="o">+=</span> <span class="p">(</span><span class="n">C</span> <span class="o">==</span> <span class="kc">False</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">N</span> <span class="o">==</span> <span class="n">b</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">S</span><span class="p">:</span>
+            <span class="n">C1</span> <span class="o">+=</span> <span class="n">C</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">N</span> <span class="o">==</span> <span class="n">s</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">C</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">C1</span> <span class="o">&gt;</span> <span class="mi">0</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="the-orginal-game-of-life-rule-b3s23">
+<h2><span class="section-number">2.1.3. </span>The orginal Game of Life  (rule B3S23)<a class="headerlink" href="#the-orginal-game-of-life-rule-b3s23" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># INITIAL CONFIGURATION</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">N</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">X</span><span class="p">,</span> <span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
+<span class="n">f</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">C0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mf">2.0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">f</span> <span class="o">*</span> <span class="n">X</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mf">2.0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">f</span> <span class="o">*</span> <span class="n">Y</span><span class="p">)</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mf">0.1</span>
+<span class="n">g</span> <span class="o">=</span> <span class="n">LLCA</span><span class="p">(</span><span class="n">C0</span><span class="p">,</span> <span class="n">rule</span><span class="o">=</span><span class="s2">&quot;B3S23&quot;</span><span class="p">)</span>
+
+<span class="c1"># ANIMATION</span>
+<span class="k">def</span> <span class="nf">updatefig</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
+    <span class="n">g</span><span class="o">.</span><span class="n">iterate</span><span class="p">()</span>
+    <span class="n">im</span><span class="o">.</span><span class="n">set_array</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">C</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">im</span><span class="p">,)</span>
+
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;off&quot;</span><span class="p">)</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">C</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s2">&quot;nearest&quot;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cm</span><span class="o">.</span><span class="n">binary</span><span class="p">,</span> <span class="n">animated</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">anim</span> <span class="o">=</span> <span class="n">animation</span><span class="o">.</span><span class="n">FuncAnimation</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">updatefig</span><span class="p">,</span> <span class="n">frames</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">interval</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">blit</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="n">anim</span>
+<span class="c1"># plt.show()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_377/3022190771.py:12: DeprecationWarning: `np.bool` is a deprecated alias for the builtin `bool`. To silence this warning, use `bool` by itself. Doing this will not modify any behavior and is safe. If you specifically wanted the numpy scalar type, use `np.bool_` here.
+Deprecated in NumPy 1.20; for more details and guidance: https://numpy.org/devdocs/release/1.20.0-notes.html#deprecations
+  self.C = np.array(C).astype(np.bool)
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">RuntimeError</span><span class="g g-Whitespace">                              </span>Traceback (most recent call last)
+<span class="nn">/opt/conda/lib/python3.10/site-packages/IPython/core/formatters.py</span> in <span class="ni">__call__</span><span class="nt">(self, obj)</span>
+<span class="g g-Whitespace">    </span><span class="mi">343</span>             <span class="n">method</span> <span class="o">=</span> <span class="n">get_real_method</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">print_method</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">344</span>             <span class="k">if</span> <span class="n">method</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">345</span>                 <span class="k">return</span> <span class="n">method</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">346</span>             <span class="k">return</span> <span class="kc">None</span>
+<span class="g g-Whitespace">    </span><span class="mi">347</span>         <span class="k">else</span><span class="p">:</span>
+
+<span class="nn">/opt/conda/lib/python3.10/site-packages/matplotlib/animation.py</span> in <span class="ni">_repr_html_</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1340</span>         <span class="n">fmt</span> <span class="o">=</span> <span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;animation.html&#39;</span><span class="p">]</span>
+<span class="g g-Whitespace">   </span><span class="mi">1341</span>         <span class="k">if</span> <span class="n">fmt</span> <span class="o">==</span> <span class="s1">&#39;html5&#39;</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1342</span>             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">to_html5_video</span><span class="p">()</span>
+<span class="g g-Whitespace">   </span><span class="mi">1343</span>         <span class="k">elif</span> <span class="n">fmt</span> <span class="o">==</span> <span class="s1">&#39;jshtml&#39;</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1344</span>             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">to_jshtml</span><span class="p">()</span>
+
+<span class="nn">/opt/conda/lib/python3.10/site-packages/matplotlib/animation.py</span> in <span class="ni">to_html5_video</span><span class="nt">(self, embed_limit)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1264</span>                 <span class="c1"># We create a writer manually so that we can get the</span>
+<span class="g g-Whitespace">   </span><span class="mi">1265</span>                 <span class="c1"># appropriate size for the tag</span>
+<span class="ne">-&gt; </span><span class="mi">1266</span>                 <span class="n">Writer</span> <span class="o">=</span> <span class="n">writers</span><span class="p">[</span><span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;animation.writer&#39;</span><span class="p">]]</span>
+<span class="g g-Whitespace">   </span><span class="mi">1267</span>                 <span class="n">writer</span> <span class="o">=</span> <span class="n">Writer</span><span class="p">(</span><span class="n">codec</span><span class="o">=</span><span class="s1">&#39;h264&#39;</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1268</span>                                 <span class="n">bitrate</span><span class="o">=</span><span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;animation.bitrate&#39;</span><span class="p">],</span>
+
+<span class="nn">/opt/conda/lib/python3.10/site-packages/matplotlib/animation.py</span> in <span class="ni">__getitem__</span><span class="nt">(self, name)</span>
+<span class="g g-Whitespace">    </span><span class="mi">149</span>         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_available</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">150</span>             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_registered</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
+<span class="ne">--&gt; </span><span class="mi">151</span>         <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Requested MovieWriter (</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">) not available&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">152</span> 
+<span class="g g-Whitespace">    </span><span class="mi">153</span> 
+
+<span class="ne">RuntimeError</span>: Requested MovieWriter (ffmpeg) not available
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.animation.FuncAnimation at 0x7f41489999f0&gt;
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="alternative-rule-day-and-night-b3678s34678">
+<h2><span class="section-number">2.1.4. </span>Alternative rule:  Day and Night (B3678S34678)<a class="headerlink" href="#alternative-rule-day-and-night-b3678s34678" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">N</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">X</span><span class="p">,</span> <span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
+<span class="n">f</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">C0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mf">2.0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">f</span> <span class="o">*</span> <span class="n">X</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mf">2.0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">f</span> <span class="o">*</span> <span class="n">Y</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">0.0</span>
+
+<span class="n">g</span> <span class="o">=</span> <span class="n">LLCA</span><span class="p">(</span><span class="n">C0</span><span class="p">,</span> <span class="n">rule</span><span class="o">=</span><span class="s2">&quot;B3678S34678&quot;</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">updatefig</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
+    <span class="n">g</span><span class="o">.</span><span class="n">iterate</span><span class="p">()</span>
+    <span class="n">im</span><span class="o">.</span><span class="n">set_array</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">C</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">im</span><span class="p">,)</span>
+
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;off&quot;</span><span class="p">)</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">C</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s2">&quot;nearest&quot;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cm</span><span class="o">.</span><span class="n">binary</span><span class="p">,</span> <span class="n">animated</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">anim</span> <span class="o">=</span> <span class="n">animation</span><span class="o">.</span><span class="n">FuncAnimation</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">updatefig</span><span class="p">,</span> <span class="n">frames</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">interval</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">blit</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="n">anim</span>
+<span class="c1"># plt.show()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_377/3022190771.py:12: DeprecationWarning: `np.bool` is a deprecated alias for the builtin `bool`. To silence this warning, use `bool` by itself. Doing this will not modify any behavior and is safe. If you specifically wanted the numpy scalar type, use `np.bool_` here.
+Deprecated in NumPy 1.20; for more details and guidance: https://numpy.org/devdocs/release/1.20.0-notes.html#deprecations
+  self.C = np.array(C).astype(np.bool)
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">RuntimeError</span><span class="g g-Whitespace">                              </span>Traceback (most recent call last)
+<span class="nn">/opt/conda/lib/python3.10/site-packages/IPython/core/formatters.py</span> in <span class="ni">__call__</span><span class="nt">(self, obj)</span>
+<span class="g g-Whitespace">    </span><span class="mi">343</span>             <span class="n">method</span> <span class="o">=</span> <span class="n">get_real_method</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">print_method</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">344</span>             <span class="k">if</span> <span class="n">method</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">345</span>                 <span class="k">return</span> <span class="n">method</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">346</span>             <span class="k">return</span> <span class="kc">None</span>
+<span class="g g-Whitespace">    </span><span class="mi">347</span>         <span class="k">else</span><span class="p">:</span>
+
+<span class="nn">/opt/conda/lib/python3.10/site-packages/matplotlib/animation.py</span> in <span class="ni">_repr_html_</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1340</span>         <span class="n">fmt</span> <span class="o">=</span> <span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;animation.html&#39;</span><span class="p">]</span>
+<span class="g g-Whitespace">   </span><span class="mi">1341</span>         <span class="k">if</span> <span class="n">fmt</span> <span class="o">==</span> <span class="s1">&#39;html5&#39;</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1342</span>             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">to_html5_video</span><span class="p">()</span>
+<span class="g g-Whitespace">   </span><span class="mi">1343</span>         <span class="k">elif</span> <span class="n">fmt</span> <span class="o">==</span> <span class="s1">&#39;jshtml&#39;</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1344</span>             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">to_jshtml</span><span class="p">()</span>
+
+<span class="nn">/opt/conda/lib/python3.10/site-packages/matplotlib/animation.py</span> in <span class="ni">to_html5_video</span><span class="nt">(self, embed_limit)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1264</span>                 <span class="c1"># We create a writer manually so that we can get the</span>
+<span class="g g-Whitespace">   </span><span class="mi">1265</span>                 <span class="c1"># appropriate size for the tag</span>
+<span class="ne">-&gt; </span><span class="mi">1266</span>                 <span class="n">Writer</span> <span class="o">=</span> <span class="n">writers</span><span class="p">[</span><span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;animation.writer&#39;</span><span class="p">]]</span>
+<span class="g g-Whitespace">   </span><span class="mi">1267</span>                 <span class="n">writer</span> <span class="o">=</span> <span class="n">Writer</span><span class="p">(</span><span class="n">codec</span><span class="o">=</span><span class="s1">&#39;h264&#39;</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1268</span>                                 <span class="n">bitrate</span><span class="o">=</span><span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;animation.bitrate&#39;</span><span class="p">],</span>
+
+<span class="nn">/opt/conda/lib/python3.10/site-packages/matplotlib/animation.py</span> in <span class="ni">__getitem__</span><span class="nt">(self, name)</span>
+<span class="g g-Whitespace">    </span><span class="mi">149</span>         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_available</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">150</span>             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_registered</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
+<span class="ne">--&gt; </span><span class="mi">151</span>         <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Requested MovieWriter (</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">) not available&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">152</span> 
+<span class="g g-Whitespace">    </span><span class="mi">153</span> 
+
+<span class="ne">RuntimeError</span>: Requested MovieWriter (ffmpeg) not available
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.animation.FuncAnimation at 0x7f41447b82e0&gt;
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="alternative-rule-fractal-like-b1s123">
+<h2><span class="section-number">2.1.5. </span>Alternative rule: fractal-like B1S123<a class="headerlink" href="#alternative-rule-fractal-like-b1s123" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="mi">200</span>
+<span class="n">C0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">N</span><span class="p">,</span> <span class="n">N</span><span class="p">))</span>
+<span class="n">C0</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="n">g</span> <span class="o">=</span> <span class="n">LLCA</span><span class="p">(</span><span class="n">C0</span><span class="p">,</span> <span class="n">rule</span><span class="o">=</span><span class="s2">&quot;B1S123&quot;</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">updatefig</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
+    <span class="n">g</span><span class="o">.</span><span class="n">iterate</span><span class="p">()</span>
+    <span class="n">im</span><span class="o">.</span><span class="n">set_array</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">C</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">im</span><span class="p">,)</span>
+
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;off&quot;</span><span class="p">)</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">C</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s2">&quot;nearest&quot;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cm</span><span class="o">.</span><span class="n">binary</span><span class="p">,</span> <span class="n">animated</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">anim</span> <span class="o">=</span> <span class="n">animation</span><span class="o">.</span><span class="n">FuncAnimation</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">updatefig</span><span class="p">,</span> <span class="n">frames</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">interval</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">blit</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="n">anim</span>
+<span class="c1"># plt.show()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_377/3022190771.py:12: DeprecationWarning: `np.bool` is a deprecated alias for the builtin `bool`. To silence this warning, use `bool` by itself. Doing this will not modify any behavior and is safe. If you specifically wanted the numpy scalar type, use `np.bool_` here.
+Deprecated in NumPy 1.20; for more details and guidance: https://numpy.org/devdocs/release/1.20.0-notes.html#deprecations
+  self.C = np.array(C).astype(np.bool)
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">RuntimeError</span><span class="g g-Whitespace">                              </span>Traceback (most recent call last)
+<span class="nn">/opt/conda/lib/python3.10/site-packages/IPython/core/formatters.py</span> in <span class="ni">__call__</span><span class="nt">(self, obj)</span>
+<span class="g g-Whitespace">    </span><span class="mi">343</span>             <span class="n">method</span> <span class="o">=</span> <span class="n">get_real_method</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">print_method</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">344</span>             <span class="k">if</span> <span class="n">method</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">345</span>                 <span class="k">return</span> <span class="n">method</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">346</span>             <span class="k">return</span> <span class="kc">None</span>
+<span class="g g-Whitespace">    </span><span class="mi">347</span>         <span class="k">else</span><span class="p">:</span>
+
+<span class="nn">/opt/conda/lib/python3.10/site-packages/matplotlib/animation.py</span> in <span class="ni">_repr_html_</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1340</span>         <span class="n">fmt</span> <span class="o">=</span> <span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;animation.html&#39;</span><span class="p">]</span>
+<span class="g g-Whitespace">   </span><span class="mi">1341</span>         <span class="k">if</span> <span class="n">fmt</span> <span class="o">==</span> <span class="s1">&#39;html5&#39;</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1342</span>             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">to_html5_video</span><span class="p">()</span>
+<span class="g g-Whitespace">   </span><span class="mi">1343</span>         <span class="k">elif</span> <span class="n">fmt</span> <span class="o">==</span> <span class="s1">&#39;jshtml&#39;</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1344</span>             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">to_jshtml</span><span class="p">()</span>
+
+<span class="nn">/opt/conda/lib/python3.10/site-packages/matplotlib/animation.py</span> in <span class="ni">to_html5_video</span><span class="nt">(self, embed_limit)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1264</span>                 <span class="c1"># We create a writer manually so that we can get the</span>
+<span class="g g-Whitespace">   </span><span class="mi">1265</span>                 <span class="c1"># appropriate size for the tag</span>
+<span class="ne">-&gt; </span><span class="mi">1266</span>                 <span class="n">Writer</span> <span class="o">=</span> <span class="n">writers</span><span class="p">[</span><span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;animation.writer&#39;</span><span class="p">]]</span>
+<span class="g g-Whitespace">   </span><span class="mi">1267</span>                 <span class="n">writer</span> <span class="o">=</span> <span class="n">Writer</span><span class="p">(</span><span class="n">codec</span><span class="o">=</span><span class="s1">&#39;h264&#39;</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1268</span>                                 <span class="n">bitrate</span><span class="o">=</span><span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;animation.bitrate&#39;</span><span class="p">],</span>
+
+<span class="nn">/opt/conda/lib/python3.10/site-packages/matplotlib/animation.py</span> in <span class="ni">__getitem__</span><span class="nt">(self, name)</span>
+<span class="g g-Whitespace">    </span><span class="mi">149</span>         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_available</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">150</span>             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_registered</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
+<span class="ne">--&gt; </span><span class="mi">151</span>         <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Requested MovieWriter (</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">) not available&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">152</span> 
+<span class="g g-Whitespace">    </span><span class="mi">153</span> 
+
+<span class="ne">RuntimeError</span>: Requested MovieWriter (ffmpeg) not available
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.animation.FuncAnimation at 0x7f41151a4c70&gt;
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="existing-structures-in-gol">
+<h2><span class="section-number">2.1.6. </span>Existing structures in GoL<a class="headerlink" href="#existing-structures-in-gol" title="Permalink to this headline">¶</a></h2>
+<p>Over time, many structures have been discovered in GoL.
+For example, some of them are translating leaving debris in their wake.
+They are called puffers.
+Here is an example:</p>
+<p><a class="reference external" href="https://conwaylife.com/wiki/Hivenudger_2">https://conwaylife.com/wiki/Hivenudger_2</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_gol_structure_by_url</span><span class="p">(</span><span class="n">url</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Gets a GoL structure using plain text format on an url.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">content</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">stream</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">content</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>
+    <span class="n">out</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">content</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">):</span>
+        <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+        <span class="c1"># print(line)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;!&quot;</span><span class="p">):</span>
+            <span class="n">line_data</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">line</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">c</span> <span class="o">==</span> <span class="s2">&quot;.&quot;</span><span class="p">:</span>
+                    <span class="n">line_data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">c</span> <span class="o">==</span> <span class="s2">&quot;O&quot;</span><span class="p">:</span>
+                    <span class="n">line_data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">line_data</span><span class="p">)</span>
+    <span class="n">max_length</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">out</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">line</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">max_length</span><span class="p">:</span>
+            <span class="n">max_length</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">out</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">line</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">max_length</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">max_length</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">line</span><span class="p">)):</span>
+                <span class="n">line</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">out</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">out</span>
+
+
+<span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://conwaylife.com/patterns/hivenudger2.cells&quot;</span>
+<span class="n">inner_cells</span> <span class="o">=</span> <span class="n">get_gol_structure_by_url</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="n">inner_shape</span> <span class="o">=</span> <span class="n">inner_cells</span><span class="o">.</span><span class="n">shape</span>
+<span class="n">hmargin</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">lmargin</span> <span class="o">=</span> <span class="mi">50</span>
+<span class="n">rmargin</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">cells</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">inner_shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">hmargin</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span> <span class="n">inner_shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">lmargin</span> <span class="o">+</span> <span class="n">rmargin</span><span class="p">))</span>
+<span class="n">cells</span><span class="p">[</span><span class="n">hmargin</span><span class="p">:</span><span class="o">-</span><span class="n">hmargin</span><span class="p">,</span> <span class="n">lmargin</span><span class="p">:</span><span class="o">-</span><span class="n">rmargin</span><span class="p">]</span> <span class="o">=</span> <span class="n">inner_cells</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">g</span> <span class="o">=</span> <span class="n">LLCA</span><span class="p">(</span>
+    <span class="n">cells</span><span class="p">,</span> <span class="n">rule</span><span class="o">=</span><span class="s2">&quot;B3S23&quot;</span>
+<span class="p">)</span>  <span class="c1"># B2S23 means Birth if 2 living neighbours and survival if 2 or 3 living neighbours</span>
+
+
+<span class="k">def</span> <span class="nf">updatefig</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
+    <span class="n">g</span><span class="o">.</span><span class="n">iterate</span><span class="p">()</span>
+    <span class="n">im</span><span class="o">.</span><span class="n">set_array</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">C</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">im</span><span class="p">,)</span>
+
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">C</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s2">&quot;nearest&quot;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cm</span><span class="o">.</span><span class="n">binary</span><span class="p">,</span> <span class="n">animated</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">anim</span> <span class="o">=</span> <span class="n">animation</span><span class="o">.</span><span class="n">FuncAnimation</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">updatefig</span><span class="p">,</span> <span class="n">frames</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">interval</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">blit</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;off&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="n">anim</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_377/3022190771.py:12: DeprecationWarning: `np.bool` is a deprecated alias for the builtin `bool`. To silence this warning, use `bool` by itself. Doing this will not modify any behavior and is safe. If you specifically wanted the numpy scalar type, use `np.bool_` here.
+Deprecated in NumPy 1.20; for more details and guidance: https://numpy.org/devdocs/release/1.20.0-notes.html#deprecations
+  self.C = np.array(C).astype(np.bool)
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">RuntimeError</span><span class="g g-Whitespace">                              </span>Traceback (most recent call last)
+<span class="nn">/opt/conda/lib/python3.10/site-packages/IPython/core/formatters.py</span> in <span class="ni">__call__</span><span class="nt">(self, obj)</span>
+<span class="g g-Whitespace">    </span><span class="mi">343</span>             <span class="n">method</span> <span class="o">=</span> <span class="n">get_real_method</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">print_method</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">344</span>             <span class="k">if</span> <span class="n">method</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">345</span>                 <span class="k">return</span> <span class="n">method</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">346</span>             <span class="k">return</span> <span class="kc">None</span>
+<span class="g g-Whitespace">    </span><span class="mi">347</span>         <span class="k">else</span><span class="p">:</span>
+
+<span class="nn">/opt/conda/lib/python3.10/site-packages/matplotlib/animation.py</span> in <span class="ni">_repr_html_</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1340</span>         <span class="n">fmt</span> <span class="o">=</span> <span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;animation.html&#39;</span><span class="p">]</span>
+<span class="g g-Whitespace">   </span><span class="mi">1341</span>         <span class="k">if</span> <span class="n">fmt</span> <span class="o">==</span> <span class="s1">&#39;html5&#39;</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1342</span>             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">to_html5_video</span><span class="p">()</span>
+<span class="g g-Whitespace">   </span><span class="mi">1343</span>         <span class="k">elif</span> <span class="n">fmt</span> <span class="o">==</span> <span class="s1">&#39;jshtml&#39;</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1344</span>             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">to_jshtml</span><span class="p">()</span>
+
+<span class="nn">/opt/conda/lib/python3.10/site-packages/matplotlib/animation.py</span> in <span class="ni">to_html5_video</span><span class="nt">(self, embed_limit)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1264</span>                 <span class="c1"># We create a writer manually so that we can get the</span>
+<span class="g g-Whitespace">   </span><span class="mi">1265</span>                 <span class="c1"># appropriate size for the tag</span>
+<span class="ne">-&gt; </span><span class="mi">1266</span>                 <span class="n">Writer</span> <span class="o">=</span> <span class="n">writers</span><span class="p">[</span><span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;animation.writer&#39;</span><span class="p">]]</span>
+<span class="g g-Whitespace">   </span><span class="mi">1267</span>                 <span class="n">writer</span> <span class="o">=</span> <span class="n">Writer</span><span class="p">(</span><span class="n">codec</span><span class="o">=</span><span class="s1">&#39;h264&#39;</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1268</span>                                 <span class="n">bitrate</span><span class="o">=</span><span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;animation.bitrate&#39;</span><span class="p">],</span>
+
+<span class="nn">/opt/conda/lib/python3.10/site-packages/matplotlib/animation.py</span> in <span class="ni">__getitem__</span><span class="nt">(self, name)</span>
+<span class="g g-Whitespace">    </span><span class="mi">149</span>         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_available</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">150</span>             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_registered</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
+<span class="ne">--&gt; </span><span class="mi">151</span>         <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Requested MovieWriter (</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">) not available&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">152</span> 
+<span class="g g-Whitespace">    </span><span class="mi">153</span> 
+
+<span class="ne">RuntimeError</span>: Requested MovieWriter (ffmpeg) not available
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.animation.FuncAnimation at 0x7f41151eaf80&gt;
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./python_basics/examples"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="examples.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title"><span class="section-number">2. </span>Examples</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../exercises/exercises.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">3. </span>Exercises</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By Ludovic Charleux, Emile Roux, Thibault Goyallon, Christian Elmo, Giovanni Feverati, Camille Saint-Martin<br/>
+    
+        &copy; Copyright 2022.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>
