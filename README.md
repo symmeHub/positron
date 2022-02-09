@@ -5,7 +5,6 @@ Welcome to you in Positron. This repository is intended to gather documents, mai
 The associated book is available online here: 
 
 - Github : https://symmehub.github.io/positron/intro.html
-- Gitlab : https://symmehub.gitlab.io/teaching/positron/intro.html
 
 ## Pre-commit
 Before playing, you need to activate **pre-commit** in your environment:
