@@ -504,7 +504,54 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/blob_orientation_5_0.png" src="../../_images/blob_orientation_5_0.png" />
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_291</span><span class="o">/</span><span class="mf">494627472.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">im</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">im</span><span class="p">)</span>
+<span class="ne">----&gt; </span><span class="mi">3</span> <span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="nn">/opt/conda/lib/python3.8/site-packages/plotly/basedatatypes.py</span> in <span class="ni">show</span><span class="nt">(self, *args, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">3396</span>         <span class="kn">import</span> <span class="nn">plotly.io</span> <span class="k">as</span> <span class="nn">pio</span>
+<span class="g g-Whitespace">   </span><span class="mi">3397</span> 
+<span class="ne">-&gt; </span><span class="mi">3398</span>         <span class="k">return</span> <span class="n">pio</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">3399</span> 
+<span class="g g-Whitespace">   </span><span class="mi">3400</span>     <span class="k">def</span> <span class="nf">to_json</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+
+<span class="nn">/opt/conda/lib/python3.8/site-packages/plotly/io/_renderers.py</span> in <span class="ni">show</span><span class="nt">(fig, renderer, validate, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">387</span> 
+<span class="g g-Whitespace">    </span><span class="mi">388</span>     <span class="c1"># Mimetype renderers</span>
+<span class="ne">--&gt; </span><span class="mi">389</span>     <span class="n">bundle</span> <span class="o">=</span> <span class="n">renderers</span><span class="o">.</span><span class="n">_build_mime_bundle</span><span class="p">(</span><span class="n">fig_dict</span><span class="p">,</span> <span class="n">renderers_string</span><span class="o">=</span><span class="n">renderer</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">390</span>     <span class="k">if</span> <span class="n">bundle</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">391</span>         <span class="k">if</span> <span class="ow">not</span> <span class="n">ipython_display</span><span class="p">:</span>
+
+<span class="nn">/opt/conda/lib/python3.8/site-packages/plotly/io/_renderers.py</span> in <span class="ni">_build_mime_bundle</span><span class="nt">(self, fig_dict, renderers_string, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">295</span>                         <span class="nb">setattr</span><span class="p">(</span><span class="n">renderer</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">296</span> 
+<span class="ne">--&gt; </span><span class="mi">297</span>                 <span class="n">bundle</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">renderer</span><span class="o">.</span><span class="n">to_mimebundle</span><span class="p">(</span><span class="n">fig_dict</span><span class="p">))</span>
+<span class="g g-Whitespace">    </span><span class="mi">298</span> 
+<span class="g g-Whitespace">    </span><span class="mi">299</span>         <span class="k">return</span> <span class="n">bundle</span>
+
+<span class="nn">/opt/conda/lib/python3.8/site-packages/plotly/io/_base_renderers.py</span> in <span class="ni">to_mimebundle</span><span class="nt">(self, fig_dict)</span>
+<span class="g g-Whitespace">    </span><span class="mi">126</span> 
+<span class="g g-Whitespace">    </span><span class="mi">127</span>     <span class="k">def</span> <span class="nf">to_mimebundle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fig_dict</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">128</span>         <span class="n">image_bytes</span> <span class="o">=</span> <span class="n">to_image</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">129</span>             <span class="n">fig_dict</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">130</span>             <span class="nb">format</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">format</span><span class="p">,</span>
+
+<span class="nn">/opt/conda/lib/python3.8/site-packages/plotly/io/_kaleido.py</span> in <span class="ni">to_image</span><span class="nt">(fig, format, width, height, scale, validate, engine)</span>
+<span class="g g-Whitespace">    </span><span class="mi">132</span>     <span class="c1"># Raise informative error message if Kaleido is not installed</span>
+<span class="g g-Whitespace">    </span><span class="mi">133</span>     <span class="k">if</span> <span class="n">scope</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">134</span>         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">135</span>             <span class="s2">&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">136</span><span class="s2"> Image export using the &quot;kaleido&quot; engine requires the kaleido package,</span>
+
+<span class="ne">ValueError</span>: 
+<span class="s2">Image export using the &quot;kaleido&quot; engine requires the kaleido package,</span>
+<span class="s2">which can be installed using pip:</span>
+<span class="s2">    $ pip install -U kaleido</span>
+</pre></div>
+</div>
 </div>
 </div>
 </div>
@@ -533,9 +580,6 @@
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="../../_images/blob_orientation_8_0.png" src="../../_images/blob_orientation_8_0.png" />
-</div>
 </div>
 <p>Thresholding level is obvious:</p>
 <div class="cell docutils container">
@@ -547,9 +591,6 @@
 <span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../../_images/blob_orientation_10_0.png" src="../../_images/blob_orientation_10_0.png" />
 </div>
 </div>
 </div>
@@ -570,22 +611,11 @@
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="../../_images/blob_orientation_12_0.png" src="../../_images/blob_orientation_12_0.png" />
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;Found 10 blobs&#39;
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">obj</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">measurements</span><span class="o">.</span><span class="n">find_objects</span><span class="p">(</span><span class="n">Bl</span><span class="p">)</span>
 <span class="nb">len</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10
 </pre></div>
 </div>
 </div>
@@ -601,9 +631,6 @@
 <span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../../_images/blob_orientation_15_0.png" src="../../_images/blob_orientation_15_0.png" />
 </div>
 </div>
 <p>The inertia matrix of a 2D object can be defined as follows:</p>
@@ -651,94 +678,6 @@ I_{xx} &amp; -I_{xy} \\
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>area</th>
-      <th>theta</th>
-      <th>aspect_ratio</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>1</th>
-      <td>48042.0</td>
-      <td>115.958742</td>
-      <td>3.937632</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>31056.0</td>
-      <td>96.362198</td>
-      <td>5.239581</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>7479.0</td>
-      <td>121.953849</td>
-      <td>8.384413</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>5413.0</td>
-      <td>4.821392</td>
-      <td>1.417442</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>4881.0</td>
-      <td>86.201773</td>
-      <td>1.867656</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>4083.0</td>
-      <td>57.577679</td>
-      <td>1.792020</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>2552.0</td>
-      <td>88.714892</td>
-      <td>1.379699</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>2540.0</td>
-      <td>101.297483</td>
-      <td>1.646522</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>1599.0</td>
-      <td>79.526657</td>
-      <td>1.248690</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>1559.0</td>
-      <td>99.932908</td>
-      <td>1.326364</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -769,9 +708,6 @@ I_{xx} &amp; -I_{xy} \\
 <span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../../_images/blob_orientation_18_0.png" src="../../_images/blob_orientation_18_0.png" />
 </div>
 </div>
 </div>

@@ -1,0 +1,77 @@
+Traceback (most recent call last):
+  File "/opt/conda/lib/python3.8/site-packages/jupyter_cache/executors/utils.py", line 51, in single_nb_execution
+    executenb(
+  File "/opt/conda/lib/python3.8/site-packages/nbclient/client.py", line 1085, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/opt/conda/lib/python3.8/site-packages/nbclient/util.py", line 84, in wrapped
+    return just_run(coro(*args, **kwargs))
+  File "/opt/conda/lib/python3.8/site-packages/nbclient/util.py", line 62, in just_run
+    return loop.run_until_complete(coro)
+  File "/opt/conda/lib/python3.8/asyncio/base_events.py", line 616, in run_until_complete
+    return future.result()
+  File "/opt/conda/lib/python3.8/site-packages/nbclient/client.py", line 551, in async_execute
+    await self.async_execute_cell(
+  File "/opt/conda/lib/python3.8/site-packages/nbclient/client.py", line 846, in async_execute_cell
+    self._check_raise_for_error(cell, exec_reply)
+  File "/opt/conda/lib/python3.8/site-packages/nbclient/client.py", line 748, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+im = Image.open(path)
+fig = px.imshow(im)
+fig.show()
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mValueError[0m                                Traceback (most recent call last)
+[0;32m/tmp/ipykernel_291/494627472.py[0m in [0;36m<module>[0;34m[0m
+[1;32m      1[0m [0mim[0m [0;34m=[0m [0mImage[0m[0;34m.[0m[0mopen[0m[0;34m([0m[0mpath[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      2[0m [0mfig[0m [0;34m=[0m [0mpx[0m[0;34m.[0m[0mimshow[0m[0;34m([0m[0mim[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m----> 3[0;31m [0mfig[0m[0;34m.[0m[0mshow[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m
+[0;32m/opt/conda/lib/python3.8/site-packages/plotly/basedatatypes.py[0m in [0;36mshow[0;34m(self, *args, **kwargs)[0m
+[1;32m   3396[0m         [0;32mimport[0m [0mplotly[0m[0;34m.[0m[0mio[0m [0;32mas[0m [0mpio[0m[0;34m[0m[0;34m[0m[0m
+[1;32m   3397[0m [0;34m[0m[0m
+[0;32m-> 3398[0;31m         [0;32mreturn[0m [0mpio[0m[0;34m.[0m[0mshow[0m[0;34m([0m[0mself[0m[0;34m,[0m [0;34m*[0m[0margs[0m[0;34m,[0m [0;34m**[0m[0mkwargs[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m   3399[0m [0;34m[0m[0m
+[1;32m   3400[0m     [0;32mdef[0m [0mto_json[0m[0;34m([0m[0mself[0m[0;34m,[0m [0;34m*[0m[0margs[0m[0;34m,[0m [0;34m**[0m[0mkwargs[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/opt/conda/lib/python3.8/site-packages/plotly/io/_renderers.py[0m in [0;36mshow[0;34m(fig, renderer, validate, **kwargs)[0m
+[1;32m    387[0m [0;34m[0m[0m
+[1;32m    388[0m     [0;31m# Mimetype renderers[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 389[0;31m     [0mbundle[0m [0;34m=[0m [0mrenderers[0m[0;34m.[0m[0m_build_mime_bundle[0m[0;34m([0m[0mfig_dict[0m[0;34m,[0m [0mrenderers_string[0m[0;34m=[0m[0mrenderer[0m[0;34m,[0m [0;34m**[0m[0mkwargs[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    390[0m     [0;32mif[0m [0mbundle[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    391[0m         [0;32mif[0m [0;32mnot[0m [0mipython_display[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/opt/conda/lib/python3.8/site-packages/plotly/io/_renderers.py[0m in [0;36m_build_mime_bundle[0;34m(self, fig_dict, renderers_string, **kwargs)[0m
+[1;32m    295[0m                         [0msetattr[0m[0;34m([0m[0mrenderer[0m[0;34m,[0m [0mk[0m[0;34m,[0m [0mv[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    296[0m [0;34m[0m[0m
+[0;32m--> 297[0;31m                 [0mbundle[0m[0;34m.[0m[0mupdate[0m[0;34m([0m[0mrenderer[0m[0;34m.[0m[0mto_mimebundle[0m[0;34m([0m[0mfig_dict[0m[0;34m)[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    298[0m [0;34m[0m[0m
+[1;32m    299[0m         [0;32mreturn[0m [0mbundle[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/opt/conda/lib/python3.8/site-packages/plotly/io/_base_renderers.py[0m in [0;36mto_mimebundle[0;34m(self, fig_dict)[0m
+[1;32m    126[0m [0;34m[0m[0m
+[1;32m    127[0m     [0;32mdef[0m [0mto_mimebundle[0m[0;34m([0m[0mself[0m[0;34m,[0m [0mfig_dict[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 128[0;31m         image_bytes = to_image(
+[0m[1;32m    129[0m             [0mfig_dict[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    130[0m             [0mformat[0m[0;34m=[0m[0mself[0m[0;34m.[0m[0mformat[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/opt/conda/lib/python3.8/site-packages/plotly/io/_kaleido.py[0m in [0;36mto_image[0;34m(fig, format, width, height, scale, validate, engine)[0m
+[1;32m    132[0m     [0;31m# Raise informative error message if Kaleido is not installed[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    133[0m     [0;32mif[0m [0mscope[0m [0;32mis[0m [0;32mNone[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 134[0;31m         raise ValueError(
+[0m[1;32m    135[0m             """
+[1;32m    136[0m [0mImage[0m [0mexport[0m [0musing[0m [0mthe[0m [0;34m"kaleido"[0m [0mengine[0m [0mrequires[0m [0mthe[0m [0mkaleido[0m [0mpackage[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mValueError[0m: 
+Image export using the "kaleido" engine requires the kaleido package,
+which can be installed using pip:
+    $ pip install -U kaleido
+
+ValueError: 
+Image export using the "kaleido" engine requires the kaleido package,
+which can be installed using pip:
+    $ pip install -U kaleido
+
+
