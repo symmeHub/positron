@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>4.2. Blob orientation and aspect ratio &#8212; POSITRON: PythOn for Science In The Reblochon cOuNtry</title>
+    <title>4.2. Advanced Example: orientation and aspect ratio &#8212; POSITRON: PythOn for Science In The Reblochon cOuNtry</title>
     
   <link href="../../_static/css/theme.css" rel="stylesheet">
   <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -188,7 +188,7 @@
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     4.2. Blob orientation and aspect ratio
+     4.2. Advanced Example: orientation and aspect ratio
     </a>
    </li>
   </ul>
@@ -377,23 +377,8 @@
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#image-loading">
-   4.2.1. Image loading
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#preprocessing">
-   4.2.2. Preprocessing
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#labelization">
-   4.2.3. Labelization
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#inertia-matrix-and-orientation">
-   4.2.4. Inertia matrix and orientation
+  <a class="reference internal nav-link" href="#inertia-matrix-of-an-object">
+   4.2.1. Inertia matrix of an object
   </a>
  </li>
 </ul>
@@ -406,7 +391,7 @@
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Blob orientation and aspect ratio</h1>
+                <h1>Advanced Example: orientation and aspect ratio</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -417,23 +402,8 @@
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#image-loading">
-   4.2.1. Image loading
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#preprocessing">
-   4.2.2. Preprocessing
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#labelization">
-   4.2.3. Labelization
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#inertia-matrix-and-orientation">
-   4.2.4. Inertia matrix and orientation
+  <a class="reference internal nav-link" href="#inertia-matrix-of-an-object">
+   4.2.1. Inertia matrix of an object
   </a>
  </li>
 </ul>
@@ -445,41 +415,29 @@
             
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="blob-orientation-and-aspect-ratio">
-<h1><span class="section-number">4.2. </span>Blob orientation and aspect ratio<a class="headerlink" href="#blob-orientation-and-aspect-ratio" title="Permalink to this headline">¶</a></h1>
+  <div class="tex2jax_ignore mathjax_ignore section" id="advanced-example-orientation-and-aspect-ratio">
+<h1><span class="section-number">4.2. </span>Advanced Example: orientation and aspect ratio<a class="headerlink" href="#advanced-example-orientation-and-aspect-ratio" title="Permalink to this headline">¶</a></h1>
 <p>In this example, we show how to use inertia matrix of a given labeled object to find its orientation.</p>
-<p><img alt="" src="../../_images/blobs.jpg" /></p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>You can right-click on the image to download it.</p>
-</div>
+<p><img alt="" src="image_processing/support_material/balls.jpg" /></p>
+<p><span class="xref myst">balls.jpg</span></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># UNCOMMENT FOR INTERACTIVE PLOTS</span>
-<span class="c1">#%matplotlib notebook</span>
-<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
-<span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
-<span class="kn">import</span> <span class="nn">plotly.graph_objects</span> <span class="k">as</span> <span class="nn">go</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">ndimage</span>
 <span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">cm</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">ndimage</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">plotly.io</span> <span class="k">as</span> <span class="nn">pio</span>
-<span class="kn">import</span> <span class="nn">plotly.offline</span> <span class="k">as</span> <span class="nn">py_offline</span>
 
-<span class="n">pio</span><span class="o">.</span><span class="n">renderers</span><span class="o">.</span><span class="n">default</span> <span class="o">=</span> <span class="s2">&quot;png&quot;</span>
-<span class="c1"># plt.ion()</span>
+<span class="o">%</span><span class="k">matplotlib</span> nbagg
 </pre></div>
 </div>
 </div>
 </div>
-<div class="section" id="image-loading">
-<h2><span class="section-number">4.2.1. </span>Image loading<a class="headerlink" href="#image-loading" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">path</span> <span class="o">=</span> <span class="s2">&quot;blobs.jpg&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">path</span> <span class="o">=</span> <span class="s2">&quot;balls.jpg&quot;</span>
 <span class="n">files</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="s2">&quot;./&quot;</span><span class="p">)</span>
 <span class="k">if</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">files</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Ok, the file is in </span><span class="si">{0}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">files</span><span class="p">))</span>
@@ -489,7 +447,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Ok, the file is in [&#39;blobs.jpg&#39;, &#39;support_material.md&#39;, &#39;image_processing_basics.ipynb&#39;, &#39;blob_orientation.ipynb&#39;, &#39;rabbit.jpg&#39;]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The file is not in [&#39;blobs.jpg&#39;, &#39;support_material.md&#39;, &#39;image_processing_basics.ipynb&#39;, &#39;blob_orientation.ipynb&#39;, &#39;rabbit.jpg&#39;] , retry !
 </pre></div>
 </div>
 </div>
@@ -498,65 +456,38 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">im</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
-<span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">im</span><span class="p">)</span>
-<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">Nc</span><span class="p">,</span> <span class="n">Nl</span> <span class="o">=</span> <span class="n">im</span><span class="o">.</span><span class="n">size</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">im</span><span class="o">.</span><span class="n">resize</span><span class="p">((</span><span class="n">Nc</span> <span class="o">//</span> <span class="mi">4</span><span class="p">,</span> <span class="n">Nl</span> <span class="o">//</span> <span class="mi">4</span><span class="p">),</span> <span class="n">Image</span><span class="o">.</span><span class="n">ANTIALIAS</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="c1"># ax.axis(&quot;off&quot;)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">im</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_292</span><span class="o">/</span><span class="mf">494627472.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">im</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">im</span><span class="p">)</span>
-<span class="ne">----&gt; </span><span class="mi">3</span> <span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_291</span><span class="o">/</span><span class="mf">1089198094.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">im</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">Nc</span><span class="p">,</span> <span class="n">Nl</span> <span class="o">=</span> <span class="n">im</span><span class="o">.</span><span class="n">size</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">im</span> <span class="o">=</span> <span class="n">im</span><span class="o">.</span><span class="n">resize</span><span class="p">((</span><span class="n">Nc</span> <span class="o">//</span> <span class="mi">4</span><span class="p">,</span> <span class="n">Nl</span> <span class="o">//</span> <span class="mi">4</span><span class="p">),</span> <span class="n">Image</span><span class="o">.</span><span class="n">ANTIALIAS</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="c1"># ax.axis(&quot;off&quot;)</span>
 
-<span class="nn">/opt/conda/lib/python3.8/site-packages/plotly/basedatatypes.py</span> in <span class="ni">show</span><span class="nt">(self, *args, **kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">3396</span>         <span class="kn">import</span> <span class="nn">plotly.io</span> <span class="k">as</span> <span class="nn">pio</span>
-<span class="g g-Whitespace">   </span><span class="mi">3397</span> 
-<span class="ne">-&gt; </span><span class="mi">3398</span>         <span class="k">return</span> <span class="n">pio</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">3399</span> 
-<span class="g g-Whitespace">   </span><span class="mi">3400</span>     <span class="k">def</span> <span class="nf">to_json</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="nn">/opt/conda/lib/python3.8/site-packages/PIL/Image.py</span> in <span class="ni">open</span><span class="nt">(fp, mode, formats)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2951</span> 
+<span class="g g-Whitespace">   </span><span class="mi">2952</span>     <span class="k">if</span> <span class="n">filename</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">2953</span>         <span class="n">fp</span> <span class="o">=</span> <span class="n">builtins</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2954</span>         <span class="n">exclusive_fp</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="g g-Whitespace">   </span><span class="mi">2955</span> 
 
-<span class="nn">/opt/conda/lib/python3.8/site-packages/plotly/io/_renderers.py</span> in <span class="ni">show</span><span class="nt">(fig, renderer, validate, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">387</span> 
-<span class="g g-Whitespace">    </span><span class="mi">388</span>     <span class="c1"># Mimetype renderers</span>
-<span class="ne">--&gt; </span><span class="mi">389</span>     <span class="n">bundle</span> <span class="o">=</span> <span class="n">renderers</span><span class="o">.</span><span class="n">_build_mime_bundle</span><span class="p">(</span><span class="n">fig_dict</span><span class="p">,</span> <span class="n">renderers_string</span><span class="o">=</span><span class="n">renderer</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">390</span>     <span class="k">if</span> <span class="n">bundle</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">391</span>         <span class="k">if</span> <span class="ow">not</span> <span class="n">ipython_display</span><span class="p">:</span>
-
-<span class="nn">/opt/conda/lib/python3.8/site-packages/plotly/io/_renderers.py</span> in <span class="ni">_build_mime_bundle</span><span class="nt">(self, fig_dict, renderers_string, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">295</span>                         <span class="nb">setattr</span><span class="p">(</span><span class="n">renderer</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">296</span> 
-<span class="ne">--&gt; </span><span class="mi">297</span>                 <span class="n">bundle</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">renderer</span><span class="o">.</span><span class="n">to_mimebundle</span><span class="p">(</span><span class="n">fig_dict</span><span class="p">))</span>
-<span class="g g-Whitespace">    </span><span class="mi">298</span> 
-<span class="g g-Whitespace">    </span><span class="mi">299</span>         <span class="k">return</span> <span class="n">bundle</span>
-
-<span class="nn">/opt/conda/lib/python3.8/site-packages/plotly/io/_base_renderers.py</span> in <span class="ni">to_mimebundle</span><span class="nt">(self, fig_dict)</span>
-<span class="g g-Whitespace">    </span><span class="mi">126</span> 
-<span class="g g-Whitespace">    </span><span class="mi">127</span>     <span class="k">def</span> <span class="nf">to_mimebundle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fig_dict</span><span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">128</span>         <span class="n">image_bytes</span> <span class="o">=</span> <span class="n">to_image</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">129</span>             <span class="n">fig_dict</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">130</span>             <span class="nb">format</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">format</span><span class="p">,</span>
-
-<span class="nn">/opt/conda/lib/python3.8/site-packages/plotly/io/_kaleido.py</span> in <span class="ni">to_image</span><span class="nt">(fig, format, width, height, scale, validate, engine)</span>
-<span class="g g-Whitespace">    </span><span class="mi">132</span>     <span class="c1"># Raise informative error message if Kaleido is not installed</span>
-<span class="g g-Whitespace">    </span><span class="mi">133</span>     <span class="k">if</span> <span class="n">scope</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">134</span>         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">135</span>             <span class="s2">&quot;&quot;&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">136</span><span class="s2"> Image export using the &quot;kaleido&quot; engine requires the kaleido package,</span>
-
-<span class="ne">ValueError</span>: 
-<span class="s2">Image export using the &quot;kaleido&quot; engine requires the kaleido package,</span>
-<span class="s2">which can be installed using pip:</span>
-<span class="s2">    $ pip install -U kaleido</span>
+<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;balls.jpg&#39;
 </pre></div>
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="preprocessing">
-<h2><span class="section-number">4.2.2. </span>Preprocessing<a class="headerlink" href="#preprocessing" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">R</span><span class="p">,</span> <span class="n">G</span><span class="p">,</span> <span class="n">B</span> <span class="o">=</span> <span class="n">im</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
@@ -569,14 +500,34 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bins</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;start&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;end&quot;</span><span class="p">:</span> <span class="mi">255</span><span class="p">,</span> <span class="s2">&quot;size&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}</span>
-<span class="n">fig</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
-<span class="n">fig</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Histogram</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">R</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span> <span class="n">xbins</span><span class="o">=</span><span class="n">bins</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="n">marker_color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">))</span>
-<span class="n">fig</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span>
-    <span class="n">go</span><span class="o">.</span><span class="n">Histogram</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">G</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span> <span class="n">xbins</span><span class="o">=</span><span class="n">bins</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;green&quot;</span><span class="p">,</span> <span class="n">marker_color</span><span class="o">=</span><span class="s2">&quot;green&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span>
+    <span class="n">R</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span>
+    <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">256</span><span class="p">),</span>
+    <span class="n">histtype</span><span class="o">=</span><span class="s2">&quot;stepfilled&quot;</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="s2">&quot;r&quot;</span><span class="p">,</span>
+    <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Red&quot;</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="n">fig</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Histogram</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">B</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span> <span class="n">xbins</span><span class="o">=</span><span class="n">bins</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="n">marker_color</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">))</span>
-<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span>
+    <span class="n">G</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span>
+    <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">256</span><span class="p">),</span>
+    <span class="n">histtype</span><span class="o">=</span><span class="s2">&quot;stepfilled&quot;</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="s2">&quot;g&quot;</span><span class="p">,</span>
+    <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Green&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span>
+    <span class="n">B</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span>
+    <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">256</span><span class="p">),</span>
+    <span class="n">histtype</span><span class="o">=</span><span class="s2">&quot;stepfilled&quot;</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="s2">&quot;b&quot;</span><span class="p">,</span>
+    <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Blue&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -585,29 +536,24 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Bt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">B</span> <span class="o">&lt;</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-
-<span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">Bt</span><span class="p">,</span> <span class="n">color_continuous_scale</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">)</span>
-<span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">coloraxis_showscale</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">Bt</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cm</span><span class="o">.</span><span class="n">gray</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="labelization">
-<h2><span class="section-number">4.2.3. </span>Labelization<a class="headerlink" href="#labelization" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Btc</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">binary_closing</span><span class="p">(</span><span class="n">Bt</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Btc</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">binary_closing</span><span class="p">(</span><span class="n">Bt</span><span class="p">,</span> <span class="n">structure</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">)))</span>
+
 
 <span class="n">Bl</span><span class="p">,</span> <span class="n">number</span> <span class="o">=</span> <span class="n">ndimage</span><span class="o">.</span><span class="n">measurements</span><span class="o">.</span><span class="n">label</span><span class="p">(</span><span class="n">Btc</span><span class="p">)</span>
-<span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span>
-    <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">Bl</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">Bl</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">),</span> <span class="n">color_continuous_scale</span><span class="o">=</span><span class="n">px</span><span class="o">.</span><span class="n">colors</span><span class="o">.</span><span class="n">sequential</span><span class="o">.</span><span class="n">Jet</span>
-<span class="p">)</span>
-<span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">coloraxis_showscale</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-
-<span class="sa">f</span><span class="s2">&quot;Found </span><span class="si">{</span><span class="n">number</span><span class="si">}</span><span class="s2"> blobs&quot;</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">Bl</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">Bl</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">),</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cm</span><span class="o">.</span><span class="n">jet</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">number</span>
 </pre></div>
 </div>
 </div>
@@ -620,15 +566,14 @@
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="inertia-matrix-and-orientation">
-<h2><span class="section-number">4.2.4. </span>Inertia matrix and orientation<a class="headerlink" href="#inertia-matrix-and-orientation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="inertia-matrix-of-an-object">
+<h2><span class="section-number">4.2.1. </span>Inertia matrix of an object<a class="headerlink" href="#inertia-matrix-of-an-object" title="Permalink to this headline">¶</a></h2>
 <p>The object represented bellow is stretched in a direction. Let’s see how we can use its inertia matrix to determine in which direction and how much it is stretched.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">im</span><span class="p">)[</span><span class="n">obj</span><span class="p">[</span><span class="mi">1</span><span class="p">]])</span>
-<span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">coloraxis_showscale</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">im</span><span class="p">)[</span><span class="n">obj</span><span class="p">[</span><span class="mi">1</span><span class="p">]])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -681,31 +626,19 @@ I_{xx} &amp; -I_{xy} \\
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">plotly.subplots</span> <span class="kn">import</span> <span class="n">make_subplots</span>
-
-<span class="n">fig</span> <span class="o">=</span> <span class="n">make_subplots</span><span class="p">(</span>
-    <span class="n">rows</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">cols</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">subplot_titles</span><span class="o">=</span><span class="nb">tuple</span><span class="p">([</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">values</span><span class="p">])</span>
-<span class="p">)</span>
-
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
 <span class="n">counter</span> <span class="o">=</span> <span class="mi">1</span>
-<span class="n">col_id</span> <span class="o">=</span> <span class="mi">1</span>
-<span class="n">row_id</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">values</span><span class="p">:</span>
-
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">counter</span><span class="p">)</span>
     <span class="n">z</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">fromarray</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">im</span><span class="p">)[</span><span class="n">obj</span><span class="p">[</span><span class="n">i</span><span class="p">]])</span>
     <span class="n">z</span> <span class="o">=</span> <span class="n">z</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="o">-</span><span class="n">data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="s2">&quot;theta&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="mi">90</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
-
-    <span class="n">fig</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Image</span><span class="p">(</span><span class="n">z</span><span class="o">=</span><span class="n">z</span><span class="p">),</span> <span class="n">row</span><span class="o">=</span><span class="n">row_id</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="n">col_id</span><span class="p">)</span>
-    <span class="n">fig</span><span class="o">.</span><span class="n">update_xaxes</span><span class="p">(</span><span class="n">showticklabels</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">update_yaxes</span><span class="p">(</span><span class="n">showticklabels</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-
-    <span class="n">col_id</span> <span class="o">+=</span> <span class="mi">1</span>
-    <span class="k">if</span> <span class="n">col_id</span> <span class="o">==</span> <span class="mi">5</span><span class="p">:</span>
-        <span class="n">col_id</span> <span class="o">=</span> <span class="mi">1</span>
-        <span class="n">row_id</span> <span class="o">+=</span> <span class="mi">1</span>
-
-<span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">height</span><span class="o">=</span><span class="mi">600</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">800</span><span class="p">)</span>
-<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;off&quot;</span><span class="p">)</span>
+    <span class="n">counter</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="c1"># plt.grid()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
