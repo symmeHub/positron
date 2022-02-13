@@ -40,6 +40,10 @@ parts:
       - file: data_analysis/exercises/exercises
         sections:
           - file: data_analysis/exercises/data_practical_work.ipynb
+  - caption: Ordinary Differential Equations
+    numbered: True
+    chapters:
+      - file: ode/support_material/introduction_to_ode.md
 # format: jb-book
 # root: intro
 # options:  # The options key will be applied to all chapters, but not sub-sections
