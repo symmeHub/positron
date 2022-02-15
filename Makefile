@@ -50,6 +50,9 @@ img-update:
 	echo "Pushing image" ; \
 	docker push $(REPO_REGISTRY)/$(IMAGE_NAME):$(TAG)
 
+img-pull:
+	docker pull $(REPO_REGISTRY)/$(IMAGE_NAME):$(TAG)
+
 log-registry:
 	@echo "Please make sure that you already log this machine with your set registry"
 	@docker login $(DOCKER_REGISTRY_URL)
