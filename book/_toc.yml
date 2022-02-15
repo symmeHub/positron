@@ -11,8 +11,8 @@ parts:
     chapters:
       - file: python_basics/python_basics.md
         sections:
-          - file: python_basics/support_material/plotting.ipynb
           - file: python_basics/support_material/scientific_python.ipynb
+          - file: python_basics/support_material/plotting.ipynb
       - file: python_basics/examples/examples.md
         sections:
           - file: python_basics/examples/game_of_life_full.ipynb
