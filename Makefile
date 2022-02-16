@@ -18,11 +18,53 @@ SHELL := /bin/bash
 include ./.sh/config.sh
 
 
+KNOWN_TARGETS = book img info
+
+ARGS:= $(filter-out $(KNOWN_TARGETS), $(MAKECMDGOALS))
+$(eval $(ARGS):;@:)
+
+.PHONY: book img info
+
+book: book-info
+ifneq ($(filter $(ARGS), b build) ,)
+	@$(MAKE) book-build
+endif
+ifneq ($(filter $(ARGS), o open) ,)
+	@$(MAKE) book-open
+endif
+ifneq ($(filter $(ARGS), c clean) ,)
+	@$(MAKE) book-clean
+endif
+
+img: info
+ifneq ($(filter $(ARGS), b build) ,)
+	@$(MAKE) img-build
+endif
+ifneq ($(filter $(ARGS), p push) ,)
+	@$(MAKE) img-push
+endif
+ifneq ($(filter $(ARGS), u update) ,)
+	@$(MAKE) img-update
+endif
+
+info:
+	@echo "You passed arguments are: $(ARGS)"
+
 update: env-exp img-update
 
 web-build: 
 	git commit --allow-empty -m "[ci-run] Build Website authored by ${GIT_FORGE_USERNAME}"
 	git push origin main
+
+book-info:
+ifeq ($(ARGS),)
+	@echo "No arguments passed"
+	@echo "------Possibles arguments are:"
+	@echo "-> make book <build or b>"
+	@echo "-> make book <open or o>"
+	@echo "-> make book <build open or b o>"
+	@echo "-> make book <clean or c>"
+endif 
 
 book-build:
 	eval "$$(conda shell.bash hook)" && \
@@ -46,9 +88,18 @@ env-exp:
 
 img-update:
 	@echo "Update image" ; \
-	docker build -t $(REPO_REGISTRY)/$(IMAGE_NAME):$(TAG) . ;\
-	echo "Pushing image" ; \
-	docker push $(REPO_REGISTRY)/$(IMAGE_NAME):$(TAG)
+	$(MAKE) img-build ; \
+	$(MAKE) img-push
+
+img-push:
+	@echo "Pushing image" ; \
+	docker push $(REPO_REGISTRY)/$(IMAGE_NAME):$(TAG) ; \
+	echo "Pushing image done" 
+
+img-build: 
+	@echo "Building image" ; \
+	docker build -t $(REPO_REGISTRY)/$(IMAGE_NAME):$(TAG) . ; \
+	echo "Building image done" 
 
 img-pull:
 	docker pull $(REPO_REGISTRY)/$(IMAGE_NAME):$(TAG)
@@ -69,8 +120,3 @@ infos:
 	@echo "TAG = $(TAG)"
 	@echo "Repository parameters ====================================="
 	@echo "REPO_REGISTRY = ${REPO_REGISTRY}"
-
-
-
-
-
