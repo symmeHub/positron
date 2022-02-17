@@ -43,7 +43,17 @@ parts:
   - caption: ODE
     numbered: False
     chapters:
-      - file: ode/support_material/introduction_to_ode.md
+      - file: ode/course/ode_basics.ipynb
+      - file: ode/ressources/ressources.md
+        sections:
+          - file: ode/ressources/badminton.ipynb
+          - file: ode/ressources/gravity.ipynb
+      - file: ode/exercises/exercises.md
+        sections:
+          - file: ode/exercises/tutorials/simple_pendulum.ipynb
+          - file: ode/exercises/tutorials/harmonic_oscillator.ipynb
+          - file: ode/exercises/tutorials/duffing_oscillator.ipynb
+      
 # format: jb-book
 # root: intro
 # options:  # The options key will be applied to all chapters, but not sub-sections
