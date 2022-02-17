@@ -4,10 +4,10 @@
 format: jb-book
 root: intro
 options: # The options key will be applied to all chapters, but not sub-sections
-  numbered: True
+  numbered: False
 parts:
-  - caption: Python Basics
-    numbered: True
+  - caption: Basics
+    numbered: False
     chapters:
       - file: python_basics/python_basics.md
         sections:
@@ -19,8 +19,8 @@ parts:
       - file: python_basics/exercises/exercises.md
         sections:
           - file: python_basics/exercises/game_of_life_tutorial.ipynb
-  - caption: Image Processing
-    numbered: True
+  - caption: Image
+    numbered: False
     chapters:
       - file: image_processing/support_material/support_material
         sections:
@@ -31,8 +31,8 @@ parts:
           - file: image_processing/exercises/image_processing_tutorial.ipynb
           - file: image_processing/exercises/image_processing_practical_work.ipynb
           - file: image_processing/exercises/image_processing_practical_work_bonus.ipynb
-  - caption: Data Analysis
-    numbered: True
+  - caption: Data
+    numbered: False
     chapters:
       - file: data_analysis/support_material/support_material
         sections:
@@ -40,8 +40,8 @@ parts:
       - file: data_analysis/exercises/exercises
         sections:
           - file: data_analysis/exercises/data_practical_work.ipynb
-  - caption: Ordinary Differential Equations
-    numbered: True
+  - caption: ODE
+    numbered: False
     chapters:
       - file: ode/support_material/introduction_to_ode.md
 # format: jb-book
