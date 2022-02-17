@@ -186,7 +186,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../image_processing/support_material/blob_orientation.html">
-     Advanced Example: orientation and aspect ratio
+     Orientation an aspect ratio
     </a>
    </li>
   </ul>
@@ -267,9 +267,58 @@
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../../ode/support_material/introduction_to_ode.html">
-   Theory
+  <a class="reference internal" href="../../ode/course/ode_basics.html">
+   Course
   </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../ode/ressources/ressources.html">
+   Ressources
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ode/ressources/badminton.html">
+     Modelling badminton
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ode/ressources/gravity.html">
+     Gravity
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../ode/exercises/exercises.html">
+   Exercices
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ode/exercises/tutorials/simple_pendulum.html">
+     Simple pendulum
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ode/exercises/tutorials/harmonic_oscillator.html">
+     Driven Harmonic Oscillator
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ode/exercises/tutorials/duffing_oscillator.html">
+     Duffing oscillator
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -277,7 +326,7 @@
 </nav> <!-- To handle the deprecated key -->
 
 <div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+  Powered by <a href="https://www.univ-smb.fr/en/">Univ. Savoie Mont Blanc</a>
 </div>
 
 </div>
@@ -538,11 +587,11 @@ Try counting Moore’s living neighbors on a small grid at first before moving t
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0, 0, 1, 0, 1],
-       [1, 0, 0, 1, 0],
-       [1, 0, 1, 0, 1],
-       [1, 0, 0, 0, 1],
-       [1, 1, 0, 0, 0]])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[1, 0, 0, 0, 0],
+       [1, 0, 0, 1, 1],
+       [0, 1, 1, 1, 1],
+       [1, 1, 0, 1, 1],
+       [0, 0, 1, 1, 1]])
 </pre></div>
 </div>
 </div>
@@ -1511,7 +1560,7 @@ if (IPython.notebook.kernel !== null) {
         mpl.mpl_figure_comm
     );
 }
-</script><div class="output text_html"><div id='10160101-b776-41e0-9ad7-66d5b7bb0451'></div></div></div>
+</script><div class="output text_html"><div id='de5e369d-d9a5-4a00-9d01-122b2184dab0'></div></div></div>
 </div>
 <p>Now, you need to find a way to calculate the number of living (1) neighbors around every cell.</p>
 <p>Tips:</p>
@@ -2586,7 +2635,7 @@ if (IPython.notebook.kernel !== null) {
         mpl.mpl_figure_comm
     );
 }
-</script><div class="output text_html"><div id='dba0e9a2-2f00-4cf4-9a89-78fa4a3b5366'></div></div><div class="output text_html"><video width="640" height="480" controls autoplay loop>
+</script><div class="output text_html"><div id='6bcbe6e2-8300-4dba-94e8-54855c4c6852'></div></div><div class="output text_html"><video width="640" height="480" controls autoplay loop>
   <source type="video/mp4" src="data:video/mp4;base64,AAAAIGZ0eXBNNFYgAAACAE00ViBpc29taXNvMmF2YzEAAAAIZnJlZQAFchZtZGF0AAACrgYF//+q
 3EXpvebZSLeWLNgg2SPu73gyNjQgLSBjb3JlIDE2MCByMzAxMSBjZGU5YTkzIC0gSC4yNjQvTVBF
 Ry00IEFWQyBjb2RlYyAtIENvcHlsZWZ0IDIwMDMtMjAyMCAtIGh0dHA6Ly93d3cudmlkZW9sYW4u

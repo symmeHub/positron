@@ -55,7 +55,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Advanced Example: orientation and aspect ratio" href="blob_orientation.html" />
+    <link rel="next" title="Orientation an aspect ratio" href="blob_orientation.html" />
     <link rel="prev" title="Support material" href="support_material.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -186,7 +186,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="blob_orientation.html">
-     Advanced Example: orientation and aspect ratio
+     Orientation an aspect ratio
     </a>
    </li>
   </ul>
@@ -267,9 +267,58 @@
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../../ode/support_material/introduction_to_ode.html">
-   Theory
+  <a class="reference internal" href="../../ode/course/ode_basics.html">
+   Course
   </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../ode/ressources/ressources.html">
+   Ressources
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ode/ressources/badminton.html">
+     Modelling badminton
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ode/ressources/gravity.html">
+     Gravity
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../ode/exercises/exercises.html">
+   Exercices
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ode/exercises/tutorials/simple_pendulum.html">
+     Simple pendulum
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ode/exercises/tutorials/harmonic_oscillator.html">
+     Driven Harmonic Oscillator
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ode/exercises/tutorials/duffing_oscillator.html">
+     Duffing oscillator
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -277,7 +326,7 @@
 </nav> <!-- To handle the deprecated key -->
 
 <div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+  Powered by <a href="https://www.univ-smb.fr/en/">Univ. Savoie Mont Blanc</a>
 </div>
 
 </div>
@@ -512,9 +561,9 @@
 <h2>Loading an image<a class="headerlink" href="#loading-an-image" title="Permalink to this headline">¶</a></h2>
 <p>To read an image with Python, the easiest way is to use the Python Image Library (PIL) which provides the basic tools.</p>
 <p><cimg><a class="reference internal" href="../../_images/rabbit.jpg"><img alt="../../_images/rabbit.jpg" src="../../_images/rabbit.jpg" style="width: 300px;" /></a></cimg></p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Right-click to download the image.</p>
+<div class="important admonition">
+<p class="admonition-title">Required files</p>
+<p>Before using this notebook, download the image <a class="reference download internal" download="" href="../../_downloads/eebbd78409f63765a74fdc7cde28cd94/rabbit.jpg"><code class="xref download docutils literal notranslate"><span class="pre">rabbit.jpg</span></code></a></p>
 </div>
 <p>The following code will work if the image is located in the same directory as the notebook itself. First, let’s check if the file <code class="docutils literal notranslate"><span class="pre">rabbit.jpg</span></code> is in the current directory.</p>
 <div class="cell docutils container">
@@ -1546,7 +1595,7 @@ if (IPython.notebook.kernel !== null) {
         mpl.mpl_figure_comm
     );
 }
-</script><div class="output text_html"><div id='c1bda0fc-98d1-4b58-bd8c-16dfaa1137b5'></div></div></div>
+</script><div class="output text_html"><div id='be3b4d5f-3933-4a08-904a-6e3a18b239b8'></div></div></div>
 </div>
 <p>At this stage, an image is no more than a matrix generally made up of unsigned 8-bit integers (<code class="docutils literal notranslate"><span class="pre">np.uint8</span></code>). A color image is therefore made up of 3 grayscale images corresponding to the 3 channels:</p>
 <div class="cell docutils container">
@@ -1642,7 +1691,7 @@ if (IPython.notebook.kernel !== null) {
     <a class='right-next' id="next-link" href="blob_orientation.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Advanced Example: orientation and aspect ratio</p>
+        <p class="prev-next-title">Orientation an aspect ratio</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
