@@ -57,7 +57,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="Duffing oscillator" href="duffing_oscillator.html" />
+    <link rel="next" title="Vibrational energy harvesting using a Duffing oscillator" href="duffing_oscillator.html" />
     <link rel="prev" title="Simple pendulum" href="simple_pendulum.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -317,7 +317,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="duffing_oscillator.html">
-     Duffing oscillator
+     Vibrational energy harvesting using a Duffing oscillator
     </a>
    </li>
   </ul>
@@ -540,8 +540,29 @@
             
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="driven-harmonic-oscillator">
-<h1>Driven Harmonic Oscillator<a class="headerlink" href="#driven-harmonic-oscillator" title="Permalink to this headline">¶</a></h1>
+  <div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># IF USING JUPYTER NOTEBOOK:</span>
+<span class="c1">#%matplotlib notebook</span>
+<span class="c1"># IF USING JUPYTER LAB:</span>
+<span class="o">%</span><span class="k">matplotlib</span> widget
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">odeint</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="driven-harmonic-oscillator">
+<span id="ode-tutorial-driven-harmonic-oscillator"></span><h1>Driven Harmonic Oscillator<a class="headerlink" href="#driven-harmonic-oscillator" title="Permalink to this headline">¶</a></h1>
+<p><strong>Author</strong>: Ludovic Charleux (<a class="reference external" href="mailto:ludovic&#46;charleux&#37;&#52;&#48;univ-smb&#46;fr">ludovic<span>&#46;</span>charleux<span>&#64;</span>univ-smb<span>&#46;</span>fr</a>)</p>
 <p>In this example, you will simulate an harmonic oscillator and compare the numerical solution to the closed form one.</p>
 <div class="section" id="theory">
 <h2>Theory<a class="headerlink" href="#theory" title="Permalink to this headline">¶</a></h2>
@@ -585,16 +606,6 @@ m \ddot x + \mu \dot x + k x = m \ddot x_d
 \[
 \zeta = \dfrac{\mu}{2\sqrt{mk}} 
 \]</div>
-<div class="cell tag_hide-input docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> widget
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">odeint</span>
-</pre></div>
-</div>
-</div>
-</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">omega0</span> <span class="o">=</span> <span class="mf">2.0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="mf">1.0</span>
@@ -675,7 +686,7 @@ m \ddot x + \mu \dot x + k x = m \ddot x_d
     <a class='right-next' id="next-link" href="duffing_oscillator.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Duffing oscillator</p>
+        <p class="prev-next-title">Vibrational energy harvesting using a Duffing oscillator</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
