@@ -11,4 +11,4 @@ In this section, we propose quick exercises that can typically be done in an hou
 
 In this section, we propose longer exercises that can be done without assistance, typically in 4 hours.
 
-* [](ode:practical_work:duffing_oscillator) (duration: 1.5 h): The Duffing oscillator is a non-linear oscillator due to its position-dependent stiffness. It is one of the simplest oscillators capable of exhibiting chaos. In this exercise, you will be led to think about the notions of orbit, sub harmonic, chaos and Poincaré section.
+* [](ode:practical_work:duffing_oscillator) (duration: 4 h): The Duffing oscillator is a non-linear oscillator due to its position-dependent stiffness. It is one of the simplest oscillators capable of exhibiting chaos. In this exercise, you will be led to think about the notions of orbit, sub harmonic, chaos and Poincaré section.
