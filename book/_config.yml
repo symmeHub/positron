@@ -41,7 +41,6 @@ latex:
 bibtex_bibfiles:
   - references.bib
 
-
 #######################################################################################
 # Launch button settings
 
@@ -102,3 +101,4 @@ sphinx:
     mathjax_path: https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js  
     html_js_files:
     - https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js
+    bibtex_reference_style: plainnat
