@@ -1,0 +1,25 @@
+version: "3.9"
+services:
+  main_container:
+    build:
+      dockerfile: ./Dockerfile
+      args:
+        - USER_NAME=$USER_NAME
+        - USER_UID=$UID
+        - USER_GID=$GID
+        - CONDA_ENV_NAME=awesome
+      context: .
+    # user: "1002:1002"
+    # image: tutu:latest
+    container_name: $CONTAINER_NAME
+    stdin_open: false
+    ports:
+     - 32769:32769
+    # tty: true        # docker run -t
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: $GPU_COUNT
+              capabilities: [gpu]

@@ -1,0 +1,6 @@
+name: awesome
+# channels:
+#   - conda-forge
+# dependencies:
+#   - numpy
+prefix: /opt/conda/envs/awesome

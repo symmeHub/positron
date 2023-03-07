@@ -1,0 +1,18 @@
+name: awesome
+# channels:
+#   - conda-forge
+dependencies:
+  - anaconda::sphinx
+  - anaconda::sphinxcontrib
+  - conda-forge::pybtex
+  - conda-forge::jupyter-book
+  - pip:
+    - fonttools
+    - importlib-metadata
+    - ipykernel
+    - ipython
+    - jupyterlab-mathjax3
+    - kaleido
+    - pillow
+    - scikit-image
+prefix: /opt/conda/envs/awesome

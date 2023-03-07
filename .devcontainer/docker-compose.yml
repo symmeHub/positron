@@ -1,0 +1,27 @@
+version: "3.9"
+services:
+  main_container:
+    build:
+      dockerfile: ./Dockerfile
+      args:
+        - USER_NAME=celmo
+        - USER_UID=1001
+        - USER_GID=1001
+        - CONDA_ENV_NAME=awesome
+      context: .
+    # user: "1002:1002"
+    # image: tutu:latest
+    container_name: celmo_8da9a5e97969fadbed4e8c6df3cdf89a9a9824ea72f762225e595419682a5de4
+    stdin_open: false
+    ports:
+     - 32769:32769
+    # tty: true        # docker run -t
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    volumes:
+      - ../:/workspace

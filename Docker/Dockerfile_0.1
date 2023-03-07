@@ -1,0 +1,106 @@
+ARG BASE_IMAGE=ubuntu:focal-20221130
+FROM ${BASE_IMAGE}
+
+# BASIC LIBRARIES
+ENV DEBIAN_FRONTEND="noninteractive" TZ="Europe/London"
+RUN apt-get update && \
+    apt-get install -y git wget sudo cmake libncurses5-dev libncursesw5-dev build-essential ffmpeg libsm6 libxext6 acl && \
+    apt-get clean
+
+# MINICONDA3 INSTALL
+ARG CONDA_DIR='/opt/conda'
+ARG CONDA_ENV_NAME='foobar'
+
+ENV CONDA_DIR=$CONDA_DIR
+ENV CONDA_ENV_NAME=$CONDA_ENV_NAME
+
+RUN groupadd conda_env
+RUN mkdir -p ${CONDA_DIR}
+
+# # USER CREATION
+# RUN groupadd --gid 999 conda_u \
+#     && useradd --uid 999 --gid 999 -m conda_u
+
+# RUN echo conda_u ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/conda_u \
+#     && chmod 0440 /etc/sudoers.d/conda_u
+# USER 999:999   
+
+
+RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda.sh && \
+    /bin/bash ~/miniconda.sh -ub -p $CONDA_DIR && \
+    rm ~/miniconda.sh
+ENV CONDA_BIN_PATH $CONDA_DIR/condabin/conda
+ENV PATH=$CONDA_DIR/condabin/:$PATH
+
+# CONDA ENV CREATION
+RUN conda update -n base conda
+RUN conda create -y -n $CONDA_ENV_NAME
+COPY environment.yml /tmp/environment.yml
+RUN conda env update --name $CONDA_ENV_NAME --file /tmp/environment.yml --prune 
+
+ENV CONDA_ENV_BIN_PATH $CONDA_DIR/envs/${CONDA_ENV_NAME}/bin
+
+# # CONDA ENV SETUP
+SHELL ["/bin/bash", "--login", "-c"]
+
+
+
+# PYTORCH INSTALL
+RUN $CONDA_ENV_BIN_PATH/pip install torch==1.9.0+cu111 torchvision==0.10.0+cu111 torchaudio==0.9.0 -f https://download.pytorch.org/whl/torch_stable.html
+
+# OPEN-CV INSTALL
+RUN $CONDA_ENV_BIN_PATH/pip install opencv-python opencv-contrib-python
+
+# NVTOP INSTALL
+RUN cd /tmp \
+    && git clone https://github.com/Syllo/nvtop.git \
+    && mkdir -p nvtop/build && cd nvtop/build \
+    && cmake .. -DNVIDIA_SUPPORT=ON -DAMDGPU_SUPPORT=OFF -DINTEL_SUPPORT=OFF \
+    && make install
+
+# HTOP INSTALL
+RUN apt-get install -y htop
+
+# LOCALES UPDATE
+RUN apt install locales && \
+    locale-gen en_US.UTF-8 && \
+    dpkg-reconfigure locales
+
+COPY tests /tmp/tests
+
+RUN $CONDA_ENV_BIN_PATH/pip install sphinx
+RUN $CONDA_ENV_BIN_PATH/pip install sphinxcontrib-packages
+RUN $CONDA_ENV_BIN_PATH/pip install pybtex
+RUN $CONDA_ENV_BIN_PATH/pip install jupyter-book
+RUN $CONDA_ENV_BIN_PATH/pip install fonttools
+RUN $CONDA_ENV_BIN_PATH/pip install importlib-metadata
+RUN $CONDA_ENV_BIN_PATH/pip install ipykernel
+RUN $CONDA_ENV_BIN_PATH/pip install ipython
+RUN $CONDA_ENV_BIN_PATH/pip install jupyterlab-mathjax3
+RUN $CONDA_ENV_BIN_PATH/pip install kaleido
+RUN $CONDA_ENV_BIN_PATH/pip install pillow
+RUN $CONDA_ENV_BIN_PATH/pip install scikit-image
+
+
+# RUN groupadd conda_env
+RUN chgrp -R conda_env ${CONDA_DIR}
+RUN chmod 777 -R ${CONDA_DIR}
+
+# RUN apt-get update && \
+#     apt-get -y upgrade && \
+#     apt-get -y install curl dirmngr apt-transport-https lsb-release ca-certificates && \
+#     curl -sL https://deb.nodesource.com/setup_12.x | bash -
+
+# RUN apt-get -y remove nodejs
+# RUN apt-get -y install nodejs
+# # RUN apt -y install npm
+
+# # RUN $CONDA_ENV_BIN_PATH/jupyter labextension install run-tag-cells-jlab
+# # RUN groupadd conda_env
+# # RUN apt-get install -y acl
+# # RUN setfacl -m g:conda_env:rwx /opt/
+
+RUN echo ". ${CONDA_DIR}/etc/profile.d/conda.sh" >> ~/.bashrc && \
+    echo "${CONDA_BIN_PATH} activate $CONDA_ENV_NAME" >> ~/.bashrc
+
+SHELL ["/bin/bash", "--login", "-c"]

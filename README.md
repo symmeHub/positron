@@ -26,15 +26,16 @@ Sometimes it is necessary to clean the book build folder with it:
 jupyter-book clean book
 ```
 
-<!-- To publish the book once it has been tested and validated by you:
+## Update Online Book
+
+To publish the book once it has been tested and validated by you:
 
 ``` bash
 ghp-import -n -p -f book/_build/html
-``` -->
+```
 
-## Update Online Book
 
-To update the online Book, you need to trigger de CI/CD. Two options are available here :
+<!-- To update the online Book, you need to trigger de CI/CD. Two options are available here :
 
 1. Add key **[ci-run]** to your commit message.
 
@@ -46,4 +47,4 @@ To update the online Book, you need to trigger de CI/CD. Two options are availab
 
 - If  Gitlab :
 
-    - Go to: https://gitlab.com/symmehub/teaching/positron >> CI/CD/ >> ***Run pipeline***
+    - Go to: https://gitlab.com/symmehub/teaching/positron >> CI/CD/ >> ***Run pipeline*** -->
