@@ -48,6 +48,7 @@ parts:
         sections:
           - file: ode/ressources/badminton.ipynb
           - file: ode/ressources/gravity.ipynb
+          - file: ode/ressources/molecular_dynamics.ipynb
       - file: ode/exercises/exercises.md
         sections:
           - file: ode/exercises/tutorials/simple_pendulum.ipynb

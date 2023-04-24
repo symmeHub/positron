@@ -1,4 +1,4 @@
-# Scientific Python
+# POSITRON: PythOn for Science In The Reblochon cOuNtry
 
 Positron is a repository made collectively by several teachers and researchers from Annecy in France. It contains resources and exercises dealing with several topics related to numerical methods. They use the Python language. Most of the pages are in Jupyter format. They are therefore downloadable, modifiable and interactive. 
 
