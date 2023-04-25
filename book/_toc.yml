@@ -39,6 +39,7 @@ parts:
           - file: data_analysis/support_material/pandas_introduction.ipynb
       - file: data_analysis/exercises/exercises
         sections:
+          - file: data_analysis/exercises/data_tutorial.ipynb
           - file: data_analysis/exercises/data_practical_work.ipynb
   - caption: ODE
     numbered: False
