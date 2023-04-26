@@ -43,7 +43,7 @@ parts:
   - caption: ODE
     numbered: False
     chapters:
-      - file: ode/course/ode_basics.ipynb
+      - file: ode/support_material/support_material.ipynb
       - file: ode/ressources/ressources.md
         sections:
           - file: ode/ressources/badminton.ipynb
@@ -54,7 +54,13 @@ parts:
           - file: ode/exercises/tutorials/simple_pendulum.ipynb
           - file: ode/exercises/tutorials/harmonic_oscillator.ipynb
           - file: ode/exercises/tutorials/duffing_oscillator.ipynb
-      
+  - caption: Machine Learning
+    numbered: False
+    chapters:
+      - file: machine_learning/support_material.ipynb
+      - file: machine_learning/exercises/exercises.md
+        sections:
+          - file: machine_learning/exercises/tutorials/classification_demo.ipynb
 # format: jb-book
 # root: intro
 # options:  # The options key will be applied to all chapters, but not sub-sections
