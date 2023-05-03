@@ -1,3 +1,3 @@
-# Exercices 
+# Exercices
 
 Data analysis exercises.

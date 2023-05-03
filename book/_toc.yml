@@ -39,15 +39,17 @@ parts:
           - file: data_analysis/support_material/pandas_introduction.ipynb
       - file: data_analysis/exercises/exercises
         sections:
+          - file: data_analysis/exercises/data_tutorial.ipynb
           - file: data_analysis/exercises/data_practical_work.ipynb
   - caption: ODE
     numbered: False
     chapters:
-      - file: ode/course/ode_basics.ipynb
+      - file: ode/support_material/support_material.ipynb
       - file: ode/ressources/ressources.md
         sections:
           - file: ode/ressources/badminton.ipynb
           - file: ode/ressources/gravity.ipynb
+          - file: ode/ressources/molecular_dynamics.ipynb
       - file: ode/exercises/exercises.md
         sections:
           - file: ode/exercises/tutorials/simple_pendulum.ipynb
@@ -58,8 +60,15 @@ parts:
     chapters:
       - file: optimization/course/optimization_basics.ipynb
       - file: optimization/ressources/ressources.md
-      - file: optimization/exercises/exercises.md
-      
+      - file: optimization/exercises/exercises.md  
+  - caption: Machine Learning
+    numbered: False
+    chapters:
+      - file: machine_learning/support_material.ipynb
+      - file: machine_learning/exercises/exercises.md
+        sections:
+          - file: machine_learning/exercises/tutorials/classification_demo.ipynb
+
 # format: jb-book
 # root: intro
 # options:  # The options key will be applied to all chapters, but not sub-sections
