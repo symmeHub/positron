@@ -55,6 +55,12 @@ parts:
           - file: ode/exercises/tutorials/simple_pendulum.ipynb
           - file: ode/exercises/tutorials/harmonic_oscillator.ipynb
           - file: ode/exercises/tutorials/duffing_oscillator.ipynb
+  - caption: Optimization
+    numbered: False
+    chapters:
+      - file: optimization/course/optimization_basics.ipynb
+      - file: optimization/ressources/ressources.md
+      - file: optimization/exercises/exercises.md  
   - caption: Machine Learning
     numbered: False
     chapters:
@@ -62,6 +68,7 @@ parts:
       - file: machine_learning/exercises/exercises.md
         sections:
           - file: machine_learning/exercises/tutorials/classification_demo.ipynb
+
 # format: jb-book
 # root: intro
 # options:  # The options key will be applied to all chapters, but not sub-sections
