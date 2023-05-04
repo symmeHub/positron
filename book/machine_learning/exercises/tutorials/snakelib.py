@@ -144,24 +144,47 @@ class FastSnake:
             self.check_defeat()
             return self.status
 
+    # def sensors(self):
+    #     out = np.zeros(10, dtype=np.float64) + 0.5
+    #     # MOORE NEIGHBOROOD
+    #     snake_positions = self.snake_active_positions
+    #     snake_head_position = snake_positions[0]
+    #     snake_tail_positions = snake_positions[1:]
+    #     fruit_position = self.fruit_position
+    #     forbidden_positions = self.forbidden_positions
+    #     moore = get_Moore_neighbors(snake_head_position, self.Ncol)
+    #     tail_and_lava = np.union1d(snake_tail_positions, forbidden_positions)
+    #     out[:8][np.isin(moore, tail_and_lava)] = 0.0
+    #     out[:8][moore == fruit_position] = 1.0
+    #     # FRUIT DIRECTION
+    #     head_coords = pos_to_coords(snake_head_position, self.Ncol)
+    #     fruit_coords = pos_to_coords(fruit_position, self.Ncol)
+    #     dcol, drow = fruit_coords[1] - head_coords[1], fruit_coords[0] - head_coords[0]
+    #     out[8] = dcol
+    #     out[9] = drow
+    #     return out
     def sensors(self):
-        out = np.zeros(10, dtype=np.float64) + 0.5
+        out = np.zeros(6, dtype=np.float64)
         # MOORE NEIGHBOROOD
         snake_positions = self.snake_active_positions
         snake_head_position = snake_positions[0]
         snake_tail_positions = snake_positions[1:]
         fruit_position = self.fruit_position
         forbidden_positions = self.forbidden_positions
-        moore = get_Moore_neighbors(snake_head_position, self.Ncol)
+        neigh = get_neighbors(snake_head_position, self.Nrow, self.Ncol)
         tail_and_lava = np.union1d(snake_tail_positions, forbidden_positions)
-        out[:8][np.isin(moore, tail_and_lava)] = 0.0
-        out[:8][moore == fruit_position] = 1.0
+        out[:4][np.isin(neigh, tail_and_lava)] = -1.0
+        out[:4][neigh == fruit_position] = 1.0
         # FRUIT DIRECTION
         head_coords = pos_to_coords(snake_head_position, self.Ncol)
         fruit_coords = pos_to_coords(fruit_position, self.Ncol)
         dcol, drow = fruit_coords[1] - head_coords[1], fruit_coords[0] - head_coords[0]
-        out[8] = dcol
-        out[9] = drow
+        if dcol != 0.0:
+            decol = np.sign(dcol)
+        if drow != 0.0:
+            drow = np.sign(drow)
+        out[4] = dcol
+        out[5] = drow
         return out
 
 
