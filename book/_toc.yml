@@ -68,6 +68,7 @@ parts:
       - file: machine_learning/exercises/exercises.md
         sections:
           - file: machine_learning/exercises/tutorials/classification_demo.ipynb
+          - file: machine_learning/exercises/tutorials/genetic_snake.ipynb
 
 # format: jb-book
 # root: intro
