@@ -164,7 +164,7 @@ class FastSnake:
     #     out[9] = drow
     #     return out
     def sensors(self):
-        out = np.zeros(6, dtype=np.float64)
+        out = np.zeros(7, dtype=np.float64)
         # MOORE NEIGHBOROOD
         snake_positions = self.snake_active_positions
         snake_head_position = snake_positions[0]
@@ -176,15 +176,35 @@ class FastSnake:
         out[:4][np.isin(neigh, tail_and_lava)] = -1.0
         out[:4][neigh == fruit_position] = 1.0
         # FRUIT DIRECTION
-        head_coords = pos_to_coords(snake_head_position, self.Ncol)
-        fruit_coords = pos_to_coords(fruit_position, self.Ncol)
+        head_coords = np.array(pos_to_coords(snake_head_position, self.Ncol))
+        fruit_coords = np.array(pos_to_coords(fruit_position, self.Ncol))
         dcol, drow = fruit_coords[1] - head_coords[1], fruit_coords[0] - head_coords[0]
-        if dcol != 0.0:
-            decol = np.sign(dcol)
-        if drow != 0.0:
-            drow = np.sign(drow)
-        out[4] = dcol
-        out[5] = drow
+        # if dcol != 0.0:
+        #     decol = np.sign(dcol)
+        # if drow != 0.0:
+        #     drow = np.sign(drow)
+        # out[4] = dcol
+        # out[5] = drow
+        # NECK DIRECTION
+        head_coords = np.array(pos_to_coords(snake_head_position, self.Ncol))
+        neck_coords = np.array(pos_to_coords(snake_tail_positions[0], self.Ncol))
+        neckcol, neckrow = (
+            neck_coords[1] - head_coords[1],
+            neck_coords[0] - head_coords[0],
+        )
+
+        if neckcol == 1:
+            ndirection = 0
+        elif neckcol == -1:
+            ndirection = 2
+        elif neckrow == 1.0:
+            ndirection = 1
+        elif neckrow == -1.0:
+            ndirection = 3
+        else:
+            direction = -1.0
+        out[4] = ndirection
+        out[5:] = np.sign([dcol, -drow])
         return out
 
 
