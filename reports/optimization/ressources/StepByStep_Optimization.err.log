@@ -36,7 +36,7 @@ Z = np.where(Z > 0.3, np.nan, Z)
 mask = np.ones_like(Z)
 ------------------
 
-[0;36m  Cell [0;32mIn[4], line 8[0;36m[0m
+[0;36m  Cell [0;32mIn[5], line 8[0;36m[0m
 [0;31m    f =[0m
 [0m        ^[0m
 [0;31mSyntaxError[0m[0;31m:[0m invalid syntax

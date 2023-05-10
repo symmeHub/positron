@@ -1,4 +1,7 @@
 import numpy as np
+import ipywidgets as widgets
+import matplotlib.pyplot as plt
+from matplotlib import animation
 
 
 class FastSnake:
@@ -37,9 +40,6 @@ class FastSnake:
         self.fruit_color = fruit_color
         self.void_color = void_color
         self.reset()
-        # SENSORS
-        sr, sc = np.meshgrid(np.arange(-1, 2), np.arange(-1, 2))
-        self.sensor_offsets = np.array([sr.flatten(), sc.flatten()]).T.copy()
 
     def reset(self):
         all_positions = self.all_positions
@@ -127,7 +127,7 @@ class FastSnake:
             fruit_position = self.fruit_position
             head = snake_positions[0]
             neigh = get_neighbors(head, self.Nrow, self.Ncol)
-            new_head = neigh[direction]
+            new_head = neigh[int(direction)]
             if new_head == snake_positions[1]:
                 self.status = -1
             elif new_head < 0:
@@ -144,68 +144,112 @@ class FastSnake:
             self.check_defeat()
             return self.status
 
-    # def sensors(self):
-    #     out = np.zeros(10, dtype=np.float64) + 0.5
-    #     # MOORE NEIGHBOROOD
-    #     snake_positions = self.snake_active_positions
-    #     snake_head_position = snake_positions[0]
-    #     snake_tail_positions = snake_positions[1:]
-    #     fruit_position = self.fruit_position
-    #     forbidden_positions = self.forbidden_positions
-    #     moore = get_Moore_neighbors(snake_head_position, self.Ncol)
-    #     tail_and_lava = np.union1d(snake_tail_positions, forbidden_positions)
-    #     out[:8][np.isin(moore, tail_and_lava)] = 0.0
-    #     out[:8][moore == fruit_position] = 1.0
-    #     # FRUIT DIRECTION
-    #     head_coords = pos_to_coords(snake_head_position, self.Ncol)
-    #     fruit_coords = pos_to_coords(fruit_position, self.Ncol)
-    #     dcol, drow = fruit_coords[1] - head_coords[1], fruit_coords[0] - head_coords[0]
-    #     out[8] = dcol
-    #     out[9] = drow
-    #     return out
-    def sensors(self):
-        out = np.zeros(7, dtype=np.float64)
-        # MOORE NEIGHBOROOD
+    def turn(self, turn):
+        """
+        turn = 0: go forward
+        turn == 1: go left
+        turn == -1: go right
+        """
+        current_direction = self.get_current_direction()
+        abs_direction = (current_direction + turn) % 4
+        self.play(abs_direction)
+
+    def get_current_direction(self):
+        snake_positions = self.snake_active_positions
+        head_position = snake_positions[0]
+        neck_position = snake_positions[1]
+        Ncol = self.Ncol
+        direction = -1
+        if neck_position == head_position - 1:
+            direction = 0
+        elif neck_position == head_position + 1:
+            direction = 2
+        elif neck_position == head_position + Ncol:
+            direction = 1
+        elif neck_position == head_position - Ncol:
+            direction = 3
+        else:
+            direction = -1
+        return direction
+
+    def get_fruit_relative_directions(self):
         snake_positions = self.snake_active_positions
         snake_head_position = snake_positions[0]
-        snake_tail_positions = snake_positions[1:]
         fruit_position = self.fruit_position
-        forbidden_positions = self.forbidden_positions
-        neigh = get_neighbors(snake_head_position, self.Nrow, self.Ncol)
-        tail_and_lava = np.union1d(snake_tail_positions, forbidden_positions)
-        out[:4][np.isin(neigh, tail_and_lava)] = -1.0
-        out[:4][neigh == fruit_position] = 1.0
-        # FRUIT DIRECTION
         head_coords = np.array(pos_to_coords(snake_head_position, self.Ncol))
         fruit_coords = np.array(pos_to_coords(fruit_position, self.Ncol))
         dcol, drow = fruit_coords[1] - head_coords[1], fruit_coords[0] - head_coords[0]
-        # if dcol != 0.0:
-        #     decol = np.sign(dcol)
-        # if drow != 0.0:
-        #     drow = np.sign(drow)
-        # out[4] = dcol
-        # out[5] = drow
-        # NECK DIRECTION
-        head_coords = np.array(pos_to_coords(snake_head_position, self.Ncol))
-        neck_coords = np.array(pos_to_coords(snake_tail_positions[0], self.Ncol))
-        neckcol, neckrow = (
-            neck_coords[1] - head_coords[1],
-            neck_coords[0] - head_coords[0],
-        )
+        d = np.sqrt(dcol**2 + drow**2)
+        cdir = self.get_current_direction()
+        if cdir == 0:
+            asin = -drow / d
+            acos = dcol / d
 
-        if neckcol == 1:
-            ndirection = 0
-        elif neckcol == -1:
-            ndirection = 2
-        elif neckrow == 1.0:
-            ndirection = 1
-        elif neckrow == -1.0:
-            ndirection = 3
-        else:
-            direction = -1.0
-        out[4] = ndirection
-        out[5:] = np.sign([dcol, -drow])
+        elif cdir == 2:
+            asin = drow / d
+            acos = -dcol / d
+        elif cdir == 1:
+            asin = -dcol / d
+            acos = -drow / d
+
+        elif cdir == 3:
+            asin = dcol / d
+            acos = drow / d
+        return acos, asin
+
+    def get_turn_neighbors(self):
+        Ncol = self.Ncol
+        headpos = self.snake_active_positions[0]
+        forbidden_positions = self.forbidden_positions
+        snake_tail_positions = self.snake_active_positions[1:]
+        tail_and_lava = np.union1d(snake_tail_positions, forbidden_positions)
+        fruit_position = self.fruit_position
+        fdir = self.get_current_direction()
+        ldir = (fdir + 1) % 4
+        rdir = (fdir - 1) % 4
+        if fdir == 0:
+            frontpos = headpos + 1
+            leftpos = headpos - Ncol
+            rightpos = headpos + Ncol
+        if fdir == 1:
+            frontpos = headpos - Ncol
+            leftpos = headpos - 1
+            rightpos = headpos + 1
+        if fdir == 2:
+            frontpos = headpos - 1
+            leftpos = headpos + Ncol
+            rightpos = headpos - Ncol
+        if fdir == 3:
+            frontpos = headpos + Ncol
+            leftpos = headpos + 1
+            rightpos = headpos - 1
+        positions = np.array([leftpos, frontpos, rightpos])
+        out = np.zeros(3)
+        for i in range(3):
+            pos = positions[i]
+            if pos == fruit_position:
+                out[i] = 1.0
+            elif pos in tail_and_lava:
+                out[i] = -1
         return out
+
+    def get_lidar(self):
+        """
+        # TODO
+        """
+        return
+
+    def sensors(self, method="default"):
+        if method == "default":
+            out = np.zeros(5, dtype=np.float64)
+            out[:3] = self.get_turn_neighbors()
+            out[3:] = self.get_fruit_relative_directions()
+            return out
+        # if method == "advanced":
+        #     out = np.zeros(9, dtype=np.float64)
+        #     out[:3] = self.get_turn_neighbors()
+        #     out[3:] = self.get_fruit_relative_directions()
+        #     return out
 
 
 def get_neighbors(pos, Nrow, Ncol):
@@ -253,3 +297,125 @@ def get_Moore_neighbors(pos, Ncol):
     out[6] = pos + Ncol
     out[7] = pos + Ncol + 1
     return out
+
+
+def get_rank2_Moore_neighbors(pos, Ncol, Nrow):
+    """
+    Returns the Moore neighbors of the cell position.
+    """
+    out = np.zeros(24, dtype=np.uint32)
+    out[0] = pos + 1
+    out[1] = pos - Ncol + 1
+    out[2] = pos - Ncol
+    out[3] = pos - Ncol - 1
+    out[4] = pos - 1
+    out[5] = pos + Ncol - 1
+    out[6] = pos + Ncol
+    out[7] = pos + Ncol + 1
+    return out
+
+
+def show_gui(snake, ax):
+    # RELATIVE TURNS
+
+    left_widget = widgets.Button(
+        description="snake.turn(+1)",
+        disabled=False,
+        button_style="success",
+        tooltip="Want to go left ?",
+        icon="fa-arrow-left",
+    )
+
+    right_widget = widgets.Button(
+        description="snake.turn(-1)",
+        disabled=False,
+        button_style="success",
+        tooltip="Want to go right ?",
+        icon="fa-arrow-right",
+    )
+
+    up_widget = widgets.Button(
+        description="snake.turn(0)",
+        disabled=False,
+        button_style="success",
+        tooltip="Want to go up ?",
+        icon="fa-arrow-up",
+    )
+
+    reset_widget = widgets.Button(
+        description="Reset",
+        disabled=False,
+        button_style="danger",
+        tooltip="Want to reset ?",
+        icon="fa-power-off",
+    )
+
+    # direction = 0
+
+    def set_turn(turn):
+        snake.turn(turn)
+        update_fig()
+
+    def reset_game():
+        snake.reset()
+        update_fig()
+
+    left_widget.on_click(lambda arg: set_turn(1.0))
+    right_widget.on_click(lambda arg: set_turn(-1.0))
+    up_widget.on_click(lambda arg: set_turn(0.0))
+    reset_widget.on_click(lambda arg: reset_game())
+
+    def update_fig():
+        im.set_array(snake.grid)
+        status = snake.status
+        if status == 0:
+            mess = "PLAY"
+        elif status == -1:
+            mess = "YOU DIED (YOURSELF)"
+        elif status == -2:
+            mess = "YOU DIED (LAVA)"
+        title.set_text(f"Score = {snake.score}, {mess}")
+        plt.draw()
+        return (im,)
+
+    ax.axis("off")
+    title = ax.set_title(f"Score = {snake.score}, PLAY ")
+    im = ax.imshow(snake.grid, interpolation="nearest", animated=True)
+    box = widgets.Box([left_widget, right_widget, up_widget, reset_widget])
+    return box
+
+
+class NeuralAgent:
+    """
+    A NEURAL NETWORK AGENT
+    """
+
+    def __init__(self, weights, structure, neural_functions):
+        matrices = []
+        start = 0
+        for i in range(len(structure) - 1):
+            nin = structure[i]
+            nout = structure[i + 1]
+            Nw = (nin + 1) * nout
+            w = weights[start : start + Nw]
+            start += Nw
+            A = w[:-nout].reshape(nout, nin)
+            B = w[-nout:]
+            matrices.append([A, B])
+        self.structure = structure
+        self.matrices = matrices
+        self.neural_functions = neural_functions
+        self.weights = weights
+
+    def get_caller(self):
+        matrices = self.matrices
+        neural_functions = self.neural_functions
+
+        def inference(x):
+            for stage in range(len(matrices)):
+                A, B = matrices[stage]
+                x = A @ x + B
+                x = neural_functions[stage](x)
+            return x
+
+        return inference

@@ -8,7 +8,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Optimization &#8212; POSITRON: PythOn for Science In The Reblochon cOuNtry</title>
+    <title>Support material &#8212; POSITRON: PythOn for Science In The Reblochon cOuNtry</title>
   
   
   
@@ -218,14 +218,18 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Optimization</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Optimization</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ressources/ressources.html">Ressources</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../exercises/exercises.html">Exercices</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Support material</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../ressources/ressources.html">Ressources</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ressources/river_crossing_and_more.html">Crossing a river</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../exercises/rosenbrock_and_curve_fiting.html">Rosenbrock function and Curve fiting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../exercises/bridge_optimization.html">Optimizing a bridge structure</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Machine Learning</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../machine_learning/support_material.html">Support material</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../machine_learning/exercises/exercises.html">Exercices</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../machine_learning/exercises/exercises.html">Exercices</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../machine_learning/exercises/tutorials/classification_demo.html">Supervised learning with PyTorch: a toy example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../machine_learning/exercises/tutorials/genetic_snake.html">Reinforcement learning on snake with a genetic neural network</a></li>
 </ul>
@@ -497,7 +501,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Optimization</h1>
+    <h1>Support material</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -508,17 +512,17 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#general-scope">General Scope</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-design-process">The design process</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#optimization-probleme-formulation">Optimization probleme formulation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematical-formulation">Mathematical formulation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exemple-of-the-design-process">Exemple of the design process</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scope">Scope</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solving">Solving</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematical-formulation">Mathematical formulation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scope">Scope</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solving">Solving</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#general-purpose-approach">General purpose approach</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#curve-fitting-using-least-squares">Curve fitting using least squares</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#specif-case-of-curve-fitting-using-least-squares">Specif case of curve fitting using least squares</a></li>
 </ul>
             </nav>
         </div>
@@ -531,11 +535,16 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <h1>Table of Contents<span class="tocSkip"></span></h1>
-<div class="toc"><ul class="toc-item"><li><span><a href="#General-Scope" data-toc-modified-id="General-Scope-1"><span class="toc-item-num">1&nbsp;&nbsp;</span>General Scope</a></span><ul class="toc-item"><li><span><a href="#The-design-process" data-toc-modified-id="The-design-process-1.1"><span class="toc-item-num">1.1&nbsp;&nbsp;</span>The design process</a></span></li><li><span><a href="#Optimization-probleme-formulation" data-toc-modified-id="Optimization-probleme-formulation-1.2"><span class="toc-item-num">1.2&nbsp;&nbsp;</span>Optimization probleme formulation</a></span></li><li><span><a href="#Mathematical-formulation" data-toc-modified-id="Mathematical-formulation-1.3"><span class="toc-item-num">1.3&nbsp;&nbsp;</span>Mathematical formulation</a></span></li></ul></li><li><span><a href="#Scope" data-toc-modified-id="Scope-2"><span class="toc-item-num">2&nbsp;&nbsp;</span>Scope</a></span></li><li><span><a href="#Solving" data-toc-modified-id="Solving-3"><span class="toc-item-num">3&nbsp;&nbsp;</span>Solving</a></span><ul class="toc-item"><li><span><a href="#General-purpose-approach" data-toc-modified-id="General-purpose-approach-3.1"><span class="toc-item-num">3.1&nbsp;&nbsp;</span>General purpose approach</a></span></li><li><span><a href="#Curve-fitting-using-least-squares" data-toc-modified-id="Curve-fitting-using-least-squares-3.2"><span class="toc-item-num">3.2&nbsp;&nbsp;</span>Curve fitting using least squares</a></span></li></ul></li></ul></div><div class="tex2jax_ignore mathjax_ignore section" id="optimization">
-<h1>Optimization<a class="headerlink" href="#optimization" title="Permalink to this headline">#</a></h1>
-<p>.. codeauthor:: Emile Roux (<a class="reference external" href="mailto:emile&#46;roux&#37;&#52;&#48;univ-smb&#46;fr">emile<span>&#46;</span>roux<span>&#64;</span>univ-smb<span>&#46;</span>fr</a>), Ludovic Charleux</p>
-<p>.. This notebook is ready for  <a class="reference external" href="https://damianavila.github.io/RISE/">RISE</a> Slideshow</p>
-<div class="cell docutils container">
+<div class="toc"><ul class="toc-item"><li><span><a href="#General-Scope" data-toc-modified-id="General-Scope-1"><span class="toc-item-num">1&nbsp;&nbsp;</span>General Scope</a></span><ul class="toc-item"><li><span><a href="#Optimization-probleme-formulation" data-toc-modified-id="Optimization-probleme-formulation-1.1"><span class="toc-item-num">1.1&nbsp;&nbsp;</span>Optimization probleme formulation</a></span></li><li><span><a href="#Exemple-of-the-design-process" data-toc-modified-id="Exemple-of-the-design-process-1.2"><span class="toc-item-num">1.2&nbsp;&nbsp;</span>Exemple of the design process</a></span></li></ul></li><li><span><a href="#Mathematical-formulation" data-toc-modified-id="Mathematical-formulation-2"><span class="toc-item-num">2&nbsp;&nbsp;</span>Mathematical formulation</a></span><ul class="toc-item"><li><span><a href="#Scope" data-toc-modified-id="Scope-2.1"><span class="toc-item-num">2.1&nbsp;&nbsp;</span>Scope</a></span></li><li><span><a href="#Solving" data-toc-modified-id="Solving-2.2"><span class="toc-item-num">2.2&nbsp;&nbsp;</span>Solving</a></span></li><li><span><a href="#General-purpose-approach" data-toc-modified-id="General-purpose-approach-2.3"><span class="toc-item-num">2.3&nbsp;&nbsp;</span>General purpose approach</a></span></li><li><span><a href="#Curve-fitting-using-least-squares" data-toc-modified-id="Curve-fitting-using-least-squares-2.4"><span class="toc-item-num">2.4&nbsp;&nbsp;</span>Curve fitting using least squares</a></span></li></ul></li></ul></div><div class="tex2jax_ignore mathjax_ignore section" id="support-material">
+<h1>Support material<a class="headerlink" href="#support-material" title="Permalink to this headline">#</a></h1>
+<p><strong>Author</strong>: Emile Roux (<a class="reference external" href="mailto:emile&#46;roux&#37;&#52;&#48;univ-smb&#46;fr">emile<span>&#46;</span>roux<span>&#64;</span>univ-smb<span>&#46;</span>fr</a>), Ludovic Charleux</p>
+<p>..This notebook is ready for  <a class="reference external" href="https://damianavila.github.io/RISE/">RISE</a> Slideshow</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Setup</span>
 <span class="o">%</span><span class="k">matplotlib</span> inline
@@ -553,74 +562,127 @@ document.write(`
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <div class="section" id="general-scope">
 <h2>General Scope<a class="headerlink" href="#general-scope" title="Permalink to this headline">#</a></h2>
-<p>Optimization is a field of mathematics that is widely used in the engineering sciences.
-In this notebook we will present the relevance of optimization in the design process. Then we will see how to formulate and solve an optimization problem.</p>
-<div class="section" id="the-design-process">
-<h3>The design process<a class="headerlink" href="#the-design-process" title="Permalink to this headline">#</a></h3>
-<p>Optimization can help to improve a design process.
-The conventional approach, described below, consists of a series of trial and error steps until a design that meets the specifications is obtained. This approach, if it involves prototyping, can be very time consuming and resource intensive.</p>
-<p><img alt="" src="../../_images/fig_manual_design.png" /></p>
-<p><img alt="" src="../../_images/fig_optim_design.png" /></p>
-<p>{citep:ps}’mdobook2022’</p>
-</div>
+<p>Optimization is the process of finding the best solution to a problem under a set of constraints. It is a fundamental concept in many fields, including mathematics, engineering, economics, and computer science. Optimization plays a critical role in various applications, including product design, scheduling, logistics, finance, and data analysis.</p>
+<p>The goal of optimization is to find the optimal value of a function, which is a measure of the objective of the problem. The objective function can be either to maximize or minimize a certain quantity, depending on the nature of the problem. The optimal solution is the set of values of the decision variables that maximizes or minimizes the objective function while satisfying the constraints.</p>
 <div class="section" id="optimization-probleme-formulation">
 <h3>Optimization probleme formulation<a class="headerlink" href="#optimization-probleme-formulation" title="Permalink to this headline">#</a></h3>
+<p>The formulation of an optimization problem (minimization or maximization) goes through the following steps:</p>
+<ul class="simple">
+<li><p>Objective: The goal to be achieved by optimization.</p></li>
+<li><p>Variables: The elements that can be adjusted to achieve the objective.</p></li>
+<li><p>Constraints: The limits or rules that must be respected during optimization.</p></li>
+<li><p>Objective function: The mathematical function that must be optimized to achieve the objective.</p></li>
+<li><p>Resolution method: The technique used to find the best possible solution taking into account the objective, variables, constraints, and the objective function.</p></li>
+</ul>
+<div class="tip admonition">
+<p class="admonition-title">Example</p>
+<p>The Traveling Salesman Optimization Problem:</p>
+<ul class="simple">
+<li><p>Objective: Minimize the total distance traveled by a salesman visiting a set of cities and returning to the starting point.</p></li>
+<li><p>Variables: Binary variables representing whether a path between two cities is taken or not.</p></li>
+<li><p>Constraints: Each city must be visited exactly once (except the starting and ending city).</p></li>
+<li><p>Objective function: A function that calculates the total distance traveled based on the binary variables representing the chosen paths.</p></li>
+<li><p>Resolution method: Combinatoir optimization methode</p></li>
+</ul>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Example</p>
+<p>The mechanical design optimization problem of a structural part:</p>
+<ul class="simple">
+<li><p>Objective: Maximize the strength of the structural part while minimizing its weight.</p></li>
+<li><p>Variables:Section, dimensions of the part.</p></li>
+<li><p>Constraints:</p>
+<ul>
+<li><p>Stress constraints to ensure that the part can withstand the applied loads without failure.</p></li>
+<li><p>Manufacturing constraints such as minimum feature sizes and wall thicknesses.</p></li>
+</ul>
+</li>
+<li><p>Objective function: A function that calculates the strength of the part based on the chosen design variables and the applied loads, while taking into account the weight of the part.</p></li>
+<li><p>Resolution method: Gradient base optimisation methode that include constraint if necessary.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="exemple-of-the-design-process">
+<h3>Exemple of the design process<a class="headerlink" href="#exemple-of-the-design-process" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>The conventional approach, described below, consists of a series of trial and error steps until a design that meets the specifications is obtained.</p></li>
+</ul>
+<p>This approach, if it involves prototyping, can be very time consuming and resource intensive.</p>
+<p><img alt="" src="../../_images/fig_manual_design.png" /></p>
+<ul class="simple">
+<li><p>Automatique optimization can help to improve a design process.</p></li>
+</ul>
+<p>The trial and error phase is replaced by an automatic phase: performance evaluation (cost function) combine with design modification.</p>
+<p><img alt="" src="../../_images/fig_optim_design.png" /></p>
+<p>This automation allows to save time in the development process.</p>
+<p>But it has a counterpart, it is necessary upstream to formulate the optimization problem and to be able to evaluate automatically a possible disgne.</p>
+<p>{citep:ps}’mdobook2022’</p>
+</div>
 </div>
 <div class="section" id="mathematical-formulation">
-<h3>Mathematical formulation<a class="headerlink" href="#mathematical-formulation" title="Permalink to this headline">#</a></h3>
-</div>
-</div>
+<h2>Mathematical formulation<a class="headerlink" href="#mathematical-formulation" title="Permalink to this headline">#</a></h2>
 <div class="section" id="scope">
-<h2>Scope<a class="headerlink" href="#scope" title="Permalink to this headline">#</a></h2>
+<h3>Scope<a class="headerlink" href="#scope" title="Permalink to this headline">#</a></h3>
 <p>Mathematical optimization aims at solving various kinds of problems by minimizing a function of the form:</p>
 <div class="math notranslate nohighlight">
 \[
 f(X) = e
 \]</div>
-<p>Where <span class="math notranslate nohighlight">\(f\)</span> if the <strong>cost function</strong>, <span class="math notranslate nohighlight">\(X\)</span> is a <span class="math notranslate nohighlight">\(N\)</span> dimensional vector of parameters and <span class="math notranslate nohighlight">\(e \in \mathscr R\)</span>. More informations about the underlying theory, the nature of the solution(s) and practical considerations can be found:</p>
+<p>Where <span class="math notranslate nohighlight">\(f\)</span> if the <strong>cost function</strong>, <span class="math notranslate nohighlight">\(X\)</span> is a <span class="math notranslate nohighlight">\(N\)</span> dimensional vector of parameters and <span class="math notranslate nohighlight">\(e \in \mathscr R\)</span>.</p>
+<p>More informations about the underlying theory, the nature of the solution(s) and practical considerations can be found:</p>
 <ul class="simple">
 <li><p>On <a class="reference external" href="https://en.wikipedia.org/wiki/Mathematical_optimization">Wikipedia</a>,</p></li>
 <li><p>On (excellent) <a class="reference external" href="http://www.scipy-lectures.org/advanced/mathematical_optimization/">Scipy lectures</a>.</p></li>
 </ul>
 </div>
 <div class="section" id="solving">
-<h2>Solving<a class="headerlink" href="#solving" title="Permalink to this headline">#</a></h2>
+<h3>Solving<a class="headerlink" href="#solving" title="Permalink to this headline">#</a></h3>
 <p><em>Scipy</em> offers multiple approaches in order to solve optimization problems in its sub package <em>optimize</em></p>
+</div>
 <div class="section" id="general-purpose-approach">
 <h3>General purpose approach<a class="headerlink" href="#general-purpose-approach" title="Permalink to this headline">#</a></h3>
 <p><a class="reference external" href="http://docs.scipy.org/doc/scipy/reference/tutorial/optimize.html#unconstrained-minimization-of-multivariate-scalar-functions-minimize">scipy.optimize.minimize</a> allows one to use multiple general purpose optimization algorithms.</p>
+<p>Below a basic exemple is presented :</p>
+<ul class="simple">
+<li><p>Objective: Finde the mimimun au a finction <span class="math notranslate nohighlight">\(f\)</span>.</p></li>
+<li><p>Variables: <span class="math notranslate nohighlight">\(X\)</span>.</p></li>
+<li><p>Constraints: Nonz.</p></li>
+<li><p>Objective function: <span class="math notranslate nohighlight">\(f(X) = \sum_{i}^{} X_i\)</span>.</p></li>
+<li><p>Resolution method: Neder-mead methode (local minmum finding, an initial guess is mandatory).</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">optimize</span>
 
-<span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
-<span class="w">  </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">  Cost function.</span>
-<span class="sd">  &quot;&quot;&quot;</span>  
-  <span class="k">return</span> <span class="p">(</span><span class="n">X</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
 
-<span class="n">X0</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.</span><span class="p">,</span><span class="mf">1.</span><span class="p">]</span> <span class="c1"># Initial guess</span>
-<span class="n">sol</span> <span class="o">=</span> <span class="n">optimize</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">X0</span><span class="p">,</span> <span class="n">method</span> <span class="o">=</span> <span class="s2">&quot;nelder-mead&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Cost function.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="p">((</span><span class="n">X</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
+
+<span class="n">X0</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]</span>  <span class="c1"># Initial guess</span>
+<span class="n">sol</span> <span class="o">=</span> <span class="n">optimize</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">X0</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;nelder-mead&quot;</span><span class="p">)</span>
 <span class="n">X</span> <span class="o">=</span> <span class="n">sol</span><span class="o">.</span><span class="n">x</span>
-<span class="nb">print</span> <span class="s2">&quot;Solution: &quot;</span><span class="p">,</span> <span class="n">X</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Solution: &quot;</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span>  <span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">line</span> <span class="mi">12</span>
-    <span class="nb">print</span> <span class="s2">&quot;Solution: &quot;</span><span class="p">,</span> <span class="n">X</span>
-          <span class="o">^</span>
-<span class="ne">SyntaxError</span>: Missing parentheses in call to &#39;print&#39;. Did you mean print(&quot;Solution: &quot;, X)?
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Solution:  [1.00002112 1.00003894]
 </pre></div>
 </div>
 </div>
 </div>
 </div>
-<div class="section" id="curve-fitting-using-least-squares">
-<h3>Curve fitting using least squares<a class="headerlink" href="#curve-fitting-using-least-squares" title="Permalink to this headline">#</a></h3>
+</div>
+<div class="section" id="specif-case-of-curve-fitting-using-least-squares">
+<h2>Specif case of curve fitting using least squares<a class="headerlink" href="#specif-case-of-curve-fitting-using-least-squares" title="Permalink to this headline">#</a></h2>
 <p>In order to perform curve fitting in a more convenient way, <a class="reference external" href="http://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.curve_fit.html#scipy.optimize.curve_fit">scipy.optimize.curve_fit</a> can be used.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -650,9 +712,11 @@ f(X) = e
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../../_images/dbc96860ff5055bf41b4f483bc818d93347a18a443c9476c2b06ca80889ab7b9.png" src="../../_images/dbc96860ff5055bf41b4f483bc818d93347a18a443c9476c2b06ca80889ab7b9.png" />
 </div>
 </div>
-</div>
+<span class="target" id="id1"></span></div>
 </div>
 
     <script type="text/x-thebe-config">
@@ -723,17 +787,17 @@ f(X) = e
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#general-scope">General Scope</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-design-process">The design process</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#optimization-probleme-formulation">Optimization probleme formulation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematical-formulation">Mathematical formulation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exemple-of-the-design-process">Exemple of the design process</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scope">Scope</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solving">Solving</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematical-formulation">Mathematical formulation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scope">Scope</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solving">Solving</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#general-purpose-approach">General purpose approach</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#curve-fitting-using-least-squares">Curve fitting using least squares</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#specif-case-of-curve-fitting-using-least-squares">Specif case of curve fitting using least squares</a></li>
 </ul>
   </nav></div>
 

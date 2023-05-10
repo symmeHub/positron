@@ -214,14 +214,19 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Optimization</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../course/optimization_basics.html">Optimization</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ressources.html">Ressources</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../exercises/exercises.html">Exercices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../course/optimization_basics.html">Support material</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="ressources.html">Ressources</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="interactive_optimization.html">Interactive optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="river_crossing_and_more.html">Crossing a river</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../exercises/rosenbrock_and_curve_fiting.html">Rosenbrock function and Curve fiting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../exercises/bridge_optimization.html">Optimizing a bridge structure</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Machine Learning</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../machine_learning/support_material.html">Support material</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../machine_learning/exercises/exercises.html">Exercices</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../machine_learning/exercises/exercises.html">Exercices</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../machine_learning/exercises/tutorials/classification_demo.html">Supervised learning with PyTorch: a toy example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../machine_learning/exercises/tutorials/genetic_snake.html">Reinforcement learning on snake with a genetic neural network</a></li>
 </ul>
@@ -503,17 +508,13 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Cost functions</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#himmelblau-cost-function">Himmelblau cost function</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gradiant-based-methode">Gradiant based methode</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#down-hill-methode">Down hill methode</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#down-hill-methode-with-linear-search">Down hill methode with linear search</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#gradiant-based-methode">Gradiant based methode</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#down-hill-methode">Down hill methode</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#down-hill-methode-with-linear-search">Down hill methode with linear search</a></li>
 </ul>
-</li>
-</ul>
-
             </nav>
         </div>
     </div>
@@ -524,8 +525,20 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <h1>Table of Contents<span class="tocSkip"></span></h1>
-<div class="toc"><ul class="toc-item"><li><span><a href="#Cost-functions" data-toc-modified-id="Cost-functions-1"><span class="toc-item-num">1&nbsp;&nbsp;</span>Cost functions</a></span><ul class="toc-item"><li><span><a href="#Himmelblau-cost-function" data-toc-modified-id="Himmelblau-cost-function-1.1"><span class="toc-item-num">1.1&nbsp;&nbsp;</span>Himmelblau cost function</a></span></li></ul></li><li><span><a href="#Gradiant-based-methode" data-toc-modified-id="Gradiant-based-methode-2"><span class="toc-item-num">2&nbsp;&nbsp;</span>Gradiant based methode</a></span><ul class="toc-item"><li><span><a href="#Down-hill-methode" data-toc-modified-id="Down-hill-methode-2.1"><span class="toc-item-num">2.1&nbsp;&nbsp;</span>Down hill methode</a></span></li><li><span><a href="#Down-hill-methode-with-linear-search" data-toc-modified-id="Down-hill-methode-with-linear-search-2.2"><span class="toc-item-num">2.2&nbsp;&nbsp;</span>Down hill methode with linear search</a></span></li></ul></li></ul></div><div class="cell docutils container">
+  <div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39;&lt;h2&gt;Table of Contents&lt;span class=&quot;tocSkip&quot;&gt;&lt;/span&gt;&lt;/h2&gt;</span>
+<span class="sd">&lt;div class=&quot;toc&quot;&gt;&lt;ul class=&quot;toc-item&quot;&gt;&lt;li&gt;&lt;span&gt;&lt;a href=&quot;#Cost-functions&quot; data-toc-modified-id=&quot;Cost-functions-1&quot;&gt;&lt;span class=&quot;toc-item-num&quot;&gt;1&amp;nbsp;&amp;nbsp;&lt;/span&gt;Cost functions&lt;/a&gt;&lt;/span&gt;&lt;ul class=&quot;toc-item&quot;&gt;&lt;li&gt;&lt;span&gt;&lt;a href=&quot;#Himmelblau-cost-function&quot; data-toc-modified-id=&quot;Himmelblau-cost-function-1.1&quot;&gt;&lt;span class=&quot;toc-item-num&quot;&gt;1.1&amp;nbsp;&amp;nbsp;&lt;/span&gt;Himmelblau cost function&lt;/a&gt;&lt;/span&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;li&gt;&lt;span&gt;&lt;a href=&quot;#Gradiant-based-methode&quot; data-toc-modified-id=&quot;Gradiant-based-methode-2&quot;&gt;&lt;span class=&quot;toc-item-num&quot;&gt;2&amp;nbsp;&amp;nbsp;&lt;/span&gt;Gradiant based methode&lt;/a&gt;&lt;/span&gt;&lt;ul class=&quot;toc-item&quot;&gt;&lt;li&gt;&lt;span&gt;&lt;a href=&quot;#Down-hill-methode&quot; data-toc-modified-id=&quot;Down-hill-methode-2.1&quot;&gt;&lt;span class=&quot;toc-item-num&quot;&gt;2.1&amp;nbsp;&amp;nbsp;&lt;/span&gt;Down hill methode&lt;/a&gt;&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span&gt;&lt;a href=&quot;#Down-hill-methode-with-linear-search&quot; data-toc-modified-id=&quot;Down-hill-methode-with-linear-search-2.2&quot;&gt;&lt;span class=&quot;toc-item-num&quot;&gt;2.2&amp;nbsp;&amp;nbsp;&lt;/span&gt;Down hill methode with linear search&lt;/a&gt;&lt;/span&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&#39;&#39;&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;&lt;h2&gt;Table of Contents&lt;span class=&quot;tocSkip&quot;&gt;&lt;/span&gt;&lt;/h2&gt;\n&lt;div class=&quot;toc&quot;&gt;&lt;ul class=&quot;toc-item&quot;&gt;&lt;li&gt;&lt;span&gt;&lt;a href=&quot;#Cost-functions&quot; data-toc-modified-id=&quot;Cost-functions-1&quot;&gt;&lt;span class=&quot;toc-item-num&quot;&gt;1&amp;nbsp;&amp;nbsp;&lt;/span&gt;Cost functions&lt;/a&gt;&lt;/span&gt;&lt;ul class=&quot;toc-item&quot;&gt;&lt;li&gt;&lt;span&gt;&lt;a href=&quot;#Himmelblau-cost-function&quot; data-toc-modified-id=&quot;Himmelblau-cost-function-1.1&quot;&gt;&lt;span class=&quot;toc-item-num&quot;&gt;1.1&amp;nbsp;&amp;nbsp;&lt;/span&gt;Himmelblau cost function&lt;/a&gt;&lt;/span&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;li&gt;&lt;span&gt;&lt;a href=&quot;#Gradiant-based-methode&quot; data-toc-modified-id=&quot;Gradiant-based-methode-2&quot;&gt;&lt;span class=&quot;toc-item-num&quot;&gt;2&amp;nbsp;&amp;nbsp;&lt;/span&gt;Gradiant based methode&lt;/a&gt;&lt;/span&gt;&lt;ul class=&quot;toc-item&quot;&gt;&lt;li&gt;&lt;span&gt;&lt;a href=&quot;#Down-hill-methode&quot; data-toc-modified-id=&quot;Down-hill-methode-2.1&quot;&gt;&lt;span class=&quot;toc-item-num&quot;&gt;2.1&amp;nbsp;&amp;nbsp;&lt;/span&gt;Down hill methode&lt;/a&gt;&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span&gt;&lt;a href=&quot;#Down-hill-methode-with-linear-search&quot; data-toc-modified-id=&quot;Down-hill-methode-with-linear-search-2.2&quot;&gt;&lt;span class=&quot;toc-item-num&quot;&gt;2.2&amp;nbsp;&amp;nbsp;&lt;/span&gt;Down hill methode with linear search&lt;/a&gt;&lt;/span&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> notebook
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
@@ -538,7 +551,7 @@ document.write(`
 </div>
 </div>
 </div>
-<div class="section" id="cost-functions">
+<div class="tex2jax_ignore mathjax_ignore section" id="cost-functions">
 <h1>Cost functions<a class="headerlink" href="#cost-functions" title="Permalink to this headline">#</a></h1>
 <div class="section" id="himmelblau-cost-function">
 <h2>Himmelblau cost function<a class="headerlink" href="#himmelblau-cost-function" title="Permalink to this headline">#</a></h2>
@@ -630,7 +643,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span>  <span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">line</span> <span class="mi">8</span>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span>  <span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">line</span> <span class="mi">8</span>
     <span class="n">f</span> <span class="o">=</span>
         <span class="o">^</span>
 <span class="ne">SyntaxError</span>: invalid syntax
@@ -674,11 +687,10 @@ document.write(`
 </div>
 </div>
 </div>
-</div>
 <div class="section" id="gradiant-based-methode">
-<h1>Gradiant based methode<a class="headerlink" href="#gradiant-based-methode" title="Permalink to this headline">#</a></h1>
+<h2>Gradiant based methode<a class="headerlink" href="#gradiant-based-methode" title="Permalink to this headline">#</a></h2>
 <div class="section" id="down-hill-methode">
-<h2>Down hill methode<a class="headerlink" href="#down-hill-methode" title="Permalink to this headline">#</a></h2>
+<h3>Down hill methode<a class="headerlink" href="#down-hill-methode" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">grad_P</span><span class="p">(</span><span class="n">Pi</span><span class="p">):</span>
@@ -712,7 +724,7 @@ document.write(`
 </div>
 </div>
 <div class="section" id="down-hill-methode-with-linear-search">
-<h2>Down hill methode with linear search<a class="headerlink" href="#down-hill-methode-with-linear-search" title="Permalink to this headline">#</a></h2>
+<h3>Down hill methode with linear search<a class="headerlink" href="#down-hill-methode-with-linear-search" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">optim_grad_lin_search</span><span class="p">():</span>
@@ -779,8 +791,8 @@ document.write(`
 <span class="k">def</span> <span class="nf">run_step</span><span class="p">():</span>
     <span class="k">global</span> <span class="n">P</span><span class="p">,</span> <span class="n">counter</span><span class="p">,</span> <span class="n">mask</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">V_down_hill_dir</span>
 
-    <span class="c1"># optim_grad()</span>
-    <span class="n">optim_grad_lin_search</span><span class="p">()</span>
+    <span class="n">optim_grad</span><span class="p">()</span>
+    <span class="c1"># optim_grad_lin_search()</span>
 
     <span class="n">mask</span> <span class="o">=</span> <span class="n">maj_mask_all</span><span class="p">(</span><span class="n">mask</span><span class="p">,</span> <span class="n">P</span><span class="p">)</span>
 
@@ -788,7 +800,7 @@ document.write(`
         <span class="n">tp</span><span class="o">.</span><span class="n">remove</span><span class="p">()</span>
     <span class="n">v</span><span class="o">.</span><span class="n">remove</span><span class="p">()</span>
 
-    <span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">contourf</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">mask</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cm</span><span class="o">.</span><span class="n">gray</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mf">2.3</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
+    <span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">contourf</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">mask</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cm</span><span class="o">.</span><span class="n">gray</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mf">2.3</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.95</span><span class="p">)</span>
     <span class="n">v</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">quiver</span><span class="p">(</span>
         <span class="n">P</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span>
         <span class="n">P</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span>
@@ -805,6 +817,7 @@ document.write(`
 
     <span class="c1"># CostOverIt.set_ydata(cost(P.T))</span>
 </pre></div>
+</div>
 </div>
 </div>
 </div>
@@ -860,17 +873,13 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Cost functions</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#himmelblau-cost-function">Himmelblau cost function</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gradiant-based-methode">Gradiant based methode</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#down-hill-methode">Down hill methode</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#down-hill-methode-with-linear-search">Down hill methode with linear search</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#gradiant-based-methode">Gradiant based methode</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#down-hill-methode">Down hill methode</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#down-hill-methode-with-linear-search">Down hill methode with linear search</a></li>
 </ul>
-</li>
-</ul>
-
   </nav></div>
 
 </div></div>

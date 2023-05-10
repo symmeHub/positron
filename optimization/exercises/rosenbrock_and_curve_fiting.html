@@ -8,7 +8,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>&lt;no title&gt; &#8212; POSITRON: PythOn for Science In The Reblochon cOuNtry</title>
+    <title>Rosenbrock function and Curve fiting &#8212; POSITRON: PythOn for Science In The Reblochon cOuNtry</title>
   
   
   
@@ -61,11 +61,13 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'optimization/exercises/exercises';</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'optimization/exercises/rosenbrock_and_curve_fiting';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Rosenbrock function and Curve fiting" href="rosenbrock_and_curve_fiting.html" />
-    <link rel="prev" title="Crossing a river" href="../ressources/river_crossing_and_more.html" />
+    <link rel="next" title="Optimizing a bridge structure" href="bridge_optimization.html" />
+    <link rel="prev" title="&lt;no title&gt;" href="exercises.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="None"/>
   </head>
@@ -215,13 +217,13 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Optimization</span></p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../course/optimization_basics.html">Support material</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../ressources/ressources.html">Ressources</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../ressources/river_crossing_and_more.html">Crossing a river</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="rosenbrock_and_curve_fiting.html">Rosenbrock function and Curve fiting</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Rosenbrock function and Curve fiting</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bridge_optimization.html">Optimizing a bridge structure</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Machine Learning</span></p>
@@ -278,6 +280,73 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/symmeHub/positron/main?urlpath=tree/book/optimization/exercises/rosenbrock_and_curve_fiting.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onBinder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://gpu-epu.univ-savoie.fr:8000/hub/user-redirect/git-pull?repo=https%3A//github.com/symmeHub/positron&urlpath=tree/positron/book/optimization/exercises/rosenbrock_and_curve_fiting.ipynb&branch=main" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onJupyterHub"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../../_static/images/logo_jupyterhub.svg">
+  </span>
+<span class="btn__text-container">JupyterHub</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/symmeHub/positron/blob/main/book/optimization/exercises/rosenbrock_and_curve_fiting.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
 <div class="dropdown dropdown-source-buttons">
   <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
     <i class="fab fa-github"></i>
@@ -303,7 +372,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/symmeHub/positron/edit/main/book/optimization/exercises/exercises.md" target="_blank"
+      <li><a href="https://github.com/symmeHub/positron/edit/main/book/optimization/exercises/rosenbrock_and_curve_fiting.ipynb" target="_blank"
    class="btn btn-sm btn-source-edit-button dropdown-item"
    title="Suggest edit"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -320,7 +389,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/symmeHub/positron/issues/new?title=Issue%20on%20page%20%2Foptimization/exercises/exercises.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/symmeHub/positron/issues/new?title=Issue%20on%20page%20%2Foptimization/exercises/rosenbrock_and_curve_fiting.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -350,7 +419,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../../_sources/optimization/exercises/exercises.md" target="_blank"
+      <li><a href="../../_sources/optimization/exercises/rosenbrock_and_curve_fiting.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -360,7 +429,7 @@ const thebe_selector_output = ".output, .cell_output"
 <span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="btn__text-container">.md</span>
+<span class="btn__text-container">.ipynb</span>
 </a>
 </li>
       
@@ -432,11 +501,26 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1><no title></h1>
+    <h1>Rosenbrock function and Curve fiting</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-rosenbrock-function">The Rosenbrock function</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#questions">Questions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curve-fitting">Curve fitting</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Questions</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -446,22 +530,72 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <p>Exercices</p>
-<p>In this section, we propose quick exercises that can typically be done in an hour and a half.</p>
-<ul class="simple">
-<li><p><a class="reference internal" href="rosenbrock_and_curve_fiting.html#optim-tutorial-rosen"><span class="std std-ref">Rosenbrock function and Curve fiting</span></a> (duration: 1.5 h): introductory exercise that proposes to implement :</p>
-<ul>
-<li><p>an optimization method to find the minimum of an analytical function (the rosenbrock function).</p></li>
-<li><p>a curve fitting method</p></li>
-</ul>
-</li>
-</ul>
-<p>Practical work</p>
-<p>In this section, we propose longer exercises that can be done without assistance, typically in 4 hours.</p>
-<ul class="simple">
-<li><p><a class="reference internal" href="bridge_optimization.html#optim-tutorial-bridge"><span class="std std-ref">Optimizing a bridge structure</span></a> (duration: 4 h): In this session, we will modelled a bridge structure using truss and optimize it using various criteria.</p></li>
-</ul>
-<div class="toctree-wrapper compound">
+  <div class="tex2jax_ignore mathjax_ignore section" id="rosenbrock-function-and-curve-fiting">
+<span id="optim-tutorial-rosen"></span><h1>Rosenbrock function and Curve fiting<a class="headerlink" href="#rosenbrock-function-and-curve-fiting" title="Permalink to this headline">#</a></h1>
+<div class="section" id="the-rosenbrock-function">
+<h2>The Rosenbrock function<a class="headerlink" href="#the-rosenbrock-function" title="Permalink to this headline">#</a></h2>
+<p>The <a class="reference external" href="https://fr.wikipedia.org/wiki/Fonction_de_Rosenbrock">Rosenbrock function</a> is a classical benchmark for optimization algorithms. It is defined by the following equation:</p>
+<div class="math notranslate nohighlight">
+\[
+f(x, y) = (1-x)^2 + 100 (y-x^2)^2
+\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+
+<span class="k">def</span> <span class="nf">Rosen</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Rosenbrock function</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">X</span>
+    <span class="k">return</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">x</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="mf">100.0</span> <span class="o">*</span> <span class="p">(</span><span class="n">y</span> <span class="o">-</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
+
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">X</span><span class="p">,</span> <span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">Z</span> <span class="o">=</span> <span class="n">Rosen</span><span class="p">((</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">))</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">clf</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">contourf</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">Z</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">Z</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;y&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/4be28a9e278b8ee24efddaa5cae31c7671d30a68b949ec5de8fdb6223b1d0b57.png" src="../../_images/4be28a9e278b8ee24efddaa5cae31c7671d30a68b949ec5de8fdb6223b1d0b57.png" />
+</div>
+</div>
+<div class="section" id="questions">
+<h3>Questions<a class="headerlink" href="#questions" title="Permalink to this headline">#</a></h3>
+<ol class="arabic simple">
+<li><p>Find the minimum of the function using brute force. Comment the accuracy and number of function evaluations.</p></li>
+<li><p>Same question with the simplex (Nelder-Mead) algorithm.</p></li>
+</ol>
+</div>
+</div>
+<div class="section" id="curve-fitting">
+<h2>Curve fitting<a class="headerlink" href="#curve-fitting" title="Permalink to this headline">#</a></h2>
+<div class="section" id="id1">
+<h3>Questions<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h3>
+<ol class="arabic simple">
+<li><p>Chose a mathematical function <span class="math notranslate nohighlight">\(y = f(x, a, b)\)</span> and code it.</p></li>
+<li><p>Chose target values of <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span> that you will try to find back using optimization.</p></li>
+<li><p>Evaluate it on a grid of <span class="math notranslate nohighlight">\(x\)</span> values.</p></li>
+<li><p>Add some noise to the result.</p></li>
+<li><p>Find back <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span> using <em>curve_fit</em></p></li>
+</ol>
+</div>
+</div>
 </div>
 
     <script type="text/x-thebe-config">
@@ -496,20 +630,20 @@ document.write(`
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../ressources/river_crossing_and_more.html"
+       href="exercises.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Crossing a river</p>
+        <p class="prev-next-title">&lt;no title&gt;</p>
       </div>
     </a>
     <a class="right-next"
-       href="rosenbrock_and_curve_fiting.html"
+       href="bridge_optimization.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Rosenbrock function and Curve fiting</p>
+        <p class="prev-next-title">Optimizing a bridge structure</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -522,6 +656,27 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-rosenbrock-function">The Rosenbrock function</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#questions">Questions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#curve-fitting">Curve fitting</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Questions</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
