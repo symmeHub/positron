@@ -46,6 +46,6 @@ open("docker-compose.yml", "w").write(dct)
 # ENV FILE CREATION
 open("../.env", "w").write(f"COMPOSE_PROJECT_NAME={user_name}_{hash_value}")
 
-# CUSTOM CONDA ENV CREATION
-if not os.path.isfile("my_environment.yml"):
-    shutil.copy("my_environment_example.yml", "my_environment.yml")
+# # CUSTOM CONDA ENV CREATION
+# if not os.path.isfile("my_environment.yml"):
+#     shutil.copy("my_environment_example.yml", "my_environment.yml")

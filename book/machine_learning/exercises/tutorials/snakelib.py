@@ -6,9 +6,56 @@ from matplotlib import animation
 
 class FastSnake:
     """
-    A fast numpy based Snake
-    """
+    A fast numpy based Snake game.
 
+    Parameters
+    ----------
+    Nrow : int
+        The number of rows in the game grid.
+    Ncol : int
+        The number of columns in the game grid.
+    snake_color : tuple of int, optional
+        The RGB color tuple for the snake's body. Default is (0, 0, 0).
+    snake_head_color : tuple of int, optional
+        The RGB color tuple for the snake's head. Default is (128, 128, 128).
+    forbidden_color : tuple of int, optional
+        The RGB color tuple for the forbidden area. Default is (255, 0, 0).
+    fruit_color : tuple of int, optional
+        The RGB color tuple for the fruit. Default is (0, 255, 0).
+    void_color : tuple of int, optional
+        The RGB color tuple for the empty space in the game grid. Default is (255, 255, 255).
+
+    Attributes
+    ----------
+    Nrow : int
+        The number of rows in the game grid.
+    Ncol : int
+        The number of columns in the game grid.
+    Ncell : int
+        The total number of cells in the game grid.
+    all_positions : numpy.ndarray
+        An array containing all possible cell positions in the game grid.
+    grid_values : numpy.ndarray
+        A 2D array representing the game grid.
+    forbidden_positions : numpy.ndarray
+        An array containing the positions of the forbidden areas in the game grid.
+    _grid : numpy.ndarray
+        A 3D array representing the game grid with RGB colors.
+    authorized_positions : numpy.ndarray
+        An array containing the positions of the authorized areas in the game grid.
+    snake_color : tuple of int
+        The RGB color tuple for the snake's body.
+    snake_head_color : tuple of int
+        The RGB color tuple for the snake's head.
+    forbidden_color : tuple of int
+        The RGB color tuple for the forbidden area.
+    fruit_color : tuple of int
+        The RGB color tuple for the fruit.
+    void_color : tuple of int
+        The RGB color tuple for the empty space in the game grid.
+
+    """
+    
     def __init__(
         self,
         Nrow,
@@ -42,25 +89,55 @@ class FastSnake:
         self.reset()
 
     def reset(self):
+        """
+        Resets the game grid to its initial state by initializing snake and fruit positions, and resetting the score and status.
+
+        Returns
+        -------
+        None
+        """
+        # Get the attributes of the game grid
         all_positions = self.all_positions
         Ncell = self.Ncell
         grid_values = self.grid_values
+
+        # Initialize the snake's positions and activation status
         snake_positions = np.zeros_like(all_positions)
         snake_active = np.zeros(Ncell, dtype=np.bool)
-        snake_active[:2] = True
-        snake_positions[:2] = grid_values[1:3, 1]
+        snake_active[:2] = True  # Set the first two positions as active
+        snake_positions[:2] = grid_values[1:3, 1]  # Set the initial snake position
         self.snake_positions = snake_positions
         self.snake_active = snake_active
+
+        # Set the initial fruit position and reset the score and status
         self.set_fruit()
         self.status = 0
         self.score = 0
 
+
     def get_snake_active_positions(self):
+        """
+        Returns the positions of the active (alive) snake.
+        
+        Returns
+        -------
+        ndarray
+            A 1D numpy array of the active snake positions.
+        """
         return self.snake_positions[self.snake_active]
 
+    # Define a property for the active snake positions
     snake_active_positions = property(get_snake_active_positions)
 
     def get_free_positions(self):
+        """
+        Returns the positions on the game grid that are not forbidden or occupied by the active snake.
+        
+        Returns
+        -------
+        ndarray
+            A 1D numpy array of the free positions on the game grid.
+        """
         all_positions = self.all_positions
         forbidden_positions = self.forbidden_positions
         snake_positions = self.snake_active_positions
@@ -69,16 +146,37 @@ class FastSnake:
         )
         return free_positions
 
+    # Define a property for the free positions on the game grid
     free_positions = property(get_free_positions)
 
     def set_fruit(self):
+        """
+        Sets the position of a new fruit on the game grid, if there are any free positions available.
+        If there are no free positions available, sets the game status to 1 (win).
+        
+        Returns
+        -------
+        None
+        """
         fp = self.free_positions
         if len(fp) != 0:
             self.fruit_position = np.random.choice(fp)
         else:
             self.status = 1
 
+
     def get_grid(self):
+        """
+        Get the numpy array that represents the current state of the game grid.
+        This method updates the grid according to the current positions of the snake, forbidden cells, and the fruit.
+
+        Returns:
+        -------
+        numpy.ndarray:
+            The numpy array that represents the current state of the game grid.
+
+        """
+        
         Nrow = self.Nrow
         Ncol = self.Ncol
         grid = self._grid
@@ -382,6 +480,14 @@ def show_gui(snake, ax):
     title = ax.set_title(f"Score = {snake.score}, PLAY ")
     im = ax.imshow(snake.grid, interpolation="nearest", animated=True)
     box = widgets.Box([left_widget, right_widget, up_widget, reset_widget])
+    # Add a standalone legend  gray box = head, black box = body, red box = wall, green box = fruit
+    entries = {"Head": "gray", "Body": "black", "Wall": "red", "Fruit": "green"}
+    
+    f = lambda m,c: ax.plot([],[],marker=m, color=c, ls="none")[0]
+    handles = [f("s", val) for key, val in entries.items()]
+    labels = [key for key, val in entries.items()]
+    ax.legend(handles, labels, loc=(1.1,0), framealpha=1, frameon=False)
+
     return box
 
 
