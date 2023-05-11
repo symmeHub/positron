@@ -55,7 +55,7 @@ class FastSnake:
         The RGB color tuple for the empty space in the game grid.
 
     """
-    
+
     def __init__(
         self,
         Nrow,
@@ -114,11 +114,10 @@ class FastSnake:
         self.status = 0
         self.score = 0
 
-
     def get_snake_active_positions(self):
         """
         Returns the positions of the active (alive) snake.
-        
+
         Returns
         -------
         ndarray
@@ -132,7 +131,7 @@ class FastSnake:
     def get_free_positions(self):
         """
         Returns the positions on the game grid that are not forbidden or occupied by the active snake.
-        
+
         Returns
         -------
         ndarray
@@ -153,7 +152,7 @@ class FastSnake:
         """
         Sets the position of a new fruit on the game grid, if there are any free positions available.
         If there are no free positions available, sets the game status to 1 (win).
-        
+
         Returns
         -------
         None
@@ -163,7 +162,6 @@ class FastSnake:
             self.fruit_position = np.random.choice(fp)
         else:
             self.status = 1
-
 
     def get_grid(self):
         """
@@ -176,7 +174,7 @@ class FastSnake:
             The numpy array that represents the current state of the game grid.
 
         """
-        
+
         Nrow = self.Nrow
         Ncol = self.Ncol
         grid = self._grid
@@ -221,15 +219,14 @@ class FastSnake:
         # get forbidden positions and snake positions
         forbidden_positions = self.forbidden_positions
         snake_positions = self.snake_active_positions
-        
+
         # check for self-collision
         if np.unique(snake_positions).size != snake_positions.size:
             self.status = -1
-        
+
         # check for collision with forbidden positions
         if np.intersect1d(forbidden_positions, snake_positions).size != 0:
             self.status = -2
-
 
     def play(self, direction):
         """
@@ -285,7 +282,6 @@ class FastSnake:
             # Return the updated game status.
             return self.status
 
-
     def turn(self, turn):
         """
         Turn the snake in a new direction.
@@ -305,7 +301,6 @@ class FastSnake:
         abs_direction = (current_direction + turn) % 4
         # Call the play method with the new direction
         self.play(abs_direction)
-
 
     def get_current_direction(self):
         """
@@ -335,7 +330,6 @@ class FastSnake:
         else:
             direction = -1
         return direction
-
 
     def get_fruit_relative_directions(self):
         """
@@ -372,18 +366,18 @@ class FastSnake:
     def get_neighbors_pos(self):
         """
         Returns the positions of the three neighboring cells relative to the snake's head position.
-        
+
         Returns:
             out (ndarray): A numpy array of shape (3,) containing the positions of the neighboring cells.
                 The left, front and right neighboring cells are respectively located at index 0, 1 and 2
                 of the returned array. Each position is represented by an integer value corresponding to
                 the cell index in the flattened game grid.
         """
-        
+
         Ncol = self.Ncol
         headpos = self.snake_active_positions[0]
         fdir = self.get_current_direction()
-        
+
         # Calculate positions of the three neighboring positions
         if fdir == 0:
             frontpos = headpos + 1
@@ -401,13 +395,12 @@ class FastSnake:
             frontpos = headpos + Ncol
             leftpos = headpos + 1
             rightpos = headpos - 1
-            
+
         return np.array([leftpos, frontpos, rightpos])
-        
-        
+
     def get_turn_neighbors(self):
         """
-        Get the state of the neighboring positions relatvely to snake head can turn to.
+        Get the state of the neighboring positions relatively to snake head can turn to.
         Elements index correspond to the following directions: [left, forward, right].
         Possible element value are:
             1.0 = fruit present
@@ -420,10 +413,10 @@ class FastSnake:
         snake_tail_positions = self.snake_active_positions[1:]
         tail_and_lava = np.union1d(snake_tail_positions, forbidden_positions)
         fruit_position = self.fruit_position
-        
+
         # Get the positions of the neighboring cells
         positions = self.get_neighbors_pos()
-        
+
         # Calculate the relative direction of fruit and forbidden positions for each neighboring position
         out = np.zeros(3)
         for i in range(3):
@@ -434,22 +427,20 @@ class FastSnake:
                 out[i] = -1
         return out
 
-
     def get_lidar(self):
         """
         Indicates the distance to the closest obstacle (lava or snake tail) in each direction (right, front and left) relatively to snake head.
         Returns:
             out (ndarray): A numpy array of shape (3,) representing the distance to the closest obstacle in each direction.
         """
+
         def _compute_distance(all_sidepos):
             for dist, sidepos in enumerate(all_sidepos):
                 if sidepos in tail_and_lava:
                     return dist
                 elif sidepos == fruit_position:
                     return self.Ncell
-                    
-        
-        
+
         Ncol = self.Ncol
         headpos = self.snake_active_positions[0]
         forbidden_positions = self.forbidden_positions
@@ -457,48 +448,77 @@ class FastSnake:
         tail_and_lava = np.union1d(snake_tail_positions, forbidden_positions)
         fruit_position = self.fruit_position
         fdir = self.get_current_direction()
-        
+
         # Calculate positions of the three neighboring positions
         if fdir == 0:
-            all_frontpos = np.arange(headpos + 1, ((headpos // self.Ncol + 1) * self.Ncol))
-            all_leftpos =  np.arange(headpos - Ncol, -1, -Ncol)
-            all_rightpos = np.arange(headpos + Ncol, self.Ncol**2, Ncol) 
+            all_frontpos = np.arange(
+                headpos + 1, ((headpos // self.Ncol + 1) * self.Ncol)
+            )
+            all_leftpos = np.arange(headpos - Ncol, -1, -Ncol)
+            all_rightpos = np.arange(headpos + Ncol, self.Ncol**2, Ncol)
         if fdir == 1:
-            all_frontpos =  np.arange(headpos - Ncol, -1, -Ncol)
-            all_leftpos =  np.arange(headpos - 1, (headpos // self.Ncol) * self.Ncol - 1, -1)
-            all_rightpos =  np.arange(headpos + 1, (headpos // self.Ncol + 1) * self.Ncol)
+            all_frontpos = np.arange(headpos - Ncol, -1, -Ncol)
+            all_leftpos = np.arange(
+                headpos - 1, (headpos // self.Ncol) * self.Ncol - 1, -1
+            )
+            all_rightpos = np.arange(
+                headpos + 1, (headpos // self.Ncol + 1) * self.Ncol
+            )
         if fdir == 2:
-            all_frontpos = np.arange(headpos - 1, (headpos // self.Ncol) * self.Ncol - 1, -1)
+            all_frontpos = np.arange(
+                headpos - 1, (headpos // self.Ncol) * self.Ncol - 1, -1
+            )
             all_leftpos = np.arange(headpos + Ncol, self.Ncol**2, Ncol)
             all_rightpos = np.arange(headpos - Ncol, -1, -Ncol)
         if fdir == 3:
             all_frontpos = np.arange(headpos + Ncol, self.Ncol**2, Ncol)
             all_leftpos = np.arange(headpos + 1, (headpos // self.Ncol + 1) * self.Ncol)
-            all_rightpos = np.arange(headpos - 1, (headpos // self.Ncol) * self.Ncol - 1, -1)
-            
+            all_rightpos = np.arange(
+                headpos - 1, (headpos // self.Ncol) * self.Ncol - 1, -1
+            )
+
         out = np.zeros(3)
-        
+
         out[0] = _compute_distance(all_rightpos)
         out[1] = _compute_distance(all_frontpos)
         out[2] = _compute_distance(all_leftpos)
 
-        
         return out
 
-
     def sensors(self, method="default"):
+        """
+        Returns sensor readings that an agent can use to make decisions based on the state of the game board.
+
+        Args:
+            method (str): The method to use for obtaining sensor readings. Default is "default".
+
+        Returns:
+            out (ndarray): An array of sensor readings.
+
+        """
         if method == "default":
+            # Use the default method to obtain sensor readings.
             out = np.zeros(5, dtype=np.float64)
-            out[:3] = self.get_turn_neighbors()
-            out[3:] = self.get_fruit_relative_directions()
-            return out
-        if method == "lidar":
-            out = np.zeros(5, dtype=np.float64)
-            out[:3] = self.get_lidar()
-            out[3:] = self.get_fruit_relative_directions()
+            out[:3] = self.get_turn_neighbors()  # Get the turn neighbors.
+            out[
+                3:
+            ] = (
+                self.get_fruit_relative_directions()
+            )  # Get the relative directions to the fruit.
             return out
 
-    def get_snake_metrics(self):    
+        if method == "lidar":
+            # Use the lidar method to obtain sensor readings.
+            out = np.zeros(5, dtype=np.float64)
+            out[:3] = self.get_lidar()  # Get the lidar readings.
+            out[
+                3:
+            ] = (
+                self.get_fruit_relative_directions()
+            )  # Get the relative directions to the fruit.
+            return out
+
+    def get_snake_metrics(self):
         """
         Returns the following metrics:
             - Snake length
@@ -508,7 +528,6 @@ class FastSnake:
         print(f"Snake length: {len(self.snake_active_positions)}")
         print(f"Snake head position: {self.snake_active_positions[0]}")
         print(f"Lidar: {self.get_lidar()}")
-
 
 
 def get_neighbors(pos, Nrow, Ncol):
@@ -575,7 +594,6 @@ def get_rank2_Moore_neighbors(pos, Ncol, Nrow):
 
 
 def show_gui(snake, ax, return_metrics=False):
-    
     # RELATIVE TURNS
 
     left_widget = widgets.Button(
@@ -626,7 +644,6 @@ def show_gui(snake, ax, return_metrics=False):
     reset_widget.on_click(lambda arg: reset_game())
 
     def update_fig():
-        
         im.set_array(snake.grid)
         status = snake.status
         if status == 0:
@@ -645,11 +662,11 @@ def show_gui(snake, ax, return_metrics=False):
     box = widgets.Box([left_widget, right_widget, up_widget, reset_widget])
     # Add a standalone legend  gray box = head, black box = body, red box = wall, green box = fruit
     entries = {"Head": "gray", "Body": "black", "Wall": "red", "Fruit": "green"}
-    
-    f = lambda m,c: ax.plot([],[],marker=m, color=c, ls="none")[0]
+
+    f = lambda m, c: ax.plot([], [], marker=m, color=c, ls="none")[0]
     handles = [f("s", val) for key, val in entries.items()]
     labels = [key for key, val in entries.items()]
-    ax.legend(handles, labels, loc=(1.1,0), framealpha=1, frameon=False)
+    ax.legend(handles, labels, loc=(1.1, 0), framealpha=1, frameon=False)
 
     return box
 
