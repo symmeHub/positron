@@ -331,6 +331,10 @@ class FastSnake:
             direction = -1
         return direction
 
+    def get_snake_direction_map(self):
+        snake_map = {0: "right", 1: "up", 2: "left", 3: "down"}
+        return snake_map[self.get_current_direction()]
+
     def get_fruit_relative_directions(self):
         """
         Calculate the relative directions of the fruit from the snake's head.
