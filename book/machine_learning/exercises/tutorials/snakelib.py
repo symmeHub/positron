@@ -88,10 +88,10 @@ class FastSnake:
         self.void_color = void_color
         self.reset()
 
-    def reset(self):
+    def reset(self, fix_seed=None):
         """
         Resets the game grid to its initial state by initializing snake and fruit positions, and resetting the score and status.
-
+        Optional parameter fix_seed (int) can be used to fix the random seed for the fruit position.
         Returns
         -------
         None
@@ -110,6 +110,9 @@ class FastSnake:
         self.snake_active = snake_active
 
         # Set the initial fruit position and reset the score and status
+        if fix_seed:
+            np.random.seed(fix_seed)
+
         self.set_fruit()
         self.status = 0
         self.score = 0
@@ -400,7 +403,7 @@ class FastSnake:
             leftpos = headpos + 1
             rightpos = headpos - 1
 
-        return np.array([leftpos, frontpos, rightpos])
+        return np.array([rightpos, frontpos, leftpos])
 
     def get_turn_neighbors(self):
         """
@@ -474,6 +477,7 @@ class FastSnake:
             )
             all_leftpos = np.arange(headpos + Ncol, self.Ncol**2, Ncol)
             all_rightpos = np.arange(headpos - Ncol, -1, -Ncol)
+
         if fdir == 3:
             all_frontpos = np.arange(headpos + Ncol, self.Ncol**2, Ncol)
             all_leftpos = np.arange(headpos + 1, (headpos // self.Ncol + 1) * self.Ncol)
@@ -486,6 +490,55 @@ class FastSnake:
         out[0] = _compute_distance(all_rightpos)
         out[1] = _compute_distance(all_frontpos)
         out[2] = _compute_distance(all_leftpos)
+
+        return out
+
+    def get_enhanched_lidar(self):
+        """
+        Indicates the distance to the closest obstacle (lava or snake tail) in each direction (right-back, right , front, left, left-back) relatively to snake head.
+        Returns:
+            out (ndarray): A numpy array of shape (5,) representing the distance to the closest obstacle in each direction.
+        """
+
+        def _compute_distance(all_sidepos):
+            for dist, sidepos in enumerate(all_sidepos):
+                if sidepos in tail_and_lava:
+                    return dist
+                elif sidepos == fruit_position:
+                    return self.Ncell
+
+        out = np.zeros(5)
+
+        Ncol = self.Ncol
+        headpos = self.snake_active_positions[0]
+        forbidden_positions = self.forbidden_positions
+        snake_tail_positions = self.snake_active_positions[1:]
+        tail_and_lava = np.union1d(snake_tail_positions, forbidden_positions)
+        fruit_position = self.fruit_position
+        fdir = self.get_current_direction()
+
+        # Calculate positions of the three neighboring positions
+        out[1:4] = self.get_lidar()
+
+        # Calculate positions of the two back neighboring positions
+        if fdir == 0:
+            all_back_leftpos = np.arange(headpos - Ncol - 1, -1, -Ncol - 1)
+            all_back_rightpos = np.arange(headpos + Ncol - 1, self.Ncol**2, Ncol - 1)
+
+        if fdir == 1:
+            all_back_rightpos = np.arange(headpos + Ncol + 1, self.Ncol**2, Ncol + 1)
+            all_back_leftpos = np.arange(headpos + Ncol - 1, self.Ncol**2, Ncol - 1)
+
+        if fdir == 2:
+            all_back_rightpos = np.arange(headpos - Ncol + 1, -1, -Ncol + 1)
+            all_back_leftpos = np.arange(headpos + Ncol + 1, self.Ncol**2, Ncol + 1)
+
+        if fdir == 3:
+            all_back_rightpos = np.arange(headpos - Ncol - 1, -1, -Ncol - 1)
+            all_back_leftpos = np.arange(headpos - Ncol + 1, -1, -Ncol + 1)
+
+        out[0] = _compute_distance(all_back_rightpos)
+        out[4] = _compute_distance(all_back_leftpos)
 
         return out
 
@@ -509,7 +562,6 @@ class FastSnake:
             ] = (
                 self.get_fruit_relative_directions()
             )  # Get the relative directions to the fruit.
-            return out
 
         if method == "lidar":
             # Use the lidar method to obtain sensor readings.
@@ -520,18 +572,42 @@ class FastSnake:
             ] = (
                 self.get_fruit_relative_directions()
             )  # Get the relative directions to the fruit.
-            return out
+        if method == "elidar":
+            out = np.zeros(7, dtype=np.float64)
+            out[:5] = self.get_enhanched_lidar()  # Get the lidar readings.
+            out[
+                -2:
+            ] = (
+                self.get_fruit_relative_directions()
+            )  # Get the relative directions to the fruit.
+            # print(f"Careful sensor readings array is of size {out.shape[0]}")
+
+        return out
 
     def get_snake_metrics(self):
         """
         Returns the following metrics:
             - Snake length
             - Snake head position
-            - Lidar values
+            - n-1 neighboring status
+            - Lidar
+            - Enhanched lidar (add back neighbors)
         """
+
+        def _get_snake_direction_map(neighbors_status):
+            dir_list = ["right", "front", "left"]
+            snake_map = {}
+            for i in range(3):
+                snake_map[dir_list[i]] = neighbors_status[i]
+            return snake_map
+
         print(f"Snake length: {len(self.snake_active_positions)}")
         print(f"Snake head position: {self.snake_active_positions[0]}")
+        print(
+            f"Lv1 Neighbors status: {_get_snake_direction_map(self.get_turn_neighbors())}"
+        )
         print(f"Lidar: {self.get_lidar()}")
+        print(f"Enhanced Lidar: {self.get_enhanched_lidar()}")
 
 
 def get_neighbors(pos, Nrow, Ncol):
