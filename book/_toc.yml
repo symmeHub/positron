@@ -63,6 +63,7 @@ parts:
         sections:
           - file: optimization/ressources/interactive_optimization.ipynb
           - file: optimization/ressources/river_crossing_and_more.ipynb
+          - file: optimization/ressources/StepByStep_Optimization.ipynb
       - file: optimization/exercises/exercises.md
         sections:
             - file: optimization/exercises/rosenbrock_and_curve_fiting.ipynb    
