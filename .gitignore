@@ -4,3 +4,4 @@ book/_build/*
 .vscode
 .sh/config.sh
 .ignore*
+**/truss-master/*
