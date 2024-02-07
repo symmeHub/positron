@@ -12,7 +12,7 @@ jobs:
   # Notre job
   build-and-deploy:
     if: "contains(github.event.commits[0].message, '[ci-run]')" # <- Déclenche des jobs sur message de commit 
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     container: 
       image: ghcr.io/symmehub/positron/positron:latest
       credentials:
