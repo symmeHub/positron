@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html >
+<html lang="en" data-content_root="../../" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Practical work (TP) : Tensile test analysis &#8212; POSITRON: PythOn for Science In The Reblochon cOuNtry</title>
   
@@ -19,58 +18,64 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
 
   
-  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/style.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../../_static/style.css?v=f4d5f33b" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/jquery.js"></script>
-    <script src="../../_static/underscore.js"></script>
-    <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/clipboard.min.js"></script>
-    <script src="../../_static/copybutton.js"></script>
-    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../../_static/togglebutton.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../../_static/design-tabs.js"></script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
-    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=afe5de03"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'data_analysis/exercises/data_practical_work';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Support material" href="../../ode/support_material/support_material.html" />
     <link rel="prev" title="Practical work: Analysis of data from a weather station" href="data_tutorial.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="None"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
   
   
@@ -78,7 +83,15 @@ const thebe_selector_output = ".output, .cell_output"
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
@@ -113,11 +126,14 @@ const thebe_selector_output = ".output, .cell_output"
 </form></div>
   </div>
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
+      
+      
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -132,9 +148,11 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
+
   
 
 <a class="navbar-brand logo" href="../../intro.html">
+  
   
   
   
@@ -144,12 +162,23 @@ const thebe_selector_output = ".output, .cell_output"
       
     
     
-    <img src="../../_static/logo.png" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="POSITRON: PythOn for Science In The Reblochon cOuNtry - Home"/>
+    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="POSITRON: PythOn for Science In The Reblochon cOuNtry - Home"/>`);</script>
   
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -222,7 +251,8 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../../optimization/course/optimization_basics.html">Support material</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../optimization/ressources/ressources.html">Ressources</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../optimization/ressources/interactive_optimization.html">Interactive optimization</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../optimization/ressources/river_crossing_and_more.html">Crossing a river</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../optimization/ressources/river_crossing_and_more.html">Illustration : Crossing a river</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../optimization/ressources/StepByStep_Optimization.html">Step by step Optimization : understanding gradient based method</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../optimization/exercises/rosenbrock_and_curve_fiting.html">Rosenbrock function and Curve fiting</a></li>
@@ -473,20 +503,22 @@ const thebe_selector_output = ".output, .cell_output"
 </button>
 
 
+
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
 `);
 </script>
 
+
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
@@ -538,13 +570,12 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
-  <h1>Table of Contents<span class="tocSkip"></span></h1>
-<div class="toc"><ul class="toc-item"><li><span><a href="#General-scope" data-toc-modified-id="General-scope-1"><span class="toc-item-num">1&nbsp;&nbsp;</span>General scope</a></span></li><li><span><a href="#Session-objective" data-toc-modified-id="Session-objective-2"><span class="toc-item-num">2&nbsp;&nbsp;</span>Session objective</a></span></li><li><span><a href="#The-dataset-:" data-toc-modified-id="The-dataset-:-3"><span class="toc-item-num">3&nbsp;&nbsp;</span>The dataset :</a></span></li><li><span><a href="#This-class-must-be-able-to-:" data-toc-modified-id="This-class-must-be-able-to-:-4"><span class="toc-item-num">4&nbsp;&nbsp;</span>This class must be able to :</a></span><ul class="toc-item"><li><span><a href="#Level-0" data-toc-modified-id="Level-0-4.1"><span class="toc-item-num">4.1&nbsp;&nbsp;</span>Level 0</a></span></li><li><span><a href="#Level-1" data-toc-modified-id="Level-1-4.2"><span class="toc-item-num">4.2&nbsp;&nbsp;</span>Level 1</a></span></li><li><span><a href="#Level-2" data-toc-modified-id="Level-2-4.3"><span class="toc-item-num">4.3&nbsp;&nbsp;</span>Level 2</a></span></li><li><span><a href="#Level-3" data-toc-modified-id="Level-3-4.4"><span class="toc-item-num">4.4&nbsp;&nbsp;</span>Level 3</a></span></li></ul></li><li><span><a href="#Steps-to-structure-your-work" data-toc-modified-id="Steps-to-structure-your-work-5"><span class="toc-item-num">5&nbsp;&nbsp;</span>Steps to structure your work</a></span></li><li><span><a href="#Some-help:" data-toc-modified-id="Some-help:-6"><span class="toc-item-num">6&nbsp;&nbsp;</span>Some help:</a></span><ul class="toc-item"><li><span><a href="#Useful-function" data-toc-modified-id="Useful-function-6.1"><span class="toc-item-num">6.1&nbsp;&nbsp;</span>Useful function</a></span></li><li><span><a href="#Here-is-a-simple-template-of-the-class-that-you-should-build" data-toc-modified-id="Here-is-a-simple-template-of-the-class-that-you-should-build-6.2"><span class="toc-item-num">6.2&nbsp;&nbsp;</span>Here is a simple template of the class that you should build</a></span></li></ul></li></ul></div><section class="tex2jax_ignore mathjax_ignore" id="practical-work-tp-tensile-test-analysis">
-<h1>Practical work (TP) : Tensile test analysis<a class="headerlink" href="#practical-work-tp-tensile-test-analysis" title="Permalink to this headline">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="practical-work-tp-tensile-test-analysis">
+<h1>Practical work (TP) : Tensile test analysis<a class="headerlink" href="#practical-work-tp-tensile-test-analysis" title="Link to this heading">#</a></h1>
 <section id="general-scope">
-<h2>General scope<a class="headerlink" href="#general-scope" title="Permalink to this headline">#</a></h2>
+<h2>General scope<a class="headerlink" href="#general-scope" title="Link to this heading">#</a></h2>
 <p>From global point of view, test machines, sensors provide time-stamped data.
 Most of the time this a data are stored in a tabular shape, i.e. one line for each record with its time-stamp.</p>
 <p>A common way to store this data is to use ‘<em>.csv’ file. A ‘</em>.cvs’ file looks like:</p>
@@ -580,13 +611,13 @@ time;data1;data2;data3
 </div>
 </section>
 <section id="session-objective">
-<h2>Session objective<a class="headerlink" href="#session-objective" title="Permalink to this headline">#</a></h2>
+<h2>Session objective<a class="headerlink" href="#session-objective" title="Link to this heading">#</a></h2>
 <p>In this session you are asked to analyse data coming from the tensile test.
 This analysis aims at extracting mechanical properties of the material, such as the Young modulus, mechanical strength and yield strength from the load/displacement curve.</p>
 <p>At the end of this session, you should have a class that is able to deal with the data coming from a tensile test.</p>
 </section>
 <section id="the-dataset">
-<h2>The dataset :<a class="headerlink" href="#the-dataset" title="Permalink to this headline">#</a></h2>
+<h2>The dataset :<a class="headerlink" href="#the-dataset" title="Link to this heading">#</a></h2>
 <div class="important admonition">
 <p class="admonition-title">Required files</p>
 <p>It can be dowloaded at this link <a class="reference external" href="https://drive.google.com/drive/u/1/folders/1Kp-Omga2JykownLw2rureS9A-PhsSJMx">TensileData</a>.</p>
@@ -600,9 +631,9 @@ This analysis aims at extracting mechanical properties of the material, such as 
 </ul>
 </section>
 <section id="this-class-must-be-able-to">
-<h2>This class must be able to :<a class="headerlink" href="#this-class-must-be-able-to" title="Permalink to this headline">#</a></h2>
+<h2>This class must be able to :<a class="headerlink" href="#this-class-must-be-able-to" title="Link to this heading">#</a></h2>
 <section id="level-0">
-<h3>Level 0<a class="headerlink" href="#level-0" title="Permalink to this headline">#</a></h3>
+<h3>Level 0<a class="headerlink" href="#level-0" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>read the data in a csv file</p></li>
 <li><p>compute the nominal stress and nominal strain</p></li>
@@ -611,7 +642,7 @@ This analysis aims at extracting mechanical properties of the material, such as 
 </ul>
 </section>
 <section id="level-1">
-<h3>Level 1<a class="headerlink" href="#level-1" title="Permalink to this headline">#</a></h3>
+<h3>Level 1<a class="headerlink" href="#level-1" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>read automatically the header metadata of csv file</p></li>
 <li><p>determine the Young modulus <span class="math notranslate nohighlight">\(E\)</span></p></li>
@@ -620,14 +651,14 @@ This analysis aims at extracting mechanical properties of the material, such as 
 </ul>
 </section>
 <section id="level-2">
-<h3>Level 2<a class="headerlink" href="#level-2" title="Permalink to this headline">#</a></h3>
+<h3>Level 2<a class="headerlink" href="#level-2" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>compute the plastique strain (<span class="math notranslate nohighlight">\(\varepsilon_p = \varepsilon - \dfrac{\sigma}{E} \)</span>)</p></li>
 <li><p>fit the stress / plastic strain curve with a power plastic law (<span class="math notranslate nohighlight">\(\sigma = \sigma_0 + K {\varepsilon_p}^n \)</span>)</p></li>
 </ul>
 </section>
 <section id="level-3">
-<h3>Level 3<a class="headerlink" href="#level-3" title="Permalink to this headline">#</a></h3>
+<h3>Level 3<a class="headerlink" href="#level-3" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Run the procedure over all the batch.</p></li>
 </ul>
@@ -646,15 +677,15 @@ This analysis aims at extracting mechanical properties of the material, such as 
 </section>
 </section>
 <section id="steps-to-structure-your-work">
-<h2>Steps to structure your work<a class="headerlink" href="#steps-to-structure-your-work" title="Permalink to this headline">#</a></h2>
+<h2>Steps to structure your work<a class="headerlink" href="#steps-to-structure-your-work" title="Link to this heading">#</a></h2>
 <p>1- Find the way to extract the relevant data from one dataset (E, Re, Rm, …)</p>
 <p>2- Structure your work using the class structure of python</p>
 <p>3- Perform analysis on several loads/displacement curves</p>
 </section>
 <section id="some-help">
-<h2>Some help:<a class="headerlink" href="#some-help" title="Permalink to this headline">#</a></h2>
+<h2>Some help:<a class="headerlink" href="#some-help" title="Link to this heading">#</a></h2>
 <section id="useful-function">
-<h3>Useful function<a class="headerlink" href="#useful-function" title="Permalink to this headline">#</a></h3>
+<h3>Useful function<a class="headerlink" href="#useful-function" title="Link to this heading">#</a></h3>
 <div class="tip admonition">
 <p class="admonition-title">Tip: split a string into 2 parts</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">line</span> <span class="o">=</span> <span class="s2">&quot;z = 143.2&quot;</span>
@@ -664,7 +695,7 @@ This analysis aims at extracting mechanical properties of the material, such as 
 </div>
 </section>
 <section id="here-is-a-simple-template-of-the-class-that-you-should-build">
-<h3>Here is a simple template of the class that you should build<a class="headerlink" href="#here-is-a-simple-template-of-the-class-that-you-should-build" title="Permalink to this headline">#</a></h3>
+<h3>Here is a simple template of the class that you should build<a class="headerlink" href="#here-is-a-simple-template-of-the-class-that-you-should-build" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">TensileTest</span><span class="p">:</span>
@@ -731,7 +762,7 @@ This analysis aims at extracting mechanical properties of the material, such as 
         },
         kernelOptions: {
             name: "python3",
-            path: "./data_analysis/exercises"
+            path: "./data_analysis\exercises"
         },
         predefinedOutput: true
     }
@@ -743,11 +774,10 @@ This analysis aims at extracting mechanical properties of the material, such as 
 
               
               
-                <footer class="bd-footer-article">
+              
+              
+                <footer class="prev-next-footer">
                   
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="data_tutorial.html"
@@ -767,10 +797,7 @@ This analysis aims at extracting mechanical properties of the material, such as 
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
-</div></div>
-  
 </div>
-
                 </footer>
               
             </div>
@@ -778,6 +805,7 @@ This analysis aims at extracting mechanical properties of the material, such as 
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
 
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
@@ -822,6 +850,7 @@ By Ludovic Charleux, Emile Roux, Thibault Goyallon, Christian Elmo, Giovanni Fev
   
   <div class="footer-item">
     
+
   <p class="copyright">
     
       © Copyright 2022.
@@ -848,8 +877,8 @@ By Ludovic Charleux, Emile Roux, Thibault Goyallon, Christian Elmo, Giovanni Fev
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
 
   <footer class="bd-footer">
   </footer>
