@@ -34,10 +34,10 @@ parts:
   - caption: Data
     numbered: False
     chapters:
-      - file: data_analysis/support_material/support_material
+      - file: data_analysis/support_material/support_material.md
         sections:
           - file: data_analysis/support_material/pandas_introduction.ipynb
-      - file: data_analysis/exercises/exercises
+      - file: data_analysis/exercises/exercises.md
         sections:
           - file: data_analysis/exercises/data_tutorial.ipynb
           - file: data_analysis/exercises/data_practical_work.ipynb
