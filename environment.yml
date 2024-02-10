@@ -272,3 +272,4 @@ dependencies:
     - pillow==8.4.0
     - scipy==1.7.3
     - setuptools==60.6.0
+    - sphinx_sitemap
