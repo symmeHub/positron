@@ -81,6 +81,7 @@ const thebe_selector_output = ".output, .cell_output"
 </script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'python_basics/exercises/game_of_life_tutorial';</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="canonical" href="&#39;https://symmehub.github.io/positron/python_basics/exercises/game_of_life_tutorial.html" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Support material" href="../../image_processing/support_material/support_material.html" />
@@ -638,11 +639,11 @@ Try counting Moore’s living neighbors on a small grid at first before moving t
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0, 1, 0, 1, 0],
-       [0, 0, 1, 0, 1],
-       [0, 1, 0, 1, 0],
-       [1, 0, 1, 1, 0],
-       [1, 0, 1, 0, 1]])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0, 1, 1, 1, 0],
+       [0, 1, 1, 0, 1],
+       [0, 0, 1, 1, 1],
+       [1, 1, 0, 0, 0],
+       [1, 1, 1, 0, 1]])
 </pre></div>
 </div>
 </div>
@@ -1631,7 +1632,7 @@ if (IPython.notebook.kernel !== null) {
         mpl.mpl_figure_comm
     );
 }
-</script><div class="output text_html"><div id='f6ddc1e6-4d23-456f-817d-a7b77adf3a1e'></div></div></div>
+</script><div class="output text_html"><div id='9ab980ec-5e5d-4bd5-9b3e-8f76a00b5b59'></div></div></div>
 </div>
 <p>Now, you need to find a way to calculate the number of living (1) neighbors around every cell.</p>
 <p>Tips:</p>
@@ -2726,7 +2727,7 @@ if (IPython.notebook.kernel !== null) {
         mpl.mpl_figure_comm
     );
 }
-</script><div class="output text_html"><div id='c40756aa-c63f-429e-bae3-18a73c67975b'></div></div><div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+</script><div class="output text_html"><div id='d47fcf35-d628-4448-b607-6c43b8c4c4b4'></div></div><div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
 <span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">line</span> <span class="mi">40</span>
 <span class="g g-Whitespace">     </span><span class="mi">38</span> <span class="n">anim</span> <span class="o">=</span> <span class="n">animation</span><span class="o">.</span><span class="n">FuncAnimation</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">updatefig</span><span class="p">,</span> <span class="n">frames</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">interval</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">blit</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
