@@ -269,13 +269,16 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../../optimization/ressources/StepByStep_Optimization.html">Step by step Optimization : understanding gradient based method</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../optimization/exercises/rosenbrock_and_curve_fiting.html">Rosenbrock function and Curve fiting</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../optimization/exercises/bridge_optimization.html">Optimizing a bridge structure</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../optimization/exercises/exercises.html">Exercices</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../optimization/exercises/rosenbrock_and_curve_fiting.html">Rosenbrock function and Curve fiting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../optimization/exercises/bridge_optimization.html">Optimizing a bridge structure</a></li>
+</ul>
+</li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Machine Learning</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../machine_learning/support_material.html">Support material</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../machine_learning/exercises/exercises.html">Exercices</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../machine_learning/exercises/exercises.html">Exercices</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../machine_learning/exercises/tutorials/classification_demo.html">Supervised learning with PyTorch: a toy example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../machine_learning/exercises/tutorials/genetic_snake_practical_work.html">Reinforcement learning on snake with a genetic neural network</a></li>
 </ul>
@@ -663,9 +666,9 @@ This analysis aims at extracting the mechanical properties of the material, such
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">read_data</span><span class="p">(</span><span class="n">path_to_csv</span> <span class="o">=</span> <span class="s1">&#39;my_csv.csv&#39;</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">read_data</span><span class="p">(</span><span class="n">path_to_csv</span><span class="o">=</span><span class="s2">&quot;my_csv.csv&quot;</span><span class="p">):</span>
     <span class="c1"># code here</span>
-    <span class="n">df</span> <span class="o">=</span> <span class="mi">0</span> 
+    <span class="n">df</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="k">return</span> <span class="n">df</span>
 </pre></div>
 </div>
@@ -690,11 +693,11 @@ This analysis aims at extracting the mechanical properties of the material, such
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">read_metadata</span><span class="p">(</span><span class="n">path_to_csv</span> <span class="o">=</span> <span class="s1">&#39;my_csv.csv&#39;</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">read_metadata</span><span class="p">(</span><span class="n">path_to_csv</span><span class="o">=</span><span class="s2">&quot;my_csv.csv&quot;</span><span class="p">):</span>
     <span class="c1"># code here</span>
-    <span class="n">S0</span> <span class="o">=</span> <span class="mf">0.</span>
-    <span class="n">l0</span> <span class="o">=</span> <span class="mf">0.</span>
-    <span class="k">return</span> <span class="n">S0</span><span class="p">,</span><span class="n">l0</span>
+    <span class="n">S0</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="n">l0</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="k">return</span> <span class="n">S0</span><span class="p">,</span> <span class="n">l0</span>
 </pre></div>
 </div>
 </div>
@@ -735,7 +738,7 @@ and
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_young_modulus</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
-    <span class="n">E</span><span class="o">=</span> <span class="mf">0.</span>
+    <span class="n">E</span> <span class="o">=</span> <span class="mf">0.0</span>
     <span class="k">return</span> <span class="n">E</span>
 </pre></div>
 </div>
@@ -761,9 +764,9 @@ and
         <span class="k">return</span> <span class="s2">&quot;&lt;tensileTest: (file: </span><span class="si">{0}</span><span class="s2">, E = </span><span class="si">{1:.2}</span><span class="s2"> MPa)&gt;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">csv_file</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_YoungModulus</span><span class="p">()</span>
         <span class="p">)</span>
-    
+
     <span class="k">def</span> <span class="nf">get_meca_strength</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="mf">0.</span>
+        <span class="k">return</span> <span class="mf">0.0</span>
 
     <span class="k">def</span> <span class="nf">get_YoungModulus</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># CODDE HERE</span>
