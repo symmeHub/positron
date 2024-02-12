@@ -6,3 +6,6 @@ In this part, you can find the basic tools that will help you throughout this se
 * Perform a histogram and thresholding to binarize it.
 * Perform an erosion or a dilation to modify the structure.
 * Count objects with a labeling algorithm.
+
+```{tableofcontents}
+```
