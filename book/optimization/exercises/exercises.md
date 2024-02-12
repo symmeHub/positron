@@ -1,4 +1,4 @@
-Exercices
+# Exercices
 
 In this section, we propose quick exercises that can typically be done in an hour and a half.
 
