@@ -561,18 +561,17 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#general-scope">General scope</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#session-objective">Session objective</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-dataset">The dataset :</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#this-class-must-be-able-to">This class must be able to :</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#level-0">Level 0</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#level-1">Level 1</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#level-2">Level 2</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#level-3">Level 3</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-dataset">The dataset :</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q1-load-the-data-and-plot-its">Q1 : Load the data and plot its</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q2-load-them-metadata">Q2: Load them metadata</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#useful-function">Useful function</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#steps-to-structure-your-work">Steps to structure your work</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#some-help">Some help:</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#useful-function">Useful function</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#here-is-a-simple-template-of-the-class-that-you-should-build">Here is a simple template of the class that you should build</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q3-stress-strain-curve">Q3: Stress/Strain curve</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q4-mechanilca-strength">Q4: Mechanilca strength</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q5-young-modulus-measurements">Q5: Young modulus measurements</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q6-all-together-in-a-class">Q6: all together in a class</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q7-the-plastic-side-of-the-force">Q7: The plastic side of the force</a></li>
 </ul>
 </li>
 </ul>
@@ -626,15 +625,15 @@ time;data1;data2;data3
 </section>
 <section id="session-objective">
 <h2>Session objective<a class="headerlink" href="#session-objective" title="Link to this heading">#</a></h2>
-<p>In this session you are asked to analyse data coming from the tensile test.
-This analysis aims at extracting mechanical properties of the material, such as the Young modulus, mechanical strength and yield strength from the load/displacement curve.</p>
+<p>In this session you are asked to analyze data coming from the tensile test.
+This analysis aims at extracting the mechanical properties of the material, such as the Young modulus, mechanical strength and yield strength from the load/displacement curve.</p>
 <p>At the end of this session, you should have a class that is able to deal with the data coming from a tensile test.</p>
 </section>
 <section id="the-dataset">
 <h2>The dataset :<a class="headerlink" href="#the-dataset" title="Link to this heading">#</a></h2>
 <div class="important admonition">
 <p class="admonition-title">Required files</p>
-<p>It can be dowloaded at this link <a class="reference external" href="https://drive.google.com/drive/u/1/folders/1Kp-Omga2JykownLw2rureS9A-PhsSJMx">TensileData</a>.</p>
+<p>It can be downloaded at this link <a class="reference external" href="https://drive.google.com/drive/u/1/folders/1Kp-Omga2JykownLw2rureS9A-PhsSJMx">TensileData</a>.</p>
 </div>
 <p>It contains 4 files, the <em><strong>unit are s/N/mm</strong></em> :</p>
 <ul class="simple">
@@ -642,39 +641,6 @@ This analysis aims at extracting mechanical properties of the material, such as 
 <li><p>Test_2.csv</p></li>
 <li><p>Test_3.csv</p></li>
 <li><p>Test_4.csv</p></li>
-</ul>
-</section>
-<section id="this-class-must-be-able-to">
-<h2>This class must be able to :<a class="headerlink" href="#this-class-must-be-able-to" title="Link to this heading">#</a></h2>
-<section id="level-0">
-<h3>Level 0<a class="headerlink" href="#level-0" title="Link to this heading">#</a></h3>
-<ul class="simple">
-<li><p>read the data in a csv file</p></li>
-<li><p>compute the nominal stress and nominal strain</p></li>
-<li><p>compute the true stress and true strain</p></li>
-<li><p>plot the relevant curves</p></li>
-</ul>
-</section>
-<section id="level-1">
-<h3>Level 1<a class="headerlink" href="#level-1" title="Link to this heading">#</a></h3>
-<ul class="simple">
-<li><p>read automatically the header metadata of csv file</p></li>
-<li><p>determine the Young modulus <span class="math notranslate nohighlight">\(E\)</span></p></li>
-<li><p>determine the Yield stress and the Yield stress a 0.02% of strain</p></li>
-<li><p>determine the mechanical strength</p></li>
-</ul>
-</section>
-<section id="level-2">
-<h3>Level 2<a class="headerlink" href="#level-2" title="Link to this heading">#</a></h3>
-<ul class="simple">
-<li><p>compute the plastique strain (<span class="math notranslate nohighlight">\(\varepsilon_p = \varepsilon - \dfrac{\sigma}{E} \)</span>)</p></li>
-<li><p>fit the stress / plastic strain curve with a power plastic law (<span class="math notranslate nohighlight">\(\sigma = \sigma_0 + K {\varepsilon_p}^n \)</span>)</p></li>
-</ul>
-</section>
-<section id="level-3">
-<h3>Level 3<a class="headerlink" href="#level-3" title="Link to this heading">#</a></h3>
-<ul class="simple">
-<li><p>Run the procedure over all the batch.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -688,18 +654,33 @@ This analysis aims at extracting mechanical properties of the material, such as 
 </div>
 </div>
 </div>
+<section id="q1-load-the-data-and-plot-its">
+<h3>Q1 : Load the data and plot its<a class="headerlink" href="#q1-load-the-data-and-plot-its" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>code one function that loads one test</p></li>
+<li><p>call this function 4 times to load all data</p></li>
+<li><p>plot all the tests on one figure</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">read_data</span><span class="p">(</span><span class="n">path_to_csv</span> <span class="o">=</span> <span class="s1">&#39;my_csv.csv&#39;</span><span class="p">):</span>
+    <span class="c1"># code here</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="mi">0</span> 
+    <span class="k">return</span> <span class="n">df</span>
+</pre></div>
+</div>
+</div>
+</div>
 </section>
-</section>
-<section id="steps-to-structure-your-work">
-<h2>Steps to structure your work<a class="headerlink" href="#steps-to-structure-your-work" title="Link to this heading">#</a></h2>
-<p>1- Find the way to extract the relevant data from one dataset (E, Re, Rm, …)</p>
-<p>2- Structure your work using the class structure of python</p>
-<p>3- Perform analysis on several loads/displacement curves</p>
-</section>
-<section id="some-help">
-<h2>Some help:<a class="headerlink" href="#some-help" title="Link to this heading">#</a></h2>
+<section id="q2-load-them-metadata">
+<h3>Q2: Load them metadata<a class="headerlink" href="#q2-load-them-metadata" title="Link to this heading">#</a></h3>
+<p>Into the ‘.csv’ file the first 2 line provides <span class="math notranslate nohighlight">\(S_0\)</span> and <span class="math notranslate nohighlight">\(l_0\)</span> of each sample.</p>
+<ul class="simple">
+<li><p>code a function that read this data</p></li>
+<li><p>call this function on each test</p></li>
+</ul>
 <section id="useful-function">
-<h3>Useful function<a class="headerlink" href="#useful-function" title="Link to this heading">#</a></h3>
+<h4>Useful function<a class="headerlink" href="#useful-function" title="Link to this heading">#</a></h4>
 <div class="tip admonition">
 <p class="admonition-title">Tip: split a string into 2 parts</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">line</span> <span class="o">=</span> <span class="s2">&quot;z = 143.2&quot;</span>
@@ -707,9 +688,64 @@ This analysis aims at extracting mechanical properties of the material, such as 
 </pre></div>
 </div>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">read_metadata</span><span class="p">(</span><span class="n">path_to_csv</span> <span class="o">=</span> <span class="s1">&#39;my_csv.csv&#39;</span><span class="p">):</span>
+    <span class="c1"># code here</span>
+    <span class="n">S0</span> <span class="o">=</span> <span class="mf">0.</span>
+    <span class="n">l0</span> <span class="o">=</span> <span class="mf">0.</span>
+    <span class="k">return</span> <span class="n">S0</span><span class="p">,</span><span class="n">l0</span>
+</pre></div>
+</div>
+</div>
+</div>
 </section>
-<section id="here-is-a-simple-template-of-the-class-that-you-should-build">
-<h3>Here is a simple template of the class that you should build<a class="headerlink" href="#here-is-a-simple-template-of-the-class-that-you-should-build" title="Link to this heading">#</a></h3>
+</section>
+<section id="q3-stress-strain-curve">
+<h3>Q3: Stress/Strain curve<a class="headerlink" href="#q3-stress-strain-curve" title="Link to this heading">#</a></h3>
+<p>Knowing that:
+<span class="math notranslate nohighlight">\(
+\sigma_n = \frac{F}{S0}
+\)</span>
+and
+<span class="math notranslate nohighlight">\(
+\epsilon_n = \frac{\Delta L}{L_0}
+\)</span>:</p>
+<ul class="simple">
+<li><p>Code a function that computes the strain and stress data.</p></li>
+<li><p>Apply the function to all tests.</p></li>
+<li><p>Plot this data for all test on a graph.</p></li>
+</ul>
+</section>
+<section id="q4-mechanilca-strength">
+<h3>Q4: Mechanilca strength<a class="headerlink" href="#q4-mechanilca-strength" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Code a function that computes the mechanical strength.</p></li>
+<li><p>Apply the function to all tests.</p></li>
+<li><p>Plot this data for all test on a graph.</p></li>
+</ul>
+</section>
+<section id="q5-young-modulus-measurements">
+<h3>Q5: Young modulus measurements<a class="headerlink" href="#q5-young-modulus-measurements" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Code a function that computes the young modulus on each test.</p></li>
+<li><p>Apply the function to all tests.</p></li>
+<li><p>Propose a plot to illustrate the young modulus measurements</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_young_modulus</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
+    <span class="n">E</span><span class="o">=</span> <span class="mf">0.</span>
+    <span class="k">return</span> <span class="n">E</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="q6-all-together-in-a-class">
+<h3>Q6: all together in a class<a class="headerlink" href="#q6-all-together-in-a-class" title="Link to this heading">#</a></h3>
+<p>Include all the function you have coded in a class.</p>
+<p>Below is a simple template of the class that you should build :</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">TensileTest</span><span class="p">:</span>
@@ -725,6 +761,9 @@ This analysis aims at extracting mechanical properties of the material, such as 
         <span class="k">return</span> <span class="s2">&quot;&lt;tensileTest: (file: </span><span class="si">{0}</span><span class="s2">, E = </span><span class="si">{1:.2}</span><span class="s2"> MPa)&gt;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">csv_file</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_YoungModulus</span><span class="p">()</span>
         <span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">get_meca_strength</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="mf">0.</span>
 
     <span class="k">def</span> <span class="nf">get_YoungModulus</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># CODDE HERE</span>
@@ -735,7 +774,7 @@ This analysis aims at extracting mechanical properties of the material, such as 
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test1</span> <span class="o">=</span> <span class="n">TensileTest</span><span class="p">()</span>  <span class="c1"># call the __init__ function</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test1</span> <span class="o">=</span> <span class="n">TensileTest</span><span class="p">(</span><span class="s2">&quot;my_csv.csv&quot;</span><span class="p">)</span>  <span class="c1"># call the __init__ function</span>
 </pre></div>
 </div>
 </div>
@@ -747,18 +786,18 @@ This analysis aims at extracting mechanical properties of the material, such as 
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;tensileTest: (file: xxx, E = 1.0 MPa)&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;tensileTest: (file: my_csv.csv, E = 1.0 MPa)&gt;
 </pre></div>
 </div>
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># CODDE HERE</span>
-</pre></div>
-</div>
-</div>
-</div>
+</section>
+<section id="q7-the-plastic-side-of-the-force">
+<h3>Q7: The plastic side of the force<a class="headerlink" href="#q7-the-plastic-side-of-the-force" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>compute the plastique strain (<span class="math notranslate nohighlight">\(\varepsilon_p = \varepsilon - \dfrac{\sigma}{E} \)</span>)</p></li>
+<li><p>fit the stress / plastic strain curve with a power plastic law (<span class="math notranslate nohighlight">\(\sigma = \sigma_0 + K {\varepsilon_p}^n \)</span>)</p></li>
+</ul>
 </section>
 </section>
 </section>
@@ -829,18 +868,17 @@ This analysis aims at extracting mechanical properties of the material, such as 
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#general-scope">General scope</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#session-objective">Session objective</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-dataset">The dataset :</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#this-class-must-be-able-to">This class must be able to :</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#level-0">Level 0</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#level-1">Level 1</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#level-2">Level 2</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#level-3">Level 3</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-dataset">The dataset :</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q1-load-the-data-and-plot-its">Q1 : Load the data and plot its</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q2-load-them-metadata">Q2: Load them metadata</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#useful-function">Useful function</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#steps-to-structure-your-work">Steps to structure your work</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#some-help">Some help:</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#useful-function">Useful function</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#here-is-a-simple-template-of-the-class-that-you-should-build">Here is a simple template of the class that you should build</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q3-stress-strain-curve">Q3: Stress/Strain curve</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q4-mechanilca-strength">Q4: Mechanilca strength</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q5-young-modulus-measurements">Q5: Young modulus measurements</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q6-all-together-in-a-class">Q6: all together in a class</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q7-the-plastic-side-of-the-force">Q7: The plastic side of the force</a></li>
 </ul>
 </li>
 </ul>
