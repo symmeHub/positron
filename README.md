@@ -6,6 +6,11 @@ The associated book is available online here:
 
 - Github : https://symmehub.github.io/positron/intro.html
 
+## Devcontainer
+
+This repository is designed to be used with a devcontainer. To use it, you need to have acces to Docker (locally or remotely) and Visual Studio Code installed on your computer. The devcontainer relies on the base image defined in https://github.com/symmeHub/symme_docker_images/tree/main/src/scientific_python . If not already done, you need to build the base image before building the devcontainer.
+
+
 ## Pre-commit
 Before playing, you need to activate **pre-commit** in your environment:
 
