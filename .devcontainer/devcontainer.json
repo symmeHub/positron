@@ -39,7 +39,7 @@
         }
     },
     // "postCreateCommand": "/bin/bash /tmp/postCreateCommand.sh"
-    "postStartCommand": "/opt/conda/envs/${CONDA_ENV_NAME}/bin/pre-commit install"
+    "postStartCommand": "/opt/conda/envs/${CONDA_ENV_NAME}/bin/pre-commit install && pip install git+https://github.com/lcharleux/truss"
     // "features": {
     // 	"ghcr.io/devcontainers/features/docker-outside-of-docker:1": {}
     // }
