@@ -103,7 +103,7 @@ class FastSnake:
 
         # Initialize the snake's positions and activation status
         snake_positions = np.zeros_like(all_positions)
-        snake_active = np.zeros(Ncell, dtype=np.bool)
+        snake_active = np.zeros(Ncell, dtype=bool)
         snake_active[:2] = True  # Set the first two positions as active
         snake_positions[:2] = grid_values[1:3, 1]  # Set the initial snake position
         self.snake_positions = snake_positions
