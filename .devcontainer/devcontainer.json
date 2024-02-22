@@ -1,55 +1,46 @@
-{	"overrideCommand": true,
-	"initializeCommand": "cd $(pwd)/.devcontainer && python3 preprocess.py",
-	"name": "Positron Container",
-	"dockerComposeFile": "./docker-compose.yml",
-	"service": "main_container",
-	"workspaceFolder": "/workspace",
-	"shutdownAction": "stopCompose",
-	// Configure tool-specific properties.
-	"customizations": {
-		// Configure properties specific to VS Code.
-		"vscode": {
-			// Set *default* container specific settings.json values on container create.
-			"settings": {
-				"python.defaultInterpreterPath": "/opt/conda/envs/awesome/bin/python",
-				"python.linting.enabled": true,
-				"python.linting.pylintEnabled": true,
-				"python.formatting.autopep8Path": "/usr/local/py-utils/bin/autopep8",
-				"python.formatting.yapfPath": "/usr/local/py-utils/bin/yapf",
-				"python.linting.banditPath": "/usr/local/py-utils/bin/bandit",
-				"python.linting.flake8Path": "/usr/local/py-utils/bin/flake8",
-				"python.linting.mypyPath": "/usr/local/py-utils/bin/mypy",
-				"python.linting.pycodestylePath": "/usr/local/py-utils/bin/pycodestyle",
-				"python.linting.pydocstylePath": "/usr/local/py-utils/bin/pydocstyle",
-				"python.linting.pylintPath": "/usr/local/py-utils/bin/pylint",
-				"terminal.integrated.defaultProfile.linux": "bash",
-				"terminal.integrated.profiles.linux": {
-					"bash (container default)": {
-						"path": "/bin/bash",
-						"overrideName": true
-					}
-				},
-				"python.formatting.provider": "black",
-				"python.testing.pytestArgs": [
-					"tests"
-				],
-				"python.testing.unittestEnabled": false,
-				"python.testing.pytestEnabled": true
-			},
-			// Add the IDs of extensions you want installed when the container is created.
-			"extensions": [
-				"ms-python.python",
-				"ms-python.vscode-pylance",
-				"mechatroner.rainbow-csv",
-				"ms-azuretools.vscode-docker",
-				"ms-toolsai.jupyter",
-				"ms-toolsai.jupyter-keymap",
-				"ms-toolsai.jupyter-renderers",
-				"mhutchie.git-graph",
-				"donjayamanne.githistory",
-				"eamodio.gitlens"
-			]
-		}
-	},
-	"postCreateCommand": "cd /tmp && /bin/bash ./postCreateCommands.sh"
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/ubuntu
+{
+    "name": "Science",
+    // Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
+    // "image": "mcr.microsoft.com/devcontainers/base:jammy"
+    "image": "scientific_python:latest",
+    "customizations": {
+        "vscode": {
+            "settings": {
+                "terminal.integrated.defaultProfile.linux": "bash",
+                "terminal.integrated.profiles.linux": {
+                    "bash (container default)": {
+                        "path": "/bin/bash",
+                        "overrideName": true
+                    }
+                },
+                // "terminal.integrated.fontFamily": "'Hack NF'",
+                "editor.fontFamily": "'DejaVu Sans Mono for Powerline'",
+                "python.defaultInterpreterPath": "/opt/conda/envs/science/bin/python"
+                // "python.languageServer": "Pylance",
+                // "[python]": {
+                //     "editor.defaultFormatter": "ms-python.black-formatter",
+                //     "editor.formatOnSave": true
+                // }
+            },
+            "extensions": [
+                "ms-python.python",
+                // "ms-python.vscode-pylance",
+                "GitHub.copilot",
+                "GitHub.copilot-chat",
+                "GitHub.copilot-labs",
+                "ms-python.black-formatter",
+                "ms-python.isort",
+                "PKief.material-icon-theme",
+                "ms-toolsai.jupyter",
+                "ms-python.pylint"
+            ]
+        }
+    },
+    // "postCreateCommand": "/bin/bash /tmp/postCreateCommand.sh"
+    "postStartCommand": "/opt/conda/envs/${CONDA_ENV_NAME}/bin/pre-commit install"
+    // "features": {
+    // 	"ghcr.io/devcontainers/features/docker-outside-of-docker:1": {}
+    // }
 }
