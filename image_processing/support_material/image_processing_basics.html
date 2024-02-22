@@ -28,7 +28,7 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
@@ -61,12 +61,8 @@
                 gtag('js', new Date());
                 gtag('config', 'G-RYTJG30T3E');
             </script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="../../_static/sphinx-thebe.js?v=afe5de03"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>
                 window.dataLayer = window.dataLayer || [];
@@ -74,11 +70,7 @@ const thebe_selector_output = ".output, .cell_output"
                 gtag('js', new Date());
                 gtag('config', 'G-RYTJG30T3E');
             </script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'image_processing/support_material/image_processing_basics';</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="canonical" href="&#39;https://symmehub.github.io/positron/image_processing/support_material/image_processing_basics.html" />
@@ -580,7 +572,7 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="basics">
 <h1>Basics<a class="headerlink" href="#basics" title="Link to this heading">#</a></h1>
 <p>In this notebook, we introduce basic ways to read, show, explore and save images.</p>
-<div class="cell docutils container">
+<div class="cell tag_&quot;hide-input&quot; docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> notebook
 <span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
@@ -618,7 +610,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Ok, the file is in [&#39;blobs.jpg&#39;, &#39;blob_orientation.ipynb&#39;, &#39;image_processing_basics.ipynb&#39;, &#39;rabbit.jpg&#39;, &#39;support_material.md&#39;]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Ok, the file is in [&#39;.ipynb_checkpoints&#39;, &#39;image_processing_basics.ipynb&#39;, &#39;blobs.jpg&#39;, &#39;blob_orientation.ipynb&#39;, &#39;rabbit.jpg&#39;, &#39;support_material.md&#39;]
 </pre></div>
 </div>
 </div>
@@ -632,7 +624,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/2615f59b9b2fa3c231cde206fa63a6e6a11f75b4b18aa6da31be8cad88269630.png" src="../../_images/2615f59b9b2fa3c231cde206fa63a6e6a11f75b4b18aa6da31be8cad88269630.png" />
+<img alt="../../_images/d5f61cd5264285fad2495f4172012f8980333a1e01dc855e65ac497973c56781.png" src="../../_images/d5f61cd5264285fad2495f4172012f8980333a1e01dc855e65ac497973c56781.png" />
 </div>
 </div>
 </section>
@@ -1656,7 +1648,7 @@ if (IPython.notebook.kernel !== null) {
         mpl.mpl_figure_comm
     );
 }
-</script><div class="output text_html"><div id='393aaf9c-e52f-4ea4-b165-9f9092267789'></div></div></div>
+</script><div class="output text_html"><div id='0d2bf947-a0d5-409a-81dc-cede48a3b85e'></div></div></div>
 </div>
 <p>At this stage, an image is no more than a matrix generally made up of unsigned 8-bit integers (<code class="docutils literal notranslate"><span class="pre">np.uint8</span></code>). A color image is therefore made up of 3 grayscale images corresponding to the 3 channels:</p>
 <div class="cell docutils container">
@@ -1666,12 +1658,12 @@ if (IPython.notebook.kernel !== null) {
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 78,  85,  96, ...,  79,  70,  64],
-       [ 72,  76,  84, ...,  99,  93,  89],
-       [ 69,  71,  75, ..., 108, 101,  95],
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 79,  86,  97, ...,  79,  70,  64],
+       [ 72,  76,  84, ...,  97,  93,  87],
+       [ 69,  71,  75, ..., 107, 101,  94],
        ...,
        [120, 115, 101, ...,  73,  64,  38],
-       [130, 109,  80, ...,  73,  58,  31],
+       [130, 109,  81, ...,  73,  58,  31],
        [113,  84,  60, ...,  72,  68,  53]], dtype=uint8)
 </pre></div>
 </div>
@@ -1711,7 +1703,7 @@ if (IPython.notebook.kernel !== null) {
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/357cedf13e25f86522b03481e39bdca12ee8ab5a26466fbdd77f8f57271a058d.png" src="../../_images/357cedf13e25f86522b03481e39bdca12ee8ab5a26466fbdd77f8f57271a058d.png" />
+<img alt="../../_images/6872d6d627086749829133d7827885674d5e9f737deaa0b2ea7c1243f8ca4f02.png" src="../../_images/6872d6d627086749829133d7827885674d5e9f737deaa0b2ea7c1243f8ca4f02.png" />
 </div>
 </div>
 </section>
@@ -1735,7 +1727,7 @@ An example with the application of a Gaussian filter is presented.</p>
         },
         kernelOptions: {
             name: "python3",
-            path: "./image_processing\support_material"
+            path: "./image_processing/support_material"
         },
         predefinedOutput: true
     }
