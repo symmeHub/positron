@@ -26,7 +26,6 @@
             },
             "extensions": [
                 "ms-python.python",
-                // "ms-python.vscode-pylance",
                 "GitHub.copilot",
                 "GitHub.copilot-chat",
                 "GitHub.copilot-labs",
@@ -34,7 +33,8 @@
                 "ms-python.isort",
                 "PKief.material-icon-theme",
                 "ms-toolsai.jupyter",
-                "ms-python.pylint"
+                "ms-python.pylint",
+                "mhutchie.git-graph"
             ]
         }
     },
