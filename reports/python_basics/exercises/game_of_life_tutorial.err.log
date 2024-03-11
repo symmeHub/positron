@@ -1,0 +1,134 @@
+Traceback (most recent call last):
+  File "D:\Utilisateurs\rouxemi\AppData\Local\anaconda3\Lib\site-packages\jupyter_cache\executors\utils.py", line 58, in single_nb_execution
+    executenb(
+  File "D:\Utilisateurs\rouxemi\AppData\Local\anaconda3\Lib\site-packages\nbclient\client.py", line 1204, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Utilisateurs\rouxemi\AppData\Local\anaconda3\Lib\site-packages\nbclient\util.py", line 84, in wrapped
+    return just_run(coro(*args, **kwargs))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Utilisateurs\rouxemi\AppData\Local\anaconda3\Lib\site-packages\nbclient\util.py", line 62, in just_run
+    return loop.run_until_complete(coro)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Utilisateurs\rouxemi\AppData\Local\anaconda3\Lib\asyncio\base_events.py", line 653, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "D:\Utilisateurs\rouxemi\AppData\Local\anaconda3\Lib\site-packages\nbclient\client.py", line 663, in async_execute
+    await self.async_execute_cell(
+  File "D:\Utilisateurs\rouxemi\AppData\Local\anaconda3\Lib\site-packages\nbclient\client.py", line 965, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "D:\Utilisateurs\rouxemi\AppData\Local\anaconda3\Lib\site-packages\nbclient\client.py", line 862, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+class AliasingImage:
+    """
+    Creates a aliasing illusion.
+    """
+
+    def __init__(self, size=(5, 5), depth=8):
+        self.size = size
+        self.depth = depth
+        lx, ly = size
+        x = np.arange(lx)
+        y = np.arange(ly)
+        self.f = 1.0
+        self.df = 0.07
+        self.X, self.Y = np.meshgrid(x, y)
+        self.evolve()
+
+    def evolve(self):
+        """
+        Randomizes the image
+        """
+        f = self.f
+        self.image = np.cos(2 * f * self.X) * np.sin(2 * f * self.Y)
+        self.f += self.df
+
+
+ri = AliasingImage(size=(50, 50))
+
+
+def updatefig(*args):
+    ri.evolve()
+    im.set_array(ri.image)
+    return (im,)
+
+
+fig, ax = plt.subplots()
+ax.axis("off")
+im = plt.imshow(ri.image, interpolation="nearest", cmap=cm.gray, animated=True)
+anim = animation.FuncAnimation(fig, updatefig, frames=40, interval=50, blit=True)
+# plt.show()
+plt.close()
+anim
+------------------
+
+[1;31m---------------------------------------------------------------------------[0m
+[1;31mAttributeError[0m                            Traceback (most recent call last)
+Cell [1;32mIn[6], line 40[0m
+[0;32m     38[0m anim [38;5;241m=[39m animation[38;5;241m.[39mFuncAnimation(fig, updatefig, frames[38;5;241m=[39m[38;5;241m40[39m, interval[38;5;241m=[39m[38;5;241m50[39m, blit[38;5;241m=[39m[38;5;28;01mTrue[39;00m)
+[0;32m     39[0m [38;5;66;03m# plt.show()[39;00m
+[1;32m---> 40[0m plt[38;5;241m.[39mclose()
+[0;32m     41[0m anim
+
+File [1;32mD:\Utilisateurs\rouxemi\AppData\Local\anaconda3\Lib\site-packages\matplotlib\pyplot.py:974[0m, in [0;36mclose[1;34m(fig)[0m
+[0;32m    972[0m         [38;5;28;01mreturn[39;00m
+[0;32m    973[0m     [38;5;28;01melse[39;00m:
+[1;32m--> 974[0m         _pylab_helpers[38;5;241m.[39mGcf[38;5;241m.[39mdestroy(manager)
+[0;32m    975[0m [38;5;28;01melif[39;00m fig [38;5;241m==[39m [38;5;124m'[39m[38;5;124mall[39m[38;5;124m'[39m:
+[0;32m    976[0m     _pylab_helpers[38;5;241m.[39mGcf[38;5;241m.[39mdestroy_all()
+
+File [1;32mD:\Utilisateurs\rouxemi\AppData\Local\anaconda3\Lib\site-packages\matplotlib\_pylab_helpers.py:66[0m, in [0;36mGcf.destroy[1;34m(cls, num)[0m
+[0;32m     64[0m [38;5;28;01mif[39;00m [38;5;28mhasattr[39m(manager, [38;5;124m"[39m[38;5;124m_cidgcf[39m[38;5;124m"[39m):
+[0;32m     65[0m     manager[38;5;241m.[39mcanvas[38;5;241m.[39mmpl_disconnect(manager[38;5;241m.[39m_cidgcf)
+[1;32m---> 66[0m manager[38;5;241m.[39mdestroy()
+[0;32m     67[0m [38;5;28;01mdel[39;00m manager, num
+
+File [1;32mD:\Utilisateurs\rouxemi\AppData\Local\anaconda3\Lib\site-packages\matplotlib\backends\backend_nbagg.py:144[0m, in [0;36mFigureManagerNbAgg.destroy[1;34m(self)[0m
+[0;32m    142[0m [38;5;28;01mfor[39;00m comm [38;5;129;01min[39;00m [38;5;28mlist[39m([38;5;28mself[39m[38;5;241m.[39mweb_sockets):
+[0;32m    143[0m     comm[38;5;241m.[39mon_close()
+[1;32m--> 144[0m [38;5;28mself[39m[38;5;241m.[39mclearup_closed()
+
+File [1;32mD:\Utilisateurs\rouxemi\AppData\Local\anaconda3\Lib\site-packages\matplotlib\backends\backend_nbagg.py:152[0m, in [0;36mFigureManagerNbAgg.clearup_closed[1;34m(self)[0m
+[0;32m    148[0m [38;5;28mself[39m[38;5;241m.[39mweb_sockets [38;5;241m=[39m {socket [38;5;28;01mfor[39;00m socket [38;5;129;01min[39;00m [38;5;28mself[39m[38;5;241m.[39mweb_sockets
+[0;32m    149[0m                     [38;5;28;01mif[39;00m socket[38;5;241m.[39mis_open()}
+[0;32m    151[0m [38;5;28;01mif[39;00m [38;5;28mlen[39m([38;5;28mself[39m[38;5;241m.[39mweb_sockets) [38;5;241m==[39m [38;5;241m0[39m:
+[1;32m--> 152[0m     CloseEvent([38;5;124m"[39m[38;5;124mclose_event[39m[38;5;124m"[39m, [38;5;28mself[39m[38;5;241m.[39mcanvas)[38;5;241m.[39m_process()
+
+File [1;32mD:\Utilisateurs\rouxemi\AppData\Local\anaconda3\Lib\site-packages\matplotlib\backend_bases.py:1263[0m, in [0;36mEvent._process[1;34m(self)[0m
+[0;32m   1261[0m [38;5;28;01mdef[39;00m [38;5;21m_process[39m([38;5;28mself[39m):
+[0;32m   1262[0m [38;5;250m    [39m[38;5;124;03m"""Generate an event with name ``self.name`` on ``self.canvas``."""[39;00m
+[1;32m-> 1263[0m     [38;5;28mself[39m[38;5;241m.[39mcanvas[38;5;241m.[39mcallbacks[38;5;241m.[39mprocess([38;5;28mself[39m[38;5;241m.[39mname, [38;5;28mself[39m)
+
+File [1;32mD:\Utilisateurs\rouxemi\AppData\Local\anaconda3\Lib\site-packages\matplotlib\cbook\__init__.py:314[0m, in [0;36mCallbackRegistry.process[1;34m(self, s, *args, **kwargs)[0m
+[0;32m    312[0m [38;5;28;01mexcept[39;00m [38;5;167;01mException[39;00m [38;5;28;01mas[39;00m exc:
+[0;32m    313[0m     [38;5;28;01mif[39;00m [38;5;28mself[39m[38;5;241m.[39mexception_handler [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m:
+[1;32m--> 314[0m         [38;5;28mself[39m[38;5;241m.[39mexception_handler(exc)
+[0;32m    315[0m     [38;5;28;01melse[39;00m:
+[0;32m    316[0m         [38;5;28;01mraise[39;00m
+
+File [1;32mD:\Utilisateurs\rouxemi\AppData\Local\anaconda3\Lib\site-packages\matplotlib\cbook\__init__.py:98[0m, in [0;36m_exception_printer[1;34m(exc)[0m
+[0;32m     96[0m [38;5;28;01mdef[39;00m [38;5;21m_exception_printer[39m(exc):
+[0;32m     97[0m     [38;5;28;01mif[39;00m _get_running_interactive_framework() [38;5;129;01min[39;00m [[38;5;124m"[39m[38;5;124mheadless[39m[38;5;124m"[39m, [38;5;28;01mNone[39;00m]:
+[1;32m---> 98[0m         [38;5;28;01mraise[39;00m exc
+[0;32m     99[0m     [38;5;28;01melse[39;00m:
+[0;32m    100[0m         traceback[38;5;241m.[39mprint_exc()
+
+File [1;32mD:\Utilisateurs\rouxemi\AppData\Local\anaconda3\Lib\site-packages\matplotlib\cbook\__init__.py:309[0m, in [0;36mCallbackRegistry.process[1;34m(self, s, *args, **kwargs)[0m
+[0;32m    307[0m [38;5;28;01mif[39;00m func [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m:
+[0;32m    308[0m     [38;5;28;01mtry[39;00m:
+[1;32m--> 309[0m         func([38;5;241m*[39margs, [38;5;241m*[39m[38;5;241m*[39mkwargs)
+[0;32m    310[0m     [38;5;66;03m# this does not capture KeyboardInterrupt, SystemExit,[39;00m
+[0;32m    311[0m     [38;5;66;03m# and GeneratorExit[39;00m
+[0;32m    312[0m     [38;5;28;01mexcept[39;00m [38;5;167;01mException[39;00m [38;5;28;01mas[39;00m exc:
+
+File [1;32mD:\Utilisateurs\rouxemi\AppData\Local\anaconda3\Lib\site-packages\matplotlib\animation.py:916[0m, in [0;36mAnimation._stop[1;34m(self, *args)[0m
+[0;32m    914[0m     [38;5;28mself[39m[38;5;241m.[39m_fig[38;5;241m.[39mcanvas[38;5;241m.[39mmpl_disconnect([38;5;28mself[39m[38;5;241m.[39m_resize_id)
+[0;32m    915[0m [38;5;28mself[39m[38;5;241m.[39m_fig[38;5;241m.[39mcanvas[38;5;241m.[39mmpl_disconnect([38;5;28mself[39m[38;5;241m.[39m_close_id)
+[1;32m--> 916[0m [38;5;28mself[39m[38;5;241m.[39mevent_source[38;5;241m.[39mremove_callback([38;5;28mself[39m[38;5;241m.[39m_step)
+[0;32m    917[0m [38;5;28mself[39m[38;5;241m.[39mevent_source [38;5;241m=[39m [38;5;28;01mNone[39;00m
+
+[1;31mAttributeError[0m: 'NoneType' object has no attribute 'remove_callback'
+AttributeError: 'NoneType' object has no attribute 'remove_callback'
+
