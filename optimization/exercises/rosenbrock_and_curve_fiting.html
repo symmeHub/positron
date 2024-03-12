@@ -587,7 +587,7 @@ f(x, y) = (1-x)^2 + 100 (y-x^2)^2
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-
+<span class="kn">import</span> <span class="nn">matplotlib.colors</span> <span class="k">as</span> <span class="nn">colors</span>
 
 <span class="k">def</span> <span class="nf">Rosen</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
@@ -604,9 +604,9 @@ f(x, y) = (1-x)^2 + 100 (y-x^2)^2
 
 <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">clf</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">contourf</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">Z</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">contourf</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">Z</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span>  <span class="n">norm</span><span class="o">=</span><span class="n">colors</span><span class="o">.</span><span class="n">LogNorm</span><span class="p">())</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">Z</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">Z</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span>  <span class="n">norm</span><span class="o">=</span><span class="n">colors</span><span class="o">.</span><span class="n">LogNorm</span><span class="p">())</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;y&quot;</span><span class="p">)</span>
@@ -615,7 +615,7 @@ f(x, y) = (1-x)^2 + 100 (y-x^2)^2
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/827f424fb62dc49cd20dd696e0c64623c8089f30274082bcf48777edc3bf416f.png" src="../../_images/827f424fb62dc49cd20dd696e0c64623c8089f30274082bcf48777edc3bf416f.png" />
+<img alt="../../_images/407bb871ba493e0fd0f4e88a8a3476257ae2006c476bf43446e68d45f3e382ab.png" src="../../_images/407bb871ba493e0fd0f4e88a8a3476257ae2006c476bf43446e68d45f3e382ab.png" />
 </div>
 </div>
 <section id="questions">
@@ -623,7 +623,9 @@ f(x, y) = (1-x)^2 + 100 (y-x^2)^2
 <ol class="arabic simple">
 <li><p>Find the minimum of the function using brute force. Comment the accuracy and number of function evaluations.</p></li>
 <li><p>Same question with the simplex (Nelder-Mead) algorithm.</p></li>
+<li><p>Same question with the DIRECT algorithm.</p></li>
 </ol>
+<p>Hint : try to monitor all cost funcion evaluation during optimization.</p>
 </section>
 </section>
 <section id="curve-fitting">
