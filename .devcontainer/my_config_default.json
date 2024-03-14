@@ -1,7 +1,0 @@
-{
-    "gpu_count":1,
-    "volumes":
-    [
-        "../:/workspace"
-    ]
-}
