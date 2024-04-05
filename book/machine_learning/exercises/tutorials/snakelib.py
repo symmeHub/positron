@@ -2,6 +2,7 @@ import numpy as np
 import ipywidgets as widgets
 import matplotlib.pyplot as plt
 from matplotlib import animation
+from scipy.ndimage import label
 
 
 class FastSnake:
@@ -79,6 +80,7 @@ class FastSnake:
         )
         self.forbidden_positions = forbidden_positions
         self._grid = np.ones((Nrow, Ncol, 3), dtype=np.uint8) * 255
+        self._lgrid = np.zeros((Nrow, Ncol), dtype=bool) * 1
         authorized_positions = np.setdiff1d(all_positions, forbidden_positions)
         self.authorized_positions = authorized_positions
         self.snake_color = snake_color
@@ -209,6 +211,38 @@ class FastSnake:
         return grid
 
     grid = property(get_grid)
+
+    def get_free_pos_matrix(self):
+        """
+        Returns the matrix of the free positions.
+        """
+        Nrow = self.Nrow
+        Ncol = self.Ncol
+        grid = np.ones((Nrow, Ncol), dtype=bool)
+        grid[:, :] = self.void_color
+        # SNAKE
+        snake_color = self.snake_color
+        spos = self.snake_positions[self.snake_active]
+        # srows = spos // Ncol
+        # scols = spos % Ncol
+        srows, scols = pos_to_coords(spos, Ncol)
+        grid[srows, scols] = snake_color
+        grid[srows[0], scols[0]] = self.snake_head_color
+
+        # FORBIDDEN
+        forbidden_positions = self.forbidden_positions
+        forbidden_color = self.forbidden_color
+        # frows = forbidden_positions // Ncol
+        # fcols = forbidden_positions % Ncol
+        frows, fcols = pos_to_coords(forbidden_positions, Ncol)
+        grid[forbidden_positions // Ncol, forbidden_positions % Ncol] = forbidden_color
+
+        # FRUIT
+        fruit_position = self.fruit_position
+        # frrows = fruit_position // Ncol
+        # frcols = fruit_position % Ncol
+        frrows, frcols = pos_to_coords(fruit_position, Ncol)
+        grid[frrows, frcols] = self.fruit_color
 
     def check_defeat(self):
         """
@@ -542,6 +576,56 @@ class FastSnake:
 
         return out
 
+    def get_label_sensors(self):
+        """
+        This function calculates the volume of free space in the direction of each possible turn for the snake.
+
+        The function first creates a grid representing the game area, with free positions marked as 1 and occupied positions as 0.
+        It then calculates the current direction of the snake and iterates over all possible turns (left, straight, right).
+        For each turn, it calculates the new head position if the snake were to take that turn.
+        If the new head position is not free, the volume for that turn is set to 0.
+        If the new head position is free, the function calculates the volume of the connected free space and stores it in the turn_volume array.
+
+        Returns:
+            turn_volume (numpy array): An array of size 3, where each element represents the volume of free space in the direction of a possible turn.
+        """
+        Nrow = self.Nrow
+        Ncol = self.Ncol
+
+        fpos = self.free_positions
+        frows, fcols = pos_to_coords(fpos, Ncol)
+        grid = self._lgrid
+        grid[:] = 0
+        grid[frows, fcols] = 1
+        headpos = pos_to_coords(self.snake_active_positions[0], Ncol)
+        currdir = self.get_current_direction()
+        turn_volume = np.zeros(3)
+        for tid, turn in enumerate(range(-1, 2)):
+            newdir = (currdir + turn) % 4
+            if newdir == 0:
+                new_headpos = (headpos[0], headpos[1] + 1)
+            elif newdir == 1:
+                new_headpos = (headpos[0] - 1, headpos[1])
+            elif newdir == 2:
+                new_headpos = (headpos[0], headpos[1] - 1)
+            elif newdir == 3:
+                new_headpos = (headpos[0] + 1, headpos[1])
+
+            if grid[new_headpos] == 0:
+                turn_volume[tid] = -1.0
+            else:
+                lgrid, nl = label(grid)
+                new_headlab = lgrid[new_headpos]
+                turn_volume[tid] = (lgrid == new_headlab).sum() / (lgrid != 0).sum()
+        out = np.zeros(3)
+        for i in range(3):
+            if turn_volume[i] > 0.0:
+                if turn_volume[i] == turn_volume.max():
+                    out[i] = 1.0
+            else:
+                out[i] = -1.0
+        return out
+
     def sensors(self, method="default"):
         """
         Returns sensor readings that an agent can use to make decisions based on the state of the game board.
@@ -563,7 +647,7 @@ class FastSnake:
                 self.get_fruit_relative_directions()
             )  # Get the relative directions to the fruit.
 
-        if method == "lidar":
+        elif method == "lidar":
             # Use the lidar method to obtain sensor readings.
             out = np.zeros(5, dtype=np.float64)
             out[:3] = self.get_lidar()  # Get the lidar readings.
@@ -572,7 +656,7 @@ class FastSnake:
             ] = (
                 self.get_fruit_relative_directions()
             )  # Get the relative directions to the fruit.
-        if method == "elidar":
+        elif method == "elidar":
             out = np.zeros(7, dtype=np.float64)
             out[:5] = self.get_enhanched_lidar()  # Get the lidar readings.
             out[
@@ -581,6 +665,10 @@ class FastSnake:
                 self.get_fruit_relative_directions()
             )  # Get the relative directions to the fruit.
             # print(f"Careful sensor readings array is of size {out.shape[0]}")
+        elif method == "label":
+            out = np.zeros(5, dtype=np.float64)
+            out[:3] = self.get_label_sensors()
+            out[-2:] = self.get_fruit_relative_directions()
 
         return out
 
@@ -712,6 +800,7 @@ def show_gui(snake, ax, return_metrics=False):
 
     def set_turn(turn):
         snake.turn(turn)
+        # print(snake.sensors(method="label"))
         update_fig()
 
     def reset_game():
@@ -732,7 +821,8 @@ def show_gui(snake, ax, return_metrics=False):
             mess = "YOU DIED (YOURSELF)"
         elif status == -2:
             mess = "YOU DIED (LAVA)"
-        title.set_text(f"Score = {snake.score}, {mess}")
+        sensors = str(snake.sensors(method="label"))
+        title.set_text(f"Score = {snake.score}, {mess} {sensors}")
         plt.draw()
         return (im,)
 
@@ -780,7 +870,7 @@ class NeuralAgent:
         def inference(x):
             for stage in range(len(matrices)):
                 A, B = matrices[stage]
-                x = A @ x + B
+                x = A @ x  # + B # No bias
                 x = neural_functions[stage](x)
             return x
 
