@@ -66,6 +66,8 @@ class FastSnake:
         forbidden_color=(255, 0, 0),
         fruit_color=(0, 255, 0),
         void_color=(255, 255, 255),
+        record_turns=False,
+        recorded_sensors_method="default",
     ):
         self.Nrow = Nrow
         self.Ncol = Ncol
@@ -88,6 +90,8 @@ class FastSnake:
         self.forbidden_color = forbidden_color
         self.fruit_color = fruit_color
         self.void_color = void_color
+        self.record_turns = record_turns
+        self.recorded_sensors_method = recorded_sensors_method
         self.reset()
 
     def reset(self, fix_seed=None):
@@ -118,6 +122,10 @@ class FastSnake:
         self.set_fruit()
         self.status = 0
         self.score = 0
+        self.recorded_turns = []
+        self.recorded_sensors = []
+        self.recorded_status = []
+        self.iteration = 0
 
     def get_snake_active_positions(self):
         """
@@ -314,6 +322,7 @@ class FastSnake:
                     self.score += 1
 
             # Check if the snake has collided with a forbidden position or with itself.
+            self.iteration += 1
             self.check_defeat()
 
             # Return the updated game status.
@@ -333,11 +342,18 @@ class FastSnake:
             None
 
         """
-        current_direction = self.get_current_direction()
-        # Calculate the absolute direction
-        abs_direction = (current_direction + turn) % 4
-        # Call the play method with the new direction
-        self.play(abs_direction)
+        if self.status == 0:
+            current_direction = self.get_current_direction()
+            # Calculate the absolute direction
+            abs_direction = (current_direction + turn) % 4
+            # Call the play method with the new direction
+            if self.record_turns:
+                self.recorded_turns.append(turn)
+                self.recorded_sensors.append(
+                    self.sensors(method=self.recorded_sensors_method)
+                )
+                self.recorded_status.append(self.status)
+            self.play(abs_direction)
 
     def get_current_direction(self):
         """
@@ -402,6 +418,11 @@ class FastSnake:
         elif cdir == 3:
             asin = dcol / d
             acos = drow / d
+
+        if acos != 0.0:
+            acos = np.sign(acos)
+        if asin != 0.0:
+            asin = np.sign(asin)
         return acos, asin
 
     def get_neighbors_pos(self):
@@ -617,13 +638,12 @@ class FastSnake:
                 lgrid, nl = label(grid)
                 new_headlab = lgrid[new_headpos]
                 turn_volume[tid] = (lgrid == new_headlab).sum() / (lgrid != 0).sum()
-        out = np.zeros(3)
+        out = -np.ones(3)
         for i in range(3):
             if turn_volume[i] > 0.0:
                 if turn_volume[i] == turn_volume.max():
                     out[i] = 1.0
-            else:
-                out[i] = -1.0
+
         return out
 
     def sensors(self, method="default"):
@@ -839,6 +859,12 @@ def show_gui(snake, ax, return_metrics=False):
     ax.legend(handles, labels, loc=(1.1, 0), framealpha=1, frameon=False)
 
     return box
+
+    def show_record(self):
+        """
+        Show the recorded sensors and turns
+        """
+        pass
 
 
 class NeuralAgent:
