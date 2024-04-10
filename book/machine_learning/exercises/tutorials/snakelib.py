@@ -68,6 +68,7 @@ class FastSnake:
         void_color=(255, 255, 255),
         record_turns=False,
         recorded_sensors_method="default",
+        display_sensor_method=None,
     ):
         self.Nrow = Nrow
         self.Ncol = Ncol
@@ -92,6 +93,7 @@ class FastSnake:
         self.void_color = void_color
         self.record_turns = record_turns
         self.recorded_sensors_method = recorded_sensors_method
+        self.display_sensor_method = display_sensor_method
         self.reset()
 
     def reset(self, fix_seed=None):
@@ -818,6 +820,10 @@ def show_gui(snake, ax, return_metrics=False):
 
     # direction = 0
 
+    def select_sensors_method(method):
+        snake.recorded_sensors_method = method
+        print(f"Selected method {method}")
+
     def set_turn(turn):
         snake.turn(turn)
         # print(snake.sensors(method="label"))
@@ -841,7 +847,11 @@ def show_gui(snake, ax, return_metrics=False):
             mess = "YOU DIED (YOURSELF)"
         elif status == -2:
             mess = "YOU DIED (LAVA)"
-        sensors = str(snake.sensors(method="label"))
+        sensor_method = snake.display_sensor_method
+        if sensor_method == None:
+            sensors = ""
+        else:
+            sensors = str(snake.sensors(method=sensor_method))
         title.set_text(f"Score = {snake.score}, {mess} {sensors}")
         plt.draw()
         return (im,)
@@ -849,6 +859,7 @@ def show_gui(snake, ax, return_metrics=False):
     ax.axis("off")
     title = ax.set_title(f"Score = {snake.score}, PLAY ")
     im = ax.imshow(snake.grid, interpolation="nearest", animated=True)
+    update_fig()
     box = widgets.Box([left_widget, right_widget, up_widget, reset_widget])
     # Add a standalone legend  gray box = head, black box = body, red box = wall, green box = fruit
     entries = {"Head": "gray", "Body": "black", "Wall": "red", "Fruit": "green"}
