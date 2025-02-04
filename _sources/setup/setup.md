@@ -6,16 +6,16 @@ You can install them by following the instructions below.
 ## Installing Conda
 
 1. You can install conda using alternatively:
-    1. [Anaconda](https://www.anaconda.com/download/success). Then, install mamba using:
+    - [Anaconda](https://www.anaconda.com/download/success). Then, install mamba using:
     ```bash
     conda install -c conda-forge mamba
     ```
-    2. Or [Miniforge](https://conda-forge.org/download/), you may need to have a look at the [Miniforge documentation](https://github.com/conda-forge/miniforge) for more information.
+    - Or [Miniforge](https://conda-forge.org/download/), you may need to have a look at the [Miniforge documentation](https://github.com/conda-forge/miniforge) for more information.
     Mamba is already included in Miniforge.
 
 2. Create an environment with the following command:
-    1. Download the environment file [positron_env.yaml](positron_env.yaml) and put it in the current folder.
-    2. Run the following command:
+    - Download the environment file [positron_env.yaml](positron_env.yaml) and put it in the current folder.
+    - Run the following command:
     ```bash
     mamba env create -f positron_env.yaml
     ```
@@ -29,11 +29,11 @@ You can install them by following the instructions below.
     conda activate positron
     ```
 3. At this point, you should have all the necessary packages installed. You can run Jupyter Lab with the following command:
-```bash
-jupyter lab
-```
-And Jupyter Notebook with:
-```bash
-jupyter notebook
-```
+    ```bash
+    jupyter lab
+    ```
+    And Jupyter Notebook with:
+    ```bash
+    jupyter notebook
+    ```
     
