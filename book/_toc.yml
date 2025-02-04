@@ -6,6 +6,10 @@ root: intro
 options: # The options key will be applied to all chapters, but not sub-sections
   numbered: False
 parts:
+  - caption: Setup
+    numbered: False
+    chapters:
+      - file: setup/setup.md
   - caption: Basics
     numbered: False
     chapters:

@@ -34,7 +34,8 @@
                 "PKief.material-icon-theme",
                 "ms-toolsai.jupyter",
                 "ms-python.pylint",
-                "mhutchie.git-graph"
+                "mhutchie.git-graph",
+                "ms-vscode.live-server"
             ]
         }
     },
