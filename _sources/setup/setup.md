@@ -20,11 +20,11 @@ Create an environment with the following command:
 1. Download the environment file [positron_env.yaml](positron_env.yaml) and put it in the current folder.
 2.  Run the following command:
     ```bash
-    mamba env create -f positron_env.yaml
+    mamba env create --file=positron_env.yaml
     ```
     If you don't have mamba installed, you can use conda instead:
     ```bash
-    conda env create -f positron_env.yaml
+    conda env create --file=positron_env.yaml
     ```
     The install process will just be a bit slower.
 3. Activate the environment:
