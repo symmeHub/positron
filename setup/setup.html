@@ -478,7 +478,9 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-conda">Installing Conda</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-conda-and-mamba">Installing Conda and Mamba</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#environment-setup">Environment setup</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#run-all-examples-locally">Run all examples locally</a></li>
 </ul>
             </nav>
         </div>
@@ -494,26 +496,25 @@
 <h1>Setup<a class="headerlink" href="#setup" title="Link to this heading">#</a></h1>
 <p>In order to work locally with the examples provided in this book, you will need to install python and jupyter notebook.
 You can install them by following the instructions below.</p>
-<section id="installing-conda">
-<h2>Installing Conda<a class="headerlink" href="#installing-conda" title="Link to this heading">#</a></h2>
+<section id="installing-conda-and-mamba">
+<h2>Installing Conda and Mamba<a class="headerlink" href="#installing-conda-and-mamba" title="Link to this heading">#</a></h2>
+<p>You can install conda using alternatively:</p>
 <ol class="arabic">
-<li><p>You can install conda using alternatively:</p>
-<ul class="simple">
-<li><p><a class="reference external" href="https://www.anaconda.com/download/success">Anaconda</a>. Then, install mamba using:</p></li>
-</ul>
+<li><p><a class="reference external" href="https://www.anaconda.com/download/success">Anaconda</a>. Then, install mamba using:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>install<span class="w"> </span>-c<span class="w"> </span>conda-forge<span class="w"> </span>mamba
 </pre></div>
 </div>
-<ul class="simple">
+</li>
 <li><p>Or <a class="reference external" href="https://conda-forge.org/download/">Miniforge</a>, you may need to have a look at the <a class="reference external" href="https://github.com/conda-forge/miniforge">Miniforge documentation</a> for more information.
 Mamba is already included in Miniforge.</p></li>
-</ul>
-</li>
-<li><p>Create an environment with the following command:</p>
-<ul class="simple">
+</ol>
+</section>
+<section id="environment-setup">
+<h2>Environment setup<a class="headerlink" href="#environment-setup" title="Link to this heading">#</a></h2>
+<p>Create an environment with the following command:</p>
+<ol class="arabic">
 <li><p>Download the environment file <a class="reference download internal" download="" href="../_downloads/53878a0254c3da164cf11203eddd2105/positron_env.yaml"><span class="xref download myst">positron_env.yaml</span></a> and put it in the current folder.</p></li>
-<li><p>Run the following command:</p></li>
-</ul>
+<li><p>Run the following command:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mamba<span class="w"> </span>env<span class="w"> </span>create<span class="w"> </span>-f<span class="w"> </span>positron_env.yaml
 </pre></div>
 </div>
@@ -521,13 +522,18 @@ Mamba is already included in Miniforge.</p></li>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>env<span class="w"> </span>create<span class="w"> </span>-f<span class="w"> </span>positron_env.yaml
 </pre></div>
 </div>
-<p>The install process will just be a bit slower.
-3. Activate the environment:</p>
+<p>The install process will just be a bit slower.</p>
+</li>
+<li><p>Activate the environment:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>activate<span class="w"> </span>positron
 </pre></div>
 </div>
 </li>
-<li><p>At this point, you should have all the necessary packages installed. You can run Jupyter Lab with the following command:</p>
+</ol>
+</section>
+<section id="run-all-examples-locally">
+<h2>Run all examples locally<a class="headerlink" href="#run-all-examples-locally" title="Link to this heading">#</a></h2>
+<p>At this point, you should have all the necessary packages installed. You can run Jupyter Lab with the following command:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>jupyter<span class="w"> </span>lab
 </pre></div>
 </div>
@@ -535,8 +541,6 @@ Mamba is already included in Miniforge.</p></li>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>jupyter<span class="w"> </span>notebook
 </pre></div>
 </div>
-</li>
-</ol>
 </section>
 </section>
 
@@ -605,7 +609,9 @@ Mamba is already included in Miniforge.</p></li>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-conda">Installing Conda</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-conda-and-mamba">Installing Conda and Mamba</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#environment-setup">Environment setup</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#run-all-examples-locally">Run all examples locally</a></li>
 </ul>
   </nav></div>
 
