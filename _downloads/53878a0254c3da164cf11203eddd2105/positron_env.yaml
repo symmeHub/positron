@@ -1,0 +1,46 @@
+name: positron
+channels:
+  - numba
+  - conda-forge
+  - plotly
+dependencies:
+  - python=3.10
+  - pip
+  - ipython
+  - pre-commit
+  - xarray 
+  - numba
+  - pandas
+  - yaml
+  - scipy
+  - jupyter-lsp=2.2.4
+  - jupyter_client=8.6.1
+  - jupyter_core=5.7.2
+  - jupyter_events=0.10.0
+  - jupyter_server=2.13.0
+  - jupyter_server_terminals=0.5.3
+  - jupyterlab=4.1.5
+  - jupyterlab_pygments=0.3.0
+  - jupyterlab_server=2.25.4
+  - jupyterlab_widgets=3.0.10
+  - ipykernel=6.29.3
+  - ipympl=0.9.3
+  - just
+  - ipywidgets=8.1.2
+  - nodejs
+  - ipympl
+  - pytables
+  - xlrd
+  - xlwt
+  - xlsxwriter
+  - numpy
+  - matplotlib=3.9.4
+  - plotly
+  - tqdm
+  - jinja2
+  - openpyxl
+  - scikit-image
+  - scikit-learn
+  - seaborn 
+  - sympy
+  - polars
