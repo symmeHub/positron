@@ -1,6 +1,6 @@
 # Ressources
 
-The section regroups several examples 
+The section regroups several examples :
 
 ```{tableofcontents}
 ```
