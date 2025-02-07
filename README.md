@@ -31,11 +31,11 @@ Sometimes it is necessary to clean the book build folder with it:
 jupyter-book clean book
 ```
 
-<!-- To publish the book once it has been tested and validated by you:
+To publish the book once it has been tested and validated by you:
 
 ``` bash
 ghp-import -n -p -f book/_build/html
-``` -->
+``` 
 
 ## Update Online Book
 
