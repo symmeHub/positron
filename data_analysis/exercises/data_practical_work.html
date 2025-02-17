@@ -223,7 +223,7 @@
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Data</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../support_material/support_material.html">Support material</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../support_material/pandas_introduction.html">Introduction to the Pandas module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../support_material/pandas_introduction.html">Introduction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../support_material/01_Linear_regression_Linear_model.html">Linear regression - Linear model</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../support_material/02_Linear_regression_Advanced_Model.html">Linear regression - Advanced model</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../support_material/03_Numerical_Derivation.html">Derivation of numerical data</a></li>
@@ -644,16 +644,6 @@ This analysis aims at extracting the mechanical properties of the material, such
 </div>
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
 <section id="q1-load-the-data-and-plot-its">
 <h3>Q1 : Load the data and plot its<a class="headerlink" href="#q1-load-the-data-and-plot-its" title="Link to this heading">#</a></h3>
 <ul class="simple">
@@ -661,184 +651,6 @@ This analysis aims at extracting the mechanical properties of the material, such
 <li><p>call this function 4 times to load all data</p></li>
 <li><p>plot all the tests on one figure</p></li>
 </ul>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">a_function</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="mf">0.1</span><span class="p">):</span>
-    <span class="n">x</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span> <span class="o">+</span> <span class="n">c</span>
-    <span class="k">return</span> <span class="n">x</span>
-
-
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;a_function(1,2) =&quot;</span><span class="p">,</span> <span class="n">a_function</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;a_function(1,2, c=5) =&quot;</span><span class="p">,</span> <span class="n">a_function</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="mi">5</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">read_data</span><span class="p">(</span><span class="n">path_to_csv</span><span class="p">):</span>
-    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">path_to_csv</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s2">&quot;;&quot;</span><span class="p">,</span> <span class="n">skiprows</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">df</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># unit test</span>
-<span class="n">read_data</span><span class="p">(</span><span class="s2">&quot;Test_1.csv&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># meta data</span>
-<span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;Test_1.csv&quot;</span><span class="p">)</span>
-<span class="n">l</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
-<span class="n">l0</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">l</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
-<span class="n">l</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
-<span class="n">S0</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">l</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;S0=</span><span class="si">{</span><span class="n">S0</span><span class="si">}</span><span class="s2"> mm²; l0=</span><span class="si">{</span><span class="n">l0</span><span class="si">}</span><span class="s2"> mm&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">read_metadata</span><span class="p">(</span><span class="n">path_to_csv</span><span class="p">):</span>
-    <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">path_to_csv</span><span class="p">)</span>
-    <span class="n">l</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
-    <span class="n">l0</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">l</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
-    <span class="n">l</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
-    <span class="n">S0</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">l</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
-    <span class="k">return</span> <span class="n">S0</span><span class="p">,</span> <span class="n">l0</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># recupérer le nom de tout les fichier xxx.csv du dossier</span>
-<span class="kn">import</span> <span class="nn">glob</span>
-
-<span class="n">cvs_list</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;*.csv&quot;</span><span class="p">)</span>
-
-<span class="k">for</span> <span class="n">path2csv</span> <span class="ow">in</span> <span class="n">cvs_list</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">path2csv</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dfs</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="k">for</span> <span class="n">path2csv</span> <span class="ow">in</span> <span class="n">cvs_list</span><span class="p">:</span>
-    <span class="n">df</span> <span class="o">=</span> <span class="n">read_data</span><span class="p">(</span><span class="n">path2csv</span><span class="p">)</span>
-    <span class="n">dfs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">TensileTest</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    this class is able to ....</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">csv_file</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">csv_file</span> <span class="o">=</span> <span class="n">csv_file</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">df</span> <span class="o">=</span> <span class="n">read_data</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">csv_file</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">S0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">l0</span> <span class="o">=</span> <span class="n">read_metadata</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">csv_file</span><span class="p">)</span>
-        <span class="c1"># CODDE HERE</span>
-
-    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="s2">&quot;&lt;tensileTest: (file: </span><span class="si">{0}</span><span class="s2">, E = </span><span class="si">{1:.2}</span><span class="s2"> MPa)&gt;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">csv_file</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_YoungModulus</span><span class="p">()</span>
-        <span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">get_meca_strength</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="mf">0.0</span>
-
-    <span class="k">def</span> <span class="nf">get_YoungModulus</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="c1"># CODDE HERE</span>
-        <span class="k">return</span> <span class="mf">1.0</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t1</span> <span class="o">=</span> <span class="n">TensileTest</span><span class="p">(</span><span class="s2">&quot;Test_1.csv&quot;</span><span class="p">)</span>
-<span class="n">t1</span><span class="o">.</span><span class="n">S0</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">a_function</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="mf">0.1</span><span class="p">):</span>
-    <span class="n">x</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span> <span class="o">+</span> <span class="n">c</span>
-    <span class="k">return</span> <span class="n">x</span>
-
-
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;a_function(1,2) =&quot;</span><span class="p">,</span> <span class="n">a_function</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;a_function(1,2, c=5) =&quot;</span><span class="p">,</span> <span class="n">a_function</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="mi">5</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">glob</span>
-
-<span class="n">cvs_list</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;*.csv&quot;</span><span class="p">)</span>
-
-<span class="k">for</span> <span class="n">path2csv</span> <span class="ow">in</span> <span class="n">cvs_list</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">path2csv</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">read_data</span><span class="p">(</span><span class="n">path_to_csv</span><span class="o">=</span><span class="s2">&quot;my_csv.csv&quot;</span><span class="p">):</span>
-    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">path_to_csv</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s2">&quot;;&quot;</span><span class="p">,</span> <span class="n">skiprows</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">df</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># unit test</span>
-<span class="n">read_data</span><span class="p">(</span><span class="s2">&quot;Test_1.csv&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tests</span> <span class="o">=</span> <span class="p">[]</span>
-
-<span class="k">for</span> <span class="n">path2csv</span> <span class="ow">in</span> <span class="n">cvs_list</span><span class="p">:</span>
-    <span class="n">df</span> <span class="o">=</span> <span class="n">read_data</span><span class="p">(</span><span class="n">path2csv</span><span class="p">)</span>
-    <span class="n">tests</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
-
-
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
-<span class="k">for</span> <span class="n">df</span> <span class="ow">in</span> <span class="n">tests</span><span class="p">:</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">Ext</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">Force</span><span class="p">,</span> <span class="s2">&quot;.&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;$\Delta L[mm]$&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;$F [N]$&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
 </section>
 <section id="q2-load-the-metadata">
 <h3>Q2: Load the metadata<a class="headerlink" href="#q2-load-the-metadata" title="Link to this heading">#</a></h3>
@@ -854,111 +666,6 @@ This analysis aims at extracting the mechanical properties of the material, such
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">line</span> <span class="o">=</span> <span class="s2">&quot;z = 143.2&quot;</span>
 <span class="n">word1</span><span class="p">,</span> <span class="n">word2</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="p">)</span>
 </pre></div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;Test_1.csv&quot;</span><span class="p">)</span>
-<span class="n">l</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
-<span class="n">l0</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">l</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
-<span class="n">l</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
-<span class="n">S0</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">l</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;S0=</span><span class="si">{</span><span class="n">S0</span><span class="si">}</span><span class="s2"> mm²; l0=</span><span class="si">{</span><span class="n">l0</span><span class="si">}</span><span class="s2"> mm&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">read_metadata</span><span class="p">(</span><span class="n">path_to_csv</span><span class="o">=</span><span class="s2">&quot;my_csv.csv&quot;</span><span class="p">):</span>
-    <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">path_to_csv</span><span class="p">)</span>
-    <span class="n">l</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
-    <span class="n">l0</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">l</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
-    <span class="n">l</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
-    <span class="n">S0</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">l</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
-    <span class="k">return</span> <span class="n">S0</span><span class="p">,</span> <span class="n">l0</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># unit test</span>
-<span class="n">read_metadata</span><span class="p">(</span><span class="s2">&quot;Test_1.csv&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Class</span>
-<span class="k">class</span> <span class="nc">TensileTest</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    this class is able to ....</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">csv_file</span><span class="o">=</span><span class="s2">&quot;xxx&quot;</span><span class="p">):</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Init with file &quot;</span> <span class="o">+</span> <span class="n">csv_file</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">csv_file</span> <span class="o">=</span> <span class="n">csv_file</span>
-        <span class="c1"># read the data</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">df</span> <span class="o">=</span> <span class="n">read_data</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">csv_file</span><span class="p">)</span>
-        <span class="n">S0</span><span class="p">,</span> <span class="n">l0</span> <span class="o">=</span> <span class="n">read_metadata</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">csv_file</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">S0</span> <span class="o">=</span> <span class="n">S0</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">l0</span> <span class="o">=</span> <span class="n">l0</span>
-        <span class="c1"># compute stress and strain</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;stress&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">Force</span> <span class="o">/</span> <span class="n">S0</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;strain&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">Ext</span> <span class="o">/</span> <span class="n">l0</span>
-
-    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="s2">&quot;&lt;tensileTest: (file: </span><span class="si">{0}</span><span class="s2">, E = </span><span class="si">{1:.2}</span><span class="s2"> MPa)&gt;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">csv_file</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_YoungModulus</span><span class="p">()</span>
-        <span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="n">E</span><span class="p">,</span> <span class="n">off_set</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_YoungModulus</span><span class="p">()</span>
-        <span class="k">if</span> <span class="n">ax</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
-        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">strain</span><span class="p">,</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">stress</span><span class="p">,</span>
-            <span class="s2">&quot;.&quot;</span><span class="p">,</span>
-            <span class="n">label</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">csv_file</span> <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot;E=</span><span class="si">{</span><span class="n">E</span><span class="o">/</span><span class="mi">1000</span><span class="si">:</span><span class="s2">0.2f</span><span class="si">}</span><span class="s2"> GPa&quot;</span><span class="p">,</span>
-        <span class="p">)</span>
-        <span class="n">e_max</span><span class="p">,</span> <span class="n">s_max</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_meca_strength</span><span class="p">()</span>
-        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">e_max</span><span class="p">,</span> <span class="n">s_max</span><span class="p">,</span> <span class="s2">&quot;xr&quot;</span><span class="p">)</span>
-        <span class="n">eps</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.003</span><span class="p">])</span>
-
-        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">eps</span><span class="p">,</span> <span class="n">E</span> <span class="o">*</span> <span class="n">eps</span> <span class="o">+</span> <span class="n">off_set</span><span class="p">,</span> <span class="s2">&quot;k&quot;</span><span class="p">)</span>
-        <span class="c1"># ax.plot(self.df.Ext, self.df.Force,&#39;.&#39;, label = self.csv_file)</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-        <span class="k">return</span> <span class="n">ax</span>
-
-    <span class="k">def</span> <span class="nf">get_meca_strength</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">id_max</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">stress</span><span class="o">.</span><span class="n">argmax</span><span class="p">()</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">strain</span><span class="p">[</span><span class="n">id_max</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">stress</span><span class="p">[</span><span class="n">id_max</span><span class="p">]</span>
-
-    <span class="k">def</span> <span class="nf">get_YoungModulus</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">coef</span><span class="o">=</span><span class="mf">3.0</span><span class="p">):</span>
-        <span class="n">e_max</span><span class="p">,</span> <span class="n">s_max</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_meca_strength</span><span class="p">()</span>
-        <span class="n">df_e</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="p">[(</span><span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">stress</span> <span class="o">&lt;</span> <span class="n">s_max</span> <span class="o">/</span> <span class="n">coef</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">strain</span> <span class="o">&lt;</span> <span class="n">e_max</span><span class="p">)]</span>
-        <span class="n">fit</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">polyfit</span><span class="p">(</span><span class="n">df_e</span><span class="o">.</span><span class="n">strain</span><span class="p">,</span> <span class="n">df_e</span><span class="o">.</span><span class="n">stress</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-        <span class="n">E</span> <span class="o">=</span> <span class="n">fit</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-        <span class="n">off_set</span> <span class="o">=</span> <span class="n">fit</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-        <span class="k">return</span> <span class="n">E</span><span class="p">,</span> <span class="n">off_set</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tests</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="k">for</span> <span class="n">path2csv</span> <span class="ow">in</span> <span class="n">cvs_list</span><span class="p">:</span>
-    <span class="n">t</span> <span class="o">=</span> <span class="n">TensileTest</span><span class="p">(</span><span class="n">path2csv</span><span class="p">)</span>
-    <span class="n">tests</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="kc">None</span>
-<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">tests</span><span class="p">:</span>
-    <span class="n">ax</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
-</pre></div>
-</div>
 </div>
 </div>
 </section>
@@ -1044,6 +751,11 @@ and
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test1</span>  <span class="c1"># call the __repr__ function</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;tensileTest: (file: my_csv.csv, E = 1.0 MPa)&gt;
 </pre></div>
 </div>
 </div>
