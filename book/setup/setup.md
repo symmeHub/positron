@@ -1,12 +1,9 @@
-# Setup
-
-In order to work locally with the examples provided in this book, you will need to install python and jupyter notebook. 
-You can install them by following the instructions below.
 
 
-## Installing Python
 
-### Install Miniforge
+# Installing Python
+
+## Install Miniforge
 
 As of January 2025, we recommend installing Miniforge rather than Anaconda, for reasons of simplicity and licensing:
 
@@ -20,7 +17,7 @@ As of January 2025, we recommend installing Miniforge rather than Anaconda, for 
 - add mini-forge to your `PATH`.
 :::
 
-### Environment setup
+## Environment setup
 
 Create an environment with the following command:
 1. Download the environment file [positron_env.yaml](positron_env.yaml) and put it in the current folder.
@@ -38,7 +35,7 @@ Create an environment with the following command:
     conda activate positron
     ```
 
-### Run all examples locally
+## Run all examples locally
 
 At this point, you should have all the necessary packages installed. You can run Jupyter Lab with the following command:
 
@@ -52,7 +49,7 @@ And Jupyter Notebook with:
 jupyter notebook
 ```
     
-## Installing GIT
+# Installing GIT
 
 If you're new to Python, learning Git is a game-changer! 
 It helps you track changes, undo mistakes, and collaborate easily. 
@@ -60,7 +57,7 @@ With GitHub or GitLab, you can contribute to open-source projects and showcase y
 Start using Git early—it’ll make your coding journey way smoother!
 
 
-### Procedure
+## Procedure
 
 - For Windows users: [GIT-SCM](https://git-scm.com/downloads)
 - Linux: GIT is already instlalled
@@ -68,11 +65,11 @@ Start using Git early—it’ll make your coding journey way smoother!
 
 
 
-## Installing VSCode
+# Installing VSCode
 
 Visual Studio Code (VSCode) is a lightweight but powerful source code editor that runs on your desktop.
 
-### Procedure
+## Procedure
 
 1. Download the installer from the [VSCode website](https://code.visualstudio.com/).
 2. Run the installer and follow the instructions.
