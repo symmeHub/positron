@@ -5,3 +5,4 @@ book/_build/*
 .sh/config.sh
 .ignore*
 **/truss-master/*
+.DS_Store
