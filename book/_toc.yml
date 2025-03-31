@@ -6,6 +6,10 @@ root: intro
 options: # The options key will be applied to all chapters, but not sub-sections
   numbered: False
 parts:
+  - caption: Setup your laptop
+    numbered: False
+    chapters:
+      - file: setup/setup.md
   - caption: Basics
     numbered: False
     chapters:
@@ -37,6 +41,12 @@ parts:
       - file: data_analysis/support_material/support_material.md
         sections:
           - file: data_analysis/support_material/pandas_introduction.ipynb
+          - file: data_analysis/support_material/01_Linear_regression_Linear_model.ipynb
+          - file: data_analysis/support_material/02_Linear_regression_Advanced_Model.ipynb
+          - file: data_analysis/support_material/03_Numerical_Derivation.ipynb
+      - file: data_analysis/ressources/ressources.md
+        sections:
+          - file: data_analysis/ressources/Word_Generator.ipynb
       - file: data_analysis/exercises/exercises.md
         sections:
           - file: data_analysis/exercises/data_tutorial.ipynb
