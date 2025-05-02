@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Introduction to the Pandas module &#8212; POSITRON: PythOn for Science In The Reblochon cOuNtry</title>
+    <title>Introduction &#8212; POSITRON: PythOn for Science In The Reblochon cOuNtry</title>
   
   
   
@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../../_static/style.css?v=f4d5f33b" />
@@ -76,7 +76,7 @@
     <link rel="canonical" href="&#39;https://symmehub.github.io/positron/data_analysis/support_material/pandas_introduction.html" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Exercices" href="../exercises/exercises.html" />
+    <link rel="next" title="Linear regression - Linear model" href="01_Linear_regression_Linear_model.html" />
     <link rel="prev" title="Support material" href="support_material.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -195,7 +195,13 @@
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Basics</span></p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Setup your laptop</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../setup/setup.html">Installing Python</a></li>
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Basics</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../python_basics/python_basics.html">Python basics</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../python_basics/support_material/scientific_python.html">Scientific Python</a></li>
@@ -228,7 +234,14 @@
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Data</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="support_material.html">Support material</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Introduction to the Pandas module</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="01_Linear_regression_Linear_model.html">Linear regression - Linear model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_Linear_regression_Advanced_Model.html">Linear regression - Advanced model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_Numerical_Derivation.html">Derivation of numerical data</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../ressources/ressources.html">Ressources</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ressources/Word_Generator.html">Word Generator</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../exercises/exercises.html">Exercices</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -545,7 +558,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Introduction to the Pandas module</h1>
+    <h1>Introduction</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -555,25 +568,31 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scope">Scope</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#load-data-and-creat-a-dataframe-from-csv-file">Load data and creat a dataframe from csv file</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preamble">Preamble</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">Objectives</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#first-of-all-let-s-have-a-look-at-the-data-set">First of all, let’s have a look at the data set</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-loading-and-basic-manipulation">Data Loading and basic manipulation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#load-data-and-create-a-data-frame-from-csv-file">Load data and create a data frame from csv file</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#display-the-dataframe">Display the dataframe</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#selecting-data-in-a-dataframe">Selecting data in a dataframe</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#get-one-of-row-of-the-dataframe">Get one of row of the dataframe</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#get-the-number-of-student-in-each-groupe">Get the number of student in each groupe</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#get-the-proportion-of-student-between-groupes">Get the proportion of student between groupes</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#display-the-proportion-of-student-between-groupes">Display the proportion of student between groupes</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#get-student-list-who-get-a-grad-higer-taht-14-on-both-et-and-cc">Get student list who get a grad higer taht 14 on both ET and CC</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#make-calulation-on-data">Make calulation on data</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-mean-of-et-note-over-all-student">The mean of ET note over all student</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-mean-of-et-over-student-from-b-groupe">The mean of ET over student from B groupe</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#statistical-describtion-of-the-data-by-td-using-the-groupby-function">Statistical describtion of the data by TD using the ‘groupby()’ function</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#display-the-notes-with-a-histogram-plot">Display the notes with a histogram plot</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#start-to-do-some-basic-analysis-and-visualization">Start to do some basic analysis and visualization</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#get-the-number-of-students-in-each-group">Get the number of students in each group.</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#get-the-proportion-of-students-between-groups">Get the proportion of students between groups</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#display-the-proportion-of-students-between-groups">Display the proportion of students between groups</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#get-student-list-who-get-a-grad-higher-than-14-20-on-both-et-and-cc">Get student list who get a grad higher than 14/20 on both ET and CC</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#make-calculation-on-data">Make Calculation on Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-mean-of-et-grads-over-all-students">The mean of ET grads over all students</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-mean-of-et-over-students-from-b-group">The mean of ET over students from B group</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#statistical-description-of-the-data-by-td-using-the-groupby-function">Statistical description of the data by TD using the ‘groupby()’ function</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#let-s-compute-the-mean-of-both-notes">Let’s compute the mean of both notes</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#display-the-grads-with-a-histogram-plot">Display the grads with a histogram plot</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#let-s-compute-the-mean-of-both-grads">Let’s compute the mean of both grads</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#we-need-first-to-add-a-new-row-to-a-data-frame">We need first to add a new row to a data frame</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#let-s-compute-the-mean">Let’s compute the mean</a></li>
 </ul>
@@ -590,19 +609,39 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="introduction-to-the-pandas-module">
-<span id="datam-support-pandas"></span><h1>Introduction to the Pandas module<a class="headerlink" href="#introduction-to-the-pandas-module" title="Link to this heading">#</a></h1>
-<section id="scope">
-<h2>Scope<a class="headerlink" href="#scope" title="Link to this heading">#</a></h2>
-<p>This notebook gives some key functions to work with data base using the panda module (<a class="reference external" href="https://pandas.pydata.org/">https://pandas.pydata.org/</a>)</p>
-<p>The web gives you a lot of exemples and documentations on this module:</p>
-<p><a class="reference external" href="http://pandas.pydata.org/pandas-docs/stable/10min.html">http://pandas.pydata.org/pandas-docs/stable/10min.html</a></p>
-<p><a class="reference external" href="http://www.python-simple.com/python-pandas/panda-intro.php">http://www.python-simple.com/python-pandas/panda-intro.php</a></p>
-<div class="cell docutils container">
+  <section class="tex2jax_ignore mathjax_ignore" id="introduction">
+<span id="datam-support-pandas"></span><h1>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h1>
+<section id="preamble">
+<h2>Preamble<a class="headerlink" href="#preamble" title="Link to this heading">#</a></h2>
+<p>The data analysis process is a series of steps that are used to organize, clean, and analyze data.
+The process is used to extract useful information from the data and to make decisions based on the data.
+The process is used in a variety of fields, including business, science, and engineering.
+The process is typically broken down into several steps, including data collection, data cleaning, data analysis, and data visualization.</p>
+<a class="reference internal image-reference" href="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Data_lifecycle.svg/800px-Data_lifecycle.svg.png"><img alt="Data Lifecycle" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Data_lifecycle.svg/800px-Data_lifecycle.svg.png" style="width: 800px;" />
+</a>
+<p>The scope of this notebook is to provide a brief introduction to the data analysis process using the Python programming language and the Pandas library (<a class="reference external" href="https://pandas.pydata.org/">https://pandas.pydata.org/</a>).
+Pandas is a powerful data manipulation library for Python that provides data structures and functions for working with structured data.
+It also provides basic tools for data visualization, but the use of more powerful libraries like <a class="reference external" href="https://matplotlib.org/">Matplotlib</a> or <a class="reference external" href="https://seaborn.pydata.org/">Seaborn</a> is recommended for more complex visualizations.</p>
+<p>For data manipulation, we make the choice to work with <a class="reference external" href="https://pandas.pydata.org/">Pandas</a>; other libraries like <a class="reference external" href="https://numpy.org/">NumPy</a>, <a class="reference external" href="https://www.scipy.org/">SciPy</a>, and <a class="reference external" href="https://scikit-learn.org/">Scikit-learn</a> are also commonly used for data analysis.</p>
+</section>
+<section id="objectives">
+<h2>Objectives<a class="headerlink" href="#objectives" title="Link to this heading">#</a></h2>
+<p>in this notebook, we will cover the following topics:</p>
+<ul class="simple">
+<li><p>Data Laoding</p></li>
+<li><p>Data Manipulation</p></li>
+<li><p>Data Visualization</p></li>
+<li><p>Data Analysis / data modeling</p></li>
+</ul>
+<p>We will use as example data set a list of students with their grades in different tests.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Setup</span>
-<span class="c1"># %matplotlib notebook # uncomment for interactive plot</span>
-
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
@@ -610,10 +649,28 @@ document.write(`
 </pre></div>
 </div>
 </div>
+</details>
 </div>
-<section id="load-data-and-creat-a-dataframe-from-csv-file">
-<h3>Load data and creat a dataframe from csv file<a class="headerlink" href="#load-data-and-creat-a-dataframe-from-csv-file" title="Link to this heading">#</a></h3>
-<p>More explaination can be found here : <a class="reference external" href="https://chrisalbon.com/python/data_wrangling/pandas_dataframe_importing_csv/">https://chrisalbon.com/python/data_wrangling/pandas_dataframe_importing_csv/</a></p>
+</section>
+<section id="first-of-all-let-s-have-a-look-at-the-data-set">
+<h2>First of all, let’s have a look at the data set<a class="headerlink" href="#first-of-all-let-s-have-a-look-at-the-data-set" title="Link to this heading">#</a></h2>
+<p>For that you need to open the data set in is native format, in this case a csv file.
+csv files are text files that store data in a tabular format, with each row representing a record and each column representing a field.
+Therefore, you can open the file with a text editor or a spreadsheet software like Excel.</p>
+<div class="important admonition">
+<p class="admonition-title">Required files</p>
+<p>The data set is available in the _DATA folder attached to this notebook.</p>
+</div>
+<div class="important admonition">
+<p class="admonition-title">warning</p>
+<p>Open the data with Excel might change the format of the data, so it is recommended to use a text editor like Notepad++ or Visual Studio Code.</p>
+</div>
+</section>
+<section id="data-loading-and-basic-manipulation">
+<h2>Data Loading and basic manipulation<a class="headerlink" href="#data-loading-and-basic-manipulation" title="Link to this heading">#</a></h2>
+<section id="load-data-and-create-a-data-frame-from-csv-file">
+<h3>Load data and create a data frame from csv file<a class="headerlink" href="#load-data-and-create-a-data-frame-from-csv-file" title="Link to this heading">#</a></h3>
+<p>More explanation can be found here : <a class="reference external" href="https://chrisalbon.com/python/data_wrangling/pandas_dataframe_importing_csv/">https://chrisalbon.com/python/data_wrangling/pandas_dataframe_importing_csv/</a></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;./_DATA/Note_csv.csv&quot;</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s2">&quot;;&quot;</span><span class="p">)</span>
@@ -1060,8 +1117,11 @@ Name: TD, Length: 95, dtype: object
 </div>
 </div>
 </section>
-<section id="get-the-number-of-student-in-each-groupe">
-<h3>Get the number of student in each groupe<a class="headerlink" href="#get-the-number-of-student-in-each-groupe" title="Link to this heading">#</a></h3>
+</section>
+<section id="start-to-do-some-basic-analysis-and-visualization">
+<h2>Start to do some basic analysis and visualization<a class="headerlink" href="#start-to-do-some-basic-analysis-and-visualization" title="Link to this heading">#</a></h2>
+<section id="get-the-number-of-students-in-each-group">
+<h3>Get the number of students in each group.<a class="headerlink" href="#get-the-number-of-students-in-each-group" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">TD</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
@@ -1080,8 +1140,8 @@ Name: count, dtype: int64
 </div>
 </div>
 </section>
-<section id="get-the-proportion-of-student-between-groupes">
-<h3>Get the proportion of student between groupes<a class="headerlink" href="#get-the-proportion-of-student-between-groupes" title="Link to this heading">#</a></h3>
+<section id="get-the-proportion-of-students-between-groups">
+<h3>Get the proportion of students between groups<a class="headerlink" href="#get-the-proportion-of-students-between-groups" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">TD</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -1100,10 +1160,10 @@ Name: proportion, dtype: float64
 </div>
 </div>
 </section>
-<section id="display-the-proportion-of-student-between-groupes">
-<h3>Display the proportion of student between groupes<a class="headerlink" href="#display-the-proportion-of-student-between-groupes" title="Link to this heading">#</a></h3>
+<section id="display-the-proportion-of-students-between-groups">
+<h3>Display the proportion of students between groups<a class="headerlink" href="#display-the-proportion-of-students-between-groups" title="Link to this heading">#</a></h3>
 <p><em><strong>Using the plot function of panda:</strong></em></p>
-<p>visualization optin of pandas can be found here : <a class="reference external" href="http://pandas.pydata.org/pandas-docs/version/0.18/visualization.html">http://pandas.pydata.org/pandas-docs/version/0.18/visualization.html</a></p>
+<p>visualization option of pandas can be found here : <a class="reference external" href="http://pandas.pydata.org/pandas-docs/version/0.18/visualization.html">http://pandas.pydata.org/pandas-docs/version/0.18/visualization.html</a></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
@@ -1139,8 +1199,8 @@ Name: proportion, dtype: float64
 </div>
 </div>
 </section>
-<section id="get-student-list-who-get-a-grad-higer-taht-14-on-both-et-and-cc">
-<h3>Get student list who get a grad higer taht 14 on both ET and CC<a class="headerlink" href="#get-student-list-who-get-a-grad-higer-taht-14-on-both-et-and-cc" title="Link to this heading">#</a></h3>
+<section id="get-student-list-who-get-a-grad-higher-than-14-20-on-both-et-and-cc">
+<h3>Get student list who get a grad higher than 14/20 on both ET and CC<a class="headerlink" href="#get-student-list-who-get-a-grad-higher-than-14-20-on-both-et-and-cc" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[(</span><span class="n">df</span><span class="o">.</span><span class="n">ET</span> <span class="o">&gt;</span> <span class="mf">14.0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">CC</span> <span class="o">&gt;</span> <span class="mf">14.0</span><span class="p">)]</span>
@@ -1227,10 +1287,10 @@ Name: proportion, dtype: float64
 </div></div></div>
 </div>
 </section>
-<section id="make-calulation-on-data">
-<h3>Make calulation on data<a class="headerlink" href="#make-calulation-on-data" title="Link to this heading">#</a></h3>
-<section id="the-mean-of-et-note-over-all-student">
-<h4>The mean of ET note over all student<a class="headerlink" href="#the-mean-of-et-note-over-all-student" title="Link to this heading">#</a></h4>
+<section id="make-calculation-on-data">
+<h3>Make Calculation on Data<a class="headerlink" href="#make-calculation-on-data" title="Link to this heading">#</a></h3>
+<section id="the-mean-of-et-grads-over-all-students">
+<h4>The mean of ET grads over all students<a class="headerlink" href="#the-mean-of-et-grads-over-all-students" title="Link to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">ET</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
@@ -1244,8 +1304,8 @@ Name: proportion, dtype: float64
 </div>
 </div>
 </section>
-<section id="the-mean-of-et-over-student-from-b-groupe">
-<h4>The mean of ET over student from B groupe<a class="headerlink" href="#the-mean-of-et-over-student-from-b-groupe" title="Link to this heading">#</a></h4>
+<section id="the-mean-of-et-over-students-from-b-group">
+<h4>The mean of ET over students from B group<a class="headerlink" href="#the-mean-of-et-over-students-from-b-group" title="Link to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">ET</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">TD</span> <span class="o">==</span> <span class="s2">&quot;B&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
@@ -1259,8 +1319,8 @@ Name: proportion, dtype: float64
 </div>
 </div>
 </section>
-<section id="statistical-describtion-of-the-data-by-td-using-the-groupby-function">
-<h4>Statistical describtion of the data by TD using the ‘groupby()’ function<a class="headerlink" href="#statistical-describtion-of-the-data-by-td-using-the-groupby-function" title="Link to this heading">#</a></h4>
+<section id="statistical-description-of-the-data-by-td-using-the-groupby-function">
+<h4>Statistical description of the data by TD using the ‘groupby()’ function<a class="headerlink" href="#statistical-description-of-the-data-by-td-using-the-groupby-function" title="Link to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">&quot;TD&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>  <span class="c1"># compte the mean of each note for each groupe</span>
@@ -1415,8 +1475,8 @@ Name: proportion, dtype: float64
 </div>
 </section>
 </section>
-<section id="display-the-notes-with-a-histogram-plot">
-<h3>Display the notes with a histogram plot<a class="headerlink" href="#display-the-notes-with-a-histogram-plot" title="Link to this heading">#</a></h3>
+<section id="display-the-grads-with-a-histogram-plot">
+<h3>Display the grads with a histogram plot<a class="headerlink" href="#display-the-grads-with-a-histogram-plot" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># CC notes</span>
@@ -1460,8 +1520,8 @@ Name: proportion, dtype: float64
 </div>
 </section>
 </section>
-<section id="let-s-compute-the-mean-of-both-notes">
-<h2>Let’s compute the mean of both notes<a class="headerlink" href="#let-s-compute-the-mean-of-both-notes" title="Link to this heading">#</a></h2>
+<section id="let-s-compute-the-mean-of-both-grads">
+<h2>Let’s compute the mean of both grads<a class="headerlink" href="#let-s-compute-the-mean-of-both-grads" title="Link to this heading">#</a></h2>
 <section id="we-need-first-to-add-a-new-row-to-a-data-frame">
 <h3>We need first to add a new row to a data frame<a class="headerlink" href="#we-need-first-to-add-a-new-row-to-a-data-frame" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
@@ -1851,11 +1911,11 @@ Name: proportion, dtype: float64
       </div>
     </a>
     <a class="right-next"
-       href="../exercises/exercises.html"
+       href="01_Linear_regression_Linear_model.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Exercices</p>
+        <p class="prev-next-title">Linear regression - Linear model</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -1875,25 +1935,31 @@ Name: proportion, dtype: float64
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scope">Scope</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#load-data-and-creat-a-dataframe-from-csv-file">Load data and creat a dataframe from csv file</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preamble">Preamble</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives">Objectives</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#first-of-all-let-s-have-a-look-at-the-data-set">First of all, let’s have a look at the data set</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-loading-and-basic-manipulation">Data Loading and basic manipulation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#load-data-and-create-a-data-frame-from-csv-file">Load data and create a data frame from csv file</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#display-the-dataframe">Display the dataframe</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#selecting-data-in-a-dataframe">Selecting data in a dataframe</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#get-one-of-row-of-the-dataframe">Get one of row of the dataframe</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#get-the-number-of-student-in-each-groupe">Get the number of student in each groupe</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#get-the-proportion-of-student-between-groupes">Get the proportion of student between groupes</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#display-the-proportion-of-student-between-groupes">Display the proportion of student between groupes</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#get-student-list-who-get-a-grad-higer-taht-14-on-both-et-and-cc">Get student list who get a grad higer taht 14 on both ET and CC</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#make-calulation-on-data">Make calulation on data</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-mean-of-et-note-over-all-student">The mean of ET note over all student</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-mean-of-et-over-student-from-b-groupe">The mean of ET over student from B groupe</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#statistical-describtion-of-the-data-by-td-using-the-groupby-function">Statistical describtion of the data by TD using the ‘groupby()’ function</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#display-the-notes-with-a-histogram-plot">Display the notes with a histogram plot</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#start-to-do-some-basic-analysis-and-visualization">Start to do some basic analysis and visualization</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#get-the-number-of-students-in-each-group">Get the number of students in each group.</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#get-the-proportion-of-students-between-groups">Get the proportion of students between groups</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#display-the-proportion-of-students-between-groups">Display the proportion of students between groups</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#get-student-list-who-get-a-grad-higher-than-14-20-on-both-et-and-cc">Get student list who get a grad higher than 14/20 on both ET and CC</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#make-calculation-on-data">Make Calculation on Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-mean-of-et-grads-over-all-students">The mean of ET grads over all students</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-mean-of-et-over-students-from-b-group">The mean of ET over students from B group</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#statistical-description-of-the-data-by-td-using-the-groupby-function">Statistical description of the data by TD using the ‘groupby()’ function</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#let-s-compute-the-mean-of-both-notes">Let’s compute the mean of both notes</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#display-the-grads-with-a-histogram-plot">Display the grads with a histogram plot</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#let-s-compute-the-mean-of-both-grads">Let’s compute the mean of both grads</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#we-need-first-to-add-a-new-row-to-a-data-frame">We need first to add a new row to a data frame</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#let-s-compute-the-mean">Let’s compute the mean</a></li>
 </ul>
