@@ -16,34 +16,31 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
-  <!--
-    this give us a css class that will be invisible only if js is disabled
-  -->
-  <noscript>
-    <style>
-      .pst-js-only { display: none !important; }
-
-    </style>
-  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../../_static/style.css?v=f4d5f33b" />
   
-  <!-- So that users can add custom icons -->
-  <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
-<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
     <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="../../_static/doctools.js?v=9a2dae69"></script>
@@ -85,7 +82,6 @@
     <link rel="prev" title="Rosenbrock function and Curve fiting" href="rosenbrock_and_curve_fiting.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -101,8 +97,19 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <dialog id="pst-search-dialog">
-    
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
 <form class="bd-search d-flex align-items-center"
       action="../../search.html"
       method="get">
@@ -110,6 +117,7 @@
   <input type="search"
          class="form-control"
          name="q"
+         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -117,8 +125,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form>
-  </dialog>
+</form></div>
+  </div>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -134,8 +142,7 @@
       
       
       
-      <dialog id="pst-primary-sidebar-modal"></dialog>
-      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+      <div class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -165,17 +172,21 @@
     
     
     <img src="../../_static/logo.png" class="logo__image only-light" alt="POSITRON: PythOn for Science In The Reblochon cOuNtry - Home"/>
-    <img src="../../_static/logo.png" class="logo__image only-dark pst-js-only" alt="POSITRON: PythOn for Science In The Reblochon cOuNtry - Home"/>
+    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="POSITRON: PythOn for Science In The Reblochon cOuNtry - Home"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item">
 
-<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
- <i class="fa-solid fa-magnifying-glass"></i>
- <span class="search-button__default-text">Search</span>
- <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-</button></div>
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
@@ -288,14 +299,9 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
-      <div class="sidebar-primary-item">
-<div id="ethical-ad-placement"
-      class="flat"
-      data-ea-publisher="readthedocs"
-      data-ea-type="readthedocs-sidebar"
-      data-ea-manual="true">
-</div></div>
   </div>
+  
+  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -523,16 +529,24 @@
 
 
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button>
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
 
 
-<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-</button>
+  </button>
+`);
+</script>
 <button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
@@ -591,7 +605,7 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># FOR JUPYTER LAB</span>
-<span class="o">%</span><span class="k">matplotlib</span> notebook
+<span class="o">%</span><span class="k">matplotlib</span> widget
 <span class="c1"># FOR JUPYTER NOTEBOOK AND HUB</span>
 <span class="c1"># % matplotlib notebook</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
@@ -602,9 +616,13 @@
 <span class="kn">import</span><span class="w"> </span><span class="nn">urllib.request</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">shutil</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">scipy</span><span class="w"> </span><span class="kn">import</span> <span class="n">optimize</span>
-
-
-<span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://github.com/lcharleux/truss/archive/master.zip&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://github.com/lcharleux/truss/archive/master.zip&quot;</span>
 <span class="n">file_name</span> <span class="o">=</span> <span class="s2">&quot;truss-master.zip&quot;</span>
 
 <span class="k">with</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">response</span><span class="p">,</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">out_file</span><span class="p">:</span>
@@ -660,21 +678,32 @@
 <span class="n">nG</span><span class="o">.</span><span class="n">block</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
 <span class="n">nH</span><span class="o">.</span><span class="n">block</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
 
+
 <span class="c1"># BARS</span>
 <span class="n">AC</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">add_bar</span><span class="p">(</span><span class="n">nA</span><span class="p">,</span> <span class="n">nC</span><span class="p">,</span> <span class="n">modulus</span><span class="o">=</span><span class="n">E</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="n">rho</span><span class="p">,</span> <span class="n">section</span><span class="o">=</span><span class="n">A</span><span class="p">,</span> <span class="n">yield_stress</span><span class="o">=</span><span class="n">sigmay</span><span class="p">)</span>
 <span class="n">CD</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">add_bar</span><span class="p">(</span><span class="n">nC</span><span class="p">,</span> <span class="n">nD</span><span class="p">,</span> <span class="n">modulus</span><span class="o">=</span><span class="n">E</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="n">rho</span><span class="p">,</span> <span class="n">section</span><span class="o">=</span><span class="n">A</span><span class="p">,</span> <span class="n">yield_stress</span><span class="o">=</span><span class="n">sigmay</span><span class="p">)</span>
 <span class="n">AD</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">add_bar</span><span class="p">(</span><span class="n">nA</span><span class="p">,</span> <span class="n">nD</span><span class="p">,</span> <span class="n">modulus</span><span class="o">=</span><span class="n">E</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="n">rho</span><span class="p">,</span> <span class="n">section</span><span class="o">=</span><span class="n">A</span><span class="p">,</span> <span class="n">yield_stress</span><span class="o">=</span><span class="n">sigmay</span><span class="p">)</span>
 <span class="n">CE</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">add_bar</span><span class="p">(</span><span class="n">nC</span><span class="p">,</span> <span class="n">nE</span><span class="p">,</span> <span class="n">modulus</span><span class="o">=</span><span class="n">E</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="n">rho</span><span class="p">,</span> <span class="n">section</span><span class="o">=</span><span class="n">A</span><span class="p">,</span> <span class="n">yield_stress</span><span class="o">=</span><span class="n">sigmay</span><span class="p">)</span>
 <span class="n">DF</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">add_bar</span><span class="p">(</span><span class="n">nD</span><span class="p">,</span> <span class="n">nF</span><span class="p">,</span> <span class="n">modulus</span><span class="o">=</span><span class="n">E</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="n">rho</span><span class="p">,</span> <span class="n">section</span><span class="o">=</span><span class="n">A</span><span class="p">,</span> <span class="n">yield_stress</span><span class="o">=</span><span class="n">sigmay</span><span class="p">)</span>
-<span class="n">DE</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">add_bar</span><span class="p">(</span><span class="n">nD</span><span class="p">,</span> <span class="n">nE</span><span class="p">,</span> <span class="n">modulus</span><span class="o">=</span><span class="n">E</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="n">rho</span><span class="p">,</span> <span class="n">section</span><span class="o">=</span><span class="n">A</span><span class="p">,</span> <span class="n">yield_stress</span><span class="o">=</span><span class="n">sigmay</span><span class="p">)</span>
+<span class="c1">#DE = model.add_bar(nD, nE, modulus=E, density=rho, section=A, yield_stress=sigmay)</span>
 <span class="n">EF</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">add_bar</span><span class="p">(</span><span class="n">nE</span><span class="p">,</span> <span class="n">nF</span><span class="p">,</span> <span class="n">modulus</span><span class="o">=</span><span class="n">E</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="n">rho</span><span class="p">,</span> <span class="n">section</span><span class="o">=</span><span class="n">A</span><span class="p">,</span> <span class="n">yield_stress</span><span class="o">=</span><span class="n">sigmay</span><span class="p">)</span>
 <span class="n">EG</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">add_bar</span><span class="p">(</span><span class="n">nE</span><span class="p">,</span> <span class="n">nG</span><span class="p">,</span> <span class="n">modulus</span><span class="o">=</span><span class="n">E</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="n">rho</span><span class="p">,</span> <span class="n">section</span><span class="o">=</span><span class="n">A</span><span class="p">,</span> <span class="n">yield_stress</span><span class="o">=</span><span class="n">sigmay</span><span class="p">)</span>
 <span class="n">FH</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">add_bar</span><span class="p">(</span><span class="n">nF</span><span class="p">,</span> <span class="n">nH</span><span class="p">,</span> <span class="n">modulus</span><span class="o">=</span><span class="n">E</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="n">rho</span><span class="p">,</span> <span class="n">section</span><span class="o">=</span><span class="n">A</span><span class="p">,</span> <span class="n">yield_stress</span><span class="o">=</span><span class="n">sigmay</span><span class="p">)</span>
-<span class="n">FG</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">add_bar</span><span class="p">(</span><span class="n">nF</span><span class="p">,</span> <span class="n">nG</span><span class="p">,</span> <span class="n">modulus</span><span class="o">=</span><span class="n">E</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="n">rho</span><span class="p">,</span> <span class="n">section</span><span class="o">=</span><span class="n">A</span><span class="p">,</span> <span class="n">yield_stress</span><span class="o">=</span><span class="n">sigmay</span><span class="p">)</span>
+<span class="c1">#FG = model.add_bar(nF, nG, modulus=E, density=rho, section=A, yield_stress=sigmay)</span>
 <span class="n">GH</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">add_bar</span><span class="p">(</span><span class="n">nG</span><span class="p">,</span> <span class="n">nH</span><span class="p">,</span> <span class="n">modulus</span><span class="o">=</span><span class="n">E</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="n">rho</span><span class="p">,</span> <span class="n">section</span><span class="o">=</span><span class="n">A</span><span class="p">,</span> <span class="n">yield_stress</span><span class="o">=</span><span class="n">sigmay</span><span class="p">)</span>
 
+<span class="n">FC</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">add_bar</span><span class="p">(</span><span class="n">nF</span><span class="p">,</span> <span class="n">nC</span><span class="p">,</span> <span class="n">modulus</span><span class="o">=</span><span class="n">E</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="n">rho</span><span class="p">,</span> <span class="n">section</span><span class="o">=</span><span class="n">A</span><span class="p">,</span> <span class="n">yield_stress</span><span class="o">=</span><span class="n">sigmay</span><span class="p">)</span>
+<span class="n">EH</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">add_bar</span><span class="p">(</span><span class="n">nE</span><span class="p">,</span> <span class="n">nH</span><span class="p">,</span> <span class="n">modulus</span><span class="o">=</span><span class="n">E</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="n">rho</span><span class="p">,</span> <span class="n">section</span><span class="o">=</span><span class="n">A</span><span class="p">,</span> <span class="n">yield_stress</span><span class="o">=</span><span class="n">sigmay</span><span class="p">)</span>
+
+
 <span class="c1"># STRUCTURAL LOADING</span>
-<span class="n">nG</span><span class="o">.</span><span class="n">force</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0e6</span><span class="p">])</span>
+<span class="n">TotalLoad</span> <span class="o">=</span> <span class="o">-</span><span class="mf">2.0e6</span>
+
+<span class="n">nG</span><span class="o">.</span><span class="n">force</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">TotalLoad</span><span class="o">/</span><span class="mi">4</span><span class="o">/</span><span class="mf">2.</span><span class="p">])</span>
+<span class="n">nE</span><span class="o">.</span><span class="n">force</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">TotalLoad</span><span class="o">/</span><span class="mf">4.</span><span class="p">])</span>
+<span class="n">nC</span><span class="o">.</span><span class="n">force</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">TotalLoad</span><span class="o">/</span><span class="mf">4.</span><span class="p">])</span>
+<span class="n">nA</span><span class="o">.</span><span class="n">force</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">TotalLoad</span><span class="o">/</span><span class="mi">4</span><span class="o">/</span><span class="mf">2.</span><span class="p">])</span>
+
 
 
 <span class="n">model</span><span class="o">.</span><span class="n">solve</span><span class="p">()</span>
@@ -686,7 +715,7 @@
 <span class="n">ax</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s2">&quot;equal&quot;</span><span class="p">)</span>
 <span class="c1"># ax.axis(&quot;off&quot;)</span>
 <span class="n">model</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span>
-    <span class="n">ax</span><span class="p">,</span> <span class="n">deformed</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">field</span><span class="o">=</span><span class="s2">&quot;stress&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">force_scale</span><span class="o">=</span><span class="mf">1.0e-6</span><span class="p">,</span> <span class="n">forces</span><span class="o">=</span><span class="kc">True</span>
+    <span class="n">ax</span><span class="p">,</span> <span class="n">deformed</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">field</span><span class="o">=</span><span class="s2">&quot;stress&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">force_scale</span><span class="o">=</span><span class="mf">1.0e-6</span><span class="p">,</span> <span class="n">forces</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">displacement_scale</span><span class="o">=</span><span class="mi">100</span>
 <span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="n">xlim</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="n">ylim</span><span class="p">)</span>
@@ -697,994 +726,10 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<script type="application/javascript">/* Put everything inside the global mpl namespace */
-/* global mpl */
-window.mpl = {};
-
-mpl.get_websocket_type = function () {
-    if (typeof WebSocket !== 'undefined') {
-        return WebSocket;
-    } else if (typeof MozWebSocket !== 'undefined') {
-        return MozWebSocket;
-    } else {
-        alert(
-            'Your browser does not have WebSocket support. ' +
-                'Please try Chrome, Safari or Firefox ≥ 6. ' +
-                'Firefox 4 and 5 are also supported but you ' +
-                'have to enable WebSockets in about:config.'
-        );
-    }
-};
-
-mpl.figure = function (figure_id, websocket, ondownload, parent_element) {
-    this.id = figure_id;
-
-    this.ws = websocket;
-
-    this.supports_binary = this.ws.binaryType !== undefined;
-
-    if (!this.supports_binary) {
-        var warnings = document.getElementById('mpl-warnings');
-        if (warnings) {
-            warnings.style.display = 'block';
-            warnings.textContent =
-                'This browser does not support binary websocket messages. ' +
-                'Performance may be slow.';
-        }
-    }
-
-    this.imageObj = new Image();
-
-    this.context = undefined;
-    this.message = undefined;
-    this.canvas = undefined;
-    this.rubberband_canvas = undefined;
-    this.rubberband_context = undefined;
-    this.format_dropdown = undefined;
-
-    this.image_mode = 'full';
-
-    this.root = document.createElement('div');
-    this.root.setAttribute('style', 'display: inline-block');
-    this._root_extra_style(this.root);
-
-    parent_element.appendChild(this.root);
-
-    this._init_header(this);
-    this._init_canvas(this);
-    this._init_toolbar(this);
-
-    var fig = this;
-
-    this.waiting = false;
-
-    this.ws.onopen = function () {
-        fig.send_message('supports_binary', { value: fig.supports_binary });
-        fig.send_message('send_image_mode', {});
-        if (fig.ratio !== 1) {
-            fig.send_message('set_device_pixel_ratio', {
-                device_pixel_ratio: fig.ratio,
-            });
-        }
-        fig.send_message('refresh', {});
-    };
-
-    this.imageObj.onload = function () {
-        if (fig.image_mode === 'full') {
-            // Full images could contain transparency (where diff images
-            // almost always do), so we need to clear the canvas so that
-            // there is no ghosting.
-            fig.context.clearRect(0, 0, fig.canvas.width, fig.canvas.height);
-        }
-        fig.context.drawImage(fig.imageObj, 0, 0);
-    };
-
-    this.imageObj.onunload = function () {
-        fig.ws.close();
-    };
-
-    this.ws.onmessage = this._make_on_message_function(this);
-
-    this.ondownload = ondownload;
-};
-
-mpl.figure.prototype._init_header = function () {
-    var titlebar = document.createElement('div');
-    titlebar.classList =
-        'ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix';
-    var titletext = document.createElement('div');
-    titletext.classList = 'ui-dialog-title';
-    titletext.setAttribute(
-        'style',
-        'width: 100%; text-align: center; padding: 3px;'
-    );
-    titlebar.appendChild(titletext);
-    this.root.appendChild(titlebar);
-    this.header = titletext;
-};
-
-mpl.figure.prototype._canvas_extra_style = function (_canvas_div) {};
-
-mpl.figure.prototype._root_extra_style = function (_canvas_div) {};
-
-mpl.figure.prototype._init_canvas = function () {
-    var fig = this;
-
-    var canvas_div = (this.canvas_div = document.createElement('div'));
-    canvas_div.setAttribute('tabindex', '0');
-    canvas_div.setAttribute(
-        'style',
-        'border: 1px solid #ddd;' +
-            'box-sizing: content-box;' +
-            'clear: both;' +
-            'min-height: 1px;' +
-            'min-width: 1px;' +
-            'outline: 0;' +
-            'overflow: hidden;' +
-            'position: relative;' +
-            'resize: both;' +
-            'z-index: 2;'
-    );
-
-    function on_keyboard_event_closure(name) {
-        return function (event) {
-            return fig.key_event(event, name);
-        };
-    }
-
-    canvas_div.addEventListener(
-        'keydown',
-        on_keyboard_event_closure('key_press')
-    );
-    canvas_div.addEventListener(
-        'keyup',
-        on_keyboard_event_closure('key_release')
-    );
-
-    this._canvas_extra_style(canvas_div);
-    this.root.appendChild(canvas_div);
-
-    var canvas = (this.canvas = document.createElement('canvas'));
-    canvas.classList.add('mpl-canvas');
-    canvas.setAttribute(
-        'style',
-        'box-sizing: content-box;' +
-            'pointer-events: none;' +
-            'position: relative;' +
-            'z-index: 0;'
-    );
-
-    this.context = canvas.getContext('2d');
-
-    var backingStore =
-        this.context.backingStorePixelRatio ||
-        this.context.webkitBackingStorePixelRatio ||
-        this.context.mozBackingStorePixelRatio ||
-        this.context.msBackingStorePixelRatio ||
-        this.context.oBackingStorePixelRatio ||
-        this.context.backingStorePixelRatio ||
-        1;
-
-    this.ratio = (window.devicePixelRatio || 1) / backingStore;
-
-    var rubberband_canvas = (this.rubberband_canvas = document.createElement(
-        'canvas'
-    ));
-    rubberband_canvas.setAttribute(
-        'style',
-        'box-sizing: content-box;' +
-            'left: 0;' +
-            'pointer-events: none;' +
-            'position: absolute;' +
-            'top: 0;' +
-            'z-index: 1;'
-    );
-
-    // Apply a ponyfill if ResizeObserver is not implemented by browser.
-    if (this.ResizeObserver === undefined) {
-        if (window.ResizeObserver !== undefined) {
-            this.ResizeObserver = window.ResizeObserver;
-        } else {
-            var obs = _JSXTOOLS_RESIZE_OBSERVER({});
-            this.ResizeObserver = obs.ResizeObserver;
-        }
-    }
-
-    this.resizeObserverInstance = new this.ResizeObserver(function (entries) {
-        // There's no need to resize if the WebSocket is not connected:
-        // - If it is still connecting, then we will get an initial resize from
-        //   Python once it connects.
-        // - If it has disconnected, then resizing will clear the canvas and
-        //   never get anything back to refill it, so better to not resize and
-        //   keep something visible.
-        if (fig.ws.readyState != 1) {
-            return;
-        }
-        var nentries = entries.length;
-        for (var i = 0; i < nentries; i++) {
-            var entry = entries[i];
-            var width, height;
-            if (entry.contentBoxSize) {
-                if (entry.contentBoxSize instanceof Array) {
-                    // Chrome 84 implements new version of spec.
-                    width = entry.contentBoxSize[0].inlineSize;
-                    height = entry.contentBoxSize[0].blockSize;
-                } else {
-                    // Firefox implements old version of spec.
-                    width = entry.contentBoxSize.inlineSize;
-                    height = entry.contentBoxSize.blockSize;
-                }
-            } else {
-                // Chrome <84 implements even older version of spec.
-                width = entry.contentRect.width;
-                height = entry.contentRect.height;
-            }
-
-            // Keep the size of the canvas and rubber band canvas in sync with
-            // the canvas container.
-            if (entry.devicePixelContentBoxSize) {
-                // Chrome 84 implements new version of spec.
-                canvas.setAttribute(
-                    'width',
-                    entry.devicePixelContentBoxSize[0].inlineSize
-                );
-                canvas.setAttribute(
-                    'height',
-                    entry.devicePixelContentBoxSize[0].blockSize
-                );
-            } else {
-                canvas.setAttribute('width', width * fig.ratio);
-                canvas.setAttribute('height', height * fig.ratio);
-            }
-            /* This rescales the canvas back to display pixels, so that it
-             * appears correct on HiDPI screens. */
-            canvas.style.width = width + 'px';
-            canvas.style.height = height + 'px';
-
-            rubberband_canvas.setAttribute('width', width);
-            rubberband_canvas.setAttribute('height', height);
-
-            // And update the size in Python. We ignore the initial 0/0 size
-            // that occurs as the element is placed into the DOM, which should
-            // otherwise not happen due to the minimum size styling.
-            if (width != 0 && height != 0) {
-                fig.request_resize(width, height);
-            }
-        }
-    });
-    this.resizeObserverInstance.observe(canvas_div);
-
-    function on_mouse_event_closure(name) {
-        /* User Agent sniffing is bad, but WebKit is busted:
-         * https://bugs.webkit.org/show_bug.cgi?id=144526
-         * https://bugs.webkit.org/show_bug.cgi?id=181818
-         * The worst that happens here is that they get an extra browser
-         * selection when dragging, if this check fails to catch them.
-         */
-        var UA = navigator.userAgent;
-        var isWebKit = /AppleWebKit/.test(UA) && !/Chrome/.test(UA);
-        if(isWebKit) {
-            return function (event) {
-                /* This prevents the web browser from automatically changing to
-                 * the text insertion cursor when the button is pressed. We
-                 * want to control all of the cursor setting manually through
-                 * the 'cursor' event from matplotlib */
-                event.preventDefault()
-                return fig.mouse_event(event, name);
-            };
-        } else {
-            return function (event) {
-                return fig.mouse_event(event, name);
-            };
-        }
-    }
-
-    canvas_div.addEventListener(
-        'mousedown',
-        on_mouse_event_closure('button_press')
-    );
-    canvas_div.addEventListener(
-        'mouseup',
-        on_mouse_event_closure('button_release')
-    );
-    canvas_div.addEventListener(
-        'dblclick',
-        on_mouse_event_closure('dblclick')
-    );
-    // Throttle sequential mouse events to 1 every 20ms.
-    canvas_div.addEventListener(
-        'mousemove',
-        on_mouse_event_closure('motion_notify')
-    );
-
-    canvas_div.addEventListener(
-        'mouseenter',
-        on_mouse_event_closure('figure_enter')
-    );
-    canvas_div.addEventListener(
-        'mouseleave',
-        on_mouse_event_closure('figure_leave')
-    );
-
-    canvas_div.addEventListener('wheel', function (event) {
-        if (event.deltaY < 0) {
-            event.step = 1;
-        } else {
-            event.step = -1;
-        }
-        on_mouse_event_closure('scroll')(event);
-    });
-
-    canvas_div.appendChild(canvas);
-    canvas_div.appendChild(rubberband_canvas);
-
-    this.rubberband_context = rubberband_canvas.getContext('2d');
-    this.rubberband_context.strokeStyle = '#000000';
-
-    this._resize_canvas = function (width, height, forward) {
-        if (forward) {
-            canvas_div.style.width = width + 'px';
-            canvas_div.style.height = height + 'px';
-        }
-    };
-
-    // Disable right mouse context menu.
-    canvas_div.addEventListener('contextmenu', function (_e) {
-        event.preventDefault();
-        return false;
-    });
-
-    function set_focus() {
-        canvas.focus();
-        canvas_div.focus();
-    }
-
-    window.setTimeout(set_focus, 100);
-};
-
-mpl.figure.prototype._init_toolbar = function () {
-    var fig = this;
-
-    var toolbar = document.createElement('div');
-    toolbar.classList = 'mpl-toolbar';
-    this.root.appendChild(toolbar);
-
-    function on_click_closure(name) {
-        return function (_event) {
-            return fig.toolbar_button_onclick(name);
-        };
-    }
-
-    function on_mouseover_closure(tooltip) {
-        return function (event) {
-            if (!event.currentTarget.disabled) {
-                return fig.toolbar_button_onmouseover(tooltip);
-            }
-        };
-    }
-
-    fig.buttons = {};
-    var buttonGroup = document.createElement('div');
-    buttonGroup.classList = 'mpl-button-group';
-    for (var toolbar_ind in mpl.toolbar_items) {
-        var name = mpl.toolbar_items[toolbar_ind][0];
-        var tooltip = mpl.toolbar_items[toolbar_ind][1];
-        var image = mpl.toolbar_items[toolbar_ind][2];
-        var method_name = mpl.toolbar_items[toolbar_ind][3];
-
-        if (!name) {
-            /* Instead of a spacer, we start a new button group. */
-            if (buttonGroup.hasChildNodes()) {
-                toolbar.appendChild(buttonGroup);
-            }
-            buttonGroup = document.createElement('div');
-            buttonGroup.classList = 'mpl-button-group';
-            continue;
-        }
-
-        var button = (fig.buttons[name] = document.createElement('button'));
-        button.classList = 'mpl-widget';
-        button.setAttribute('role', 'button');
-        button.setAttribute('aria-disabled', 'false');
-        button.addEventListener('click', on_click_closure(method_name));
-        button.addEventListener('mouseover', on_mouseover_closure(tooltip));
-
-        var icon_img = document.createElement('img');
-        icon_img.src = '_images/' + image + '.png';
-        icon_img.srcset = '_images/' + image + '_large.png 2x';
-        icon_img.alt = tooltip;
-        button.appendChild(icon_img);
-
-        buttonGroup.appendChild(button);
-    }
-
-    if (buttonGroup.hasChildNodes()) {
-        toolbar.appendChild(buttonGroup);
-    }
-
-    var fmt_picker = document.createElement('select');
-    fmt_picker.classList = 'mpl-widget';
-    toolbar.appendChild(fmt_picker);
-    this.format_dropdown = fmt_picker;
-
-    for (var ind in mpl.extensions) {
-        var fmt = mpl.extensions[ind];
-        var option = document.createElement('option');
-        option.selected = fmt === mpl.default_extension;
-        option.innerHTML = fmt;
-        fmt_picker.appendChild(option);
-    }
-
-    var status_bar = document.createElement('span');
-    status_bar.classList = 'mpl-message';
-    toolbar.appendChild(status_bar);
-    this.message = status_bar;
-};
-
-mpl.figure.prototype.request_resize = function (x_pixels, y_pixels) {
-    // Request matplotlib to resize the figure. Matplotlib will then trigger a resize in the client,
-    // which will in turn request a refresh of the image.
-    this.send_message('resize', { width: x_pixels, height: y_pixels });
-};
-
-mpl.figure.prototype.send_message = function (type, properties) {
-    properties['type'] = type;
-    properties['figure_id'] = this.id;
-    this.ws.send(JSON.stringify(properties));
-};
-
-mpl.figure.prototype.send_draw_message = function () {
-    if (!this.waiting) {
-        this.waiting = true;
-        this.ws.send(JSON.stringify({ type: 'draw', figure_id: this.id }));
-    }
-};
-
-mpl.figure.prototype.handle_save = function (fig, _msg) {
-    var format_dropdown = fig.format_dropdown;
-    var format = format_dropdown.options[format_dropdown.selectedIndex].value;
-    fig.ondownload(fig, format);
-};
-
-mpl.figure.prototype.handle_resize = function (fig, msg) {
-    var size = msg['size'];
-    if (size[0] !== fig.canvas.width || size[1] !== fig.canvas.height) {
-        fig._resize_canvas(size[0], size[1], msg['forward']);
-        fig.send_message('refresh', {});
-    }
-};
-
-mpl.figure.prototype.handle_rubberband = function (fig, msg) {
-    var x0 = msg['x0'] / fig.ratio;
-    var y0 = (fig.canvas.height - msg['y0']) / fig.ratio;
-    var x1 = msg['x1'] / fig.ratio;
-    var y1 = (fig.canvas.height - msg['y1']) / fig.ratio;
-    x0 = Math.floor(x0) + 0.5;
-    y0 = Math.floor(y0) + 0.5;
-    x1 = Math.floor(x1) + 0.5;
-    y1 = Math.floor(y1) + 0.5;
-    var min_x = Math.min(x0, x1);
-    var min_y = Math.min(y0, y1);
-    var width = Math.abs(x1 - x0);
-    var height = Math.abs(y1 - y0);
-
-    fig.rubberband_context.clearRect(
-        0,
-        0,
-        fig.canvas.width / fig.ratio,
-        fig.canvas.height / fig.ratio
-    );
-
-    fig.rubberband_context.strokeRect(min_x, min_y, width, height);
-};
-
-mpl.figure.prototype.handle_figure_label = function (fig, msg) {
-    // Updates the figure title.
-    fig.header.textContent = msg['label'];
-};
-
-mpl.figure.prototype.handle_cursor = function (fig, msg) {
-    fig.canvas_div.style.cursor = msg['cursor'];
-};
-
-mpl.figure.prototype.handle_message = function (fig, msg) {
-    fig.message.textContent = msg['message'];
-};
-
-mpl.figure.prototype.handle_draw = function (fig, _msg) {
-    // Request the server to send over a new figure.
-    fig.send_draw_message();
-};
-
-mpl.figure.prototype.handle_image_mode = function (fig, msg) {
-    fig.image_mode = msg['mode'];
-};
-
-mpl.figure.prototype.handle_history_buttons = function (fig, msg) {
-    for (var key in msg) {
-        if (!(key in fig.buttons)) {
-            continue;
-        }
-        fig.buttons[key].disabled = !msg[key];
-        fig.buttons[key].setAttribute('aria-disabled', !msg[key]);
-    }
-};
-
-mpl.figure.prototype.handle_navigate_mode = function (fig, msg) {
-    if (msg['mode'] === 'PAN') {
-        fig.buttons['Pan'].classList.add('active');
-        fig.buttons['Zoom'].classList.remove('active');
-    } else if (msg['mode'] === 'ZOOM') {
-        fig.buttons['Pan'].classList.remove('active');
-        fig.buttons['Zoom'].classList.add('active');
-    } else {
-        fig.buttons['Pan'].classList.remove('active');
-        fig.buttons['Zoom'].classList.remove('active');
-    }
-};
-
-mpl.figure.prototype.updated_canvas_event = function () {
-    // Called whenever the canvas gets updated.
-    this.send_message('ack', {});
-};
-
-// A function to construct a web socket function for onmessage handling.
-// Called in the figure constructor.
-mpl.figure.prototype._make_on_message_function = function (fig) {
-    return function socket_on_message(evt) {
-        if (evt.data instanceof Blob) {
-            var img = evt.data;
-            if (img.type !== 'image/png') {
-                /* FIXME: We get "Resource interpreted as Image but
-                 * transferred with MIME type text/plain:" errors on
-                 * Chrome.  But how to set the MIME type?  It doesn't seem
-                 * to be part of the websocket stream */
-                img.type = 'image/png';
-            }
-
-            /* Free the memory for the previous frames */
-            if (fig.imageObj.src) {
-                (window.URL || window.webkitURL).revokeObjectURL(
-                    fig.imageObj.src
-                );
-            }
-
-            fig.imageObj.src = (window.URL || window.webkitURL).createObjectURL(
-                img
-            );
-            fig.updated_canvas_event();
-            fig.waiting = false;
-            return;
-        } else if (
-            typeof evt.data === 'string' &&
-            evt.data.slice(0, 21) === 'data:image/png;base64'
-        ) {
-            fig.imageObj.src = evt.data;
-            fig.updated_canvas_event();
-            fig.waiting = false;
-            return;
-        }
-
-        var msg = JSON.parse(evt.data);
-        var msg_type = msg['type'];
-
-        // Call the  "handle_{type}" callback, which takes
-        // the figure and JSON message as its only arguments.
-        try {
-            var callback = fig['handle_' + msg_type];
-        } catch (e) {
-            console.log(
-                "No handler for the '" + msg_type + "' message type: ",
-                msg
-            );
-            return;
-        }
-
-        if (callback) {
-            try {
-                // console.log("Handling '" + msg_type + "' message: ", msg);
-                callback(fig, msg);
-            } catch (e) {
-                console.log(
-                    "Exception inside the 'handler_" + msg_type + "' callback:",
-                    e,
-                    e.stack,
-                    msg
-                );
-            }
-        }
-    };
-};
-
-function getModifiers(event) {
-    var mods = [];
-    if (event.ctrlKey) {
-        mods.push('ctrl');
-    }
-    if (event.altKey) {
-        mods.push('alt');
-    }
-    if (event.shiftKey) {
-        mods.push('shift');
-    }
-    if (event.metaKey) {
-        mods.push('meta');
-    }
-    return mods;
-}
-
-/*
- * return a copy of an object with only non-object keys
- * we need this to avoid circular references
- * https://stackoverflow.com/a/24161582/3208463
- */
-function simpleKeys(original) {
-    return Object.keys(original).reduce(function (obj, key) {
-        if (typeof original[key] !== 'object') {
-            obj[key] = original[key];
-        }
-        return obj;
-    }, {});
-}
-
-mpl.figure.prototype.mouse_event = function (event, name) {
-    if (name === 'button_press') {
-        this.canvas.focus();
-        this.canvas_div.focus();
-    }
-
-    // from https://stackoverflow.com/q/1114465
-    var boundingRect = this.canvas.getBoundingClientRect();
-    var x = (event.clientX - boundingRect.left) * this.ratio;
-    var y = (event.clientY - boundingRect.top) * this.ratio;
-
-    this.send_message(name, {
-        x: x,
-        y: y,
-        button: event.button,
-        step: event.step,
-        buttons: event.buttons,
-        modifiers: getModifiers(event),
-        guiEvent: simpleKeys(event),
-    });
-
-    return false;
-};
-
-mpl.figure.prototype._key_event_extra = function (_event, _name) {
-    // Handle any extra behaviour associated with a key event
-};
-
-mpl.figure.prototype.key_event = function (event, name) {
-    // Prevent repeat events
-    if (name === 'key_press') {
-        if (event.key === this._key) {
-            return;
-        } else {
-            this._key = event.key;
-        }
-    }
-    if (name === 'key_release') {
-        this._key = null;
-    }
-
-    var value = '';
-    if (event.ctrlKey && event.key !== 'Control') {
-        value += 'ctrl+';
-    }
-    else if (event.altKey && event.key !== 'Alt') {
-        value += 'alt+';
-    }
-    else if (event.shiftKey && event.key !== 'Shift') {
-        value += 'shift+';
-    }
-
-    value += 'k' + event.key;
-
-    this._key_event_extra(event, name);
-
-    this.send_message(name, { key: value, guiEvent: simpleKeys(event) });
-    return false;
-};
-
-mpl.figure.prototype.toolbar_button_onclick = function (name) {
-    if (name === 'download') {
-        this.handle_save(this, null);
-    } else {
-        this.send_message('toolbar_button', { name: name });
-    }
-};
-
-mpl.figure.prototype.toolbar_button_onmouseover = function (tooltip) {
-    this.message.textContent = tooltip;
-};
-
-///////////////// REMAINING CONTENT GENERATED BY embed_js.py /////////////////
-// prettier-ignore
-var _JSXTOOLS_RESIZE_OBSERVER=function(A){var t,i=new WeakMap,n=new WeakMap,a=new WeakMap,r=new WeakMap,o=new Set;function s(e){if(!(this instanceof s))throw new TypeError("Constructor requires 'new' operator");i.set(this,e)}function h(){throw new TypeError("Function is not a constructor")}function c(e,t,i,n){e=0 in arguments?Number(arguments[0]):0,t=1 in arguments?Number(arguments[1]):0,i=2 in arguments?Number(arguments[2]):0,n=3 in arguments?Number(arguments[3]):0,this.right=(this.x=this.left=e)+(this.width=i),this.bottom=(this.y=this.top=t)+(this.height=n),Object.freeze(this)}function d(){t=requestAnimationFrame(d);var s=new WeakMap,p=new Set;o.forEach((function(t){r.get(t).forEach((function(i){var r=t instanceof window.SVGElement,o=a.get(t),d=r?0:parseFloat(o.paddingTop),f=r?0:parseFloat(o.paddingRight),l=r?0:parseFloat(o.paddingBottom),u=r?0:parseFloat(o.paddingLeft),g=r?0:parseFloat(o.borderTopWidth),m=r?0:parseFloat(o.borderRightWidth),w=r?0:parseFloat(o.borderBottomWidth),b=u+f,F=d+l,v=(r?0:parseFloat(o.borderLeftWidth))+m,W=g+w,y=r?0:t.offsetHeight-W-t.clientHeight,E=r?0:t.offsetWidth-v-t.clientWidth,R=b+v,z=F+W,M=r?t.width:parseFloat(o.width)-R-E,O=r?t.height:parseFloat(o.height)-z-y;if(n.has(t)){var k=n.get(t);if(k[0]===M&&k[1]===O)return}n.set(t,[M,O]);var S=Object.create(h.prototype);S.target=t,S.contentRect=new c(u,d,M,O),s.has(i)||(s.set(i,[]),p.add(i)),s.get(i).push(S)}))})),p.forEach((function(e){i.get(e).call(e,s.get(e),e)}))}return s.prototype.observe=function(i){if(i instanceof window.Element){r.has(i)||(r.set(i,new Set),o.add(i),a.set(i,window.getComputedStyle(i)));var n=r.get(i);n.has(this)||n.add(this),cancelAnimationFrame(t),t=requestAnimationFrame(d)}},s.prototype.unobserve=function(i){if(i instanceof window.Element&&r.has(i)){var n=r.get(i);n.has(this)&&(n.delete(this),n.size||(r.delete(i),o.delete(i))),n.size||r.delete(i),o.size||cancelAnimationFrame(t)}},A.DOMRectReadOnly=c,A.ResizeObserver=s,A.ResizeObserverEntry=h,A}; // eslint-disable-line
-mpl.toolbar_items = [["Home", "Reset original view", "fa fa-home", "home"], ["Back", "Back to previous view", "fa fa-arrow-left", "back"], ["Forward", "Forward to next view", "fa fa-arrow-right", "forward"], ["", "", "", ""], ["Pan", "Left button pans, Right button zooms\nx/y fixes axis, CTRL fixes aspect", "fa fa-arrows", "pan"], ["Zoom", "Zoom to rectangle\nx/y fixes axis", "fa fa-square-o", "zoom"], ["", "", "", ""], ["Download", "Download plot", "fa fa-floppy-o", "download"]];
-
-mpl.extensions = ["eps", "jpeg", "pgf", "pdf", "png", "ps", "raw", "svg", "tif", "webp"];
-
-mpl.default_extension = "png";/* global mpl */
-
-var comm_websocket_adapter = function (comm) {
-    // Create a "websocket"-like object which calls the given IPython comm
-    // object with the appropriate methods. Currently this is a non binary
-    // socket, so there is still some room for performance tuning.
-    var ws = {};
-
-    ws.binaryType = comm.kernel.ws.binaryType;
-    ws.readyState = comm.kernel.ws.readyState;
-    function updateReadyState(_event) {
-        if (comm.kernel.ws) {
-            ws.readyState = comm.kernel.ws.readyState;
-        } else {
-            ws.readyState = 3; // Closed state.
-        }
-    }
-    comm.kernel.ws.addEventListener('open', updateReadyState);
-    comm.kernel.ws.addEventListener('close', updateReadyState);
-    comm.kernel.ws.addEventListener('error', updateReadyState);
-
-    ws.close = function () {
-        comm.close();
-    };
-    ws.send = function (m) {
-        //console.log('sending', m);
-        comm.send(m);
-    };
-    // Register the callback with on_msg.
-    comm.on_msg(function (msg) {
-        //console.log('receiving', msg['content']['data'], msg);
-        var data = msg['content']['data'];
-        if (data['blob'] !== undefined) {
-            data = {
-                data: new Blob(msg['buffers'], { type: data['blob'] }),
-            };
-        }
-        // Pass the mpl event to the overridden (by mpl) onmessage function.
-        ws.onmessage(data);
-    });
-    return ws;
-};
-
-mpl.mpl_figure_comm = function (comm, msg) {
-    // This is the function which gets called when the mpl process
-    // starts-up an IPython Comm through the "matplotlib" channel.
-
-    var id = msg.content.data.id;
-    // Get hold of the div created by the display call when the Comm
-    // socket was opened in Python.
-    var element = document.getElementById(id);
-    var ws_proxy = comm_websocket_adapter(comm);
-
-    function ondownload(figure, _format) {
-        window.open(figure.canvas.toDataURL());
-    }
-
-    var fig = new mpl.figure(id, ws_proxy, ondownload, element);
-
-    // Call onopen now - mpl needs it, as it is assuming we've passed it a real
-    // web socket which is closed, not our websocket->open comm proxy.
-    ws_proxy.onopen();
-
-    fig.parent_element = element;
-    fig.cell_info = mpl.find_output_cell("<div id='" + id + "'></div>");
-    if (!fig.cell_info) {
-        console.error('Failed to find cell for figure', id, fig);
-        return;
-    }
-    fig.cell_info[0].output_area.element.on(
-        'cleared',
-        { fig: fig },
-        fig._remove_fig_handler
-    );
-};
-
-mpl.figure.prototype.handle_close = function (fig, msg) {
-    var width = fig.canvas.width / fig.ratio;
-    fig.cell_info[0].output_area.element.off(
-        'cleared',
-        fig._remove_fig_handler
-    );
-    fig.resizeObserverInstance.unobserve(fig.canvas_div);
-
-    // Update the output cell to use the data from the current canvas.
-    fig.push_to_output();
-    var dataURL = fig.canvas.toDataURL();
-    // Re-enable the keyboard manager in IPython - without this line, in FF,
-    // the notebook keyboard shortcuts fail.
-    IPython.keyboard_manager.enable();
-    fig.parent_element.innerHTML =
-        '<img src="' + dataURL + '" width="' + width + '">';
-    fig.close_ws(fig, msg);
-};
-
-mpl.figure.prototype.close_ws = function (fig, msg) {
-    fig.send_message('closing', msg);
-    // fig.ws.close()
-};
-
-mpl.figure.prototype.push_to_output = function (_remove_interactive) {
-    // Turn the data on the canvas into data in the output cell.
-    var width = this.canvas.width / this.ratio;
-    var dataURL = this.canvas.toDataURL();
-    this.cell_info[1]['text/html'] =
-        '<img src="' + dataURL + '" width="' + width + '">';
-};
-
-mpl.figure.prototype.updated_canvas_event = function () {
-    // Tell IPython that the notebook contents must change.
-    IPython.notebook.set_dirty(true);
-    this.send_message('ack', {});
-    var fig = this;
-    // Wait a second, then push the new image to the DOM so
-    // that it is saved nicely (might be nice to debounce this).
-    setTimeout(function () {
-        fig.push_to_output();
-    }, 1000);
-};
-
-mpl.figure.prototype._init_toolbar = function () {
-    var fig = this;
-
-    var toolbar = document.createElement('div');
-    toolbar.classList = 'btn-toolbar';
-    this.root.appendChild(toolbar);
-
-    function on_click_closure(name) {
-        return function (_event) {
-            return fig.toolbar_button_onclick(name);
-        };
-    }
-
-    function on_mouseover_closure(tooltip) {
-        return function (event) {
-            if (!event.currentTarget.disabled) {
-                return fig.toolbar_button_onmouseover(tooltip);
-            }
-        };
-    }
-
-    fig.buttons = {};
-    var buttonGroup = document.createElement('div');
-    buttonGroup.classList = 'btn-group';
-    var button;
-    for (var toolbar_ind in mpl.toolbar_items) {
-        var name = mpl.toolbar_items[toolbar_ind][0];
-        var tooltip = mpl.toolbar_items[toolbar_ind][1];
-        var image = mpl.toolbar_items[toolbar_ind][2];
-        var method_name = mpl.toolbar_items[toolbar_ind][3];
-
-        if (!name) {
-            /* Instead of a spacer, we start a new button group. */
-            if (buttonGroup.hasChildNodes()) {
-                toolbar.appendChild(buttonGroup);
-            }
-            buttonGroup = document.createElement('div');
-            buttonGroup.classList = 'btn-group';
-            continue;
-        }
-
-        button = fig.buttons[name] = document.createElement('button');
-        button.classList = 'btn btn-default';
-        button.href = '#';
-        button.title = name;
-        button.innerHTML = '<i class="fa ' + image + ' fa-lg"></i>';
-        button.addEventListener('click', on_click_closure(method_name));
-        button.addEventListener('mouseover', on_mouseover_closure(tooltip));
-        buttonGroup.appendChild(button);
-    }
-
-    if (buttonGroup.hasChildNodes()) {
-        toolbar.appendChild(buttonGroup);
-    }
-
-    // Add the status bar.
-    var status_bar = document.createElement('span');
-    status_bar.classList = 'mpl-message pull-right';
-    toolbar.appendChild(status_bar);
-    this.message = status_bar;
-
-    // Add the close button to the window.
-    var buttongrp = document.createElement('div');
-    buttongrp.classList = 'btn-group inline pull-right';
-    button = document.createElement('button');
-    button.classList = 'btn btn-mini btn-primary';
-    button.href = '#';
-    button.title = 'Stop Interaction';
-    button.innerHTML = '<i class="fa fa-power-off icon-remove icon-large"></i>';
-    button.addEventListener('click', function (_evt) {
-        fig.handle_close(fig, {});
-    });
-    button.addEventListener(
-        'mouseover',
-        on_mouseover_closure('Stop Interaction')
-    );
-    buttongrp.appendChild(button);
-    var titlebar = this.root.querySelector('.ui-dialog-titlebar');
-    titlebar.insertBefore(buttongrp, titlebar.firstChild);
-};
-
-mpl.figure.prototype._remove_fig_handler = function (event) {
-    var fig = event.data.fig;
-    if (event.target !== this) {
-        // Ignore bubbled events from children.
-        return;
-    }
-    fig.close_ws(fig, {});
-};
-
-mpl.figure.prototype._root_extra_style = function (el) {
-    el.style.boxSizing = 'content-box'; // override notebook setting of border-box.
-};
-
-mpl.figure.prototype._canvas_extra_style = function (el) {
-    // this is important to make the div 'focusable
-    el.setAttribute('tabindex', 0);
-    // reach out to IPython and tell the keyboard manager to turn it's self
-    // off when our div gets focus
-
-    // location in version 3
-    if (IPython.notebook.keyboard_manager) {
-        IPython.notebook.keyboard_manager.register_events(el);
-    } else {
-        // location in version 2
-        IPython.keyboard_manager.register_events(el);
-    }
-};
-
-mpl.figure.prototype._key_event_extra = function (event, _name) {
-    // Check for shift+enter
-    if (event.shiftKey && event.which === 13) {
-        this.canvas_div.blur();
-        // select the cell after this one
-        var index = IPython.notebook.find_cell_index(this.cell_info[0]);
-        IPython.notebook.select(index + 1);
-    }
-};
-
-mpl.figure.prototype.handle_save = function (fig, _msg) {
-    fig.ondownload(fig, null);
-};
-
-mpl.find_output_cell = function (html_output) {
-    // Return the cell and output element which can be found *uniquely* in the notebook.
-    // Note - this is a bit hacky, but it is done because the "notebook_saving.Notebook"
-    // IPython event is triggered only after the cells have been serialised, which for
-    // our purposes (turning an active figure into a static one), is too late.
-    var cells = IPython.notebook.get_cells();
-    var ncells = cells.length;
-    for (var i = 0; i < ncells; i++) {
-        var cell = cells[i];
-        if (cell.cell_type === 'code') {
-            for (var j = 0; j < cell.output_area.outputs.length; j++) {
-                var data = cell.output_area.outputs[j];
-                if (data.data) {
-                    // IPython >= 3 moved mimebundle to data attribute of output
-                    data = data.data;
-                }
-                if (data['text/html'] === html_output) {
-                    return [cell, data, j];
-                }
-            }
-        }
-    }
-};
-
-// Register the function which deals with the matplotlib target/channel.
-// The kernel may be null if the page has been refreshed.
-if (IPython.notebook.kernel !== null) {
-    IPython.notebook.kernel.comm_manager.register_target(
-        'matplotlib',
-        mpl.mpl_figure_comm
-    );
-}
-</script><div class="output text_html"><div id='11b593a1-1190-44da-96ea-d5290a2d7cbb'></div></div><div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Axe $y$&#39;)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Axe $y$&#39;)
 </pre></div>
 </div>
-</div>
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "cfa765c97cc74be98bda43106b95e361"}</script></div>
 </div>
 <section id="read-data">
 <h3>Read Data<a class="headerlink" href="#read-data" title="Link to this heading">#</a></h3>
@@ -1740,10 +785,10 @@ if (IPython.notebook.kernel !== null) {
       <td>A</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>-0.001143</td>
+      <td>-0.001571</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>1000000.0</td>
+      <td>1250000.0</td>
       <td>False</td>
       <td>True</td>
     </tr>
@@ -1752,10 +797,10 @@ if (IPython.notebook.kernel !== null) {
       <td>C</td>
       <td>3.0</td>
       <td>0.0</td>
-      <td>-0.000857</td>
-      <td>-0.00338</td>
+      <td>-0.001214</td>
+      <td>-0.003867</td>
       <td>0.0</td>
-      <td>0.0</td>
+      <td>-500000.0</td>
       <td>False</td>
       <td>False</td>
     </tr>
@@ -1764,8 +809,8 @@ if (IPython.notebook.kernel !== null) {
       <td>D</td>
       <td>3.0</td>
       <td>3.0</td>
-      <td>0.001429</td>
-      <td>-0.00338</td>
+      <td>0.000929</td>
+      <td>-0.00351</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>False</td>
@@ -1776,10 +821,10 @@ if (IPython.notebook.kernel !== null) {
       <td>E</td>
       <td>6.0</td>
       <td>0.0</td>
-      <td>-0.000571</td>
-      <td>-0.006188</td>
+      <td>-0.000643</td>
+      <td>-0.006473</td>
       <td>0.0</td>
-      <td>0.0</td>
+      <td>-500000.0</td>
       <td>False</td>
       <td>False</td>
     </tr>
@@ -1788,8 +833,8 @@ if (IPython.notebook.kernel !== null) {
       <td>F</td>
       <td>6.0</td>
       <td>3.0</td>
-      <td>0.000857</td>
-      <td>-0.006473</td>
+      <td>0.000571</td>
+      <td>-0.006259</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>False</td>
@@ -1801,9 +846,9 @@ if (IPython.notebook.kernel !== null) {
       <td>9.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>-0.008139</td>
-      <td>3000000.0</td>
-      <td>-1000000.0</td>
+      <td>-0.00739</td>
+      <td>2250000.0</td>
+      <td>-250000.0</td>
       <td>True</td>
       <td>False</td>
     </tr>
@@ -1813,8 +858,8 @@ if (IPython.notebook.kernel !== null) {
       <td>9.0</td>
       <td>3.0</td>
       <td>0.0</td>
-      <td>-0.008139</td>
-      <td>-3000000.0</td>
+      <td>-0.007318</td>
+      <td>-2250000.0</td>
       <td>0.0</td>
       <td>True</td>
       <td>False</td>
@@ -1883,10 +928,10 @@ if (IPython.notebook.kernel !== null) {
       <td>C</td>
       <td>0.05</td>
       <td>7800.0</td>
-      <td>1000000.0</td>
-      <td>0.000286</td>
-      <td>0.000095</td>
-      <td>20000000.0</td>
+      <td>1250000.0</td>
+      <td>0.000357</td>
+      <td>0.000119</td>
+      <td>25000000.0</td>
       <td>False</td>
       <td>0.15</td>
       <td>3.0</td>
@@ -1900,10 +945,10 @@ if (IPython.notebook.kernel !== null) {
       <td>D</td>
       <td>0.05</td>
       <td>7800.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
+      <td>1250000.0</td>
+      <td>0.000357</td>
+      <td>0.000119</td>
+      <td>25000000.0</td>
       <td>False</td>
       <td>0.15</td>
       <td>3.0</td>
@@ -1917,10 +962,10 @@ if (IPython.notebook.kernel !== null) {
       <td>D</td>
       <td>0.05</td>
       <td>7800.0</td>
-      <td>-1414213.562373</td>
-      <td>-0.000571</td>
-      <td>-0.000135</td>
-      <td>-28284271.247462</td>
+      <td>-1767766.952966</td>
+      <td>-0.000714</td>
+      <td>-0.000168</td>
+      <td>-35355339.059328</td>
       <td>False</td>
       <td>0.212132</td>
       <td>4.242641</td>
@@ -1934,10 +979,10 @@ if (IPython.notebook.kernel !== null) {
       <td>E</td>
       <td>0.05</td>
       <td>7800.0</td>
-      <td>1000000.0</td>
-      <td>0.000286</td>
-      <td>0.000095</td>
-      <td>20000000.0</td>
+      <td>2000000.0</td>
+      <td>0.000571</td>
+      <td>0.00019</td>
+      <td>40000000.0</td>
       <td>False</td>
       <td>0.15</td>
       <td>3.0</td>
@@ -1951,10 +996,10 @@ if (IPython.notebook.kernel !== null) {
       <td>F</td>
       <td>0.05</td>
       <td>7800.0</td>
-      <td>-2000000.0</td>
-      <td>-0.000571</td>
-      <td>-0.00019</td>
-      <td>-40000000.000001</td>
+      <td>-1250000.0</td>
+      <td>-0.000357</td>
+      <td>-0.000119</td>
+      <td>-25000000.0</td>
       <td>False</td>
       <td>0.15</td>
       <td>3.0</td>
@@ -1964,31 +1009,14 @@ if (IPython.notebook.kernel !== null) {
     </tr>
     <tr>
       <th>5</th>
-      <td>D</td>
-      <td>E</td>
-      <td>0.05</td>
-      <td>7800.0</td>
-      <td>1414213.562373</td>
-      <td>0.000571</td>
-      <td>0.000135</td>
-      <td>28284271.247462</td>
-      <td>False</td>
-      <td>0.212132</td>
-      <td>4.242641</td>
-      <td>1654.629868</td>
-      <td>0.707107</td>
-      <td>-0.707107</td>
-    </tr>
-    <tr>
-      <th>6</th>
       <td>E</td>
       <td>F</td>
       <td>0.05</td>
       <td>7800.0</td>
-      <td>-1000000.0</td>
-      <td>-0.000286</td>
-      <td>-0.000095</td>
-      <td>-20000000.0</td>
+      <td>750000.0</td>
+      <td>0.000214</td>
+      <td>0.000071</td>
+      <td>15000000.0</td>
       <td>False</td>
       <td>0.15</td>
       <td>3.0</td>
@@ -1997,15 +1025,32 @@ if (IPython.notebook.kernel !== null) {
       <td>1.0</td>
     </tr>
     <tr>
-      <th>7</th>
+      <th>6</th>
       <td>E</td>
       <td>G</td>
       <td>0.05</td>
       <td>7800.0</td>
-      <td>2000000.0</td>
-      <td>0.000571</td>
-      <td>0.00019</td>
-      <td>40000000.000001</td>
+      <td>2250000.0</td>
+      <td>0.000643</td>
+      <td>0.000214</td>
+      <td>45000000.0</td>
+      <td>False</td>
+      <td>0.15</td>
+      <td>3.0</td>
+      <td>1170.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>F</td>
+      <td>H</td>
+      <td>0.05</td>
+      <td>7800.0</td>
+      <td>-2000000.0</td>
+      <td>-0.000571</td>
+      <td>-0.00019</td>
+      <td>-40000000.0</td>
       <td>False</td>
       <td>0.15</td>
       <td>3.0</td>
@@ -2015,58 +1060,95 @@ if (IPython.notebook.kernel !== null) {
     </tr>
     <tr>
       <th>8</th>
-      <td>F</td>
+      <td>G</td>
       <td>H</td>
       <td>0.05</td>
       <td>7800.0</td>
-      <td>-3000000.0</td>
-      <td>-0.000857</td>
-      <td>-0.000286</td>
-      <td>-60000000.000001</td>
+      <td>250000.0</td>
+      <td>0.000071</td>
+      <td>0.000024</td>
+      <td>5000000.0</td>
       <td>False</td>
       <td>0.15</td>
       <td>3.0</td>
       <td>1170.0</td>
-      <td>1.0</td>
       <td>0.0</td>
+      <td>1.0</td>
     </tr>
     <tr>
       <th>9</th>
       <td>F</td>
-      <td>G</td>
+      <td>C</td>
       <td>0.05</td>
       <td>7800.0</td>
-      <td>1414213.562373</td>
-      <td>0.000571</td>
-      <td>0.000135</td>
-      <td>28284271.247462</td>
+      <td>-1060660.17178</td>
+      <td>-0.000429</td>
+      <td>-0.000101</td>
+      <td>-21213203.435597</td>
+      <td>False</td>
+      <td>0.212132</td>
+      <td>4.242641</td>
+      <td>1654.629868</td>
+      <td>-0.707107</td>
+      <td>-0.707107</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>E</td>
+      <td>H</td>
+      <td>0.05</td>
+      <td>7800.0</td>
+      <td>-353553.390593</td>
+      <td>-0.000143</td>
+      <td>-0.000034</td>
+      <td>-7071067.811865</td>
       <td>False</td>
       <td>0.212132</td>
       <td>4.242641</td>
       <td>1654.629868</td>
       <td>0.707107</td>
-      <td>-0.707107</td>
-    </tr>
-    <tr>
-      <th>10</th>
-      <td>G</td>
-      <td>H</td>
-      <td>0.05</td>
-      <td>7800.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>False</td>
-      <td>0.15</td>
-      <td>3.0</td>
-      <td>1170.0</td>
-      <td>0.0</td>
-      <td>1.0</td>
+      <td>0.707107</td>
     </tr>
   </tbody>
 </table>
 </div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">bar</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">bars</span><span class="p">:</span>
+    <span class="n">mass</span> <span class="o">=</span> <span class="n">bar</span><span class="o">.</span><span class="n">mass</span><span class="p">()</span>
+    <span class="n">bar</span><span class="o">.</span><span class="n">conn</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">force</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+=</span> <span class="o">-</span><span class="n">mass</span><span class="o">*</span><span class="mf">9.81</span><span class="o">/</span><span class="mi">2</span>
+    <span class="n">bar</span><span class="o">.</span><span class="n">conn</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">force</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+=</span> <span class="o">-</span><span class="n">mass</span><span class="o">*</span><span class="mf">9.81</span><span class="o">/</span><span class="mi">2</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">solve</span><span class="p">()</span>
+
+
+<span class="n">xlim</span><span class="p">,</span> <span class="n">ylim</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">bbox</span><span class="p">(</span><span class="n">deformed</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s2">&quot;equal&quot;</span><span class="p">)</span>
+<span class="c1"># ax.axis(&quot;off&quot;)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span>
+    <span class="n">ax</span><span class="p">,</span> <span class="n">deformed</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">field</span><span class="o">=</span><span class="s2">&quot;stress&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">force_scale</span><span class="o">=</span><span class="mf">1.0e-6</span><span class="p">,</span> <span class="n">forces</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">displacement_scale</span><span class="o">=</span><span class="mi">1000000</span><span class="p">,</span> <span class="n">displacements</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="n">xlim</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="n">ylim</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Axe $x$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Axe $y$&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Axe $y$&#39;)
+</pre></div>
+</div>
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "8201c40e3ec74189ba012e49f3825d27"}</script></div>
 </div>
 </section>
 <section id="dead-or-structural-mass">
@@ -2079,7 +1161,7 @@ if (IPython.notebook.kernel !== null) {
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>14.323889603929565
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(14.323889603929565)
 </pre></div>
 </div>
 </div>
@@ -2098,6 +1180,351 @@ if (IPython.notebook.kernel !== null) {
 <span class="c1"># solve with updated sections</span>
 <span class="n">model</span><span class="o">.</span><span class="n">solve</span><span class="p">()</span>
 
+<span class="n">model</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="n">at</span><span class="o">=</span><span class="s2">&quot;bars&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">9</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># change section of one bar</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">FG</span><span class="o">.</span><span class="n">section</span> <span class="o">=</span> <span class="mf">0.0333</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="c1"># solve with updated sections</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">model</span><span class="o">.</span><span class="n">solve</span><span class="p">()</span>
+
+<span class="ne">NameError</span>: name &#39;FG&#39; is not defined
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="changing-all-section-or-other-parameters">
+<h4>Changing all section (or other parameters)<a class="headerlink" href="#changing-all-section-or-other-parameters" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># loop over bars</span>
+<span class="k">for</span> <span class="n">bar</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">bars</span><span class="p">:</span>
+    <span class="c1"># get the normal force of the bar</span>
+    <span class="n">N</span> <span class="o">=</span> <span class="n">bar</span><span class="o">.</span><span class="n">tension</span>
+
+    <span class="c1"># change the section</span>
+    <span class="n">bar</span><span class="o">.</span><span class="n">section</span> <span class="o">=</span> <span class="mf">0.2</span>
+
+
+<span class="c1"># solve with updated parameters</span>
+<span class="n">model</span><span class="o">.</span><span class="n">solve</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="questions">
+<h2>Questions<a class="headerlink" href="#questions" title="Link to this heading">#</a></h2>
+<p><strong>Question 1</strong>: Verify that the yield stress is not exceeded anywhere, do you think this structure has an optimimum weight ? You can use the <em>state/failure</em> data available on the whole model.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example:</span>
+<span class="n">model</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="n">at</span><span class="o">=</span><span class="s2">&quot;bars&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">failure</span><span class="o">.</span><span class="n">values</span>
+
+<span class="c1"># ...</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([False, False, False, False, False, False, False, False, False,
+       False, False], dtype=object)
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Question 2</strong>: Modify all the cross sections at the same time in order to minimize weight while keeping acceptable stress level.</p>
+<p><strong>Question 3</strong>: We want to modify the position along the <span class="math notranslate nohighlight">\(\vec y\)</span> axis of the points <span class="math notranslate nohighlight">\(D\)</span>, <span class="math notranslate nohighlight">\(F\)</span> and <span class="math notranslate nohighlight">\(H\)</span> in order to minimize the vertical displacement of the node <span class="math notranslate nohighlight">\(G\)</span> times the mass of the structure <span class="math notranslate nohighlight">\(\alpha\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+\alpha = |u_y(G)| m
+\]</div>
+<p>Where <span class="math notranslate nohighlight">\(u_y(G)\)</span> is the displacement of the node <span class="math notranslate nohighlight">\(G\)</span> along the <span class="math notranslate nohighlight">\(\vec y\)</span> axis and <span class="math notranslate nohighlight">\(m\)</span> the mass of the whole structure.</p>
+<p>Do not further modify the sections determined in question 4. Comment the solution.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="n">at</span><span class="o">=</span><span class="s2">&quot;bars&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead tr th {
+        text-align: left;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr>
+      <th></th>
+      <th colspan="2" halign="left">conn</th>
+      <th colspan="2" halign="left">props</th>
+      <th colspan="5" halign="left">state</th>
+      <th colspan="2" halign="left">geometry</th>
+      <th>props</th>
+      <th colspan="2" halign="left">direction</th>
+    </tr>
+    <tr>
+      <th></th>
+      <th>c1</th>
+      <th>c2</th>
+      <th>section</th>
+      <th>density</th>
+      <th>tension</th>
+      <th>elongation</th>
+      <th>strain</th>
+      <th>stress</th>
+      <th>failure</th>
+      <th>volume</th>
+      <th>length</th>
+      <th>mass</th>
+      <th>dx</th>
+      <th>dy</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>A</td>
+      <td>C</td>
+      <td>0.2</td>
+      <td>7800.0</td>
+      <td>1376662.547512</td>
+      <td>0.000098</td>
+      <td>0.000033</td>
+      <td>6883312.737561</td>
+      <td>False</td>
+      <td>0.6</td>
+      <td>3.0</td>
+      <td>4680.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>C</td>
+      <td>D</td>
+      <td>0.2</td>
+      <td>7800.0</td>
+      <td>1357068.88801</td>
+      <td>0.000097</td>
+      <td>0.000032</td>
+      <td>6785344.440049</td>
+      <td>False</td>
+      <td>0.6</td>
+      <td>3.0</td>
+      <td>4680.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>A</td>
+      <td>D</td>
+      <td>0.2</td>
+      <td>7800.0</td>
+      <td>-1946894.845503</td>
+      <td>-0.000197</td>
+      <td>-0.000046</td>
+      <td>-9734474.227514</td>
+      <td>False</td>
+      <td>0.848528</td>
+      <td>4.242641</td>
+      <td>6618.519472</td>
+      <td>0.707107</td>
+      <td>0.707107</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>C</td>
+      <td>E</td>
+      <td>0.2</td>
+      <td>7800.0</td>
+      <td>2208398.926019</td>
+      <td>0.000158</td>
+      <td>0.000053</td>
+      <td>11041994.630097</td>
+      <td>False</td>
+      <td>0.6</td>
+      <td>3.0</td>
+      <td>4680.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>D</td>
+      <td>F</td>
+      <td>0.2</td>
+      <td>7800.0</td>
+      <td>-1376662.547512</td>
+      <td>-0.000098</td>
+      <td>-0.000033</td>
+      <td>-6883312.737561</td>
+      <td>False</td>
+      <td>0.6</td>
+      <td>3.0</td>
+      <td>4680.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>E</td>
+      <td>F</td>
+      <td>0.2</td>
+      <td>7800.0</td>
+      <td>806403.869005</td>
+      <td>0.000058</td>
+      <td>0.000019</td>
+      <td>4032019.345024</td>
+      <td>False</td>
+      <td>0.6</td>
+      <td>3.0</td>
+      <td>4680.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>E</td>
+      <td>G</td>
+      <td>0.2</td>
+      <td>7800.0</td>
+      <td>2489470.285522</td>
+      <td>0.000178</td>
+      <td>0.000059</td>
+      <td>12447351.427609</td>
+      <td>False</td>
+      <td>0.6</td>
+      <td>3.0</td>
+      <td>4680.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>F</td>
+      <td>H</td>
+      <td>0.2</td>
+      <td>7800.0</td>
+      <td>-2208398.926019</td>
+      <td>-0.000158</td>
+      <td>-0.000053</td>
+      <td>-11041994.630097</td>
+      <td>False</td>
+      <td>0.6</td>
+      <td>3.0</td>
+      <td>4680.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>G</td>
+      <td>H</td>
+      <td>0.2</td>
+      <td>7800.0</td>
+      <td>261477.7</td>
+      <td>0.000019</td>
+      <td>0.000006</td>
+      <td>1307388.5</td>
+      <td>False</td>
+      <td>0.6</td>
+      <td>3.0</td>
+      <td>4680.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>F</td>
+      <td>C</td>
+      <td>0.2</td>
+      <td>7800.0</td>
+      <td>-1176252.866804</td>
+      <td>-0.000119</td>
+      <td>-0.000028</td>
+      <td>-5881264.33402</td>
+      <td>False</td>
+      <td>0.848528</td>
+      <td>4.242641</td>
+      <td>6618.519472</td>
+      <td>-0.707107</td>
+      <td>-0.707107</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>E</td>
+      <td>H</td>
+      <td>0.2</td>
+      <td>7800.0</td>
+      <td>-397494.928603</td>
+      <td>-0.00004</td>
+      <td>-0.000009</td>
+      <td>-1987474.643015</td>
+      <td>False</td>
+      <td>0.848528</td>
+      <td>4.242641</td>
+      <td>6618.519472</td>
+      <td>0.707107</td>
+      <td>0.707107</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">S_min</span> <span class="o">=</span> <span class="mf">1e-8</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">cost</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
+    <span class="n">nD</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>  <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">nF</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>  <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">nH</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>  <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+    <span class="n">nD</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+    <span class="n">nF</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span>
+
+ 
+    <span class="n">model</span><span class="o">.</span><span class="n">solve</span><span class="p">()</span>
+    <span class="c1"># section ajustement</span>
+    <span class="k">for</span> <span class="n">bar</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">bars</span><span class="p">:</span>
+        <span class="n">coef</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span> <span class="n">bar</span><span class="o">.</span><span class="n">stress</span><span class="o">/</span><span class="n">sigmay</span><span class="p">)</span>
+        <span class="n">new_section</span> <span class="o">=</span> <span class="n">bar</span><span class="o">.</span><span class="n">section</span> <span class="o">*</span> <span class="n">coef</span>
+        <span class="k">if</span> <span class="n">new_section</span> <span class="o">&lt;</span> <span class="n">S_min</span><span class="p">:</span>
+            <span class="n">new_section</span> <span class="o">=</span> <span class="n">S_min</span>
+        <span class="n">bar</span><span class="o">.</span><span class="n">section</span> <span class="o">=</span> <span class="n">new_section</span> 
+
+    <span class="n">model</span><span class="o">.</span><span class="n">solve</span><span class="p">()</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">mass</span><span class="p">()</span>
+    
+    <span class="c1"># Cs = np.abs(model.data(at=&#39;bars&#39;).state.stress) / sigmay</span>
+    <span class="c1"># Cs = Cs.values.astype(np.float64)</span>
+    <span class="c1"># faillure = np.exp((Cs-1)*1000)</span>
+    <span class="c1"># faillure = np.sum(faillure) + 1</span>
+    <span class="c1"># print(faillure)</span>
+    
+    <span class="k">return</span> <span class="n">m</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">nG</span><span class="o">.</span><span class="n">displacement</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> 
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">scipy</span>
+<span class="n">x0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span> <span class="mf">3.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">])</span>
+<span class="n">sol</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">optimize</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span><span class="n">cost</span><span class="p">,</span> <span class="n">x0</span><span class="p">)</span>
+<span class="n">sol</span>
 <span class="n">model</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="n">at</span><span class="o">=</span><span class="s2">&quot;bars&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -2151,16 +1578,16 @@ if (IPython.notebook.kernel !== null) {
       <th>0</th>
       <td>A</td>
       <td>C</td>
-      <td>0.05</td>
+      <td>0.001546</td>
       <td>7800.0</td>
-      <td>1000000.0</td>
-      <td>0.000286</td>
-      <td>0.000095</td>
-      <td>20000000.0</td>
+      <td>618481.630734</td>
+      <td>0.005714</td>
+      <td>0.001905</td>
+      <td>399999999.999999</td>
       <td>False</td>
-      <td>0.15</td>
+      <td>0.004639</td>
       <td>3.0</td>
-      <td>1170.0</td>
+      <td>36.181175</td>
       <td>1.0</td>
       <td>0.0</td>
     </tr>
@@ -2168,50 +1595,50 @@ if (IPython.notebook.kernel !== null) {
       <th>1</th>
       <td>C</td>
       <td>D</td>
-      <td>0.05</td>
+      <td>0.0017</td>
       <td>7800.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
+      <td>680022.304184</td>
+      <td>0.005819</td>
+      <td>0.001905</td>
+      <td>400000000.0</td>
       <td>False</td>
-      <td>0.15</td>
-      <td>3.0</td>
-      <td>1170.0</td>
-      <td>0.0</td>
-      <td>1.0</td>
+      <td>0.005193</td>
+      <td>3.054798</td>
+      <td>40.507954</td>
+      <td>-0.635002</td>
+      <td>0.77251</td>
     </tr>
     <tr>
       <th>2</th>
       <td>A</td>
       <td>D</td>
-      <td>0.05</td>
+      <td>0.003773</td>
       <td>7800.0</td>
-      <td>-1414213.562373</td>
-      <td>-0.000571</td>
-      <td>-0.000135</td>
-      <td>-28284271.247462</td>
+      <td>-1509211.481959</td>
+      <td>-0.004928</td>
+      <td>-0.001905</td>
+      <td>-400000000.0</td>
       <td>False</td>
-      <td>0.212132</td>
-      <td>4.242641</td>
-      <td>1654.629868</td>
-      <td>0.707107</td>
-      <td>0.707107</td>
+      <td>0.009761</td>
+      <td>2.587077</td>
+      <td>76.136699</td>
+      <td>0.409804</td>
+      <td>0.912173</td>
     </tr>
     <tr>
       <th>3</th>
       <td>C</td>
       <td>E</td>
-      <td>0.05</td>
+      <td>0.002626</td>
       <td>7800.0</td>
-      <td>1000000.0</td>
-      <td>0.000286</td>
-      <td>0.000095</td>
-      <td>20000000.0</td>
+      <td>1050294.723583</td>
+      <td>0.005714</td>
+      <td>0.001905</td>
+      <td>400000000.0</td>
       <td>False</td>
-      <td>0.15</td>
+      <td>0.007877</td>
       <td>3.0</td>
-      <td>1170.0</td>
+      <td>61.442241</td>
       <td>1.0</td>
       <td>0.0</td>
     </tr>
@@ -2219,175 +1646,1322 @@ if (IPython.notebook.kernel !== null) {
       <th>4</th>
       <td>D</td>
       <td>F</td>
-      <td>0.05</td>
+      <td>0.003349</td>
       <td>7800.0</td>
-      <td>-2000000.0</td>
-      <td>-0.000571</td>
-      <td>-0.00019</td>
-      <td>-40000000.0</td>
+      <td>-1339747.761105</td>
+      <td>-0.008845</td>
+      <td>-0.001905</td>
+      <td>-400000000.0</td>
       <td>False</td>
-      <td>0.15</td>
-      <td>3.0</td>
-      <td>1170.0</td>
-      <td>1.0</td>
-      <td>0.0</td>
+      <td>0.015553</td>
+      <td>4.643447</td>
+      <td>121.310421</td>
+      <td>0.783952</td>
+      <td>0.620822</td>
     </tr>
     <tr>
       <th>5</th>
-      <td>D</td>
       <td>E</td>
-      <td>0.05</td>
+      <td>F</td>
+      <td>0.001794</td>
       <td>7800.0</td>
-      <td>1414213.562373</td>
-      <td>0.000571</td>
-      <td>0.000135</td>
-      <td>28284271.247462</td>
+      <td>717778.010285</td>
+      <td>0.010288</td>
+      <td>0.001905</td>
+      <td>399999999.999999</td>
       <td>False</td>
-      <td>0.212132</td>
-      <td>4.242641</td>
-      <td>1654.629868</td>
-      <td>0.707107</td>
-      <td>-0.707107</td>
+      <td>0.009692</td>
+      <td>5.401287</td>
+      <td>75.600032</td>
+      <td>-0.240603</td>
+      <td>0.970624</td>
     </tr>
     <tr>
       <th>6</th>
       <td>E</td>
-      <td>F</td>
-      <td>0.05</td>
+      <td>G</td>
+      <td>0.003286</td>
       <td>7800.0</td>
-      <td>-1000000.0</td>
-      <td>-0.000286</td>
-      <td>-0.000095</td>
-      <td>-20000000.0</td>
+      <td>1314332.370967</td>
+      <td>0.005714</td>
+      <td>0.001905</td>
+      <td>400000000.0</td>
       <td>False</td>
-      <td>0.15</td>
+      <td>0.009857</td>
       <td>3.0</td>
-      <td>1170.0</td>
-      <td>0.0</td>
+      <td>76.888444</td>
       <td>1.0</td>
+      <td>0.0</td>
     </tr>
     <tr>
       <th>7</th>
-      <td>E</td>
-      <td>G</td>
-      <td>0.05</td>
+      <td>F</td>
+      <td>H</td>
+      <td>0.00307</td>
       <td>7800.0</td>
-      <td>2000000.0</td>
-      <td>0.000571</td>
-      <td>0.00019</td>
-      <td>40000000.000001</td>
+      <td>-1227905.509902</td>
+      <td>-0.008223</td>
+      <td>-0.001905</td>
+      <td>-399999999.999999</td>
       <td>False</td>
-      <td>0.15</td>
-      <td>3.0</td>
-      <td>1170.0</td>
-      <td>1.0</td>
-      <td>0.0</td>
+      <td>0.013252</td>
+      <td>4.316832</td>
+      <td>103.362912</td>
+      <td>0.996</td>
+      <td>0.089349</td>
     </tr>
     <tr>
       <th>8</th>
-      <td>F</td>
+      <td>G</td>
       <td>H</td>
-      <td>0.05</td>
+      <td>0.000654</td>
       <td>7800.0</td>
-      <td>-3000000.0</td>
-      <td>-0.000857</td>
-      <td>-0.000286</td>
-      <td>-60000000.000001</td>
-      <td>False</td>
-      <td>0.15</td>
-      <td>3.0</td>
-      <td>1170.0</td>
-      <td>1.0</td>
+      <td>261477.7</td>
+      <td>0.010721</td>
+      <td>0.001905</td>
+      <td>400000000.0</td>
+      <td>True</td>
+      <td>0.003679</td>
+      <td>5.628319</td>
+      <td>28.697758</td>
       <td>0.0</td>
+      <td>1.0</td>
     </tr>
     <tr>
       <th>9</th>
       <td>F</td>
-      <td>G</td>
-      <td>0.0333</td>
+      <td>C</td>
+      <td>0.0</td>
       <td>7800.0</td>
-      <td>1414213.562373</td>
-      <td>0.000858</td>
-      <td>0.000202</td>
-      <td>42468875.74694</td>
-      <td>False</td>
-      <td>0.14128</td>
-      <td>4.242641</td>
-      <td>1101.983492</td>
-      <td>0.707107</td>
-      <td>-0.707107</td>
+      <td>8.81166</td>
+      <td>0.010498</td>
+      <td>0.001905</td>
+      <td>400000000.017795</td>
+      <td>True</td>
+      <td>0.0</td>
+      <td>5.511488</td>
+      <td>0.000947</td>
+      <td>-0.308525</td>
+      <td>-0.951216</td>
     </tr>
     <tr>
       <th>10</th>
-      <td>G</td>
+      <td>E</td>
       <td>H</td>
-      <td>0.05</td>
+      <td>0.000485</td>
       <td>7800.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>False</td>
-      <td>0.15</td>
-      <td>3.0</td>
-      <td>1170.0</td>
-      <td>0.0</td>
-      <td>1.0</td>
+      <td>-194182.353104</td>
+      <td>-0.012148</td>
+      <td>-0.001905</td>
+      <td>-400000000.000001</td>
+      <td>True</td>
+      <td>0.003096</td>
+      <td>6.377929</td>
+      <td>24.150383</td>
+      <td>0.470372</td>
+      <td>0.882468</td>
     </tr>
   </tbody>
 </table>
 </div></div></div>
 </div>
-</section>
-<section id="changing-all-section-or-other-parameters">
-<h4>Changing all section (or other parameters)<a class="headerlink" href="#changing-all-section-or-other-parameters" title="Link to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># loop over bars</span>
-<span class="k">for</span> <span class="n">bar</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">bars</span><span class="p">:</span>
-    <span class="c1"># get the normal force of the bar</span>
-    <span class="n">N</span> <span class="o">=</span> <span class="n">bar</span><span class="o">.</span><span class="n">tension</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">S_min</span> <span class="o">=</span> <span class="mf">1e-2</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">cost</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
+    <span class="n">nD</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>  <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">nF</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>  <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">nH</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>  <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>    
+    <span class="n">nF</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
 
-    <span class="c1"># change the section</span>
-    <span class="n">bar</span><span class="o">.</span><span class="n">section</span> <span class="o">=</span> <span class="mf">0.2</span>
+ 
+    <span class="n">model</span><span class="o">.</span><span class="n">solve</span><span class="p">()</span>
+    <span class="c1"># section ajustement</span>
+    <span class="k">for</span> <span class="n">bar</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">bars</span><span class="p">:</span>
+        <span class="n">coef</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span> <span class="n">bar</span><span class="o">.</span><span class="n">stress</span><span class="o">/</span><span class="n">sigmay</span><span class="p">)</span>
+        <span class="n">new_section</span> <span class="o">=</span> <span class="n">bar</span><span class="o">.</span><span class="n">section</span> <span class="o">*</span> <span class="n">coef</span>
+        <span class="k">if</span> <span class="n">new_section</span> <span class="o">&lt;</span> <span class="n">S_min</span><span class="p">:</span>
+            <span class="n">new_section</span> <span class="o">=</span> <span class="n">S_min</span>
+        <span class="n">bar</span><span class="o">.</span><span class="n">section</span> <span class="o">=</span> <span class="n">new_section</span> 
 
+    <span class="n">model</span><span class="o">.</span><span class="n">solve</span><span class="p">()</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">mass</span><span class="p">()</span>
+    
+    <span class="c1"># Cs = np.abs(model.data(at=&#39;bars&#39;).state.stress) / sigmay</span>
+    <span class="c1"># Cs = Cs.values.astype(np.float64)</span>
+    <span class="c1"># faillure = np.exp((Cs-1)*1000)</span>
+    <span class="c1"># faillure = np.sum(faillure) + 1</span>
+    <span class="c1"># print(faillure)</span>
+    
+    <span class="k">return</span> <span class="n">m</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">nG</span><span class="o">.</span><span class="n">displacement</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> 
 
-<span class="c1"># solve with updated parameters</span>
-<span class="n">model</span><span class="o">.</span><span class="n">solve</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-</section>
-</section>
-<section id="questions">
-<h2>Questions<a class="headerlink" href="#questions" title="Link to this heading">#</a></h2>
-<p><strong>Question 1</strong>: Verify that the yield stress is not exceeded anywhere, do you think this structure has an optimimum weight ? You can use the <em>state/failure</em> data available on the whole model.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example:</span>
-<span class="n">model</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="n">at</span><span class="o">=</span><span class="s2">&quot;bars&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">failure</span><span class="o">.</span><span class="n">values</span>
-
-<span class="c1"># ...</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">scipy</span>
+<span class="n">nD</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.0</span>
+<span class="n">nD</span><span class="o">.</span><span class="n">block</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">x0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span> <span class="mf">5.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span><span class="mf">5.</span><span class="p">])</span>
+<span class="n">sol</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">optimize</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span><span class="n">cost</span><span class="p">,</span> <span class="n">x0</span><span class="p">)</span>
+<span class="n">sol</span>
+<span class="n">model</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="n">at</span><span class="o">=</span><span class="s2">&quot;bars&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([False, False, False, False, False, False, False, False, False,
-       False, False], dtype=object)
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead tr th {
+        text-align: left;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr>
+      <th></th>
+      <th colspan="2" halign="left">conn</th>
+      <th colspan="2" halign="left">props</th>
+      <th colspan="5" halign="left">state</th>
+      <th colspan="2" halign="left">geometry</th>
+      <th>props</th>
+      <th colspan="2" halign="left">direction</th>
+    </tr>
+    <tr>
+      <th></th>
+      <th>c1</th>
+      <th>c2</th>
+      <th>section</th>
+      <th>density</th>
+      <th>tension</th>
+      <th>elongation</th>
+      <th>strain</th>
+      <th>stress</th>
+      <th>failure</th>
+      <th>volume</th>
+      <th>length</th>
+      <th>mass</th>
+      <th>dx</th>
+      <th>dy</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>A</td>
+      <td>C</td>
+      <td>0.01</td>
+      <td>7800.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>False</td>
+      <td>0.03</td>
+      <td>3.0</td>
+      <td>234.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>C</td>
+      <td>D</td>
+      <td>0.01</td>
+      <td>7800.0</td>
+      <td>827224.079561</td>
+      <td>0.00236</td>
+      <td>0.000394</td>
+      <td>82722407.956072</td>
+      <td>False</td>
+      <td>0.059918</td>
+      <td>5.99175</td>
+      <td>467.356506</td>
+      <td>-0.500688</td>
+      <td>0.865628</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>A</td>
+      <td>D</td>
+      <td>0.01</td>
+      <td>7800.0</td>
+      <td>-1376662.547512</td>
+      <td>-0.0034</td>
+      <td>-0.000656</td>
+      <td>-137666254.751212</td>
+      <td>False</td>
+      <td>0.051866</td>
+      <td>5.186624</td>
+      <td>404.556675</td>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>C</td>
+      <td>E</td>
+      <td>0.01</td>
+      <td>7800.0</td>
+      <td>580326.451471</td>
+      <td>0.000829</td>
+      <td>0.000276</td>
+      <td>58032645.147143</td>
+      <td>False</td>
+      <td>0.03</td>
+      <td>3.0</td>
+      <td>234.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>D</td>
+      <td>F</td>
+      <td>0.01</td>
+      <td>7800.0</td>
+      <td>958672.701654</td>
+      <td>0.002588</td>
+      <td>0.000457</td>
+      <td>95867270.165372</td>
+      <td>False</td>
+      <td>0.056695</td>
+      <td>5.669543</td>
+      <td>442.22434</td>
+      <td>0.743592</td>
+      <td>-0.668634</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>E</td>
+      <td>F</td>
+      <td>0.01</td>
+      <td>7800.0</td>
+      <td>1021307.191071</td>
+      <td>0.001102</td>
+      <td>0.000486</td>
+      <td>102130719.107071</td>
+      <td>False</td>
+      <td>0.022653</td>
+      <td>2.265274</td>
+      <td>176.691404</td>
+      <td>-0.787619</td>
+      <td>0.616162</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>E</td>
+      <td>G</td>
+      <td>0.01</td>
+      <td>7800.0</td>
+      <td>1451310.01454</td>
+      <td>0.002073</td>
+      <td>0.000691</td>
+      <td>145131001.453976</td>
+      <td>False</td>
+      <td>0.03</td>
+      <td>3.0</td>
+      <td>234.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>F</td>
+      <td>H</td>
+      <td>0.01</td>
+      <td>7800.0</td>
+      <td>-312682.822253</td>
+      <td>-0.000864</td>
+      <td>-0.000149</td>
+      <td>-31268282.225258</td>
+      <td>False</td>
+      <td>0.058053</td>
+      <td>5.805264</td>
+      <td>452.810568</td>
+      <td>0.82411</td>
+      <td>0.56643</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>G</td>
+      <td>H</td>
+      <td>0.01</td>
+      <td>7800.0</td>
+      <td>261477.7</td>
+      <td>0.000583</td>
+      <td>0.000125</td>
+      <td>26147770.0</td>
+      <td>False</td>
+      <td>0.046841</td>
+      <td>4.684054</td>
+      <td>365.356178</td>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>F</td>
+      <td>C</td>
+      <td>0.01</td>
+      <td>7800.0</td>
+      <td>-252950.881619</td>
+      <td>-0.000223</td>
+      <td>-0.00012</td>
+      <td>-25295088.161927</td>
+      <td>False</td>
+      <td>0.018511</td>
+      <td>1.85106</td>
+      <td>144.382716</td>
+      <td>-0.656827</td>
+      <td>-0.754041</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>E</td>
+      <td>H</td>
+      <td>0.01</td>
+      <td>7800.0</td>
+      <td>-123452.572654</td>
+      <td>-0.000327</td>
+      <td>-0.000059</td>
+      <td>-12345257.265352</td>
+      <td>False</td>
+      <td>0.055624</td>
+      <td>5.562406</td>
+      <td>433.867649</td>
+      <td>0.539335</td>
+      <td>0.842091</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">solve</span><span class="p">()</span>
+<span class="n">xlim</span><span class="p">,</span> <span class="n">ylim</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">bbox</span><span class="p">(</span><span class="n">deformed</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s2">&quot;equal&quot;</span><span class="p">)</span>
+<span class="c1"># ax.axis(&quot;off&quot;)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span>
+    <span class="n">ax</span><span class="p">,</span> <span class="n">deformed</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">field</span><span class="o">=</span><span class="s2">&quot;stress&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">force_scale</span><span class="o">=</span><span class="mf">1.0e-6</span><span class="p">,</span> <span class="n">forces</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="n">xlim</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="n">ylim</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Axe $x$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Axe $y$&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Axe $y$&#39;)
+</pre></div>
+</div>
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "c8e79530f8754c048a47ee4810ba1694", "version_major": 2, "version_minor": 0}</script></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fix_points</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">0.</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mf">9.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">],</span> <span class="p">[</span><span class="mf">9.</span><span class="p">,</span> <span class="mf">3.</span><span class="p">],</span> <span class="p">[</span><span class="mf">9.</span><span class="p">,</span> <span class="mf">6.</span><span class="p">]])</span>
+<span class="n">ex_points</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">atleast_2d</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mf">9.</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+<span class="n">ex_points</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ex_points</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">ex_points</span><span class="p">),</span>  <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+
+<span class="n">fix_points</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="n">fix_points</span><span class="p">,</span> <span class="n">ex_points</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">fix_points</span>
+<span class="n">nb_fix</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">fix_points</span><span class="p">)</span>
+<span class="n">nb_fix</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>7
 </pre></div>
 </div>
 </div>
 </div>
-<p><strong>Question 2</strong>: Modify all the cross sections at the same time in order to minimize weight while keeping acceptable stress level.</p>
-<p><strong>Question 3</strong>: We want to modify the position along the <span class="math notranslate nohighlight">\(\vec y\)</span> axis of the points <span class="math notranslate nohighlight">\(D\)</span>, <span class="math notranslate nohighlight">\(F\)</span> and <span class="math notranslate nohighlight">\(H\)</span> in order to minimize the vertical displacement of the node <span class="math notranslate nohighlight">\(G\)</span> times the mass of the structure <span class="math notranslate nohighlight">\(\alpha\)</span>:</p>
-<div class="math notranslate nohighlight">
-\[
-\alpha = |u_y(G)| m
-\]</div>
-<p>Where <span class="math notranslate nohighlight">\(u_y(G)\)</span> is the displacement of the node <span class="math notranslate nohighlight">\(G\)</span> along the <span class="math notranslate nohighlight">\(\vec y\)</span> axis and <span class="math notranslate nohighlight">\(m\)</span> the mass of the whole structure.</p>
-<p>Do not further modify the sections determined in question 4. Comment the solution.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">6</span><span class="p">),</span> <span class="p">(</span><span class="n">nb_fix</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[3.77050573, 2.67787623],
+       [2.17926083, 3.94447292],
+       [1.88069357, 4.45342859],
+       [7.53951052, 5.39740586],
+       [1.7821885 , 3.97033117],
+       [4.69445305, 4.11213409],
+       [7.92185874, 4.77569316]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib</span>
+<span class="n">Nb_inerpoints</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="n">points</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">fix_points</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">6</span><span class="p">),</span> <span class="p">(</span><span class="n">nb_fix</span><span class="p">,</span> <span class="mi">2</span><span class="p">)),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">tri</span> <span class="o">=</span> <span class="n">matplotlib</span><span class="o">.</span><span class="n">tri</span><span class="o">.</span><span class="n">Triangulation</span><span class="p">(</span><span class="n">points</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">points</span><span class="p">[:,</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">points</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">points</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;o&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">triplot</span><span class="p">(</span><span class="n">tri</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "827d8b17196b4201a58133ebdbf7da5b", "version_major": 2, "version_minor": 0}</script></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">E</span> <span class="o">=</span> <span class="mf">210.0e9</span>  <span class="c1"># Young Modulus [Pa]</span>
+<span class="n">rho</span> <span class="o">=</span> <span class="mf">7800.0</span>  <span class="c1"># Density       [kg/m**3]</span>
+<span class="n">A</span> <span class="o">=</span> <span class="mf">.7e-2</span>  <span class="c1"># Cross section [m**2]</span>
+<span class="n">sigmay</span> <span class="o">=</span> <span class="mf">400.0e6</span>  <span class="c1"># Yield Stress  [Pa]</span>
+
+<span class="c1"># Model definition</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">truss</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">Model</span><span class="p">()</span>  <span class="c1"># Model definition</span>
+
+<span class="c1"># NODES</span>
+<span class="n">nodes</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="c1">#nA = model.add_node((0.0, 0.0), label=&quot;A&quot;)</span>
+<span class="c1">#nodes.append(nA)</span>
+<span class="c1">#nG = model.add_node((9.0, 0.0), label=&quot;G&quot;)</span>
+<span class="c1">#nodes.append(nG)</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">points</span><span class="p">):</span>
+    <span class="n">nodes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">add_node</span><span class="p">((</span><span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;n</span><span class="si">{:03d}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">)))</span>
+
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">e</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">tri</span><span class="o">.</span><span class="n">edges</span><span class="p">):</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">add_bar</span><span class="p">(</span><span class="n">nodes</span><span class="p">[</span><span class="n">e</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="n">nodes</span><span class="p">[</span><span class="n">e</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span> <span class="n">modulus</span><span class="o">=</span><span class="n">E</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="n">rho</span><span class="p">,</span> <span class="n">section</span><span class="o">=</span><span class="n">A</span><span class="p">,</span> <span class="n">yield_stress</span><span class="o">=</span><span class="n">sigmay</span><span class="p">)</span>
+    
+<span class="c1"># BOUNDARY CONDITIONS</span>
+<span class="n">nodes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">block</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">nodes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">block</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">nodes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">block</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">nodes</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">block</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="c1"># STRUCTURAL LOADING</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nb_fix</span><span class="p">):</span>
+    <span class="n">nodes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">force</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0e6</span><span class="p">])</span><span class="o">/</span><span class="mf">2.</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">solve</span><span class="p">()</span>
+<span class="n">xlim</span><span class="p">,</span> <span class="n">ylim</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">bbox</span><span class="p">(</span><span class="n">deformed</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s2">&quot;equal&quot;</span><span class="p">)</span>
+<span class="c1"># ax.axis(&quot;off&quot;)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span>
+    <span class="n">ax</span><span class="p">,</span> <span class="n">deformed</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">field</span><span class="o">=</span><span class="s2">&quot;stress&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">force_scale</span><span class="o">=</span><span class="mf">1.0e-6</span><span class="p">,</span> <span class="n">forces</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="n">xlim</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="n">ylim</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Axe $x$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Axe $y$&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Axe $y$&#39;)
+</pre></div>
+</div>
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "7315ae14d6094469b72ec640758a6e38", "version_major": 2, "version_minor": 0}</script></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">S_min</span> <span class="o">=</span> <span class="mf">0.2</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">cost</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">id_nodes</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">nb_fix</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">nodes</span><span class="p">))):</span>
+        <span class="n">nodes</span><span class="p">[</span><span class="n">id_nodes</span><span class="p">]</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">nodes</span><span class="p">[</span><span class="n">id_nodes</span><span class="p">]</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">Nb_inerpoints</span><span class="o">+</span><span class="n">i</span><span class="p">]</span>
+            
+    <span class="n">model</span><span class="o">.</span><span class="n">solve</span><span class="p">()</span>
+    <span class="c1"># section ajustement</span>
+    <span class="k">for</span> <span class="n">bar</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">bars</span><span class="p">:</span>
+        <span class="n">coef</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span> <span class="n">bar</span><span class="o">.</span><span class="n">stress</span><span class="o">/</span><span class="n">sigmay</span><span class="p">)</span>
+        <span class="n">new_section</span> <span class="o">=</span> <span class="n">bar</span><span class="o">.</span><span class="n">section</span> <span class="o">*</span> <span class="n">coef</span>
+        <span class="k">if</span> <span class="n">new_section</span> <span class="o">&lt;</span> <span class="n">S_min</span><span class="p">:</span>
+            <span class="n">new_section</span> <span class="o">=</span> <span class="n">S_min</span>
+        <span class="n">bar</span><span class="o">.</span><span class="n">section</span> <span class="o">=</span> <span class="n">new_section</span> 
+
+    <span class="n">model</span><span class="o">.</span><span class="n">solve</span><span class="p">()</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">mass</span><span class="p">()</span>
+    <span class="n">u_n001</span> <span class="o">=</span> <span class="n">nodes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">displacement</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>   
+
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">u_n001</span><span class="p">)</span><span class="o">*</span><span class="n">m</span>
+
+<span class="n">x0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">Nb_inerpoints</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">id_nodes</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">nb_fix</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">nodes</span><span class="p">))):</span>
+        <span class="n">x0</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">nodes</span><span class="p">[</span><span class="n">id_nodes</span><span class="p">]</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> 
+        <span class="n">x0</span><span class="p">[</span><span class="n">Nb_inerpoints</span><span class="o">+</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">nodes</span><span class="p">[</span><span class="n">id_nodes</span><span class="p">]</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x0</span><span class="p">)</span>
+<span class="n">cost</span><span class="p">(</span><span class="n">x0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[3.03432345 5.33453408 7.09277802 7.35468322 5.7404693  2.61316389
+ 3.93569183 0.         0.         0.         0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 0.         0.         1.62018386 2.73126019 4.58523751 2.57478543
+ 3.93090686 4.68994099 1.98526621 0.         0.         0.
+ 0.         0.         0.         0.         0.         0.
+ 0.         0.         0.         0.        ]
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>194.52550722067315
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">scipy</span>
+<span class="n">x0</span> <span class="o">=</span> <span class="n">sol</span><span class="o">.</span><span class="n">x</span>
+<span class="n">sol</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">optimize</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span><span class="n">cost</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;Nelder-Mead&#39;</span><span class="p">)</span>
+<span class="n">sol</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> final_simplex: (array([[0.04956336, 3.34199724, 4.4005405 , ..., 6.4417869 , 8.90107638,
+        1.50357903],
+       [0.04956745, 3.34199865, 4.4005405 , ..., 6.44178451, 8.90107182,
+        1.50357894],
+       [0.04955984, 3.34199592, 4.4005405 , ..., 6.44178921, 8.90108017,
+        1.5035794 ],
+       ...,
+       [0.04956497, 3.34199772, 4.40054049, ..., 6.44178613, 8.90107435,
+        1.50357931],
+       [0.04955511, 3.34199401, 4.40054048, ..., 6.44179275, 8.90108412,
+        1.50358094],
+       [0.04955093, 3.34199257, 4.40054048, ..., 6.44179505, 8.90108912,
+        1.50358075]]), array([162.75216527, 162.75216586, 162.75217362, 162.75217466,
+       162.75217692, 162.75217706, 162.75217731, 162.75217923,
+       162.75218011, 162.75218271, 162.75218322, 162.75218336,
+       162.7521838 , 162.75218451, 162.75218482, 162.75218489,
+       162.75218718, 162.75218756, 162.75218807, 162.75218817,
+       162.75218828, 162.752189  , 162.75218962, 162.75218983,
+       162.75219092, 162.75219106, 162.7521911 , 162.75219127,
+       162.75219131, 162.75219137, 162.7521925 , 162.75219253,
+       162.75219405, 162.75219406, 162.7521942 , 162.75219433,
+       162.75219452, 162.75219594, 162.75219599, 162.75219621,
+       162.75219636]))
+           fun: 162.7521652719785
+       message: &#39;Optimization terminated successfully.&#39;
+          nfev: 6161
+           nit: 4707
+        status: 0
+       success: True
+             x: array([ 0.04956336,  3.34199724,  4.4005405 ,  4.40049925,  2.86240419,
+        4.40054067,  3.48620022,  2.01424681,  8.84364729,  3.86455223,
+        4.6669124 , 15.45979173,  1.75341207,  1.22990674,  3.84248989,
+        8.13264685,  2.09854815,  0.74596853,  2.75158541,  8.51588762,
+        1.12121473,  2.14013607,  5.24332088,  5.24336889,  4.64020194,
+        5.24332227,  2.90810852,  2.30709751,  4.61702483,  5.75286242,
+        7.86618182, 35.22141945,  6.88222101,  2.77085482,  6.91561511,
+        3.2023324 , -0.80314786,  6.4417869 ,  8.90107638,  1.50357903])
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="n">The</span> <span class="n">Kernel</span> <span class="n">crashed</span> <span class="k">while</span> <span class="n">executing</span> <span class="n">code</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">current</span> <span class="n">cell</span> <span class="ow">or</span> <span class="n">a</span> <span class="n">previous</span> <span class="n">cell</span><span class="o">.</span> 
+
+<span class="n">Please</span> <span class="n">review</span> <span class="n">the</span> <span class="n">code</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">cell</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="n">to</span> <span class="n">identify</span> <span class="n">a</span> <span class="n">possible</span> <span class="n">cause</span> <span class="n">of</span> <span class="n">the</span> <span class="n">failure</span><span class="o">.</span> 
+
+<span class="n">Click</span> <span class="o">&lt;</span><span class="n">a</span> <span class="n">href</span><span class="o">=</span><span class="s1">&#39;https://aka.ms/vscodeJupyterKernelCrash&#39;</span><span class="o">&gt;</span><span class="n">here</span><span class="o">&lt;/</span><span class="n">a</span><span class="o">&gt;</span> <span class="k">for</span> <span class="n">more</span> <span class="n">info</span><span class="o">.</span> 
+
+<span class="n">View</span> <span class="n">Jupyter</span> <span class="o">&lt;</span><span class="n">a</span> <span class="n">href</span><span class="o">=</span><span class="s1">&#39;command:jupyter.viewOutput&#39;</span><span class="o">&gt;</span><span class="n">log</span><span class="o">&lt;/</span><span class="n">a</span><span class="o">&gt;</span> <span class="k">for</span> <span class="n">further</span> <span class="n">details</span><span class="o">.</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xlim</span><span class="p">,</span> <span class="n">ylim</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">bbox</span><span class="p">(</span><span class="n">deformed</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s2">&quot;equal&quot;</span><span class="p">)</span>
+<span class="c1"># ax.axis(&quot;off&quot;)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span>
+    <span class="n">ax</span><span class="p">,</span> <span class="n">deformed</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">field</span><span class="o">=</span><span class="s2">&quot;stress&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">force_scale</span><span class="o">=</span><span class="mf">1.0e-6</span><span class="p">,</span> <span class="n">forces</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="n">xlim</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="n">ylim</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Axe $x$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Axe $y$&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Axe $y$&#39;)
+</pre></div>
+</div>
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "94a6f9361c40403f91add1c069657df3", "version_major": 2, "version_minor": 0}</script></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="n">at</span><span class="o">=</span><span class="s2">&quot;bars&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead tr th {
+        text-align: left;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr>
+      <th></th>
+      <th colspan="2" halign="left">conn</th>
+      <th colspan="2" halign="left">props</th>
+      <th colspan="5" halign="left">state</th>
+      <th colspan="2" halign="left">geometry</th>
+      <th>props</th>
+      <th colspan="2" halign="left">direction</th>
+    </tr>
+    <tr>
+      <th></th>
+      <th>c1</th>
+      <th>c2</th>
+      <th>section</th>
+      <th>density</th>
+      <th>tension</th>
+      <th>elongation</th>
+      <th>strain</th>
+      <th>stress</th>
+      <th>failure</th>
+      <th>volume</th>
+      <th>length</th>
+      <th>mass</th>
+      <th>dx</th>
+      <th>dy</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>n002</td>
+      <td>n001</td>
+      <td>0.2</td>
+      <td>7800.0</td>
+      <td>-202777.832959</td>
+      <td>-0.000014</td>
+      <td>-0.000005</td>
+      <td>-1013889.164796</td>
+      <td>False</td>
+      <td>0.6</td>
+      <td>3.0</td>
+      <td>4680.0</td>
+      <td>0.0</td>
+      <td>-1.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>n003</td>
+      <td>n002</td>
+      <td>0.2</td>
+      <td>7800.0</td>
+      <td>-196022.736335</td>
+      <td>-0.000014</td>
+      <td>-0.000005</td>
+      <td>-980113.681675</td>
+      <td>False</td>
+      <td>0.6</td>
+      <td>3.0</td>
+      <td>4680.0</td>
+      <td>0.0</td>
+      <td>-1.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>n004</td>
+      <td>n000</td>
+      <td>0.2</td>
+      <td>7800.0</td>
+      <td>1316148.537201</td>
+      <td>0.000031</td>
+      <td>0.000031</td>
+      <td>6580742.686005</td>
+      <td>False</td>
+      <td>0.2</td>
+      <td>1.0</td>
+      <td>1560.0</td>
+      <td>-1.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>n005</td>
+      <td>n004</td>
+      <td>0.2</td>
+      <td>7800.0</td>
+      <td>1300154.671608</td>
+      <td>0.000093</td>
+      <td>0.000031</td>
+      <td>6500773.358039</td>
+      <td>False</td>
+      <td>0.6</td>
+      <td>3.0</td>
+      <td>4680.0</td>
+      <td>-1.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>n006</td>
+      <td>n001</td>
+      <td>0.2</td>
+      <td>7800.0</td>
+      <td>2320273.325305</td>
+      <td>0.00011</td>
+      <td>0.000055</td>
+      <td>11601366.626524</td>
+      <td>False</td>
+      <td>0.4</td>
+      <td>2.0</td>
+      <td>3120.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>n006</td>
+      <td>n005</td>
+      <td>0.2</td>
+      <td>7800.0</td>
+      <td>1530905.225659</td>
+      <td>0.000109</td>
+      <td>0.000036</td>
+      <td>7654526.128295</td>
+      <td>False</td>
+      <td>0.6</td>
+      <td>3.0</td>
+      <td>4680.0</td>
+      <td>-1.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>n007</td>
+      <td>n006</td>
+      <td>0.2</td>
+      <td>7800.0</td>
+      <td>325887.483111</td>
+      <td>0.000028</td>
+      <td>0.000008</td>
+      <td>1629437.415556</td>
+      <td>False</td>
+      <td>0.731159</td>
+      <td>3.655793</td>
+      <td>5703.036793</td>
+      <td>0.639684</td>
+      <td>-0.768638</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>n008</td>
+      <td>n000</td>
+      <td>0.2</td>
+      <td>7800.0</td>
+      <td>-2058562.794836</td>
+      <td>-0.000157</td>
+      <td>-0.000049</td>
+      <td>-10292813.974178</td>
+      <td>False</td>
+      <td>0.641702</td>
+      <td>3.208509</td>
+      <td>5005.273674</td>
+      <td>-0.341733</td>
+      <td>-0.939797</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>n008</td>
+      <td>n004</td>
+      <td>0.2</td>
+      <td>7800.0</td>
+      <td>500255.738335</td>
+      <td>0.000036</td>
+      <td>0.000012</td>
+      <td>2501278.691673</td>
+      <td>False</td>
+      <td>0.603378</td>
+      <td>3.016889</td>
+      <td>4706.347111</td>
+      <td>-0.031971</td>
+      <td>-0.999489</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>n008</td>
+      <td>n005</td>
+      <td>0.2</td>
+      <td>7800.0</td>
+      <td>373200.354373</td>
+      <td>0.000037</td>
+      <td>0.000009</td>
+      <td>1866001.771864</td>
+      <td>False</td>
+      <td>0.837207</td>
+      <td>4.186036</td>
+      <td>6530.215835</td>
+      <td>0.693627</td>
+      <td>-0.720335</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>n009</td>
+      <td>n002</td>
+      <td>0.2</td>
+      <td>7800.0</td>
+      <td>342133.361145</td>
+      <td>0.000034</td>
+      <td>0.000008</td>
+      <td>1710666.805723</td>
+      <td>False</td>
+      <td>0.837502</td>
+      <td>4.18751</td>
+      <td>6532.515742</td>
+      <td>0.790577</td>
+      <td>-0.612362</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>n009</td>
+      <td>n003</td>
+      <td>0.2</td>
+      <td>7800.0</td>
+      <td>-1623304.514944</td>
+      <td>-0.000129</td>
+      <td>-0.000039</td>
+      <td>-8116522.574721</td>
+      <td>False</td>
+      <td>0.66782</td>
+      <td>3.339102</td>
+      <td>5208.998524</td>
+      <td>0.991449</td>
+      <td>0.130492</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>n009</td>
+      <td>n007</td>
+      <td>0.2</td>
+      <td>7800.0</td>
+      <td>-70848.700793</td>
+      <td>-0.000005</td>
+      <td>-0.000002</td>
+      <td>-354243.503967</td>
+      <td>False</td>
+      <td>0.587977</td>
+      <td>2.939884</td>
+      <td>4586.219515</td>
+      <td>-0.349675</td>
+      <td>-0.936871</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>n010</td>
+      <td>n001</td>
+      <td>0.2</td>
+      <td>7800.0</td>
+      <td>1177645.013953</td>
+      <td>0.000062</td>
+      <td>0.000028</td>
+      <td>5888225.069767</td>
+      <td>False</td>
+      <td>0.443368</td>
+      <td>2.216838</td>
+      <td>3458.267357</td>
+      <td>0.802416</td>
+      <td>-0.596765</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>n010</td>
+      <td>n002</td>
+      <td>0.2</td>
+      <td>7800.0</td>
+      <td>-413615.046193</td>
+      <td>-0.000024</td>
+      <td>-0.00001</td>
+      <td>-2068075.230963</td>
+      <td>False</td>
+      <td>0.488949</td>
+      <td>2.444745</td>
+      <td>3813.801866</td>
+      <td>0.727612</td>
+      <td>0.685989</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>n010</td>
+      <td>n006</td>
+      <td>0.2</td>
+      <td>7800.0</td>
+      <td>-160442.836499</td>
+      <td>-0.000005</td>
+      <td>-0.000004</td>
+      <td>-802214.182494</td>
+      <td>False</td>
+      <td>0.268259</td>
+      <td>1.341293</td>
+      <td>2092.417684</td>
+      <td>-0.164896</td>
+      <td>-0.986311</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>n010</td>
+      <td>n007</td>
+      <td>0.2</td>
+      <td>7800.0</td>
+      <td>543483.580128</td>
+      <td>0.000038</td>
+      <td>0.000013</td>
+      <td>2717417.900642</td>
+      <td>False</td>
+      <td>0.592065</td>
+      <td>2.960324</td>
+      <td>4618.104954</td>
+      <td>-0.864678</td>
+      <td>0.502326</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>n010</td>
+      <td>n009</td>
+      <td>0.2</td>
+      <td>7800.0</td>
+      <td>590360.592056</td>
+      <td>0.000063</td>
+      <td>0.000014</td>
+      <td>2951802.960282</td>
+      <td>False</td>
+      <td>0.90189</td>
+      <td>4.509452</td>
+      <td>7034.744684</td>
+      <td>-0.33967</td>
+      <td>0.940545</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>n011</td>
+      <td>n007</td>
+      <td>0.2</td>
+      <td>7800.0</td>
+      <td>878381.02416</td>
+      <td>0.000056</td>
+      <td>0.000021</td>
+      <td>4391905.120802</td>
+      <td>False</td>
+      <td>0.539062</td>
+      <td>2.695312</td>
+      <td>4204.685985</td>
+      <td>0.748695</td>
+      <td>-0.662915</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>n011</td>
+      <td>n008</td>
+      <td>0.2</td>
+      <td>7800.0</td>
+      <td>-799551.166597</td>
+      <td>-0.000042</td>
+      <td>-0.000019</td>
+      <td>-3997755.832986</td>
+      <td>False</td>
+      <td>0.442452</td>
+      <td>2.212262</td>
+      <td>3451.128335</td>
+      <td>-0.699296</td>
+      <td>-0.714832</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>n011</td>
+      <td>n009</td>
+      <td>0.2</td>
+      <td>7800.0</td>
+      <td>-1021845.030704</td>
+      <td>-0.000078</td>
+      <td>-0.000024</td>
+      <td>-5109225.15352</td>
+      <td>False</td>
+      <td>0.639188</td>
+      <td>3.195942</td>
+      <td>4985.669494</td>
+      <td>0.953074</td>
+      <td>0.302737</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>n012</td>
+      <td>n003</td>
+      <td>0.2</td>
+      <td>7800.0</td>
+      <td>-1627951.671796</td>
+      <td>-0.000137</td>
+      <td>-0.000039</td>
+      <td>-8139758.358982</td>
+      <td>False</td>
+      <td>0.707193</td>
+      <td>3.535966</td>
+      <td>5516.107313</td>
+      <td>0.998397</td>
+      <td>0.056604</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>n012</td>
+      <td>n009</td>
+      <td>0.2</td>
+      <td>7800.0</td>
+      <td>743236.866396</td>
+      <td>0.000006</td>
+      <td>0.000018</td>
+      <td>3716184.331982</td>
+      <td>False</td>
+      <td>0.064431</td>
+      <td>0.322157</td>
+      <td>502.56417</td>
+      <td>0.682112</td>
+      <td>-0.731248</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>n013</td>
+      <td>n009</td>
+      <td>0.2</td>
+      <td>7800.0</td>
+      <td>-649257.439574</td>
+      <td>-0.000012</td>
+      <td>-0.000015</td>
+      <td>-3246287.19787</td>
+      <td>False</td>
+      <td>0.150902</td>
+      <td>0.754509</td>
+      <td>1177.033357</td>
+      <td>0.996087</td>
+      <td>0.08838</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>n013</td>
+      <td>n011</td>
+      <td>0.2</td>
+      <td>7800.0</td>
+      <td>-925057.648724</td>
+      <td>-0.000054</td>
+      <td>-0.000022</td>
+      <td>-4625288.24362</td>
+      <td>False</td>
+      <td>0.492985</td>
+      <td>2.464926</td>
+      <td>3845.283943</td>
+      <td>-0.930824</td>
+      <td>-0.365467</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>n013</td>
+      <td>n012</td>
+      <td>0.2</td>
+      <td>7800.0</td>
+      <td>-1286386.287538</td>
+      <td>-0.000019</td>
+      <td>-0.000031</td>
+      <td>-6431931.437692</td>
+      <td>False</td>
+      <td>0.122341</td>
+      <td>0.611704</td>
+      <td>954.258483</td>
+      <td>0.869389</td>
+      <td>0.494128</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>n014</td>
+      <td>n000</td>
+      <td>0.2</td>
+      <td>7800.0</td>
+      <td>-1228972.895406</td>
+      <td>-0.000155</td>
+      <td>-0.000029</td>
+      <td>-6144864.477031</td>
+      <td>False</td>
+      <td>1.060529</td>
+      <td>5.302643</td>
+      <td>8272.123232</td>
+      <td>-0.498521</td>
+      <td>-0.866877</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>n014</td>
+      <td>n008</td>
+      <td>0.2</td>
+      <td>7800.0</td>
+      <td>-766036.201625</td>
+      <td>-0.00004</td>
+      <td>-0.000018</td>
+      <td>-3830181.008125</td>
+      <td>False</td>
+      <td>0.442452</td>
+      <td>2.212261</td>
+      <td>3451.127801</td>
+      <td>-0.699296</td>
+      <td>-0.714832</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>n014</td>
+      <td>n011</td>
+      <td>0.2</td>
+      <td>7800.0</td>
+      <td>-1281520.969749</td>
+      <td>-0.0</td>
+      <td>-0.000031</td>
+      <td>-6407604.848746</td>
+      <td>False</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.000639</td>
+      <td>0.19066</td>
+      <td>0.981656</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>n014</td>
+      <td>n013</td>
+      <td>0.2</td>
+      <td>7800.0</td>
+      <td>-971204.707336</td>
+      <td>-0.000057</td>
+      <td>-0.000023</td>
+      <td>-4856023.536682</td>
+      <td>False</td>
+      <td>0.492985</td>
+      <td>2.464926</td>
+      <td>3845.284285</td>
+      <td>0.930824</td>
+      <td>0.365467</td>
+    </tr>
+    <tr>
+      <th>30</th>
+      <td>n015</td>
+      <td>n005</td>
+      <td>0.2</td>
+      <td>7800.0</td>
+      <td>232873.762297</td>
+      <td>0.000011</td>
+      <td>0.000006</td>
+      <td>1164368.811485</td>
+      <td>False</td>
+      <td>0.408019</td>
+      <td>2.040097</td>
+      <td>3182.551982</td>
+      <td>-0.120714</td>
+      <td>-0.992687</td>
+    </tr>
+    <tr>
+      <th>31</th>
+      <td>n015</td>
+      <td>n006</td>
+      <td>0.2</td>
+      <td>7800.0</td>
+      <td>688241.861215</td>
+      <td>0.000056</td>
+      <td>0.000016</td>
+      <td>3441209.306076</td>
+      <td>False</td>
+      <td>0.683649</td>
+      <td>3.418243</td>
+      <td>5332.459306</td>
+      <td>0.805598</td>
+      <td>-0.592462</td>
+    </tr>
+    <tr>
+      <th>32</th>
+      <td>n015</td>
+      <td>n007</td>
+      <td>0.2</td>
+      <td>7800.0</td>
+      <td>-8575.299973</td>
+      <td>-0.0</td>
+      <td>-0.0</td>
+      <td>-42876.499865</td>
+      <td>False</td>
+      <td>0.177571</td>
+      <td>0.887855</td>
+      <td>1385.054124</td>
+      <td>0.467619</td>
+      <td>0.88393</td>
+    </tr>
+    <tr>
+      <th>33</th>
+      <td>n015</td>
+      <td>n008</td>
+      <td>0.2</td>
+      <td>7800.0</td>
+      <td>155625.251395</td>
+      <td>0.000012</td>
+      <td>0.000004</td>
+      <td>778126.256974</td>
+      <td>False</td>
+      <td>0.660356</td>
+      <td>3.301782</td>
+      <td>5150.77979</td>
+      <td>-0.953974</td>
+      <td>0.299889</td>
+    </tr>
+    <tr>
+      <th>34</th>
+      <td>n015</td>
+      <td>n011</td>
+      <td>0.2</td>
+      <td>7800.0</td>
+      <td>706808.787136</td>
+      <td>0.000051</td>
+      <td>0.000017</td>
+      <td>3534043.935682</td>
+      <td>False</td>
+      <td>0.606032</td>
+      <td>3.030159</td>
+      <td>4727.048701</td>
+      <td>-0.528945</td>
+      <td>0.848656</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
 <p><strong>Question 4</strong>: Same question with displacements also along <span class="math notranslate nohighlight">\(\vec x\)</span> of <span class="math notranslate nohighlight">\(C\)</span>, <span class="math notranslate nohighlight">\(D\)</span>, <span class="math notranslate nohighlight">\(E\)</span> and <span class="math notranslate nohighlight">\(F\)</span>. Is it better ?</p>
 <p><strong>Question 5</strong>:  You can now try to perform topological optimization by removing/merging well chosen beams and nodes. In order to make the structure even more efficient.</p>
 <p><strong>Question 6</strong>: You are now asked to optimize the cross section along with the position of <span class="math notranslate nohighlight">\(C\)</span>, <span class="math notranslate nohighlight">\(D\)</span>, <span class="math notranslate nohighlight">\(E\)</span> and <span class="math notranslate nohighlight">\(F\)</span> in order to reach the yield stress in each individual beam.</p>
@@ -2449,8 +3023,7 @@ if (IPython.notebook.kernel !== null) {
             
             
               
-                <dialog id="pst-secondary-sidebar-modal"></dialog>
-                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -2523,8 +3096,8 @@ By Ludovic Charleux, Emile Roux, Thibault Goyallon, Christian Elmo, Giovanni Fev
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
-<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>

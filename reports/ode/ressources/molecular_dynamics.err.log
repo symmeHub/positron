@@ -1,0 +1,126 @@
+Traceback (most recent call last):
+  File "/opt/conda/envs/science/lib/python3.12/site-packages/jupyter_core/utils/__init__.py", line 154, in wrapped
+    asyncio.get_running_loop()
+RuntimeError: no running event loop
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/opt/conda/envs/science/lib/python3.12/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/opt/conda/envs/science/lib/python3.12/site-packages/nbclient/client.py", line 1319, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/science/lib/python3.12/site-packages/jupyter_core/utils/__init__.py", line 158, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/science/lib/python3.12/asyncio/base_events.py", line 691, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/science/lib/python3.12/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "/opt/conda/envs/science/lib/python3.12/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/opt/conda/envs/science/lib/python3.12/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+np.random.seed(666)
+re = 0.9
+nmx = 6
+nmy = 6
+nm = nmx * nmy
+x0 = np.arange(nmx) * re * 1.2
+y0 = np.arange(nmy) * re * 1.2
+X0, Y0 = np.meshgrid(x0, y0)
+P0 = np.array([X0.flatten(), Y0.flatten()]).T
+P0 *= 1.0 + np.random.rand(*P0.shape) * 0.1
+P0 -= P0.mean(axis=0)
+V0 = np.zeros_like(P0)
+pcolors = "r"
+tcolors = "b"
+m = np.ones(nm) * 1.0e0
+s = MD(m=m, P=P0, V=V0, mu=0.05, re=re, a=10, De=0.5, nk=1000)
+dt = 1.0e-1
+nt = 100
+
+
+fig = plt.figure()
+ax = fig.add_subplot(1, 1, 1)
+ax.set_aspect("equal")
+ax.axis("off")
+margin = 1.0
+plt.xlim(P0[:, 0].min() - margin, P0[:, 0].max() + margin)
+plt.ylim(P0[:, 1].min() - margin, P0[:, 1].max() + margin)
+# plt.grid()
+# ax.axis("off")
+points = []
+
+msize = 10.0 * (s.m / s.m.max()) ** (1.0 / 6.0)
+for i in range(nm):
+    plc = len(pcolors)
+    pc = pcolors[i % plc]
+    tlc = len(tcolors)
+    tc = tcolors[i % tlc]
+    (trail,) = ax.plot([], [], "-" + tc)
+    (point,) = ax.plot([], [], "o" + pc, markersize=msize[i])
+    points.append(point)
+    points.append(trail)
+
+
+def init():
+    for i in range(2 * nm):
+        points[i].set_data([], [])
+    return points
+
+
+def animate(i):
+    s.solve(dt, nt)  # , rtol = 1.e-8, atol = 1.e-8)
+    x, y = s.xy()
+    for i in range(nm):
+        points[2 * i].set_data(x[i : i + 1], y[i : i + 1])
+        xt, yt = s.trail(i)
+        points[2 * i + 1].set_data(xt, yt)
+    return points
+
+
+anim = animation.FuncAnimation(
+    fig, animate, init_func=init, frames=400, interval=20, blit=True
+)
+
+
+# plt.show()
+plt.close()
+anim
+------------------
+
+
+[31m---------------------------------------------------------------------------[39m
+[31mAttributeError[39m                            Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[7][39m[32m, line 16[39m
+[32m     14[39m tcolors = [33m"[39m[33mb[39m[33m"[39m
+[32m     15[39m m = np.ones(nm) * [32m1.0e0[39m
+[32m---> [39m[32m16[39m s = [43mMD[49m[43m([49m[43mm[49m[43m=[49m[43mm[49m[43m,[49m[43m [49m[43mP[49m[43m=[49m[43mP0[49m[43m,[49m[43m [49m[43mV[49m[43m=[49m[43mV0[49m[43m,[49m[43m [49m[43mmu[49m[43m=[49m[32;43m0.05[39;49m[43m,[49m[43m [49m[43mre[49m[43m=[49m[43mre[49m[43m,[49m[43m [49m[43ma[49m[43m=[49m[32;43m10[39;49m[43m,[49m[43m [49m[43mDe[49m[43m=[49m[32;43m0.5[39;49m[43m,[49m[43m [49m[43mnk[49m[43m=[49m[32;43m1000[39;49m[43m)[49m
+[32m     17[39m dt = [32m1.0e-1[39m
+[32m     18[39m nt = [32m100[39m
+
+[36mCell[39m[36m [39m[32mIn[6][39m[32m, line 11[39m, in [36mMD.__init__[39m[34m(self, De, a, re, mu, **kwargs)[39m
+[32m      9[39m [38;5;28mself[39m.re = re
+[32m     10[39m [38;5;28mself[39m.mu = mu
+[32m---> [39m[32m11[39m [38;5;28;43msuper[39;49m[43m([49m[43m)[49m[43m.[49m[34;43m__init__[39;49m[43m([49m[43m*[49m[43m*[49m[43mkwargs[49m[43m)[49m
+
+[36mFile [39m[32m/workspaces/positron/book/ode/ressources/PMD.py:34[39m, in [36mPMD.__init__[39m[34m(self, m, P, V, nk)[39m
+[32m     32[39m [38;5;28mself[39m._n = n
+[32m     33[39m [38;5;28mself[39m.X = np.zeros([nk, [32m4[39m * n])
+[32m---> [39m[32m34[39m [38;5;28mself[39m.X.fill([43mnp[49m[43m.[49m[43mNAN[49m)
+[32m     35[39m [38;5;28mself[39m.X[-[32m1[39m, : [32m2[39m * n] = np.array(P).flatten()
+[32m     36[39m [38;5;28mself[39m.X[-[32m1[39m, [32m2[39m * n :] = np.array(V).flatten()
+
+[36mFile [39m[32m/opt/conda/envs/science/lib/python3.12/site-packages/numpy/__init__.py:414[39m, in [36m__getattr__[39m[34m(attr)[39m
+[32m    411[39m     [38;5;28;01mimport[39;00m[38;5;250m [39m[34;01mnumpy[39;00m[34;01m.[39;00m[34;01mchar[39;00m[38;5;250m [39m[38;5;28;01mas[39;00m[38;5;250m [39m[34;01mchar[39;00m
+[32m    412[39m     [38;5;28;01mreturn[39;00m char.chararray
+[32m--> [39m[32m414[39m [38;5;28;01mraise[39;00m [38;5;167;01mAttributeError[39;00m([33m"[39m[33mmodule [39m[38;5;132;01m{!r}[39;00m[33m has no attribute [39m[33m"[39m
+[32m    415[39m                      [33m"[39m[38;5;132;01m{!r}[39;00m[33m"[39m.format([34m__name__[39m, attr))
+
+[31mAttributeError[39m: module 'numpy' has no attribute 'NAN'
+
