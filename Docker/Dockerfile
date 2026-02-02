@@ -77,5 +77,3 @@ RUN echo ". ${CONDA_DIR}/etc/profile.d/conda.sh" >> ~/.bashrc && \
     echo "${CONDA_BIN_PATH} activate $CONDA_ENV_NAME" >> ~/.bashrc
 
 SHELL ["/bin/bash", "--login", "-c"]
-
-
