@@ -31,7 +31,7 @@ class PMD:
         n = len(P)
         self._n = n
         self.X = np.zeros([nk, 4 * n])
-        self.X.fill(np.NAN)
+        self.X.fill(np.nan)
         self.X[-1, : 2 * n] = np.array(P).flatten()
         self.X[-1, 2 * n :] = np.array(V).flatten()
         self.m = np.array(m)
