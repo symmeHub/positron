@@ -7,7 +7,7 @@ In this part, you can find the basic tools that will help you throughout this se
 
 And more advanced topics, such as how to:
 
-* tailor more advanced regression models: [](#dataM:support:LinRegAdvanced)
+* tailor more advanced regression models: [advanced linear regression](#dataM:support:LinRegAdvanced)
 
 * work with noisy data: [](#dataM:support:NoisyData)
 

@@ -6,3 +6,6 @@ book/_build/*
 .ignore*
 **/truss-master/*
 .DS_Store
+
+# MyST build outputs
+_build
