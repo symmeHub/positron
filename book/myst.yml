@@ -1,0 +1,32 @@
+# See docs at: https://mystmd.org/guide/frontmatter
+version: 1
+project:
+  # id: 8d100ed7-36b2-4354-97ab-43bab996214f
+  title: "POSITRON: PythOn for Science In The Reblochon cOuNtry"
+  # description:
+  # keywords: []
+  # authors: []
+  github: https://github.com/symmeHub/positron
+  
+site:
+  template: book-theme
+options:
+  # The base URL path where the site is served.
+  # For GitHub Pages project sites, this is "/<repo-name>".
+  baseUrl: /positron
+  # Optional: used for canonical URLs and sitemaps
+  # url: https://lcharleux.github.io
+  # options:
+  #   favicon: favicon.ico
+  #   logo: site_logo.png
+toc:
+- file: intro.md
+
+
+authors:
+- name: Ludovic Charleux
+- name: Emile Roux 
+- name: Christian Elmo
+- name: Thibault Goyallon
+- name: Giovanni Feverati
+- name: Camille Saint-Martin
