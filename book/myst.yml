@@ -10,6 +10,17 @@ project:
   # To autogenerate a Table of Contents, run "jupyter book init --write-toc"
 site:
   template: book-theme
+options:
+  # The base URL path where the site is served.
+  # For GitHub Pages project sites, this is "/<repo-name>".
+  baseUrl: /positron
+  # Optional: used for canonical URLs and sitemaps
+  # url: https://lcharleux.github.io
   # options:
   #   favicon: favicon.ico
   #   logo: site_logo.png
+toc:
+- file: python_basics/python_basics.md
+
+authors:
+- name: Ludovic Charleux

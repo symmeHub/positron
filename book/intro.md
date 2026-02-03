@@ -12,8 +12,10 @@ It is divided by themes as follows:
 The contributors to this project are:
 * [Ludovic Charleux](mailto:ludovic.charleux@univ-smb.fr)
 * [Emile Roux](mailto:emile.roux@univ-smb.fr)
+* [Christian Elmo](mailto:christian.elmo-kulanesan@univ-smb.fr)
+
+Legacy contributors:
 * Thibault Goyallon
-* Christian Elmo
 * Giovanni Feverati
 * Pierre Nagorny
 * Camille Saint-Martin
