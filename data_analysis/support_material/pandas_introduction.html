@@ -30,9 +30,9 @@
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
-    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=9c3e77be" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../../_static/style.css?v=f4d5f33b" />
@@ -51,7 +51,7 @@
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../../_static/togglebutton.js?v=1ae7504c"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../../_static/design-tabs.js?v=f930bc37"></script>
     <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-RYTJG30T3E"></script>
@@ -246,7 +246,7 @@
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../exercises/exercises.html">Exercices</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../exercises/data_tutorial.html">Analysis of data from a weather station</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../exercises/data_practical_work.html">Tensile test analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../exercises/data_practical_work.html">Practical work — Tensile test data analysis (4h)</a></li>
 </ul>
 </details></li>
 </ul>
@@ -635,10 +635,10 @@ It also provides basic tools for data visualization, but the use of more powerfu
 </ul>
 <p>We will use as example data set a list of students with their grades in different tests.</p>
 <div class="cell tag_hide-input docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell source</span>
-<span class="expanded">Hide code cell source</span>
+<p class="collapsed admonition-title">Show code cell source</p>
+<p class="expanded admonition-title">Hide code cell source</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Setup</span>
@@ -665,12 +665,6 @@ Therefore, you can open the file with a text editor or a spreadsheet software li
 <p class="admonition-title">warning</p>
 <p>Open the data with Excel might change the format of the data, so it is recommended to use a text editor like Notepad++ or Visual Studio Code.</p>
 </div>
-</section>
-<section id="data-loading-and-basic-manipulation">
-<h2>Data Loading and basic manipulation<a class="headerlink" href="#data-loading-and-basic-manipulation" title="Link to this heading">#</a></h2>
-<section id="load-data-and-create-a-data-frame-from-csv-file">
-<h3>Load data and create a data frame from csv file<a class="headerlink" href="#load-data-and-create-a-data-frame-from-csv-file" title="Link to this heading">#</a></h3>
-<p>More explanation can be found here : <a class="reference external" href="https://chrisalbon.com/python/data_wrangling/pandas_dataframe_importing_csv/">https://chrisalbon.com/python/data_wrangling/pandas_dataframe_importing_csv/</a></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;./_DATA/Note_csv.csv&quot;</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s2">&quot;;&quot;</span><span class="p">)</span>
@@ -799,13 +793,18 @@ Therefore, you can open the file with a text editor or a spreadsheet software li
 </div></div></div>
 </div>
 </section>
+<section id="data-loading-and-basic-manipulation">
+<h2>Data Loading and basic manipulation<a class="headerlink" href="#data-loading-and-basic-manipulation" title="Link to this heading">#</a></h2>
+<section id="load-data-and-create-a-data-frame-from-csv-file">
+<h3>Load data and create a data frame from csv file<a class="headerlink" href="#load-data-and-create-a-data-frame-from-csv-file" title="Link to this heading">#</a></h3>
+<p>More explanation can be found here : <a class="reference external" href="https://chrisalbon.com/python/data_wrangling/pandas_dataframe_importing_csv/">https://chrisalbon.com/python/data_wrangling/pandas_dataframe_importing_csv/</a></p>
+</section>
 <section id="display-the-dataframe">
 <h3>Display the dataframe<a class="headerlink" href="#display-the-dataframe" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># return the beginning of the dataframe</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mf">0.0</span><span class="p">)</span>
-<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -841,7 +840,7 @@ Therefore, you can open the file with a text editor or a spreadsheet software li
       <td>MM</td>
       <td>A</td>
       <td>ami</td>
-      <td>14.50</td>
+      <td>14.5</td>
       <td>11.75</td>
     </tr>
     <tr>
@@ -849,7 +848,7 @@ Therefore, you can open the file with a text editor or a spreadsheet software li
       <td>MM</td>
       <td>A</td>
       <td>joyce</td>
-      <td>8.50</td>
+      <td>8.5</td>
       <td>11.50</td>
     </tr>
     <tr>
@@ -857,7 +856,7 @@ Therefore, you can open the file with a text editor or a spreadsheet software li
       <td>MM</td>
       <td>C</td>
       <td>lola</td>
-      <td>9.50</td>
+      <td>9.5</td>
       <td>13.25</td>
     </tr>
     <tr>
@@ -865,7 +864,7 @@ Therefore, you can open the file with a text editor or a spreadsheet software li
       <td>MM</td>
       <td>B</td>
       <td>irma</td>
-      <td>7.50</td>
+      <td>7.5</td>
       <td>6.00</td>
     </tr>
     <tr>
@@ -873,48 +872,8 @@ Therefore, you can open the file with a text editor or a spreadsheet software li
       <td>IAI</td>
       <td>D</td>
       <td>florence</td>
-      <td>14.50</td>
+      <td>14.5</td>
       <td>13.25</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>MM</td>
-      <td>B</td>
-      <td>vi</td>
-      <td>11.00</td>
-      <td>7.50</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>MM</td>
-      <td>B</td>
-      <td>brian</td>
-      <td>14.00</td>
-      <td>16.25</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>MM</td>
-      <td>B</td>
-      <td>antoinette</td>
-      <td>14.50</td>
-      <td>17.00</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>IAI</td>
-      <td>D</td>
-      <td>fred</td>
-      <td>9.50</td>
-      <td>11.50</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>IAI</td>
-      <td>D</td>
-      <td>gaston</td>
-      <td>12.25</td>
-      <td>5.75</td>
     </tr>
   </tbody>
 </table>
@@ -1062,12 +1021,23 @@ Name: 2, dtype: object
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># get name from index 2</span>
-<span class="n">df</span><span class="o">.</span><span class="n">name</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+<span class="mf">0.7</span> <span class="o">*</span> <span class="n">df</span><span class="o">.</span><span class="n">ET</span> <span class="o">+</span> <span class="mf">0.3</span> <span class="o">*</span> <span class="n">df</span><span class="o">.</span><span class="n">CC</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;lola&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0     13.675
+1      9.400
+2     10.625
+3      7.050
+4     14.125
+       ...  
+90    13.450
+91    12.775
+92    17.275
+93    11.675
+94     4.200
+Length: 95, dtype: float64
 </pre></div>
 </div>
 </div>
@@ -1075,17 +1045,12 @@ Name: 2, dtype: object
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Sliccing is also working</span>
-
-<span class="n">df</span><span class="o">.</span><span class="n">name</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">6</span><span class="p">]</span>
+<span class="n">df</span><span class="o">.</span><span class="n">name</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2        lola
-3        irma
-4    florence
-5          vi
-Name: name, dtype: object
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;brian&#39;
 </pre></div>
 </div>
 </div>
@@ -1111,10 +1076,136 @@ Name: name, dtype: object
 92    A
 93    D
 94    B
-Name: TD, Length: 95, dtype: object
+Name: TD, Length: 95, dtype: str
 </pre></div>
 </div>
 </div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;ET&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>section</th>
+      <th>TD</th>
+      <th>name</th>
+      <th>ET</th>
+      <th>CC</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>71</th>
+      <td>IAI</td>
+      <td>C</td>
+      <td>platon</td>
+      <td>1.00</td>
+      <td>7.25</td>
+    </tr>
+    <tr>
+      <th>94</th>
+      <td>MM</td>
+      <td>B</td>
+      <td>constance</td>
+      <td>3.00</td>
+      <td>7.00</td>
+    </tr>
+    <tr>
+      <th>60</th>
+      <td>IAI</td>
+      <td>D</td>
+      <td>bꢴrice</td>
+      <td>3.25</td>
+      <td>8.00</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>IAI</td>
+      <td>D</td>
+      <td>lasse</td>
+      <td>4.50</td>
+      <td>8.50</td>
+    </tr>
+    <tr>
+      <th>48</th>
+      <td>MM</td>
+      <td>A</td>
+      <td>chant</td>
+      <td>4.50</td>
+      <td>9.00</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>82</th>
+      <td>IAI</td>
+      <td>C</td>
+      <td>rose</td>
+      <td>17.50</td>
+      <td>15.00</td>
+    </tr>
+    <tr>
+      <th>68</th>
+      <td>IAI</td>
+      <td>D</td>
+      <td>ursula</td>
+      <td>17.75</td>
+      <td>13.00</td>
+    </tr>
+    <tr>
+      <th>92</th>
+      <td>MM</td>
+      <td>A</td>
+      <td>caprice</td>
+      <td>18.25</td>
+      <td>15.00</td>
+    </tr>
+    <tr>
+      <th>32</th>
+      <td>IAI</td>
+      <td>D</td>
+      <td>dora</td>
+      <td>NaN</td>
+      <td>2.00</td>
+    </tr>
+    <tr>
+      <th>33</th>
+      <td>IAI</td>
+      <td>D</td>
+      <td>violet</td>
+      <td>NaN</td>
+      <td>0.25</td>
+    </tr>
+  </tbody>
+</table>
+<p>95 rows × 5 columns</p>
+</div></div></div>
 </div>
 </section>
 </section>
@@ -1175,14 +1266,14 @@ Name: proportion, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/245025ec0dc746d20fc93567bc3016e8a7c8eef23e2c6ecd94e35a2bc682f0c1.png" src="../../_images/245025ec0dc746d20fc93567bc3016e8a7c8eef23e2c6ecd94e35a2bc682f0c1.png" />
+<img alt="../../_images/1983ec36562f8806b8a0ed6d1e5a4050ce5697f36b13abda09e262224d70d1ac.png" src="../../_images/1983ec36562f8806b8a0ed6d1e5a4050ce5697f36b13abda09e262224d70d1ac.png" />
 </div>
 </div>
 <p><em><strong>Using the plot function of matplotlib:</strong></em></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">val</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">TD</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">values</span>
-<span class="n">explode</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">explode</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
 <span class="n">labels</span> <span class="o">=</span> <span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="s2">&quot;C&quot;</span><span class="p">,</span> <span class="s2">&quot;D&quot;</span>
 <span class="n">fig1</span><span class="p">,</span> <span class="n">ax1</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
 <span class="n">ax1</span><span class="o">.</span><span class="n">pie</span><span class="p">(</span>
@@ -1195,12 +1286,65 @@ Name: proportion, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/942dbfd829f477caaa67b73bb09ff0d50474b78872c31524e39b0c7f9f5a552c.png" src="../../_images/942dbfd829f477caaa67b73bb09ff0d50474b78872c31524e39b0c7f9f5a552c.png" />
+<img alt="../../_images/1cf5edf08922eec21b0c00f3e3997eb3d8907b8fb97f174dd5f1d0bf35b555f2.png" src="../../_images/1cf5edf08922eec21b0c00f3e3997eb3d8907b8fb97f174dd5f1d0bf35b555f2.png" />
 </div>
 </div>
 </section>
 <section id="get-student-list-who-get-a-grad-higher-than-14-20-on-both-et-and-cc">
 <h3>Get student list who get a grad higher than 14/20 on both ET and CC<a class="headerlink" href="#get-student-list-who-get-a-grad-higher-than-14-20-on-both-et-and-cc" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[(</span><span class="n">df</span><span class="o">.</span><span class="n">ET</span> <span class="o">&gt;</span> <span class="mf">15.0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">CC</span> <span class="o">&lt;</span> <span class="mf">10.0</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>section</th>
+      <th>TD</th>
+      <th>name</th>
+      <th>ET</th>
+      <th>CC</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>35</th>
+      <td>IAI</td>
+      <td>D</td>
+      <td>achille</td>
+      <td>17.50</td>
+      <td>9.5</td>
+    </tr>
+    <tr>
+      <th>91</th>
+      <td>IAI</td>
+      <td>D</td>
+      <td>richard</td>
+      <td>15.25</td>
+      <td>7.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[(</span><span class="n">df</span><span class="o">.</span><span class="n">ET</span> <span class="o">&gt;</span> <span class="mf">14.0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">CC</span> <span class="o">&gt;</span> <span class="mf">14.0</span><span class="p">)]</span>
@@ -1298,7 +1442,7 @@ Name: proportion, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(10.810526315789474)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(11.043010752688172)
 </pre></div>
 </div>
 </div>
@@ -1308,12 +1452,15 @@ Name: proportion, dtype: float64
 <h4>The mean of ET over students from B group<a class="headerlink" href="#the-mean-of-et-over-students-from-b-group" title="Link to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">ET</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">TD</span> <span class="o">==</span> <span class="s2">&quot;B&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">TD</span> <span class="o">==</span> <span class="s2">&quot;A&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">ET</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">TD</span> <span class="o">==</span> <span class="s2">&quot;B&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">ET</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">TD</span> <span class="o">==</span> <span class="s2">&quot;C&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">ET</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">TD</span> <span class="o">==</span> <span class="s2">&quot;D&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">ET</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(9.72)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(11.345238095238095)
 </pre></div>
 </div>
 </div>
@@ -1323,155 +1470,18 @@ Name: proportion, dtype: float64
 <h4>Statistical description of the data by TD using the ‘groupby()’ function<a class="headerlink" href="#statistical-description-of-the-data-by-td-using-the-groupby-function" title="Link to this heading">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">&quot;TD&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>  <span class="c1"># compte the mean of each note for each groupe</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">&quot;section&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">ET</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>  <span class="c1"># compte the mean of each note for each groupe</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead tr th {
-        text-align: left;
-    }
-
-    .dataframe thead tr:last-of-type th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr>
-      <th></th>
-      <th colspan="8" halign="left">ET</th>
-      <th colspan="8" halign="left">CC</th>
-    </tr>
-    <tr>
-      <th></th>
-      <th>count</th>
-      <th>mean</th>
-      <th>std</th>
-      <th>min</th>
-      <th>25%</th>
-      <th>50%</th>
-      <th>75%</th>
-      <th>max</th>
-      <th>count</th>
-      <th>mean</th>
-      <th>std</th>
-      <th>min</th>
-      <th>25%</th>
-      <th>50%</th>
-      <th>75%</th>
-      <th>max</th>
-    </tr>
-    <tr>
-      <th>TD</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>A</th>
-      <td>24.0</td>
-      <td>12.552083</td>
-      <td>2.953424</td>
-      <td>4.5</td>
-      <td>11.5625</td>
-      <td>12.875</td>
-      <td>14.125</td>
-      <td>18.25</td>
-      <td>24.0</td>
-      <td>12.531250</td>
-      <td>2.350199</td>
-      <td>7.50</td>
-      <td>11.4375</td>
-      <td>12.75</td>
-      <td>13.625</td>
-      <td>17.50</td>
-    </tr>
-    <tr>
-      <th>B</th>
-      <td>25.0</td>
-      <td>9.720000</td>
-      <td>3.445498</td>
-      <td>3.0</td>
-      <td>7.5000</td>
-      <td>9.500</td>
-      <td>13.000</td>
-      <td>15.50</td>
-      <td>25.0</td>
-      <td>9.690000</td>
-      <td>3.906645</td>
-      <td>0.00</td>
-      <td>7.5000</td>
-      <td>10.25</td>
-      <td>11.750</td>
-      <td>17.00</td>
-    </tr>
-    <tr>
-      <th>C</th>
-      <td>23.0</td>
-      <td>10.630435</td>
-      <td>4.295128</td>
-      <td>1.0</td>
-      <td>7.5000</td>
-      <td>9.500</td>
-      <td>14.500</td>
-      <td>17.50</td>
-      <td>23.0</td>
-      <td>11.913043</td>
-      <td>2.903376</td>
-      <td>6.50</td>
-      <td>9.8750</td>
-      <td>12.00</td>
-      <td>13.750</td>
-      <td>17.50</td>
-    </tr>
-    <tr>
-      <th>D</th>
-      <td>23.0</td>
-      <td>10.358696</td>
-      <td>5.376097</td>
-      <td>0.0</td>
-      <td>6.7500</td>
-      <td>11.750</td>
-      <td>14.500</td>
-      <td>17.75</td>
-      <td>23.0</td>
-      <td>9.076087</td>
-      <td>3.244256</td>
-      <td>0.25</td>
-      <td>8.1250</td>
-      <td>10.00</td>
-      <td>11.125</td>
-      <td>13.25</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>section
+IAI    10.804688
+MM     11.168033
+Name: ET, dtype: float64
+</pre></div>
+</div>
+</div>
 </div>
 </section>
 </section>
@@ -1487,7 +1497,7 @@ Name: proportion, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/64b050760daa18a3bece148d079397ceb052da3f93b61d3c1cfd4e804e6e4be4.png" src="../../_images/64b050760daa18a3bece148d079397ceb052da3f93b61d3c1cfd4e804e6e4be4.png" />
+<img alt="../../_images/32dfc6bd861a6363958df3abf8805dae392ea91ff35530263fd02af0add8f8a2.png" src="../../_images/32dfc6bd861a6363958df3abf8805dae392ea91ff35530263fd02af0add8f8a2.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1500,7 +1510,7 @@ Name: proportion, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/33a6459c2fb6fd89881e16f15ae7625b8b22556cb9a966553788dc25d4c4c6fe.png" src="../../_images/33a6459c2fb6fd89881e16f15ae7625b8b22556cb9a966553788dc25d4c4c6fe.png" />
+<img alt="../../_images/7013851efa666f5392a5c8956ebeb672bd0ba9a925a510350d6ba550e44934f3.png" src="../../_images/7013851efa666f5392a5c8956ebeb672bd0ba9a925a510350d6ba550e44934f3.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1515,7 +1525,7 @@ Name: proportion, dtype: float64
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 640x480 with 0 Axes&gt;
 </pre></div>
 </div>
-<img alt="../../_images/e0e967d1922eb214c98ddb86cbaedf4570a289449fb9b7eb8a52ddca759c247e.png" src="../../_images/e0e967d1922eb214c98ddb86cbaedf4570a289449fb9b7eb8a52ddca759c247e.png" />
+<img alt="../../_images/d79b646bce0415110e0ba651411947329d75caac15a87585fc9b6bc8519166f3.png" src="../../_images/d79b646bce0415110e0ba651411947329d75caac15a87585fc9b6bc8519166f3.png" />
 </div>
 </div>
 </section>
@@ -1842,6 +1852,13 @@ Name: proportion, dtype: float64
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;res.csv&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
 <span class="n">df</span><span class="o">.</span><span class="n">FinalNote</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">20</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -1849,7 +1866,7 @@ Name: proportion, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/8cca8e5fbbbe0db4cc104e02f901b41b849d8ae5402c071f3139fd8fec5c0cf4.png" src="../../_images/8cca8e5fbbbe0db4cc104e02f901b41b849d8ae5402c071f3139fd8fec5c0cf4.png" />
+<img alt="../../_images/ebac8b9b3ea6690bbf934cc9b3ea96302538f49cdc7dd90d39ed9057c1944f96.png" src="../../_images/ebac8b9b3ea6690bbf934cc9b3ea96302538f49cdc7dd90d39ed9057c1944f96.png" />
 </div>
 </div>
 </section>
@@ -1863,7 +1880,7 @@ Name: proportion, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(10.80657894736842)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(11.08695652173913)
 </pre></div>
 </div>
 </div>

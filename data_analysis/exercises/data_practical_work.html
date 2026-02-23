@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Tensile test analysis &#8212; POSITRON: PythOn for Science In The Reblochon cOuNtry</title>
+    <title>Practical work — Tensile test data analysis (4h) &#8212; POSITRON: PythOn for Science In The Reblochon cOuNtry</title>
   
   
   
@@ -30,9 +30,9 @@
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
-    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=9c3e77be" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../../_static/style.css?v=f4d5f33b" />
@@ -51,7 +51,7 @@
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="../../_static/togglebutton.js?v=1ae7504c"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../../_static/design-tabs.js?v=f930bc37"></script>
     <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-RYTJG30T3E"></script>
@@ -71,8 +71,6 @@
                 gtag('config', 'G-RYTJG30T3E');
             </script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'data_analysis/exercises/data_practical_work';</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="canonical" href="&#39;https://symmehub.github.io/positron/data_analysis/exercises/data_practical_work.html" />
@@ -248,7 +246,7 @@
 </details></li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="exercises.html">Exercices</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="data_tutorial.html">Analysis of data from a weather station</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Tensile test analysis</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Practical work — Tensile test data analysis (4h)</a></li>
 </ul>
 </details></li>
 </ul>
@@ -560,7 +558,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Tensile test analysis</h1>
+    <h1>Practical work — Tensile test data analysis (4h)</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -570,21 +568,35 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#general-scope">General scope</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#session-objective">Session objective</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-dataset">The dataset :</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q1-load-the-data-and-plot-its">Q1 : Load the data and plot its</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q2-load-the-metadata">Q2: Load the metadata</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#useful-function">Useful function</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-goals">Learning goals</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset">Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#session-plan-suggested">Session plan (suggested)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-a-work-on-one-file-first">Part A — Work on ONE file first</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q1-inspect-the-header">Q1 — Inspect the header</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q2-load-and-clean-the-data-table">Q2 — Load and clean the data table</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q3-plot-the-curve-one-file">Q3 — Plot the curve (one file)</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q3-stress-strain-curve">Q3: Stress/Strain curve</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q4-mechanilca-strength">Q4: Mechanilca strength</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q5-young-modulus-measurements">Q5: Young modulus measurements</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q6-all-together-in-a-class">Q6: all together in a class</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q7-the-plastic-side-of-the-force">Q7: The plastic side of the force</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-b-batch-processing">Part B — Batch processing</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q4-load-all-files-plot-all-curves">Q4 — Load all files + plot all curves</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-c-metadata">Part C — Metadata</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q5-parse-metadata-from-the-header">Q5 — Parse metadata from the header</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-d-mechanical-properties">Part D — Mechanical properties</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q6-compute-rm">Q6 — Compute Rm</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q7-estimate-e">Q7 — Estimate E</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q8-compute-re0-2-0-2-offset">Q8 — Compute Re0.2 (0.2% offset)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-e-summary-ranking">Part E — Summary + ranking</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q9-build-a-summary-datafram-one-row-per-file">Q9 — Build a summary datafram (one row per file)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q10-display-material-properties">Q10 — Display material properties</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-if-time-wrap-everything-in-a-class">Optional (if time) — Wrap everything in a class</a></li>
 </ul>
             </nav>
         </div>
@@ -596,194 +608,273 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="tensile-test-analysis">
-<span id="datam-tutorial-tesildata"></span><h1>Tensile test analysis<a class="headerlink" href="#tensile-test-analysis" title="Link to this heading">#</a></h1>
-<section id="general-scope">
-<h2>General scope<a class="headerlink" href="#general-scope" title="Link to this heading">#</a></h2>
-<p>From global point of view, test machines, sensors provide time-stamped data.
-Most of the time this a data are stored in a tabular shape, i.e. one line for each record with its time-stamp.</p>
-<p>A common way to store this data is to use ‘<em>.csv’ file. A ‘</em>.cvs’ file looks like:</p>
-<div class="highlight-csv notranslate"><div class="highlight"><pre><span></span>time;data1;data2;data3
-0.0;12.;.001;&#39;blue&#39;
-0.1;11.5;.002;&#39;red&#39;
-0.2;14.2;.004;&#39;blue&#39;
-0.3;14.2;-.004;&#39;green&#39;
-...
-...
-...
-</pre></div>
-</div>
-<p>The <code class="docutils literal notranslate"><span class="pre">Pandas</span></code> module is a convenient way to manage this file (read and write).</p>
-<p>In addition, metadata can be stored in this file, at the beginning of the file.
-In this metadata global info can be stored, as the date of the test, the name of the operator, the material, the sample type, commentary…</p>
-<p>A total file can look like:</p>
-<div class="highlight-csv notranslate"><div class="highlight"><pre><span></span>date : 01-02-1900
-user : bob
-material : Steel 
-length : .5
-remarks : This test is awsome
-
-time;data1;data2;data3
-0.0;12.;.001;&#39;blue&#39;
-0.1;11.5;.002;&#39;red&#39;
-0.2;14.2;.004;&#39;blue&#39;
-0.3;14.2;-.004;&#39;green&#39;
-...
-...
-...
-</pre></div>
-</div>
-</section>
-<section id="session-objective">
-<h2>Session objective<a class="headerlink" href="#session-objective" title="Link to this heading">#</a></h2>
-<p>In this session you are asked to analyze data coming from the tensile test.
-This analysis aims at extracting the mechanical properties of the material, such as the Young modulus, mechanical strength and yield strength from the load/displacement curve.</p>
-<p>At the end of this session, you should have a class that is able to deal with the data coming from a tensile test.</p>
-</section>
-<section id="the-dataset">
-<h2>The dataset :<a class="headerlink" href="#the-dataset" title="Link to this heading">#</a></h2>
-<div class="important admonition">
-<p class="admonition-title">Required files</p>
-<p>It can be downloaded at this link <a class="reference external" href="https://drive.google.com/drive/u/1/folders/1Kp-Omga2JykownLw2rureS9A-PhsSJMx">TensileData</a>.</p>
-</div>
-<p>It contains 4 files, the <em><strong>unit are s/N/mm</strong></em> :</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="practical-work-tensile-test-data-analysis-4h">
+<span id="datam-tutorial-tesildata"></span><h1>Practical work — Tensile test data analysis (4h)<a class="headerlink" href="#practical-work-tensile-test-data-analysis-4h" title="Link to this heading">#</a></h1>
+<p>In this lab you will analyze tensile-test data exported as CSV files.
+The method is <strong>always the same</strong>:</p>
+<ol class="arabic simple">
+<li><p>Get your code working on <strong>one</strong> file.</p></li>
+<li><p>Generalize to a <strong>batch</strong> of files.</p></li>
+</ol>
+<section id="learning-goals">
+<h2>Learning goals<a class="headerlink" href="#learning-goals" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li><p>Test_1.csv</p></li>
-<li><p>Test_2.csv</p></li>
-<li><p>Test_3.csv</p></li>
-<li><p>Test_4.csv</p></li>
+<li><p>Load and clean experimental data from CSV exports.</p></li>
+<li><p>Plot true stress–true strain curves.</p></li>
+<li><p>Compute key mechanical properties:</p>
+<ul>
+<li><p>Ultimate tensile strength <strong>Rm</strong></p></li>
+<li><p>Young’s modulus <strong>E</strong></p></li>
+<li><p>0.2% offset yield strength <strong>Re0.2</strong></p></li>
 </ul>
+</li>
+<li><p>Build a summary table and rank materials.</p></li>
+</ul>
+</section>
+<section id="dataset">
+<h2>Dataset<a class="headerlink" href="#dataset" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>The CSV files are located in <code class="docutils literal notranslate"><span class="pre">_data_trac/</span></code>.</p></li>
+<li><p>The columns of interest are (French labels in the export):</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">Déformation</span> <span class="pre">réelle</span></code> (true strain)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Contrainte</span> <span class="pre">réelle</span></code> (true stress)</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="session-plan-suggested">
+<h2>Session plan (suggested)<a class="headerlink" href="#session-plan-suggested" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Part A : understand the format + load one file.</p></li>
+<li><p>Part B : batch loading + plot all curves.</p></li>
+<li><p>Part C : parse metadata.</p></li>
+<li><p>Part D : compute Rm, E, Re0.2.</p></li>
+<li><p>Part E : summary table + ranking.</p></li>
+</ul>
+<p>You will fill in the <code class="docutils literal notranslate"><span class="pre">TODO</span></code> sections in the code cells.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Setup</span>
-<span class="o">%</span><span class="k">matplotlib</span> notebook
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">glob</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">mpl</span>
+
+<span class="o">%</span><span class="k">matplotlib</span> widget
 </pre></div>
 </div>
 </div>
 </div>
-<section id="q1-load-the-data-and-plot-its">
-<h3>Q1 : Load the data and plot its<a class="headerlink" href="#q1-load-the-data-and-plot-its" title="Link to this heading">#</a></h3>
-<ul class="simple">
-<li><p>code one function that loads one test</p></li>
-<li><p>call this function 4 times to load all data</p></li>
-<li><p>plot all the tests on one figure</p></li>
-</ul>
 </section>
-<section id="q2-load-the-metadata">
-<h3>Q2: Load the metadata<a class="headerlink" href="#q2-load-the-metadata" title="Link to this heading">#</a></h3>
-<p>Into the ‘.csv’ file the first 2 line provides <span class="math notranslate nohighlight">\(S_0\)</span> and <span class="math notranslate nohighlight">\(l_0\)</span> of each sample.</p>
+<section id="part-a-work-on-one-file-first">
+<h2>Part A — Work on ONE file first<a class="headerlink" href="#part-a-work-on-one-file-first" title="Link to this heading">#</a></h2>
+<section id="q1-inspect-the-header">
+<h3>Q1 — Inspect the header<a class="headerlink" href="#q1-inspect-the-header" title="Link to this heading">#</a></h3>
+<p>Many test machines export <strong>metadata</strong> before the table.
+Inspect the first lines to decide:</p>
 <ul class="simple">
-<li><p>code a function that read this data</p></li>
-<li><p>call this function on each test</p></li>
-</ul>
-<section id="useful-function">
-<h4>Useful function<a class="headerlink" href="#useful-function" title="Link to this heading">#</a></h4>
-<div class="tip admonition">
-<p class="admonition-title">Tip: split a string into 2 parts</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">line</span> <span class="o">=</span> <span class="s2">&quot;z = 143.2&quot;</span>
-<span class="n">word1</span><span class="p">,</span> <span class="n">word2</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</section>
-</section>
-<section id="q3-stress-strain-curve">
-<h3>Q3: Stress/Strain curve<a class="headerlink" href="#q3-stress-strain-curve" title="Link to this heading">#</a></h3>
-<p>Knowing that:
-<span class="math notranslate nohighlight">\(
-\sigma_n = \frac{F}{S0}
-\)</span>
-and
-<span class="math notranslate nohighlight">\(
-\epsilon_n = \frac{\Delta L}{L_0}
-\)</span>:</p>
-<ul class="simple">
-<li><p>Code a function that computes the strain and stress data.</p></li>
-<li><p>Apply the function to all tests.</p></li>
-<li><p>Plot this data for all test on a graph.</p></li>
-</ul>
-</section>
-<section id="q4-mechanilca-strength">
-<h3>Q4: Mechanilca strength<a class="headerlink" href="#q4-mechanilca-strength" title="Link to this heading">#</a></h3>
-<ul class="simple">
-<li><p>Code a function that computes the mechanical strength.</p></li>
-<li><p>Apply the function to all tests.</p></li>
-<li><p>Plot this data for all test on a graph.</p></li>
-</ul>
-</section>
-<section id="q5-young-modulus-measurements">
-<h3>Q5: Young modulus measurements<a class="headerlink" href="#q5-young-modulus-measurements" title="Link to this heading">#</a></h3>
-<ul class="simple">
-<li><p>Code a function that computes the young modulus on each test.</p></li>
-<li><p>Apply the function to all tests.</p></li>
-<li><p>Propose a plot to illustrate the young modulus measurements</p></li>
+<li><p>the separator (often <code class="docutils literal notranslate"><span class="pre">;</span></code>)</p></li>
+<li><p>the encoding (Windows “ANSI” is often <code class="docutils literal notranslate"><span class="pre">cp1252</span></code>)</p></li>
+<li><p>which rows to skip (<code class="docutils literal notranslate"><span class="pre">skiprows=[...]</span></code>)</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">get_young_modulus</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
-    <span class="n">E</span> <span class="o">=</span> <span class="mf">0.0</span>
-    <span class="k">return</span> <span class="n">E</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># use the glob methode to list all csv files in the data directory</span>
+<span class="c1"># example : csv_files = glob.glob(&#39;xxx/*.csv&#39;)</span>
+
+
+<span class="c1"># Pick a single file for development/debug</span>
+<span class="c1"># csv_path = csv_files[0]</span>
+<span class="c1"># csv_path</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Inspect the first lines of the file</span>
+<span class="c1"># TODO: try: &#39;cp1252&#39;, &#39;latin1&#39;, or &#39;utf-8&#39;.</span>
+
+<span class="c1"># Sugested code :</span>
+<span class="c1"># ENCODING = &quot;cp1252&quot;</span>
+
+<span class="c1"># with open(csv_path, encoding=ENCODING) as f:</span>
+<span class="c1">#     for i in range(12):</span>
+<span class="c1">#         line = f.readline()</span>
+<span class="c1">#         print(f&quot;{i:02d}: {line.rstrip()}&quot;)</span>
 </pre></div>
 </div>
 </div>
 </div>
 </section>
-<section id="q6-all-together-in-a-class">
-<h3>Q6: all together in a class<a class="headerlink" href="#q6-all-together-in-a-class" title="Link to this heading">#</a></h3>
-<p>Include all the function you have coded in a class.</p>
-<p>Below is a simple template of the class that you should build :</p>
+<section id="q2-load-and-clean-the-data-table">
+<h3>Q2 — Load and clean the data table<a class="headerlink" href="#q2-load-and-clean-the-data-table" title="Link to this heading">#</a></h3>
+<p>Implement <code class="docutils literal notranslate"><span class="pre">load_trac_csv(path)</span></code>.</p>
+<p><strong>Constraints</strong> (adapt if your inspection shows differences)</p>
+<ul class="simple">
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">sep='...'</span></code></p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">skiprows=[0,1,2,...]</span></code></p></li>
+<li><p>Keep only the two columns of interest</p></li>
+<li><p>rename columns to <code class="docutils literal notranslate"><span class="pre">STRAIN_COL</span></code> and <code class="docutils literal notranslate"><span class="pre">STRESS_COL</span></code> to avoid encoding issues</p></li>
+</ul>
+<p><strong>Tip:</strong> if your column names look like <code class="docutils literal notranslate"><span class="pre">DÃ©formation</span> <span class="pre">rÃ©elle</span></code>, your encoding is wrong.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">load_trac_csv</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Load one tensile CSV and return a clean dataframe with (strain, stress).&quot;&quot;&quot;</span>
+    <span class="c1"># TODO: read CSV</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="mf">0.0</span>
+
+    <span class="c1"># TODO: keep only the two columns</span>
+
+    <span class="k">return</span> <span class="n">data</span>
+
+
+<span class="c1"># test the function on the first file</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">load_trac_csv</span><span class="p">(</span><span class="s2">&quot;path_to a file&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="q3-plot-the-curve-one-file">
+<h3>Q3 — Plot the curve (one file)<a class="headerlink" href="#q3-plot-the-curve-one-file" title="Link to this heading">#</a></h3>
+<p>Plot <code class="docutils literal notranslate"><span class="pre">Contrainte</span> <span class="pre">réelle</span></code> vs <code class="docutils literal notranslate"><span class="pre">Déformation</span> <span class="pre">réelle</span></code>.</p>
+<p>Checklist:</p>
+<ul class="simple">
+<li><p>labels, title, grid</p></li>
+<li><p>curve is continuous (no non-numeric values)</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot &#39;strain&#39; vs &#39;stress&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="part-b-batch-processing">
+<h2>Part B — Batch processing<a class="headerlink" href="#part-b-batch-processing" title="Link to this heading">#</a></h2>
+<section id="q4-load-all-files-plot-all-curves">
+<h3>Q4 — Load all files + plot all curves<a class="headerlink" href="#q4-load-all-files-plot-all-curves" title="Link to this heading">#</a></h3>
+<p>Create a dictionary <code class="docutils literal notranslate"><span class="pre">data_by_file</span></code>:</p>
+<ul class="simple">
+<li><p>key: filename stem (without extension)</p></li>
+<li><p>value: cleaned DataFrame</p></li>
+</ul>
+<p>Then plot all curves in one figure.</p>
+</section>
+</section>
+<section id="part-c-metadata">
+<h2>Part C — Metadata<a class="headerlink" href="#part-c-metadata" title="Link to this heading">#</a></h2>
+<section id="q5-parse-metadata-from-the-header">
+<h3>Q5 — Parse metadata from the header<a class="headerlink" href="#q5-parse-metadata-from-the-header" title="Link to this heading">#</a></h3>
+<p>Read the first 5 lines of the CSV file.
+Each line is separated by <code class="docutils literal notranslate"><span class="pre">;</span></code> and looks like:</p>
+<p><code class="docutils literal notranslate"><span class="pre">Key;Value;Unit</span></code></p>
+<p>Implement <code class="docutils literal notranslate"><span class="pre">read_metadata(path)</span></code> and test it on one file.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">read_metadata</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="n">Path</span><span class="p">):</span>
+    <span class="n">metadata</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="k">return</span> <span class="n">metadata</span>
+
+
+<span class="n">metadata</span> <span class="o">=</span> <span class="n">read_metadata</span><span class="p">(</span><span class="s2">&quot;path_to a file&quot;</span><span class="p">)</span>
+<span class="n">metadata</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{}
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="part-d-mechanical-properties">
+<h2>Part D — Mechanical properties<a class="headerlink" href="#part-d-mechanical-properties" title="Link to this heading">#</a></h2>
+<section id="q6-compute-rm">
+<h3>Q6 — Compute Rm<a class="headerlink" href="#q6-compute-rm" title="Link to this heading">#</a></h3>
+<p><strong>Rm</strong> is the maximum stress on the curve.</p>
+</section>
+<section id="q7-estimate-e">
+<h3>Q7 — Estimate E<a class="headerlink" href="#q7-estimate-e" title="Link to this heading">#</a></h3>
+<p>Estimate <strong>E</strong> as the Young’s modulus.</p>
+</section>
+<section id="q8-compute-re0-2-0-2-offset">
+<h3>Q8 — Compute Re0.2 (0.2% offset)<a class="headerlink" href="#q8-compute-re0-2-0-2-offset" title="Link to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">Re0.2</span></code> is the stress at the intersection with the experimental curve.</p>
+<p>Hint: find where <code class="docutils literal notranslate"><span class="pre">stress</span> <span class="pre">-</span> <span class="pre">sigma_offset</span></code> changes sign, where <code class="docutils literal notranslate"><span class="pre">sigma_offset</span> <span class="pre">=</span> <span class="pre">0.002</span> <span class="pre">*</span> <span class="pre">E</span></code>.</p>
+</section>
+</section>
+<section id="part-e-summary-ranking">
+<h2>Part E — Summary + ranking<a class="headerlink" href="#part-e-summary-ranking" title="Link to this heading">#</a></h2>
+<section id="q9-build-a-summary-datafram-one-row-per-file">
+<h3>Q9 — Build a summary datafram (one row per file)<a class="headerlink" href="#q9-build-a-summary-datafram-one-row-per-file" title="Link to this heading">#</a></h3>
+<p>For each file, compute <code class="docutils literal notranslate"><span class="pre">Rm</span></code>, <code class="docutils literal notranslate"><span class="pre">E</span></code>, and <code class="docutils literal notranslate"><span class="pre">Re0.2</span></code>.
+Optionally add othe file name.</p>
+</section>
+<section id="q10-display-material-properties">
+<h3>Q10 — Display material properties<a class="headerlink" href="#q10-display-material-properties" title="Link to this heading">#</a></h3>
+<p>Make a look like hasby diagrmam with Rm, E, Re0.2.</p>
+</section>
+</section>
+<section id="optional-if-time-wrap-everything-in-a-class">
+<h2>Optional (if time) — Wrap everything in a class<a class="headerlink" href="#optional-if-time-wrap-everything-in-a-class" title="Link to this heading">#</a></h2>
+<p>Create a class <code class="docutils literal notranslate"><span class="pre">TensileTest</span></code> that stores:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">.metadata</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.data</span></code>
+And exposes:</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.Rm</span></code>, <code class="docutils literal notranslate"><span class="pre">.E</span></code>, <code class="docutils literal notranslate"><span class="pre">.Re02</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.plot()</span></code></p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">TensileTest</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    this class is able to ....</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="n">Path</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+        <span class="c1"># TODO</span>
+        <span class="c1"># self.metadata = read_metadata(self.path)</span>
+        <span class="c1"># self.data = load_trac_csv(self.path)</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">csv_file</span><span class="o">=</span><span class="s2">&quot;xxx&quot;</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">csv_file</span> <span class="o">=</span> <span class="n">csv_file</span>
-        <span class="c1"># CODDE HERE</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">Rm</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># TODO</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">E</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># TODO</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">Re02</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># TODO</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># TODO</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="s2">&quot;&lt;tensileTest: (file: </span><span class="si">{0}</span><span class="s2">, E = </span><span class="si">{1:.2}</span><span class="s2"> MPa)&gt;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">csv_file</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_YoungModulus</span><span class="p">()</span>
-        <span class="p">)</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;TensileTest(</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">)&quot;</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">get_meca_strength</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="mf">0.0</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">get_YoungModulus</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="c1"># CODDE HERE</span>
-        <span class="k">return</span> <span class="mf">1.0</span>
+<span class="c1"># Example (after implementation)</span>
+<span class="c1"># test = TensileTest(csv_path)</span>
+<span class="c1"># test.plot()</span>
+<span class="c1"># test.Rm, test.E, test.Re02</span>
 </pre></div>
 </div>
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test1</span> <span class="o">=</span> <span class="n">TensileTest</span><span class="p">(</span><span class="s2">&quot;my_csv.csv&quot;</span><span class="p">)</span>  <span class="c1"># call the __init__ function</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test1</span>  <span class="c1"># call the __repr__ function</span>
-</pre></div>
-</div>
-</div>
-</div>
-</section>
-<section id="q7-the-plastic-side-of-the-force">
-<h3>Q7: The plastic side of the force<a class="headerlink" href="#q7-the-plastic-side-of-the-force" title="Link to this heading">#</a></h3>
-<ul class="simple">
-<li><p>compute the plastique strain (<span class="math notranslate nohighlight">\(\varepsilon_p = \varepsilon - \dfrac{\sigma}{E} \)</span>)</p></li>
-<li><p>fit the stress / plastic strain curve with a power plastic law (<span class="math notranslate nohighlight">\(\sigma = \sigma_0 + K {\varepsilon_p}^n \)</span>)</p></li>
-</ul>
-</section>
 </section>
 </section>
 
@@ -851,21 +942,35 @@ and
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#general-scope">General scope</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#session-objective">Session objective</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-dataset">The dataset :</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q1-load-the-data-and-plot-its">Q1 : Load the data and plot its</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q2-load-the-metadata">Q2: Load the metadata</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#useful-function">Useful function</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-goals">Learning goals</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset">Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#session-plan-suggested">Session plan (suggested)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-a-work-on-one-file-first">Part A — Work on ONE file first</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q1-inspect-the-header">Q1 — Inspect the header</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q2-load-and-clean-the-data-table">Q2 — Load and clean the data table</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q3-plot-the-curve-one-file">Q3 — Plot the curve (one file)</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q3-stress-strain-curve">Q3: Stress/Strain curve</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q4-mechanilca-strength">Q4: Mechanilca strength</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q5-young-modulus-measurements">Q5: Young modulus measurements</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q6-all-together-in-a-class">Q6: all together in a class</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q7-the-plastic-side-of-the-force">Q7: The plastic side of the force</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-b-batch-processing">Part B — Batch processing</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q4-load-all-files-plot-all-curves">Q4 — Load all files + plot all curves</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-c-metadata">Part C — Metadata</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q5-parse-metadata-from-the-header">Q5 — Parse metadata from the header</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-d-mechanical-properties">Part D — Mechanical properties</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q6-compute-rm">Q6 — Compute Rm</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q7-estimate-e">Q7 — Estimate E</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q8-compute-re0-2-0-2-offset">Q8 — Compute Re0.2 (0.2% offset)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-e-summary-ranking">Part E — Summary + ranking</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q9-build-a-summary-datafram-one-row-per-file">Q9 — Build a summary datafram (one row per file)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q10-display-material-properties">Q10 — Display material properties</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-if-time-wrap-everything-in-a-class">Optional (if time) — Wrap everything in a class</a></li>
 </ul>
   </nav></div>
 
