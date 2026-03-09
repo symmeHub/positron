@@ -3,8 +3,8 @@
 # Learn more at https://jupyterbook.org/customize/config.html
 
 title: "POSITRON: PythOn for Science In The Reblochon cOuNtry" # The title of the book. Will be placed in the left navbar.
-author: Ludovic Charleux, Emile Roux, Thibault Goyallon, Christian Elmo, Giovanni Feverati, Camille Saint-Martin # The author of the book
-copyright: "2022" # Copyright year to be placed in the footer
+author: Ludovic Charleux, Emile Roux, Thibault Goyallon, Christian Elmo, Giovanni Feverati, Camille Saint-Martin, Léo-Scott Macke # The author of the book
+copyright: "2026" # Copyright year to be placed in the footer
 logo: logo.png
 # # Patterns to skip when building the book. Can be glob-style (e.g. "*skip.ipynb")
 # exclude_patterns            : [_build, Thumbs.db, .DS_Store, "**.ipynb_checkpoints"]
