@@ -1,4 +1,4 @@
-
+<!-- HTML code rerendered -->
 <!DOCTYPE html>
 
 
@@ -34,8 +34,18 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/fix_admonition_style.css?v=8627ce31" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/fix_dropdown_style.css?v=f3461767" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/fix_code_header_style.css?v=7d542921" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/fix_sidebar_scroll.css?v=b9929681" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/fix_margin.css?v=4a1e31aa" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/fix_align_text_captions.css?v=29546296" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/fix_align_code.css?v=719ffd7f" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/margin_patch.css?v=1aa379b9" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mathjax_patch.css?v=b2e2e4cc" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../../../_static/style.css?v=f4d5f33b" />
+    <link crossorigin="anonymous" integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg==" rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
@@ -52,6 +62,10 @@
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../../../_static/togglebutton.js?v=1ae7504c"></script>
+    <script src="../../../_static/download_patch.js?v=75631000"></script>
+    <script src="../../../_static/fix_hash_jump.js?v=2aad3019"></script>
+    <script src="../../../_static/mathjax_patch.js?v=c73a562d"></script>
+    <script src="../../../_static/preserve_dropdown_state.js?v=d724701d"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
     <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-RYTJG30T3E"></script>
@@ -71,8 +85,8 @@
                 gtag('config', 'G-RYTJG30T3E');
             </script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"loader": {"load": ["ui/lazy"]}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="../../../_static/mathjax_patch.js?v=c73a562d"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'ode/exercises/tutorials/duffing_oscillator';</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="canonical" href="&#39;https://symmehub.github.io/positron/ode/exercises/tutorials/duffing_oscillator.html" />
@@ -602,7 +616,6 @@ document.write(`
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">scipy.integrate</span><span class="w"> </span><span class="kn">import</span> <span class="n">solve_ivp</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">math</span><span class="w"> </span><span class="kn">import</span> <span class="n">pi</span><span class="p">,</span> <span class="n">sin</span><span class="p">,</span> <span class="n">cos</span>
 </pre></div>
 </div>
@@ -623,8 +636,8 @@ document.write(`
 </div>
 <section id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
-<p>In this tutorial, we will study the mecanical behavior of a <a class="reference external" href="https://en.wikipedia.org/wiki/Bistability">bistable oscilator</a>. This means that the system has two stable equilibrium position (think of a light switch).<br />
-The system is then put under a excitation and will oscilate between its two stable position.
+<p>In this tutorial, we will study the mechanical behavior of a <a class="reference external" href="https://en.wikipedia.org/wiki/Bistability">bistable oscillator</a>. This means that the system has two stable equilibrium positions (think of a light switch).<br />
+The system is then put under an excitation and will oscillate between its two stable positions.
 It is realized using the principle described on the diagram below :</p>
 <p><img alt="" src="../../../_images/huguet_model_design2.png" /></p>
 <p>A beam with a mass in its center is compressed to buckling.
@@ -640,7 +653,7 @@ The system has been manufactured and tested in the laboratory and is shown in th
 <p>Where:</p>
 <ul class="simple">
 <li><p>The position of the mass, its speed and acceleration are respectively noted <span class="math notranslate nohighlight">\(x\)</span>, <span class="math notranslate nohighlight">\(\dot x\)</span> and <span class="math notranslate nohighlight">\(\ddot x\)</span>.</p></li>
-<li><p>The stable equilibrium position, or <strong>well</strong> position,  is noted <span class="math notranslate nohighlight">\(\pm x_{w}\)</span> (noted <span class="math notranslate nohighlight">\(x_0\)</span> on the figure above).</p></li>
+<li><p>The stable equilibrium position, or <strong>well</strong> position, is noted <span class="math notranslate nohighlight">\(\pm x_{w}\)</span> (noted <span class="math notranslate nohighlight">\(x_0\)</span> on the figure above).</p></li>
 <li><p>The resonance frequency at the bottom of the well is noted <span class="math notranslate nohighlight">\(\omega_0\)</span>.</p></li>
 <li><p>The quality factor is noted <span class="math notranslate nohighlight">\(Q\)</span>.</p></li>
 <li><p>The excitation is defined by its amplitude <span class="math notranslate nohighlight">\(A_d\)</span> and its pulsation <span class="math notranslate nohighlight">\(\omega_d = 2 \pi f_d\)</span> where <span class="math notranslate nohighlight">\(f_d\)</span> is its frequency.</p></li>
@@ -657,7 +670,7 @@ The system has been manufactured and tested in the laboratory and is shown in th
 <span class="n">w0</span> <span class="o">=</span> <span class="mf">121.0</span>  <span class="c1"># radians per second</span>
 <span class="n">Q</span> <span class="o">=</span> <span class="mf">87.0</span>  <span class="c1"># dimensionless</span>
 <span class="n">fd</span> <span class="o">=</span> <span class="mf">50.0</span>  <span class="c1"># Hertz</span>
-<span class="n">wd</span> <span class="o">=</span> <span class="mf">2.0</span> <span class="o">*</span> <span class="n">pi</span> <span class="o">*</span> <span class="n">fd</span>
+<span class="n">wd</span> <span class="o">=</span> <span class="mf">2.0</span> <span class="o">*</span> <span class="n">pi</span> <span class="o">*</span> <span class="n">fd</span> <span class="c1"># rads per second</span>
 <span class="n">Ad</span> <span class="o">=</span> <span class="mf">2.5</span>  <span class="c1"># meters per second squared</span>
 </pre></div>
 </div>
@@ -694,7 +707,7 @@ x \\
 \ddot x
 \end{bmatrix}
 \end{split}\]</div>
-<p>Complete the function in the following cell :</p>
+<p>Complete the function in the following cell:</p>
 <p>As a reminder here’s the equation
 $<span class="math notranslate nohighlight">\(
 \ddot x + \dfrac{\omega_0^2}{2}\left(\dfrac{x^2}{x_{w}^2} - 1\right)x + \dfrac{\omega_0}{Q} \dot x = A_d \sin \left( \omega_d t \right)
@@ -704,7 +717,7 @@ $<span class="math notranslate nohighlight">\(
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## COMPLETE THIS CELL</span>
 
 
-<span class="k">def</span><span class="w"> </span><span class="nf">f</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">f</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Duffing equation.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -723,10 +736,10 @@ $<span class="math notranslate nohighlight">\(
 <h2>Part 2: Time integration<a class="headerlink" href="#part-2-time-integration" title="Link to this heading">#</a></h2>
 <section id="integration">
 <h3>Integration<a class="headerlink" href="#integration" title="Link to this heading">#</a></h3>
-<p>In order to intergrate the newly created function, we will use <strong>the <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.solve_ivp.html#scipy.integrate.solve_ivp">solve_ivp</a> function</strong> of scipy.integrate.</p>
+<p>In order to integrate the newly created function, we will use <strong>the <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.solve_ivp.html#scipy.integrate.solve_ivp">solve_ivp</a> function</strong> of scipy.integrate.</p>
 <p>Integrate the equation with respect to time from a point <span class="math notranslate nohighlight">\(Y_0\)</span> of your choice (the initial state). <br />
-The intergration will start at <span class="math notranslate nohighlight">\(t_0= 0\)</span> and will last for <span class="math notranslate nohighlight">\(N_t = 1000\)</span> periods. We will then evaluate the function <span class="math notranslate nohighlight">\(N_F = 180\)</span> time per period : <span class="math notranslate nohighlight">\(t_{eval}\)</span> = [<span class="math notranslate nohighlight">\(t_0\)</span>, <span class="math notranslate nohighlight">\(\frac{T}{180}\)</span>, <span class="math notranslate nohighlight">\(\frac{2T}{180}\)</span>, <span class="math notranslate nohighlight">\(\frac{3T}{180}\)</span>, … , <span class="math notranslate nohighlight">\(t_f\)</span>]<br />
-(You may use the <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.linspace.html">linspace</a> function of numpy).</p>
+The integration will start at <span class="math notranslate nohighlight">\(t_0= 0\)</span> and will last for <span class="math notranslate nohighlight">\(N_t = 1000\)</span> periods. We will then evaluate the function <span class="math notranslate nohighlight">\(N_F = 180\)</span> time per period : <span class="math notranslate nohighlight">\(t_{eval}\)</span> = [<span class="math notranslate nohighlight">\(t_0\)</span>, <span class="math notranslate nohighlight">\(\frac{T}{180}\)</span>, <span class="math notranslate nohighlight">\(\frac{2T}{180}\)</span>, <span class="math notranslate nohighlight">\(\frac{3T}{180}\)</span>, … , <span class="math notranslate nohighlight">\(t_f\)</span>]</p>
+<p><strong>Remark</strong>: You may use the <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.linspace.html">linspace</a> function of numpy.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## COMPLETE THIS CELL</span>
@@ -737,7 +750,7 @@ The intergration will start at <span class="math notranslate nohighlight">\(t_0=
 <span class="c1"># NF =  # FRAMES PER EXCITATION PERIODS</span>
 <span class="c1"># t =</span>
 <span class="n">X0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">])</span>  <span class="c1"># CHANGE THE VALUES TO YOUR LIKING</span>
-<span class="c1"># sol = sci.solve_ivp(fun= , t_span= ,y0= , t_eval=)</span>
+<span class="c1"># sol = solve_ivp(fun= , t_span= ,y0= , t_eval=)</span>
 <span class="c1"># x =</span>
 <span class="c1"># dotx =</span>
 </pre></div>
@@ -748,7 +761,7 @@ The intergration will start at <span class="math notranslate nohighlight">\(t_0=
 <section id="amplitude-vs-time">
 <h3>Amplitude <em>vs.</em> time<a class="headerlink" href="#amplitude-vs-time" title="Link to this heading">#</a></h3>
 <p>We will now plot the results as a function of time.<br />
-First, try plotting <strong>the normalized the position of the mass <span class="math notranslate nohighlight">\(\frac{x}{x_w}\)</span></strong> as a function of time using <strong>the <a class="reference external" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.plot.html">plot</a> function</strong> of matplotlib.pyplot.
+First, try plotting <strong>the normalized position of the mass <span class="math notranslate nohighlight">\(\frac{x}{x_w}\)</span></strong> as a function of time using <strong>the <a class="reference external" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.plot.html">plot</a> function</strong> of matplotlib.pyplot.
 In blue, plot the normalized the position for <span style="color:blue">the whole solution </span> while <span style="color:red">the last 5 periods </span> will be ploted in red.</p>
 <p><strong>Remark</strong>: have a look at the <a class="reference external" href="https://numpy.org/doc/stable/user/basics.indexing.html#slicing-and-striding">Numpy slicing tutorial</a></p>
 <div class="cell docutils container">
@@ -756,15 +769,15 @@ In blue, plot the normalized the position for <span style="color:blue">the whole
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># fig = plt.figure(figsize=(10, 6))</span>
 <span class="c1"># ax1 = fig.add_subplot(1, 2, 1)</span>
 <span class="c1"># plt.title(&quot;Whole solution&quot;)</span>
-<span class="c1"># plt.plot(x= ,y= ,color= , label = &quot;Whole solution&quot;)</span>
-<span class="c1"># plt.plot(x= ,y= ,color= ,label = &quot;Last 5 periods&quot;)</span>
+<span class="c1"># plt.plot(     ,     ,color= , label = &quot;Whole solution&quot;)</span>
+<span class="c1"># plt.plot(     ,     ,color= ,label = &quot;Last 5 periods&quot;)</span>
 <span class="c1"># plt.grid()</span>
 <span class="c1"># plt.legend()</span>
 <span class="c1"># plt.xlabel(&quot;Time, $t/T_d$&quot;)</span>
 <span class="c1"># plt.ylabel(&quot;Position $x/x_{w}$&quot;)</span>
 <span class="c1"># ax2 = fig.add_subplot(1, 2, 2)</span>
 <span class="c1"># plt.title(&quot;Steady state&quot;)</span>
-<span class="c1"># plt.plot(x= ,y= ,color= ,label = &quot;Last 5 periods&quot;)</span>
+<span class="c1"># plt.plot(     ,     ,color= ,label = &quot;Last 5 periods&quot;)</span>
 <span class="c1"># plt.grid()</span>
 <span class="c1"># plt.legend()</span>
 <span class="c1"># plt.xlabel(&quot;Time, $t/T_d$&quot;)</span>
@@ -781,8 +794,8 @@ As in the last plot, <span style="color:blue">the whole solution</span> will be 
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plt.figure()</span>
-<span class="c1"># plt.plot(x= ,y= ,color= , label = &quot;Transient regime&quot;)</span>
-<span class="c1"># plt.plot(x= ,y= ,color= , label = &quot;Steady state&quot;)</span>
+<span class="c1"># plt.plot(     ,     ,color= , label = &quot;Transient regime&quot;)</span>
+<span class="c1"># plt.plot(     ,     ,color= , label = &quot;Steady state&quot;)</span>
 <span class="c1"># plt.grid()</span>
 <span class="c1"># plt.xlabel(&quot;Position $x/x_{w}$&quot;)</span>
 <span class="c1"># plt.ylabel(&quot;Speed, $\dot x / {\omega_d x_{w}}$&quot;)</span>
@@ -804,7 +817,7 @@ As in the last plot, <span style="color:blue">the whole solution</span> will be 
 <h2>Part 3: Poincaré sections and attractors<a class="headerlink" href="#part-3-poincare-sections-and-attractors" title="Link to this heading">#</a></h2>
 <p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Poincar%C3%A9_map">Poincaré section</a> is a tool developed by Henri Poincaré to observe and analyze the behavior of an integral curve.</p>
 <p>A <strong>temporal Poincaré section</strong> is defined by observing the system <strong>at times separated by one period (T)</strong>, i.e. at <span class="math notranslate nohighlight">\(t = n T_d\)</span>, <span class="math notranslate nohighlight">\(n\in \mathbb{N}\)</span>   <span class="math notranslate nohighlight">\(\Leftrightarrow\)</span> <span class="math notranslate nohighlight">\([0, T_d, 2T_d, ..., N_t T_d]\)</span>.  .</p>
-<p>At each period, <strong>the point ((x(t), v(t))) is plotted in phase space</strong>. This transformes the continuous motion into a <strong>discrete set of points</strong> that clearly reveals whether the dynamics is periodic, quasi-periodic, or chaotic.</p>
+<p>At each period, <strong>the point ((x(t), v(t))) is plotted in phase space</strong>. This transforms the continuous motion into a <strong>discrete set of points</strong> that clearly reveals whether the dynamics is periodic, quasi-periodic, or chaotic.</p>
 <p>To do this, we will <strong>construct two new lists, <code class="docutils literal notranslate"><span class="pre">xp</span></code> and <code class="docutils literal notranslate"><span class="pre">dotxp</span></code>, extracted from <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">dotx</span></code></strong>, which store the position and velocity values <strong>sampled at each period</strong>.<br />
 These lists contain the coordinates of the points that form the <strong>Poincaré section</strong>.</p>
 <p>Once again, plot <span style="color:blue">the whole solution</span> in blue and <span style="color:red">the last 5 periods</span> in red.</p>
