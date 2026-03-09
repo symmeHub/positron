@@ -1,0 +1,161 @@
+Traceback (most recent call last):
+  File "/opt/conda/envs/science/lib/python3.12/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/opt/conda/envs/science/lib/python3.12/site-packages/nbclient/client.py", line 1323, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/science/lib/python3.12/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/science/lib/python3.12/asyncio/base_events.py", line 691, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/science/lib/python3.12/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "/opt/conda/envs/science/lib/python3.12/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/opt/conda/envs/science/lib/python3.12/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+# FOR JUPYTER LAB
+%matplotlib notebook
+# FOR JUPYTER NOTEBOOK AND HUB
+# % matplotlib notebook
+import numpy as np
+import matplotlib.pyplot as plt
+import sys
+import os
+import zipfile
+import urllib.request
+import shutil
+from scipy import optimize
+
+
+url = "https://github.com/lcharleux/truss/archive/master.zip"
+file_name = "truss-master.zip"
+
+with urllib.request.urlopen(url) as response, open(file_name, "wb") as out_file:
+    shutil.copyfileobj(response, out_file)
+    with zipfile.ZipFile(file_name) as zf:
+        zf.extractall()
+
+os.remove(file_name)
+
+sys.path.append("truss-master")
+try:
+    import truss
+
+    print("Truss is correctly installed")
+except:
+    print("Truss is NOT correctly installed !")
+------------------
+
+
+[31m---------------------------------------------------------------------------[39m
+[31mgaierror[39m                                  Traceback (most recent call last)
+[36mFile [39m[32m/opt/conda/envs/science/lib/python3.12/urllib/request.py:1344[39m, in [36mAbstractHTTPHandler.do_open[39m[34m(self, http_class, req, **http_conn_args)[39m
+[32m   1343[39m [38;5;28;01mtry[39;00m:
+[32m-> [39m[32m1344[39m     [43mh[49m[43m.[49m[43mrequest[49m[43m([49m[43mreq[49m[43m.[49m[43mget_method[49m[43m([49m[43m)[49m[43m,[49m[43m [49m[43mreq[49m[43m.[49m[43mselector[49m[43m,[49m[43m [49m[43mreq[49m[43m.[49m[43mdata[49m[43m,[49m[43m [49m[43mheaders[49m[43m,[49m
+[32m   1345[39m [43m              [49m[43mencode_chunked[49m[43m=[49m[43mreq[49m[43m.[49m[43mhas_header[49m[43m([49m[33;43m'[39;49m[33;43mTransfer-encoding[39;49m[33;43m'[39;49m[43m)[49m[43m)[49m
+[32m   1346[39m [38;5;28;01mexcept[39;00m [38;5;167;01mOSError[39;00m [38;5;28;01mas[39;00m err: [38;5;66;03m# timeout error[39;00m
+
+[36mFile [39m[32m/opt/conda/envs/science/lib/python3.12/http/client.py:1338[39m, in [36mHTTPConnection.request[39m[34m(self, method, url, body, headers, encode_chunked)[39m
+[32m   1337[39m [38;5;250m[39m[33;03m"""Send a complete request to the server."""[39;00m
+[32m-> [39m[32m1338[39m [38;5;28;43mself[39;49m[43m.[49m[43m_send_request[49m[43m([49m[43mmethod[49m[43m,[49m[43m [49m[43murl[49m[43m,[49m[43m [49m[43mbody[49m[43m,[49m[43m [49m[43mheaders[49m[43m,[49m[43m [49m[43mencode_chunked[49m[43m)[49m
+
+[36mFile [39m[32m/opt/conda/envs/science/lib/python3.12/http/client.py:1384[39m, in [36mHTTPConnection._send_request[39m[34m(self, method, url, body, headers, encode_chunked)[39m
+[32m   1383[39m     body = _encode(body, [33m'[39m[33mbody[39m[33m'[39m)
+[32m-> [39m[32m1384[39m [38;5;28;43mself[39;49m[43m.[49m[43mendheaders[49m[43m([49m[43mbody[49m[43m,[49m[43m [49m[43mencode_chunked[49m[43m=[49m[43mencode_chunked[49m[43m)[49m
+
+[36mFile [39m[32m/opt/conda/envs/science/lib/python3.12/http/client.py:1333[39m, in [36mHTTPConnection.endheaders[39m[34m(self, message_body, encode_chunked)[39m
+[32m   1332[39m     [38;5;28;01mraise[39;00m CannotSendHeader()
+[32m-> [39m[32m1333[39m [38;5;28;43mself[39;49m[43m.[49m[43m_send_output[49m[43m([49m[43mmessage_body[49m[43m,[49m[43m [49m[43mencode_chunked[49m[43m=[49m[43mencode_chunked[49m[43m)[49m
+
+[36mFile [39m[32m/opt/conda/envs/science/lib/python3.12/http/client.py:1093[39m, in [36mHTTPConnection._send_output[39m[34m(self, message_body, encode_chunked)[39m
+[32m   1092[39m [38;5;28;01mdel[39;00m [38;5;28mself[39m._buffer[:]
+[32m-> [39m[32m1093[39m [38;5;28;43mself[39;49m[43m.[49m[43msend[49m[43m([49m[43mmsg[49m[43m)[49m
+[32m   1095[39m [38;5;28;01mif[39;00m message_body [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m:
+[32m   1096[39m 
+[32m   1097[39m     [38;5;66;03m# create a consistent interface to message_body[39;00m
+
+[36mFile [39m[32m/opt/conda/envs/science/lib/python3.12/http/client.py:1037[39m, in [36mHTTPConnection.send[39m[34m(self, data)[39m
+[32m   1036[39m [38;5;28;01mif[39;00m [38;5;28mself[39m.auto_open:
+[32m-> [39m[32m1037[39m     [38;5;28;43mself[39;49m[43m.[49m[43mconnect[49m[43m([49m[43m)[49m
+[32m   1038[39m [38;5;28;01melse[39;00m:
+
+[36mFile [39m[32m/opt/conda/envs/science/lib/python3.12/http/client.py:1472[39m, in [36mHTTPSConnection.connect[39m[34m(self)[39m
+[32m   1470[39m [33m"[39m[33mConnect to a host on a given (SSL) port.[39m[33m"[39m
+[32m-> [39m[32m1472[39m [38;5;28;43msuper[39;49m[43m([49m[43m)[49m[43m.[49m[43mconnect[49m[43m([49m[43m)[49m
+[32m   1474[39m [38;5;28;01mif[39;00m [38;5;28mself[39m._tunnel_host:
+
+[36mFile [39m[32m/opt/conda/envs/science/lib/python3.12/http/client.py:1003[39m, in [36mHTTPConnection.connect[39m[34m(self)[39m
+[32m   1002[39m sys.audit([33m"[39m[33mhttp.client.connect[39m[33m"[39m, [38;5;28mself[39m, [38;5;28mself[39m.host, [38;5;28mself[39m.port)
+[32m-> [39m[32m1003[39m [38;5;28mself[39m.sock = [38;5;28;43mself[39;49m[43m.[49m[43m_create_connection[49m[43m([49m
+[32m   1004[39m [43m    [49m[43m([49m[38;5;28;43mself[39;49m[43m.[49m[43mhost[49m[43m,[49m[38;5;28;43mself[39;49m[43m.[49m[43mport[49m[43m)[49m[43m,[49m[43m [49m[38;5;28;43mself[39;49m[43m.[49m[43mtimeout[49m[43m,[49m[43m [49m[38;5;28;43mself[39;49m[43m.[49m[43msource_address[49m[43m)[49m
+[32m   1005[39m [38;5;66;03m# Might fail in OSs that don't implement TCP_NODELAY[39;00m
+
+[36mFile [39m[32m/opt/conda/envs/science/lib/python3.12/socket.py:841[39m, in [36mcreate_connection[39m[34m(address, timeout, source_address, all_errors)[39m
+[32m    840[39m exceptions = []
+[32m--> [39m[32m841[39m [38;5;28;01mfor[39;00m res [38;5;129;01min[39;00m [43mgetaddrinfo[49m[43m([49m[43mhost[49m[43m,[49m[43m [49m[43mport[49m[43m,[49m[43m [49m[32;43m0[39;49m[43m,[49m[43m [49m[43mSOCK_STREAM[49m[43m)[49m:
+[32m    842[39m     af, socktype, proto, canonname, sa = res
+
+[36mFile [39m[32m/opt/conda/envs/science/lib/python3.12/socket.py:978[39m, in [36mgetaddrinfo[39m[34m(host, port, family, type, proto, flags)[39m
+[32m    977[39m addrlist = []
+[32m--> [39m[32m978[39m [38;5;28;01mfor[39;00m res [38;5;129;01min[39;00m [43m_socket[49m[43m.[49m[43mgetaddrinfo[49m[43m([49m[43mhost[49m[43m,[49m[43m [49m[43mport[49m[43m,[49m[43m [49m[43mfamily[49m[43m,[49m[43m [49m[38;5;28;43mtype[39;49m[43m,[49m[43m [49m[43mproto[49m[43m,[49m[43m [49m[43mflags[49m[43m)[49m:
+[32m    979[39m     af, socktype, proto, canonname, sa = res
+
+[31mgaierror[39m: [Errno -2] Name or service not known
+
+During handling of the above exception, another exception occurred:
+
+[31mURLError[39m                                  Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[1][39m[32m, line 18[39m
+[32m     15[39m url = [33m"[39m[33mhttps://github.com/lcharleux/truss/archive/master.zip[39m[33m"[39m
+[32m     16[39m file_name = [33m"[39m[33mtruss-master.zip[39m[33m"[39m
+[32m---> [39m[32m18[39m [38;5;28;01mwith[39;00m [43murllib[49m[43m.[49m[43mrequest[49m[43m.[49m[43murlopen[49m[43m([49m[43murl[49m[43m)[49m [38;5;28;01mas[39;00m response, [38;5;28mopen[39m(file_name, [33m"[39m[33mwb[39m[33m"[39m) [38;5;28;01mas[39;00m out_file:
+[32m     19[39m     shutil.copyfileobj(response, out_file)
+[32m     20[39m     [38;5;28;01mwith[39;00m zipfile.ZipFile(file_name) [38;5;28;01mas[39;00m zf:
+
+[36mFile [39m[32m/opt/conda/envs/science/lib/python3.12/urllib/request.py:215[39m, in [36murlopen[39m[34m(url, data, timeout, cafile, capath, cadefault, context)[39m
+[32m    213[39m [38;5;28;01melse[39;00m:
+[32m    214[39m     opener = _opener
+[32m--> [39m[32m215[39m [38;5;28;01mreturn[39;00m [43mopener[49m[43m.[49m[43mopen[49m[43m([49m[43murl[49m[43m,[49m[43m [49m[43mdata[49m[43m,[49m[43m [49m[43mtimeout[49m[43m)[49m
+
+[36mFile [39m[32m/opt/conda/envs/science/lib/python3.12/urllib/request.py:515[39m, in [36mOpenerDirector.open[39m[34m(self, fullurl, data, timeout)[39m
+[32m    512[39m     req = meth(req)
+[32m    514[39m sys.audit([33m'[39m[33murllib.Request[39m[33m'[39m, req.full_url, req.data, req.headers, req.get_method())
+[32m--> [39m[32m515[39m response = [38;5;28;43mself[39;49m[43m.[49m[43m_open[49m[43m([49m[43mreq[49m[43m,[49m[43m [49m[43mdata[49m[43m)[49m
+[32m    517[39m [38;5;66;03m# post-process response[39;00m
+[32m    518[39m meth_name = protocol+[33m"[39m[33m_response[39m[33m"[39m
+
+[36mFile [39m[32m/opt/conda/envs/science/lib/python3.12/urllib/request.py:532[39m, in [36mOpenerDirector._open[39m[34m(self, req, data)[39m
+[32m    529[39m     [38;5;28;01mreturn[39;00m result
+[32m    531[39m protocol = req.type
+[32m--> [39m[32m532[39m result = [38;5;28;43mself[39;49m[43m.[49m[43m_call_chain[49m[43m([49m[38;5;28;43mself[39;49m[43m.[49m[43mhandle_open[49m[43m,[49m[43m [49m[43mprotocol[49m[43m,[49m[43m [49m[43mprotocol[49m[43m [49m[43m+[49m
+[32m    533[39m [43m                          [49m[33;43m'[39;49m[33;43m_open[39;49m[33;43m'[39;49m[43m,[49m[43m [49m[43mreq[49m[43m)[49m
+[32m    534[39m [38;5;28;01mif[39;00m result:
+[32m    535[39m     [38;5;28;01mreturn[39;00m result
+
+[36mFile [39m[32m/opt/conda/envs/science/lib/python3.12/urllib/request.py:492[39m, in [36mOpenerDirector._call_chain[39m[34m(self, chain, kind, meth_name, *args)[39m
+[32m    490[39m [38;5;28;01mfor[39;00m handler [38;5;129;01min[39;00m handlers:
+[32m    491[39m     func = [38;5;28mgetattr[39m(handler, meth_name)
+[32m--> [39m[32m492[39m     result = [43mfunc[49m[43m([49m[43m*[49m[43margs[49m[43m)[49m
+[32m    493[39m     [38;5;28;01mif[39;00m result [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m:
+[32m    494[39m         [38;5;28;01mreturn[39;00m result
+
+[36mFile [39m[32m/opt/conda/envs/science/lib/python3.12/urllib/request.py:1392[39m, in [36mHTTPSHandler.https_open[39m[34m(self, req)[39m
+[32m   1391[39m [38;5;28;01mdef[39;00m[38;5;250m [39m[34mhttps_open[39m([38;5;28mself[39m, req):
+[32m-> [39m[32m1392[39m     [38;5;28;01mreturn[39;00m [38;5;28;43mself[39;49m[43m.[49m[43mdo_open[49m[43m([49m[43mhttp[49m[43m.[49m[43mclient[49m[43m.[49m[43mHTTPSConnection[49m[43m,[49m[43m [49m[43mreq[49m[43m,[49m
+[32m   1393[39m [43m                        [49m[43mcontext[49m[43m=[49m[38;5;28;43mself[39;49m[43m.[49m[43m_context[49m[43m)[49m
+
+[36mFile [39m[32m/opt/conda/envs/science/lib/python3.12/urllib/request.py:1347[39m, in [36mAbstractHTTPHandler.do_open[39m[34m(self, http_class, req, **http_conn_args)[39m
+[32m   1344[39m         h.request(req.get_method(), req.selector, req.data, headers,
+[32m   1345[39m                   encode_chunked=req.has_header([33m'[39m[33mTransfer-encoding[39m[33m'[39m))
+[32m   1346[39m     [38;5;28;01mexcept[39;00m [38;5;167;01mOSError[39;00m [38;5;28;01mas[39;00m err: [38;5;66;03m# timeout error[39;00m
+[32m-> [39m[32m1347[39m         [38;5;28;01mraise[39;00m URLError(err)
+[32m   1348[39m     r = h.getresponse()
+[32m   1349[39m [38;5;28;01mexcept[39;00m:
+
+[31mURLError[39m: <urlopen error [Errno -2] Name or service not known>
+

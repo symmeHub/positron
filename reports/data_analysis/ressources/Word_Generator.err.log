@@ -24,7 +24,7 @@ plt.show()
 ------------------
 
 ----- stderr -----
-/tmp/ipykernel_4420/599884686.py:25: SyntaxWarning: invalid escape sequence '\('
+/tmp/ipykernel_14229/599884686.py:25: SyntaxWarning: invalid escape sequence '\('
   l2 = re.split("[ /\\\t,\(]", l)[0] + "\n"
 ------------------
 
