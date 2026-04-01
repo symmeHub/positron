@@ -6,3 +6,4 @@ book/_build/*
 .ignore*
 **/truss-master/*
 .DS_Store
+_build/*
