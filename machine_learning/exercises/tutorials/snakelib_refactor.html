@@ -1,4 +1,4 @@
-<!-- HTML code rerendered --><!-- HTML code rerendered --><!-- HTML code rerendered --><!-- HTML code rerendered --><!-- HTML code rerendered --><!-- HTML code rerendered -->
+
 <!DOCTYPE html>
 
 
@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Driven Harmonic Oscillator &#8212; POSITRON: PythOn for Science In The Reblochon cOuNtry</title>
+    <title>Snake Refactor Notes &#8212; POSITRON: PythOn for Science In The Reblochon cOuNtry</title>
   
   
   
@@ -45,7 +45,6 @@
     <link rel="stylesheet" type="text/css" href="../../../_static/mathjax_patch.css?v=b2e2e4cc" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../../../_static/style.css?v=f4d5f33b" />
-    <link crossorigin="anonymous" integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg==" rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
@@ -85,15 +84,11 @@
                 gtag('config', 'G-RYTJG30T3E');
             </script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>window.MathJax = {"loader": {"load": ["ui/lazy"]}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="../../../_static/mathjax_patch.js?v=c73a562d"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'ode/exercises/tutorials/harmonic_oscillator';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'machine_learning/exercises/tutorials/snakelib_refactor';</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <link rel="canonical" href="&#39;https://symmehub.github.io/positron/ode/exercises/tutorials/harmonic_oscillator.html" />
+    <link rel="canonical" href="&#39;https://symmehub.github.io/positron/machine_learning/exercises/tutorials/snakelib_refactor.html" />
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="Vibrational energy harvesting using a Duffing oscillator" href="duffing_oscillator.html" />
-    <link rel="prev" title="Simple pendulum" href="simple_pendulum.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -155,6 +150,8 @@
     <div class="bd-container__inner bd-page-width">
       
       
+      
+        
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -267,18 +264,18 @@
 </details></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">ODE</span></p>
-<ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../../support_material/support_material.html">Support material</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../ressources/ressources.html">Ressources</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../ressources/badminton.html">Modelling the trajectory of a badminton shuttlecock</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../ressources/gravity.html">Simulation of a set of bodies subjected to gravity</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../ressources/molecular_dynamics.html">Molecular Dynamics : simulation of a crystal formation in 2D</a></li>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../ode/support_material/support_material.html">Support material</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../ode/ressources/ressources.html">Ressources</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../ode/ressources/badminton.html">Modelling the trajectory of a badminton shuttlecock</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../ode/ressources/gravity.html">Simulation of a set of bodies subjected to gravity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../ode/ressources/molecular_dynamics.html">Molecular Dynamics : simulation of a crystal formation in 2D</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="../exercises.html">Exercices</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="simple_pendulum.html">Simple pendulum</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Driven Harmonic Oscillator</a></li>
-<li class="toctree-l2"><a class="reference internal" href="duffing_oscillator.html">Vibrational energy harvesting using a Duffing oscillator</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../ode/exercises/exercises.html">Exercices</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../ode/exercises/tutorials/simple_pendulum.html">Simple pendulum</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../ode/exercises/tutorials/harmonic_oscillator.html">Driven Harmonic Oscillator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../ode/exercises/tutorials/duffing_oscillator.html">Vibrational energy harvesting using a Duffing oscillator</a></li>
 </ul>
 </details></li>
 </ul>
@@ -299,10 +296,10 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Machine Learning</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../../../machine_learning/support_material.html">Support material</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../../machine_learning/exercises/exercises.html">Exercices</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../machine_learning/exercises/tutorials/classification_demo.html">Supervised learning using PyTorch: a toy example</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../machine_learning/exercises/tutorials/genetic_snake_practical_work.html">Reinforcement learning on snake with a genetic neural network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../support_material.html">Support material</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../exercises.html">Exercices</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="classification_demo.html">Supervised Learning with PyTorch: A Classification Demo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="genetic_snake_practical_work.html">Reinforcement learning on snake with a genetic neural network</a></li>
 </ul>
 </details></li>
 </ul>
@@ -351,73 +348,6 @@
 
 
 
-<div class="dropdown dropdown-launch-buttons">
-  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
-    <i class="fas fa-rocket"></i>
-  </button>
-  <ul class="dropdown-menu">
-      
-      
-      
-      <li><a href="https://mybinder.org/v2/gh/symmeHub/positron/main?urlpath=lab/tree/book/ode/exercises/tutorials/harmonic_oscillator.ipynb" target="_blank"
-   class="btn btn-sm dropdown-item"
-   title="Launch on Binder"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  
-    <img alt="Binder logo" src="../../../_static/images/logo_binder.svg">
-  </span>
-<span class="btn__text-container">Binder</span>
-</a>
-</li>
-      
-      
-      
-      
-      <li><a href="https://gpu-epu.univ-savoie.fr/hub/user-redirect/git-pull?repo=https%3A//github.com/symmeHub/positron&urlpath=lab/tree/positron/book/ode/exercises/tutorials/harmonic_oscillator.ipynb&branch=main" target="_blank"
-   class="btn btn-sm dropdown-item"
-   title="Launch on JupyterHub"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  
-    <img alt="JupyterHub logo" src="../../../_static/images/logo_jupyterhub.svg">
-  </span>
-<span class="btn__text-container">JupyterHub</span>
-</a>
-</li>
-      
-      
-      
-      
-      <li><a href="https://colab.research.google.com/github/symmeHub/positron/blob/main/book/ode/exercises/tutorials/harmonic_oscillator.ipynb" target="_blank"
-   class="btn btn-sm dropdown-item"
-   title="Launch on Colab"
-   data-bs-placement="left" data-bs-toggle="tooltip"
->
-  
-
-<span class="btn__icon-container">
-  
-    <img alt="Colab logo" src="../../../_static/images/logo_colab.png">
-  </span>
-<span class="btn__text-container">Colab</span>
-</a>
-</li>
-      
-  </ul>
-</div>
-
-
-
-
-
-
 <div class="dropdown dropdown-source-buttons">
   <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
     <i class="fab fa-github"></i>
@@ -443,7 +373,7 @@
       
       
       
-      <li><a href="https://github.com/symmeHub/positron/edit/main/book/ode/exercises/tutorials/harmonic_oscillator.ipynb" target="_blank"
+      <li><a href="https://github.com/symmeHub/positron/edit/main/book/machine_learning/exercises/tutorials/snakelib_refactor.md" target="_blank"
    class="btn btn-sm btn-source-edit-button dropdown-item"
    title="Suggest edit"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -460,7 +390,7 @@
       
       
       
-      <li><a href="https://github.com/symmeHub/positron/issues/new?title=Issue%20on%20page%20%2Fode/exercises/tutorials/harmonic_oscillator.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/symmeHub/positron/issues/new?title=Issue%20on%20page%20%2Fmachine_learning/exercises/tutorials/snakelib_refactor.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -490,7 +420,7 @@
       
       
       
-      <li><a href="../../../_sources/ode/exercises/tutorials/harmonic_oscillator.ipynb" target="_blank"
+      <li><a href="../../../_sources/machine_learning/exercises/tutorials/snakelib_refactor.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -500,7 +430,7 @@
 <span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="btn__text-container">.ipynb</span>
+<span class="btn__text-container">.md</span>
 </a>
 </li>
       
@@ -574,7 +504,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Driven Harmonic Oscillator</h1>
+    <h1>Snake Refactor Notes</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -584,15 +514,23 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#theory">Theory</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mechanical-oscillator">Mechanical oscillator</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#canonical-equation">Canonical equation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#goals">Goals</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#state-representation">State Representation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#main-public-api">Main Public API</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#environment">Environment</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#geometry-helpers">Geometry helpers</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#observation-api">Observation API</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-1-coding">Part 1: Coding</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-2-solving">Part 2: Solving</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-3-steady-state-amplitude">Part 3: Steady state amplitude</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-4-amplitude-vs-drive-pulsation">Part 4: Amplitude vs. drive pulsation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#observation-families">Observation Families</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#default">1. <code class="docutils literal notranslate"><span class="pre">default</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compact-topology">2. <code class="docutils literal notranslate"><span class="pre">compact</span></code> / <code class="docutils literal notranslate"><span class="pre">topology</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#egocentric">3. <code class="docutils literal notranslate"><span class="pre">egocentric</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#search-based-demonstration-agent">Search-Based Demonstration Agent</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#demo-script">Demo Script</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practical-guidance">Practical Guidance</a></li>
 </ul>
             </nav>
         </div>
@@ -604,120 +542,169 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <div class="cell tag_hide-input docutils container">
-<details class="admonition hide above-input">
-<summary aria-label="Toggle hidden content">
-<p class="collapsed admonition-title">Show code cell source</p>
-<p class="expanded admonition-title">Hide code cell source</p>
-</summary>
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># IF USING JUPYTER NOTEBOOK:</span>
-<span class="c1">#%matplotlib notebook</span>
-<span class="c1"># IF USING JUPYTER LAB:</span>
-<span class="o">%</span><span class="k">matplotlib</span> widget
-<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
-</pre></div>
-</div>
-</div>
-</details>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">scipy.integrate</span><span class="w"> </span><span class="kn">import</span> <span class="n">odeint</span>
-</pre></div>
-</div>
-</div>
-</div>
-<section class="tex2jax_ignore mathjax_ignore" id="driven-harmonic-oscillator">
-<span id="ode-tutorial-driven-harmonic-oscillator"></span><h1>Driven Harmonic Oscillator<a class="headerlink" href="#driven-harmonic-oscillator" title="Link to this heading">#</a></h1>
-<p><strong>Author</strong>: Ludovic Charleux (<a class="reference external" href="mailto:ludovic&#46;charleux&#37;&#52;&#48;univ-smb&#46;fr">ludovic<span>&#46;</span>charleux<span>&#64;</span>univ-smb<span>&#46;</span>fr</a>)</p>
-<p>In this example, you will simulate an harmonic oscillator and compare the numerical solution to the closed form one.</p>
-<section id="theory">
-<h2>Theory<a class="headerlink" href="#theory" title="Link to this heading">#</a></h2>
-<p>Read about the theory of harmonic oscillators on <a class="reference external" href="https://en.wikipedia.org/wiki/Harmonic_oscillator">Wikipedia</a></p>
-<section id="mechanical-oscillator">
-<h3>Mechanical oscillator<a class="headerlink" href="#mechanical-oscillator" title="Link to this heading">#</a></h3>
-<p>The case of the one dimensional mechanical oscillator leads to the following equation:</p>
-<div class="math notranslate nohighlight">
-\[
-m \ddot x + \mu \dot x + k x = m \ddot x_d
-\]</div>
-<p>Where:</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="snake-refactor-notes">
+<h1>Snake Refactor Notes<a class="headerlink" href="#snake-refactor-notes" title="Link to this heading">#</a></h1>
+<section id="goals">
+<h2>Goals<a class="headerlink" href="#goals" title="Link to this heading">#</a></h2>
+<p>The original <code class="docutils literal notranslate"><span class="pre">snakelib.py</span></code> mixed together:</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(x\)</span> is the position,</p></li>
-<li><p><span class="math notranslate nohighlight">\(\dot x\)</span> and <span class="math notranslate nohighlight">\(\ddot x\)</span> are respectively the speed and acceleration,</p></li>
-<li><p><span class="math notranslate nohighlight">\(m\)</span> is the mass,</p></li>
-<li><p><span class="math notranslate nohighlight">\(\mu\)</span> the</p></li>
-<li><p><span class="math notranslate nohighlight">\(k\)</span> the stiffness,</p></li>
-<li><p>and <span class="math notranslate nohighlight">\(\ddot x_d\)</span> the driving acceleration which is null if the oscillator is free.</p></li>
+<li><p>state storage</p></li>
+<li><p>game rules</p></li>
+<li><p>handcrafted sensors</p></li>
+<li><p>notebook-specific experimentation</p></li>
+</ul>
+<p>This made the code difficult to modify and slow to extend.</p>
+<p>The refactored module separates those responsibilities and keeps two clear use cases:</p>
+<ul class="simple">
+<li><p>compact observations for small neural networks</p></li>
+<li><p>full egocentric grid observations for search methods, CNN-style models, or debugging</p></li>
 </ul>
 </section>
-<section id="canonical-equation">
-<h3>Canonical equation<a class="headerlink" href="#canonical-equation" title="Link to this heading">#</a></h3>
-<p>Most 1D oscilators follow the same canonical equation:</p>
-<div class="math notranslate nohighlight">
-\[
-\ddot x + 2 \zeta \omega_0 \dot x + \omega_0^2 x = \ddot x_d
-\]</div>
-<p>Where:</p>
+<section id="state-representation">
+<h2>State Representation<a class="headerlink" href="#state-representation" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">FastSnake</span></code> now stores the snake as:</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(\omega_0\)</span> is the undamped pulsation,</p></li>
-<li><p><span class="math notranslate nohighlight">\(\zeta\)</span> is damping ratio,</p></li>
-<li><p><span class="math notranslate nohighlight">\(\ddot x_d = a_d\sin(\omega_d t)\)</span> is the imposed acceleration.</p></li>
+<li><p>one flat integer array <code class="docutils literal notranslate"><span class="pre">snake_positions</span></code></p></li>
+<li><p>one scalar <code class="docutils literal notranslate"><span class="pre">snake_length</span></code></p></li>
 </ul>
-<p>In the case of the mechanical oscillator:</p>
-<div class="math notranslate nohighlight">
-\[
-\omega_0 = \sqrt{\dfrac{k}{m}}
-\]</div>
-<div class="math notranslate nohighlight">
-\[
-\zeta = \dfrac{\mu}{2\sqrt{mk}} 
-\]</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">omega0</span> <span class="o">=</span> <span class="mf">2.0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="mf">1.0</span>
-<span class="n">zeta</span> <span class="o">=</span> <span class="mf">0.1</span>
-<span class="n">ad</span> <span class="o">=</span> <span class="mf">1.0</span>
-<span class="n">omegad</span> <span class="o">=</span> <span class="mf">2.0</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="mf">1.2</span>
+<p>The active snake is simply <code class="docutils literal notranslate"><span class="pre">snake_positions[:snake_length]</span></code>.</p>
+<p>This is simpler than a full array plus an activity mask and keeps all conversions explicit.</p>
+</section>
+<section id="main-public-api">
+<h2>Main Public API<a class="headerlink" href="#main-public-api" title="Link to this heading">#</a></h2>
+<section id="environment">
+<h3>Environment<a class="headerlink" href="#environment" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">FastSnake(Nrow,</span> <span class="pre">Ncol)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">reset(fix_seed=None)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">turn(turn_id)</span></code> with <code class="docutils literal notranslate"><span class="pre">-1</span> <span class="pre">=</span> <span class="pre">right</span></code>, <code class="docutils literal notranslate"><span class="pre">0</span> <span class="pre">=</span> <span class="pre">front</span></code>, <code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">=</span> <span class="pre">left</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">play(direction)</span></code> with absolute directions</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">simulate_turn(turn_id)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">simulate_direction(direction)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">analyze_moves()</span></code></p></li>
+</ul>
+</section>
+<section id="geometry-helpers">
+<h3>Geometry helpers<a class="headerlink" href="#geometry-helpers" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">head_position</span></code>, <code class="docutils literal notranslate"><span class="pre">tail_position</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">head_coords</span></code>, <code class="docutils literal notranslate"><span class="pre">tail_coords</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">snake_active_positions</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">snake_active_coords</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">get_neighbors_pos()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">get_current_direction()</span></code></p></li>
+</ul>
+</section>
+<section id="observation-api">
+<h3>Observation API<a class="headerlink" href="#observation-api" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">sensors(method=&quot;default&quot;)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sensors(method=&quot;compact&quot;)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sensors(method=&quot;topology&quot;)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sensors(method=&quot;egocentric&quot;)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">egocentric_channels(radius=None)</span></code></p></li>
+</ul>
+</section>
+</section>
+<section id="observation-families">
+<h2>Observation Families<a class="headerlink" href="#observation-families" title="Link to this heading">#</a></h2>
+<section id="default">
+<h3>1. <code class="docutils literal notranslate"><span class="pre">default</span></code><a class="headerlink" href="#default" title="Link to this heading">#</a></h3>
+<p>Legacy 5-value observation kept for compatibility:</p>
+<ul class="simple">
+<li><p>right/front/left local content</p></li>
+<li><p>signed fruit direction in the snake frame</p></li>
+</ul>
+</section>
+<section id="compact-topology">
+<h3>2. <code class="docutils literal notranslate"><span class="pre">compact</span></code> / <code class="docutils literal notranslate"><span class="pre">topology</span></code><a class="headerlink" href="#compact-topology" title="Link to this heading">#</a></h3>
+<p>Fixed-size vector of length 21.</p>
+<p>For each relative action <code class="docutils literal notranslate"><span class="pre">[right,</span> <span class="pre">front,</span> <span class="pre">left]</span></code>, it includes:</p>
+<ul class="simple">
+<li><p>immediate safety</p></li>
+<li><p>whether the move eats the fruit</p></li>
+<li><p>reachable free-space ratio</p></li>
+<li><p>whether the tail remains reachable</p></li>
+<li><p>normalized path score to the fruit</p></li>
+<li><p>normalized path score to the tail</p></li>
+</ul>
+<p>Global features appended at the end:</p>
+<ul class="simple">
+<li><p>continuous fruit direction in the snake frame</p></li>
+<li><p>normalized snake length</p></li>
+</ul>
+<p>This representation is meant for small MLPs and is much richer than the original 5-value sensor.</p>
+</section>
+<section id="egocentric">
+<h3>3. <code class="docutils literal notranslate"><span class="pre">egocentric</span></code><a class="headerlink" href="#egocentric" title="Link to this heading">#</a></h3>
+<p>Head-centered full-board observation aligned so that the snake always moves upward.</p>
+<p><code class="docutils literal notranslate"><span class="pre">egocentric_channels(radius=None)</span></code> returns 4 channels:</p>
+<ul class="simple">
+<li><p>walls</p></li>
+<li><p>body</p></li>
+<li><p>fruit</p></li>
+<li><p>tail</p></li>
+</ul>
+<p>With <code class="docutils literal notranslate"><span class="pre">radius=None</span></code>, the whole grid is embedded in a centered canvas of shape:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">(4,</span> <span class="pre">2*Nrow-1,</span> <span class="pre">2*Ncol-1)</span></code></p></li>
+</ul>
+<p>With <code class="docutils literal notranslate"><span class="pre">radius=r</span></code>, a local view of fixed size is returned:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">(4,</span> <span class="pre">2*r+1,</span> <span class="pre">2*r+1)</span></code></p></li>
+</ul>
+<p>This is the recommended starting point if you want to try a CNN or any model operating on a spatial observation.</p>
+</section>
+</section>
+<section id="search-based-demonstration-agent">
+<h2>Search-Based Demonstration Agent<a class="headerlink" href="#search-based-demonstration-agent" title="Link to this heading">#</a></h2>
+<p>The module also provides:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">RandomTurnAgent</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SafePathAgent</span></code></p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">SafePathAgent</span></code> is not a learned controller. It is a search-based baseline used to validate the environment and the new topology helpers.</p>
+<p>Its policy is:</p>
+<ol class="arabic simple">
+<li><p>Prefer safe fruit-seeking moves early in the game.</p></li>
+<li><p>When the snake is longer, require stronger topological safety.</p></li>
+<li><p>If fruit pursuit is risky, follow the tail.</p></li>
+<li><p>Otherwise maximize free space and branching factor.</p></li>
+</ol>
+<p>This is not optimal, but it is strong enough to demonstrate that:</p>
+<ul class="simple">
+<li><p>the new move analysis is useful</p></li>
+<li><p>the environment is easy to control from grid-based logic</p></li>
+<li><p>the classical self-wrapping failure can be pushed much farther than before</p></li>
+</ul>
+</section>
+<section id="demo-script">
+<h2>Demo Script<a class="headerlink" href="#demo-script" title="Link to this heading">#</a></h2>
+<p>Run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>book/machine_learning/exercises/tutorials/snake_demo.py
 </pre></div>
 </div>
-</div>
-</div>
-</section>
-</section>
-<section id="part-1-coding">
-<h2>Part 1: Coding<a class="headerlink" href="#part-1-coding" title="Link to this heading">#</a></h2>
-<p>First, you need to code: the harmonic oscillator oscillator using the standarde ODE formulation:</p>
-<div class="math notranslate nohighlight">
-\[
-\dot X = f(X, t) 
-\]</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">f</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Driven Harmonic oscillator.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span>
+<p>Useful options:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>book/machine_learning/exercises/tutorials/snake_demo.py<span class="w"> </span>--rows<span class="w"> </span><span class="m">12</span><span class="w"> </span>--cols<span class="w"> </span><span class="m">12</span><span class="w"> </span>--episodes<span class="w"> </span><span class="m">20</span>
+python<span class="w"> </span>book/machine_learning/exercises/tutorials/snake_demo.py<span class="w"> </span>--agent<span class="w"> </span>safe<span class="w"> </span>--episodes<span class="w"> </span><span class="m">5</span><span class="w"> </span>--max-turns<span class="w"> </span><span class="m">500</span>
 </pre></div>
 </div>
-</div>
-</div>
+<p>The script prints:</p>
+<ul class="simple">
+<li><p>observation shapes</p></li>
+<li><p>benchmark results for the selected agent(s)</p></li>
+<li><p>runtime information</p></li>
+</ul>
 </section>
-<section id="part-2-solving">
-<h2>Part 2: Solving<a class="headerlink" href="#part-2-solving" title="Link to this heading">#</a></h2>
-<p>Solve the ODE using <code class="docutils literal notranslate"><span class="pre">odeint</span></code> and plot it.</p>
-</section>
-<section id="part-3-steady-state-amplitude">
-<h2>Part 3: Steady state amplitude<a class="headerlink" href="#part-3-steady-state-amplitude" title="Link to this heading">#</a></h2>
-<p>Determine the steady state amplitude <span class="math notranslate nohighlight">\(a(\omega_d)\)</span> of the oscillator.</p>
-</section>
-<section id="part-4-amplitude-vs-drive-pulsation">
-<h2>Part 4: Amplitude vs. drive pulsation<a class="headerlink" href="#part-4-amplitude-vs-drive-pulsation" title="Link to this heading">#</a></h2>
-<p>Plot the evolution of the amplitude of the driven oscillator and compare it with the theory.</p>
+<section id="practical-guidance">
+<h2>Practical Guidance<a class="headerlink" href="#practical-guidance" title="Link to this heading">#</a></h2>
+<p>If the next goal is learning rather than heuristics:</p>
+<ul class="simple">
+<li><p>start with <code class="docutils literal notranslate"><span class="pre">compact</span></code> for a small MLP</p></li>
+<li><p>use <code class="docutils literal notranslate"><span class="pre">egocentric_channels(radius=4)</span></code> for a fixed-size local spatial observation</p></li>
+<li><p>use <code class="docutils literal notranslate"><span class="pre">egocentric_channels()</span></code> only if you accept an observation size that depends on the board size</p></li>
+</ul>
+<p>The environment is now structured so these three directions can coexist without rewriting the game logic again.</p>
 </section>
 </section>
 
@@ -734,7 +721,7 @@ m \ddot x + \mu \dot x + k x = m \ddot x_d
         },
         kernelOptions: {
             name: "python3",
-            path: "./ode/exercises/tutorials"
+            path: "./machine_learning/exercises/tutorials"
         },
         predefinedOutput: true
     }
@@ -751,24 +738,6 @@ m \ddot x + \mu \dot x + k x = m \ddot x_d
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
-    <a class="left-prev"
-       href="simple_pendulum.html"
-       title="previous page">
-      <i class="fa-solid fa-angle-left"></i>
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Simple pendulum</p>
-      </div>
-    </a>
-    <a class="right-next"
-       href="duffing_oscillator.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Vibrational energy harvesting using a Duffing oscillator</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
-    </a>
 </div>
                 </footer>
               
@@ -785,15 +754,23 @@ m \ddot x + \mu \dot x + k x = m \ddot x_d
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#theory">Theory</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mechanical-oscillator">Mechanical oscillator</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#canonical-equation">Canonical equation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#goals">Goals</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#state-representation">State Representation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#main-public-api">Main Public API</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#environment">Environment</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#geometry-helpers">Geometry helpers</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#observation-api">Observation API</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-1-coding">Part 1: Coding</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-2-solving">Part 2: Solving</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-3-steady-state-amplitude">Part 3: Steady state amplitude</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-4-amplitude-vs-drive-pulsation">Part 4: Amplitude vs. drive pulsation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#observation-families">Observation Families</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#default">1. <code class="docutils literal notranslate"><span class="pre">default</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compact-topology">2. <code class="docutils literal notranslate"><span class="pre">compact</span></code> / <code class="docutils literal notranslate"><span class="pre">topology</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#egocentric">3. <code class="docutils literal notranslate"><span class="pre">egocentric</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#search-based-demonstration-agent">Search-Based Demonstration Agent</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#demo-script">Demo Script</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practical-guidance">Practical Guidance</a></li>
 </ul>
   </nav></div>
 

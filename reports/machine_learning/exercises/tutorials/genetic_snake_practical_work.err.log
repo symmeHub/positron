@@ -1,0 +1,70 @@
+Traceback (most recent call last):
+  File "/opt/conda/envs/science/lib/python3.12/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/opt/conda/envs/science/lib/python3.12/site-packages/nbclient/client.py", line 1323, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/science/lib/python3.12/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/science/lib/python3.12/asyncio/base_events.py", line 691, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/science/lib/python3.12/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "/opt/conda/envs/science/lib/python3.12/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/opt/conda/envs/science/lib/python3.12/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+# Moving the snake
+np.random.seed(0)  # Fixing the seed
+snake.reset()  # Reset snake position
+snake.display_sensor_method = "label"
+fig = plt.figure()
+ax = fig.add_subplot(1, 1, 1)
+display(show_gui(snake, ax))
+------------------
+
+
+[31m---------------------------------------------------------------------------[39m
+[31mKeyError[39m                                  Traceback (most recent call last)
+[36mFile [39m[32m/workspaces/positron/book/machine_learning/exercises/tutorials/snakelib.py:765[39m, in [36mFastSnake.sensors[39m[34m(self, method, **kwargs)[39m
+[32m    764[39m [38;5;28;01mtry[39;00m:
+[32m--> [39m[32m765[39m     [38;5;28;01mreturn[39;00m [38;5;28;43mself[39;49m[43m.[49m[43m_sensor_methods[49m[43m[[49m[43mmethod[49m[43m][49m()
+[32m    766[39m [38;5;28;01mexcept[39;00m [38;5;167;01mKeyError[39;00m [38;5;28;01mas[39;00m exc:
+
+[31mKeyError[39m: 'label'
+
+The above exception was the direct cause of the following exception:
+
+[31mValueError[39m                                Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[13][39m[32m, line 7[39m
+[32m      5[39m fig = plt.figure()
+[32m      6[39m ax = fig.add_subplot([32m1[39m, [32m1[39m, [32m1[39m)
+[32m----> [39m[32m7[39m display([43mshow_gui[49m[43m([49m[43msnake[49m[43m,[49m[43m [49m[43max[49m[43m)[49m)
+
+[36mFile [39m[32m/workspaces/positron/book/machine_learning/exercises/tutorials/snakelib.py:1082[39m, in [36mshow_gui[39m[34m(snake, ax, return_metrics)[39m
+[32m   1080[39m title = ax.set_title([33mf[39m[33m"[39m[33mScore = [39m[38;5;132;01m{[39;00msnake.score[38;5;132;01m}[39;00m[33m, PLAY[39m[33m"[39m)
+[32m   1081[39m im = ax.imshow(snake.grid, interpolation=[33m"[39m[33mnearest[39m[33m"[39m, animated=[38;5;28;01mTrue[39;00m)
+[32m-> [39m[32m1082[39m [43mupdate_fig[49m[43m([49m[43m)[49m
+[32m   1083[39m box = widgets.Box([left_widget, right_widget, up_widget, reset_widget])
+[32m   1085[39m entries = {[33m"[39m[33mHead[39m[33m"[39m: [33m"[39m[33mgray[39m[33m"[39m, [33m"[39m[33mBody[39m[33m"[39m: [33m"[39m[33mblack[39m[33m"[39m, [33m"[39m[33mWall[39m[33m"[39m: [33m"[39m[33mred[39m[33m"[39m, [33m"[39m[33mFruit[39m[33m"[39m: [33m"[39m[33mgreen[39m[33m"[39m}
+
+[36mFile [39m[32m/workspaces/positron/book/machine_learning/exercises/tutorials/snakelib.py:1074[39m, in [36mshow_gui.<locals>.update_fig[39m[34m()[39m
+[32m   1072[39m     sensors = [33m"[39m[33m"[39m
+[32m   1073[39m [38;5;28;01melse[39;00m:
+[32m-> [39m[32m1074[39m     sensors = [38;5;28mstr[39m([43msnake[49m[43m.[49m[43msensors[49m[43m([49m[43mmethod[49m[43m=[49m[43msnake[49m[43m.[49m[43mdisplay_sensor_method[49m[43m)[49m)
+[32m   1075[39m title.set_text([33mf[39m[33m"[39m[33mScore = [39m[38;5;132;01m{[39;00msnake.score[38;5;132;01m}[39;00m[33m, [39m[38;5;132;01m{[39;00mmessage[38;5;132;01m}[39;00m[33m [39m[38;5;132;01m{[39;00msensors[38;5;132;01m}[39;00m[33m"[39m)
+[32m   1076[39m plt.draw()
+
+[36mFile [39m[32m/workspaces/positron/book/machine_learning/exercises/tutorials/snakelib.py:768[39m, in [36mFastSnake.sensors[39m[34m(self, method, **kwargs)[39m
+[32m    766[39m [38;5;28;01mexcept[39;00m [38;5;167;01mKeyError[39;00m [38;5;28;01mas[39;00m exc:
+[32m    767[39m     available = [33m"[39m[33m, [39m[33m"[39m.join([38;5;28msorted[39m([38;5;28mself[39m._sensor_methods))
+[32m--> [39m[32m768[39m     [38;5;28;01mraise[39;00m [38;5;167;01mValueError[39;00m(
+[32m    769[39m         [33mf[39m[33m"[39m[33mUnknown sensor method [39m[33m'[39m[38;5;132;01m{[39;00mmethod[38;5;132;01m}[39;00m[33m'[39m[33m. Available methods: [39m[38;5;132;01m{[39;00mavailable[38;5;132;01m}[39;00m[33m, egocentric.[39m[33m"[39m
+[32m    770[39m     ) [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mexc[39;00m
+
+[31mValueError[39m: Unknown sensor method 'label'. Available methods: compact, default, egocentric, topology, egocentric.
+
