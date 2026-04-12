@@ -132,19 +132,29 @@ def get_rank2_Moore_neighbors(pos, Ncol, Nrow):
 
 class FastSnake:
     """
-    Snake environment with two observation families:
-    - compact topology features suitable for small MLPs
-    - egocentric grid observations aligned with the snake head
+    Snake environment with lightweight observation families suitable for
+    CPU-friendly genetic optimization.
 
     The game state is stored as a flat array of positions plus a scalar length.
     This is efficient and much easier to reason about than a full-length array
     combined with a boolean activity mask.
     """
 
+    DEFAULT_LOCAL_SENSOR_RADIUS = 4
+    DEFAULT_LOCAL_LITE_SENSOR_RADIUS = 2
+    LOCAL_CHANNEL_COUNT = 6
+    LOCAL_LITE_CHANNEL_COUNT = 5
+    LOCAL_SENSOR_SIZE = LOCAL_CHANNEL_COUNT * (2 * DEFAULT_LOCAL_SENSOR_RADIUS + 1) ** 2
+    LOCAL_LITE_SENSOR_SIZE = (
+        LOCAL_LITE_CHANNEL_COUNT * (2 * DEFAULT_LOCAL_LITE_SENSOR_RADIUS + 1) ** 2
+    )
+    HYBRID_SENSOR_SIZE = LOCAL_SENSOR_SIZE + 21
+    HYBRID_LITE_SENSOR_SIZE = LOCAL_LITE_SENSOR_SIZE + 21
+
     SENSOR_SPECS = {
         "default": 5,
         "compact": 21,
-        "topology": 21,
+        "local_lite": LOCAL_LITE_SENSOR_SIZE,
     }
 
     def __init__(
@@ -194,8 +204,7 @@ class FastSnake:
         self._sensor_methods = {
             "default": self._default_sensors,
             "compact": self._compact_sensors,
-            "topology": self._compact_sensors,
-            "egocentric": self._egocentric_flat_sensors,
+            "local_lite": self._local_lite_flat_sensors,
         }
 
         self.reset()
@@ -398,6 +407,35 @@ class FastSnake:
                 visited[nrow, ncol] = True
                 queue.append((nrow, ncol))
         return count
+
+    def _reachable_mask(self, walkable_mask, start_pos):
+        """
+        Return the connected component reachable from `start_pos`.
+        """
+        start_row, start_col = pos_to_coords(start_pos, self.Ncol)
+        reachable = np.zeros_like(walkable_mask, dtype=np.float32)
+        if not walkable_mask[start_row, start_col]:
+            return reachable
+
+        visited = self._bfs_visited
+        visited[:] = False
+        visited[start_row, start_col] = True
+        reachable[start_row, start_col] = 1.0
+        queue = deque([(int(start_row), int(start_col))])
+
+        while queue:
+            row, col = queue.popleft()
+            for drow, dcol in DIRECTION_VECTORS.values():
+                nrow = row + drow
+                ncol = col + dcol
+                if not (0 <= nrow < self.Nrow and 0 <= ncol < self.Ncol):
+                    continue
+                if visited[nrow, ncol] or not walkable_mask[nrow, ncol]:
+                    continue
+                visited[nrow, ncol] = True
+                reachable[nrow, ncol] = 1.0
+                queue.append((nrow, ncol))
+        return reachable
 
     def _fruit_distance(self, pos):
         row, col = pos_to_coords(pos, self.Ncol)
@@ -706,6 +744,46 @@ class FastSnake:
         tail[tail_row, tail_col] = 1.0
         return np.stack((walls, body, fruit, tail), axis=0)
 
+    def _spatial_context_channels(self):
+        """
+        Return richer spatial channels for a learnable policy.
+
+        Channels:
+        - walls
+        - body without head
+        - fruit
+        - tail
+        - walkable cells with the tail considered free on the next step
+        - connected component reachable from the head on that walkable mask
+        """
+        base_channels = self._board_channels()
+        walkable = self._walkable_mask(self.snake_active_positions, free_tail=True)
+        reachable = self._reachable_mask(walkable, self.head_position)
+        return np.concatenate(
+            (
+                base_channels,
+                walkable[np.newaxis, ...].astype(np.float32),
+                reachable[np.newaxis, ...].astype(np.float32),
+            ),
+            axis=0,
+        )
+
+    def _spatial_context_channels_lite(self):
+        """
+        Reduced spatial channels with lower dimensionality.
+
+        Channels:
+        - walls
+        - body without head
+        - fruit
+        - tail
+        - reachable region from the head, with the tail considered free
+        """
+        walls, body, fruit, tail = self._board_channels()
+        walkable = self._walkable_mask(self.snake_active_positions, free_tail=True)
+        reachable = self._reachable_mask(walkable, self.head_position)
+        return np.stack((walls, body, fruit, tail, reachable), axis=0)
+
     def egocentric_channels(self, radius=None):
         """
         Return a head-centered observation aligned so the snake moves upward.
@@ -747,26 +825,129 @@ class FastSnake:
     def _egocentric_flat_sensors(self):
         return self.egocentric_channels(radius=None).ravel()
 
+    def local_egocentric_channels(self, radius=None):
+        """
+        Return a richer local egocentric observation with fixed-size channels.
+
+        Unlike `egocentric_channels`, this uses spatial channels designed for
+        learning:
+        - walls
+        - body
+        - fruit
+        - tail
+        - walkable cells with tail freed
+        - currently reachable region from the head
+
+        By default a radius of `DEFAULT_LOCAL_SENSOR_RADIUS` is used, which
+        yields a fixed-size observation independent of the board size.
+        """
+        if radius is None:
+            radius = self.DEFAULT_LOCAL_SENSOR_RADIUS
+
+        channels = self._spatial_context_channels()
+        head_mask = np.zeros((self.Nrow, self.Ncol), dtype=np.float32)
+        head_row, head_col = self.head_coords
+        head_mask[head_row, head_col] = 1.0
+
+        k = ROTATION_TO_UP[self.get_current_direction()]
+        rotated_channels = np.rot90(channels, k=k, axes=(1, 2))
+        rotated_head = np.rot90(head_mask, k=k)
+        rotated_head_row, rotated_head_col = np.argwhere(rotated_head == 1.0)[0]
+
+        height = 2 * self.Nrow - 1
+        width = 2 * self.Ncol - 1
+        centered = np.zeros((channels.shape[0], height, width), dtype=np.float32)
+        target_row = self.Nrow - 1
+        target_col = self.Ncol - 1
+        row_offset = target_row - int(rotated_head_row)
+        col_offset = target_col - int(rotated_head_col)
+        row_slice = slice(row_offset, row_offset + rotated_channels.shape[1])
+        col_slice = slice(col_offset, col_offset + rotated_channels.shape[2])
+        centered[:, row_slice, col_slice] = rotated_channels
+
+        center_row = self.Nrow - 1
+        center_col = self.Ncol - 1
+        row_slice = slice(center_row - radius, center_row + radius + 1)
+        col_slice = slice(center_col - radius, center_col + radius + 1)
+        return centered[:, row_slice, col_slice].copy()
+
+    def local_egocentric_channels_lite(self, radius=None):
+        """
+        Reduced local egocentric observation for cheaper genetic search.
+        """
+        if radius is None:
+            radius = self.DEFAULT_LOCAL_LITE_SENSOR_RADIUS
+
+        channels = self._spatial_context_channels_lite()
+        head_mask = np.zeros((self.Nrow, self.Ncol), dtype=np.float32)
+        head_row, head_col = self.head_coords
+        head_mask[head_row, head_col] = 1.0
+
+        k = ROTATION_TO_UP[self.get_current_direction()]
+        rotated_channels = np.rot90(channels, k=k, axes=(1, 2))
+        rotated_head = np.rot90(head_mask, k=k)
+        rotated_head_row, rotated_head_col = np.argwhere(rotated_head == 1.0)[0]
+
+        height = 2 * self.Nrow - 1
+        width = 2 * self.Ncol - 1
+        centered = np.zeros((channels.shape[0], height, width), dtype=np.float32)
+        target_row = self.Nrow - 1
+        target_col = self.Ncol - 1
+        row_offset = target_row - int(rotated_head_row)
+        col_offset = target_col - int(rotated_head_col)
+        row_slice = slice(row_offset, row_offset + rotated_channels.shape[1])
+        col_slice = slice(col_offset, col_offset + rotated_channels.shape[2])
+        centered[:, row_slice, col_slice] = rotated_channels
+
+        center_row = self.Nrow - 1
+        center_col = self.Ncol - 1
+        row_slice = slice(center_row - radius, center_row + radius + 1)
+        col_slice = slice(center_col - radius, center_col + radius + 1)
+        return centered[:, row_slice, col_slice].copy()
+
+    def _local_flat_sensors(self):
+        return self.local_egocentric_channels().ravel()
+
+    def _local_lite_flat_sensors(self):
+        return self.local_egocentric_channels_lite().ravel()
+
+    def _hybrid_sensors(self):
+        """
+        Concatenate local spatial channels and compact topology scalars.
+        """
+        local = self.local_egocentric_channels().ravel()
+        compact = self._compact_sensors()
+        return np.concatenate((local, compact))
+
+    def _hybrid_lite_sensors(self):
+        """
+        Concatenate reduced local spatial channels and compact topology scalars.
+        """
+        local = self.local_egocentric_channels_lite().ravel()
+        compact = self._compact_sensors()
+        return np.concatenate((local, compact))
+
     def sensors(self, method="default", **kwargs):
         """
         Public observation API.
 
         Supported methods:
         - default: legacy 5-value sensor
-        - compact / topology: fixed-size 21-value topology features
-        - egocentric: flattened full head-centered grid
+        - compact: fixed-size 21-value topology features
+        - local_lite: reduced local spatial view for cheaper genetic search
 
-        Use egocentric_channels(radius=...) directly for tensor observations.
+        Heavier spatial helpers still exist as dedicated methods for debugging,
+        but they are intentionally not exposed as standard TP sensors.
         """
-        if method == "egocentric":
+        if method == "local_lite":
             radius = kwargs.get("radius")
-            return self.egocentric_channels(radius=radius).ravel()
+            return self.local_egocentric_channels_lite(radius=radius).ravel()
         try:
             return self._sensor_methods[method]()
         except KeyError as exc:
             available = ", ".join(sorted(self._sensor_methods))
             raise ValueError(
-                f"Unknown sensor method '{method}'. Available methods: {available}, egocentric."
+                f"Unknown sensor method '{method}'. Available methods: {available}."
             ) from exc
 
     def get_label_sensors(self):
@@ -1325,7 +1506,7 @@ class RecurrentPolicyAgent:
 
     This is the most convenient interface for a genetic exercise:
 
-    1. choose an observation method (`compact`, `default`, `egocentric`, ...)
+    1. choose an observation method (`compact`, `default`, `local_lite`, ...)
     2. evolve the recurrent network weights
     3. evaluate the policy directly through `run_episode`
     """
