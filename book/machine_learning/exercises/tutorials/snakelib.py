@@ -161,6 +161,7 @@ class FastSnake:
         self,
         Nrow,
         Ncol,
+        max_snake_length=None,
         snake_color=(0, 0, 0),
         snake_head_color=(128, 128, 128),
         forbidden_color=(255, 0, 0),
@@ -175,6 +176,12 @@ class FastSnake:
         self.Ncell = self.Nrow * self.Ncol
         self.playable_cells = max(1, (self.Nrow - 2) * (self.Ncol - 2))
         self.max_manhattan_distance = max(1, (self.Nrow - 2) + (self.Ncol - 2))
+        if max_snake_length is None:
+            self.max_snake_length = None
+        else:
+            self.max_snake_length = max(
+                2, min(int(max_snake_length), self.playable_cells)
+            )
 
         self.all_positions = np.arange(self.Ncell, dtype=np.int32)
         self.grid_values = self.all_positions.reshape(self.Nrow, self.Ncol)
@@ -320,6 +327,11 @@ class FastSnake:
 
     def get_snake_direction_map(self):
         return DIRECTION_NAMES[self.get_current_direction()]
+
+    def can_grow(self):
+        return (
+            self.max_snake_length is None or self.snake_length < self.max_snake_length
+        )
 
     def get_relative_turn_directions(self):
         current = self.get_current_direction()
@@ -580,6 +592,7 @@ class FastSnake:
             "new_head": new_head,
             "status": 0,
             "ate_fruit": False,
+            "grew": False,
             "snake_positions": active.copy(),
             "new_length": int(active.size),
         }
@@ -593,7 +606,8 @@ class FastSnake:
             return result
 
         eats_fruit = new_head == self.fruit_position
-        if eats_fruit:
+        grows = eats_fruit and self.can_grow()
+        if grows:
             new_snake = np.empty(active.size + 1, dtype=np.int32)
             new_snake[0] = new_head
             new_snake[1:] = active
@@ -611,6 +625,7 @@ class FastSnake:
         result["snake_positions"] = new_snake
         result["new_length"] = int(new_snake.size)
         result["ate_fruit"] = eats_fruit
+        result["grew"] = grows
         return result
 
     def simulate_turn(self, turn):
@@ -1016,6 +1031,7 @@ class FastSnake:
     def get_snake_metrics(self):
         analyses = self.analyze_moves()
         print(f"Snake length: {self.snake_length}")
+        print(f"Length cap: {self.max_snake_length}")
         print(f"Head position: {self.head_position}")
         print(f"Direction: {self.get_snake_direction_map()}")
         print(f"Default sensors: {self.sensors(method='default')}")
