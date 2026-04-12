@@ -5,7 +5,7 @@ Benchmark genetic training for recurrent neural Snake agents.
 Examples
 --------
 python book/machine_learning/exercises/tutorials/snake_rnn_benchmark.py
-python book/machine_learning/exercises/tutorials/snake_rnn_benchmark.py --configs compact-rnn,egocentric-r4-rnn
+python book/machine_learning/exercises/tutorials/snake_rnn_benchmark.py --configs compact-rnn,local-lite-r2-rnn
 python book/machine_learning/exercises/tutorials/snake_rnn_benchmark.py --rows 12 --cols 12 --population 60 --generations 12
 """
 
@@ -38,9 +38,9 @@ CONFIG_PRESETS = {
         "memory_size": 8,
         "hidden_sizes": (8,),
     },
-    "egocentric-r4-rnn": {
-        "sensor_method": "egocentric",
-        "sensor_kwargs": {"radius": 4},
+    "local-lite-r2-rnn": {
+        "sensor_method": "local_lite",
+        "sensor_kwargs": {"radius": 2},
         "memory_size": 4,
         "hidden_sizes": (8,),
     },
@@ -51,7 +51,7 @@ def build_parser():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
         "--configs",
-        default="compact-rnn,default-rnn,compact-rnn-m8,egocentric-r4-rnn",
+        default="default-rnn,compact-rnn,compact-rnn-m8,local-lite-r2-rnn",
         help=f"Comma-separated configuration names. Available: {', '.join(CONFIG_PRESETS)}",
     )
     parser.add_argument("--rows", type=int, default=10, help="Grid row count.")

@@ -40,8 +40,8 @@ def build_parser():
     parser.add_argument(
         "--radius",
         type=int,
-        default=4,
-        help="Radius used to showcase the local egocentric observation.",
+        default=2,
+        help="Radius used to showcase the lightweight local observation.",
     )
     return parser
 
@@ -49,14 +49,13 @@ def build_parser():
 def print_environment_summary(rows, cols, radius):
     snake = FastSnake(rows, cols)
     compact = snake.sensors(method="compact")
-    egocentric_full = snake.egocentric_channels()
-    egocentric_local = snake.egocentric_channels(radius=radius)
+    local_lite = snake.local_egocentric_channels_lite(radius=radius)
 
     print(f"Environment: {rows} x {cols}")
     print(f"Default sensor shape: {snake.sensors(method='default').shape}")
     print(f"Compact sensor shape: {compact.shape}")
-    print(f"Egocentric full shape: {egocentric_full.shape}")
-    print(f"Egocentric local shape (radius={radius}): {egocentric_local.shape}")
+    print(f"Local lite shape: {snake.sensors(method='local_lite').shape}")
+    print(f"Local lite tensor shape (radius={radius}): {local_lite.shape}")
     print()
 
 
