@@ -13,8 +13,8 @@ This made the code difficult to modify and slow to extend.
 
 The refactored module separates those responsibilities and keeps two clear use cases:
 
-- compact observations for small neural networks
-- full egocentric grid observations for search methods, CNN-style models, or debugging
+- lightweight observations for genetic optimization on CPU
+- optional heavier spatial helpers for debugging or future experiments
 
 ## State Representation
 
@@ -52,9 +52,7 @@ This is simpler than a full array plus an activity mask and keeps all conversion
 
 - `sensors(method="default")`
 - `sensors(method="compact")`
-- `sensors(method="topology")`
-- `sensors(method="egocentric")`
-- `egocentric_channels(radius=None)`
+- `sensors(method="local_lite")`
 
 ## Observation Families
 
@@ -65,7 +63,7 @@ Legacy 5-value observation kept for compatibility:
 - right/front/left local content
 - signed fruit direction in the snake frame
 
-### 2. `compact` / `topology`
+### 2. `compact`
 
 Fixed-size vector of length 21.
 
@@ -85,26 +83,27 @@ Global features appended at the end:
 
 This representation is meant for small MLPs and is much richer than the original 5-value sensor.
 
-### 3. `egocentric`
+### 3. `local_lite`
 
-Head-centered full-board observation aligned so that the snake always moves upward.
+Head-centered local observation aligned so that the snake always moves upward.
 
-`egocentric_channels(radius=None)` returns 4 channels:
+`local_egocentric_channels_lite(radius=2)` returns 5 channels:
 
 - walls
 - body
 - fruit
 - tail
+- region reachable from the head
 
-With `radius=None`, the whole grid is embedded in a centered canvas of shape:
+With the default `radius=2`, the tensor shape is:
 
-- `(4, 2*Nrow-1, 2*Ncol-1)`
+- `(5, 5, 5)`
 
-With `radius=r`, a local view of fixed size is returned:
+Flattened through `sensors(method="local_lite")`, this gives a fixed-size vector of length:
 
-- `(4, 2*r+1, 2*r+1)`
+- `125`
 
-This is the recommended starting point if you want to try a CNN or any model operating on a spatial observation.
+This is the recommended spatial starting point for a genetic TP on CPU.
 
 ## Search-Based Demonstration Agent
 
@@ -153,8 +152,7 @@ The script prints:
 
 If the next goal is learning rather than heuristics:
 
-- start with `compact` for a small MLP
-- use `egocentric_channels(radius=4)` for a fixed-size local spatial observation
-- use `egocentric_channels()` only if you accept an observation size that depends on the board size
+- start with `compact` for the easiest benchmark
+- try `local_lite` if you want a spatial observation that stays realistic on CPU
 
-The environment is now structured so these three directions can coexist without rewriting the game logic again.
+Heavier spatial helpers still exist in the codebase for debugging, but they are no longer part of the standard TP sensor API.

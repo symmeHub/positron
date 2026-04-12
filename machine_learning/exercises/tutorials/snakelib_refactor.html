@@ -299,7 +299,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../support_material.html">Support material</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../exercises.html">Exercices</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="classification_demo.html">Supervised Learning with PyTorch: A Classification Demo</a></li>
-<li class="toctree-l2"><a class="reference internal" href="genetic_snake_practical_work.html">Reinforcement learning on snake with a genetic neural network</a></li>
+<li class="toctree-l2"><a class="reference internal" href="genetic_snake_practical_work.html">Snake, sensors, and genetic learning</a></li>
 </ul>
 </details></li>
 </ul>
@@ -524,8 +524,8 @@ document.write(`
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#observation-families">Observation Families</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#default">1. <code class="docutils literal notranslate"><span class="pre">default</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compact-topology">2. <code class="docutils literal notranslate"><span class="pre">compact</span></code> / <code class="docutils literal notranslate"><span class="pre">topology</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#egocentric">3. <code class="docutils literal notranslate"><span class="pre">egocentric</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compact">2. <code class="docutils literal notranslate"><span class="pre">compact</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#local-lite">3. <code class="docutils literal notranslate"><span class="pre">local_lite</span></code></a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#search-based-demonstration-agent">Search-Based Demonstration Agent</a></li>
@@ -556,8 +556,8 @@ document.write(`
 <p>This made the code difficult to modify and slow to extend.</p>
 <p>The refactored module separates those responsibilities and keeps two clear use cases:</p>
 <ul class="simple">
-<li><p>compact observations for small neural networks</p></li>
-<li><p>full egocentric grid observations for search methods, CNN-style models, or debugging</p></li>
+<li><p>lightweight observations for genetic optimization on CPU</p></li>
+<li><p>optional heavier spatial helpers for debugging or future experiments</p></li>
 </ul>
 </section>
 <section id="state-representation">
@@ -600,9 +600,7 @@ document.write(`
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">sensors(method=&quot;default&quot;)</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">sensors(method=&quot;compact&quot;)</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">sensors(method=&quot;topology&quot;)</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">sensors(method=&quot;egocentric&quot;)</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">egocentric_channels(radius=None)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sensors(method=&quot;local_lite&quot;)</span></code></p></li>
 </ul>
 </section>
 </section>
@@ -616,8 +614,8 @@ document.write(`
 <li><p>signed fruit direction in the snake frame</p></li>
 </ul>
 </section>
-<section id="compact-topology">
-<h3>2. <code class="docutils literal notranslate"><span class="pre">compact</span></code> / <code class="docutils literal notranslate"><span class="pre">topology</span></code><a class="headerlink" href="#compact-topology" title="Link to this heading">#</a></h3>
+<section id="compact">
+<h3>2. <code class="docutils literal notranslate"><span class="pre">compact</span></code><a class="headerlink" href="#compact" title="Link to this heading">#</a></h3>
 <p>Fixed-size vector of length 21.</p>
 <p>For each relative action <code class="docutils literal notranslate"><span class="pre">[right,</span> <span class="pre">front,</span> <span class="pre">left]</span></code>, it includes:</p>
 <ul class="simple">
@@ -635,25 +633,26 @@ document.write(`
 </ul>
 <p>This representation is meant for small MLPs and is much richer than the original 5-value sensor.</p>
 </section>
-<section id="egocentric">
-<h3>3. <code class="docutils literal notranslate"><span class="pre">egocentric</span></code><a class="headerlink" href="#egocentric" title="Link to this heading">#</a></h3>
-<p>Head-centered full-board observation aligned so that the snake always moves upward.</p>
-<p><code class="docutils literal notranslate"><span class="pre">egocentric_channels(radius=None)</span></code> returns 4 channels:</p>
+<section id="local-lite">
+<h3>3. <code class="docutils literal notranslate"><span class="pre">local_lite</span></code><a class="headerlink" href="#local-lite" title="Link to this heading">#</a></h3>
+<p>Head-centered local observation aligned so that the snake always moves upward.</p>
+<p><code class="docutils literal notranslate"><span class="pre">local_egocentric_channels_lite(radius=2)</span></code> returns 5 channels:</p>
 <ul class="simple">
 <li><p>walls</p></li>
 <li><p>body</p></li>
 <li><p>fruit</p></li>
 <li><p>tail</p></li>
+<li><p>region reachable from the head</p></li>
 </ul>
-<p>With <code class="docutils literal notranslate"><span class="pre">radius=None</span></code>, the whole grid is embedded in a centered canvas of shape:</p>
+<p>With the default <code class="docutils literal notranslate"><span class="pre">radius=2</span></code>, the tensor shape is:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">(4,</span> <span class="pre">2*Nrow-1,</span> <span class="pre">2*Ncol-1)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">(5,</span> <span class="pre">5,</span> <span class="pre">5)</span></code></p></li>
 </ul>
-<p>With <code class="docutils literal notranslate"><span class="pre">radius=r</span></code>, a local view of fixed size is returned:</p>
+<p>Flattened through <code class="docutils literal notranslate"><span class="pre">sensors(method=&quot;local_lite&quot;)</span></code>, this gives a fixed-size vector of length:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">(4,</span> <span class="pre">2*r+1,</span> <span class="pre">2*r+1)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">125</span></code></p></li>
 </ul>
-<p>This is the recommended starting point if you want to try a CNN or any model operating on a spatial observation.</p>
+<p>This is the recommended spatial starting point for a genetic TP on CPU.</p>
 </section>
 </section>
 <section id="search-based-demonstration-agent">
@@ -700,11 +699,10 @@ python<span class="w"> </span>book/machine_learning/exercises/tutorials/snake_de
 <h2>Practical Guidance<a class="headerlink" href="#practical-guidance" title="Link to this heading">#</a></h2>
 <p>If the next goal is learning rather than heuristics:</p>
 <ul class="simple">
-<li><p>start with <code class="docutils literal notranslate"><span class="pre">compact</span></code> for a small MLP</p></li>
-<li><p>use <code class="docutils literal notranslate"><span class="pre">egocentric_channels(radius=4)</span></code> for a fixed-size local spatial observation</p></li>
-<li><p>use <code class="docutils literal notranslate"><span class="pre">egocentric_channels()</span></code> only if you accept an observation size that depends on the board size</p></li>
+<li><p>start with <code class="docutils literal notranslate"><span class="pre">compact</span></code> for the easiest benchmark</p></li>
+<li><p>try <code class="docutils literal notranslate"><span class="pre">local_lite</span></code> if you want a spatial observation that stays realistic on CPU</p></li>
 </ul>
-<p>The environment is now structured so these three directions can coexist without rewriting the game logic again.</p>
+<p>Heavier spatial helpers still exist in the codebase for debugging, but they are no longer part of the standard TP sensor API.</p>
 </section>
 </section>
 
@@ -764,8 +762,8 @@ python<span class="w"> </span>book/machine_learning/exercises/tutorials/snake_de
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#observation-families">Observation Families</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#default">1. <code class="docutils literal notranslate"><span class="pre">default</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compact-topology">2. <code class="docutils literal notranslate"><span class="pre">compact</span></code> / <code class="docutils literal notranslate"><span class="pre">topology</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#egocentric">3. <code class="docutils literal notranslate"><span class="pre">egocentric</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compact">2. <code class="docutils literal notranslate"><span class="pre">compact</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#local-lite">3. <code class="docutils literal notranslate"><span class="pre">local_lite</span></code></a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#search-based-demonstration-agent">Search-Based Demonstration Agent</a></li>
