@@ -19,7 +19,7 @@ Traceback (most recent call last):
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
 # FOR JUPYTER LAB
-%matplotlib notebook
+%matplotlib widget
 # FOR JUPYTER NOTEBOOK AND HUB
 # % matplotlib notebook
 import numpy as np
